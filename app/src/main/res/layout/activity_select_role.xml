@@ -27,6 +27,7 @@
         android:text="@string/employer"
         android:textSize="22sp"
         android:textStyle="bold"
+        android:background="@drawable/square_button_background"
         app:layout_constraintEnd_toStartOf="@+id/selectEmployee"
         app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +42,7 @@
         android:text="@string/employee"
         android:textSize="22sp"
         android:textStyle="bold"
+        android:background="@drawable/square_button_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectRoleIam" />
 </androidx.constraintlayout.widget.ConstraintLayout>
