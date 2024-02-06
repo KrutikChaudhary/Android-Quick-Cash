@@ -7,4 +7,7 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="sign_up">SIGN UP</string>
+    <string name="i_am_a">I am a</string>
+    <string name="employer">EMPLOYER</string>
+    <string name="employee">EMPLOYEE</string>
 </resources>
