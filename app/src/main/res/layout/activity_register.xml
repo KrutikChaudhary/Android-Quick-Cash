@@ -7,26 +7,11 @@
     android:background="@color/pale_blue"
     tools:context=".RegisterActivity">
 
-    <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:layout_marginBottom="210dp"
-        android:background="@drawable/square_button_background"
-        android:text="@string/sign_up"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordText" />
-
     <EditText
         android:id="@+id/enterEmailText"
         android:layout_width="407dp"
         android:layout_height="51dp"
-        android:layout_marginTop="173dp"
+        android:layout_marginTop="130dp"
         android:ems="10"
         android:hint="Enter Email"
         android:inputType="text"
@@ -34,15 +19,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="91dp"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/square_button_background"
+        android:text="@string/sign_up"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordText"
+        app:layout_constraintVertical_bias="0.009" />
+
     <EditText
         android:id="@+id/enterPasswordText"
         android:layout_width="406dp"
         android:layout_height="53dp"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="Enter Password"
+        android:hint="Enter Password  (7-16 characters)"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterEmailText" />
 
@@ -55,7 +57,24 @@
         android:hint="Confirm Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterPasswordText" />
+
+    <TextView
+        android:id="@+id/emailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterEmailText" />
+
+    <TextView
+        android:id="@+id/passwordLabel"
+        android:layout_width="0dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="64dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

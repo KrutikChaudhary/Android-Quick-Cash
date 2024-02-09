@@ -10,4 +10,11 @@
     <string name="i_am_a">I am a</string>
     <string name="employer">EMPLOYER</string>
     <string name="employee">EMPLOYEE</string>
+
+    <string name="EMAIL_EMPTY">Please enter your email</string>
+    <string name="EMAIL_INVALID">Please enter a valid email</string>
+    <string name="PASSWORD_EMPTY">Please enter password</string>
+    <string name="PASSWORD_MISMATCH">Passwords don\'t match</string>
+    <string name="PASSWORD_INVALID">Password should contain a capital letter and a number</string>
+    <string name="PASSWORD_INVALID_LENGTH">Password should contain 7–16 characters</string>
 </resources>
