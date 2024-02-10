@@ -16,7 +16,7 @@
         android:layout_marginBottom="72dp"
         android:contentDescription="this_is_the_profile_picture_image_which_will_later_be_updated_for_every_user"
         android:src="@drawable/project_profile_photo"
-        app:layout_constraintBottom_toTopOf="@+id/Find_Jobs"
+        app:layout_constraintBottom_toTopOf="@+id/PostJobs"
         app:layout_constraintEnd_toStartOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +24,7 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/JobPostings2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="27dp"
@@ -36,7 +36,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/All_Jobs"
+        app:layout_constraintStart_toEndOf="@+id/postedJobs"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
@@ -50,7 +50,7 @@
         android:text="quick_cash_dashboard"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/JobPostings2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/myImage"
         app:layout_constraintTop_toTopOf="parent"
@@ -69,20 +69,20 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/Find_Jobs"
+        android:id="@+id/PostJobs"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="22dp"
         android:text="Find Job"
-        app:layout_constraintBottom_toTopOf="@+id/All_Jobs"
+        app:layout_constraintBottom_toTopOf="@+id/postedJobs"
         app:layout_constraintEnd_toStartOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myImage" />
 
     <Button
-        android:id="@+id/All_Jobs"
+        android:id="@+id/postedJobs"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -90,10 +90,10 @@
         android:layout_marginBottom="21dp"
         android:text="All Jobs"
         app:layout_constraintBottom_toTopOf="@+id/stats"
-        app:layout_constraintEnd_toEndOf="@+id/Find_Jobs"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/PostJobs"
+        app:layout_constraintEnd_toStartOf="@+id/JobPostings2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Find_Jobs" />
+        app:layout_constraintTop_toBottomOf="@+id/PostJobs" />
 
     <Button
         android:id="@+id/stats"
@@ -102,9 +102,9 @@
         android:layout_marginBottom="16dp"
         android:text="Stats"
         app:layout_constraintBottom_toTopOf="@+id/Profile"
-        app:layout_constraintEnd_toEndOf="@+id/All_Jobs"
+        app:layout_constraintEnd_toEndOf="@+id/postedJobs"
         app:layout_constraintStart_toStartOf="@+id/Profile"
-        app:layout_constraintTop_toBottomOf="@+id/All_Jobs" />
+        app:layout_constraintTop_toBottomOf="@+id/postedJobs" />
 
     <Button
         android:id="@+id/Profile"
@@ -115,10 +115,9 @@
         android:layout_marginBottom="274dp"
         android:text="Profile"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/Find_Jobs"
+        app:layout_constraintEnd_toEndOf="@+id/PostJobs"
         app:layout_constraintStart_toStartOf="@+id/myImage"
         app:layout_constraintTop_toBottomOf="@+id/stats" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
