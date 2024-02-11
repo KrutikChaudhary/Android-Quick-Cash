@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (!validator.isPasswordEmpty(getPassword())){
                             if (validator.isPasswordMatch(getPassword(), getConfirmedPassword())){
                                 if (validator.checkPasswordLength(getPassword())){
-                                    if (validator.isValidPassword(getPassword())){
+                                    if (validator.isPasswordValid(getPassword())){
                                         validated = true;
                                     }
                                     else{
