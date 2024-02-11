@@ -72,5 +72,4 @@ public class JUnitValidator {
         assertFalse(val.isPasswordValid("12345678"));
         assertFalse(val.isPasswordValid("AAAAAAAA"));
     }
-
 }
