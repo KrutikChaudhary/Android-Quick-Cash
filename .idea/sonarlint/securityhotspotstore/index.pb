@@ -1,0 +1,27 @@
+
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+g
+7app/src/main/java/com/example/group12/MainActivity.java,3/b/3b8f8fdee2831a1ce83de5bf0c0683e802f31359
+g
+7app/src/main/java/com/example/group12/SpalshScreen.java,0/6/06b6f957036a284e72aca45c5137dbe1c1da47ff
+g
+7app/src/main/java/com/example/group12/SplashScreen.java,7/8/785fb75eb9572af33c3358c8b620db8bbb0c0251
+c
+3app/src/main/java/com/example/group12/Register.java,6/9/6968c85047a8e6a265ec49c0ecd870b7bd2ec4e3
+`
+0app/src/main/java/com/example/group12/LogIn.java,f/a/fa128da701fa39bdc00ff55a488687fb356d266a
+Å
+Q.idea/sonarlint/securityhotspotstore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,1/0/10a03f31c4dce92cb371e761ce9429428bb6c176
+w
+G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b/4/b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
+Å
+Q.idea/sonarlint/securityhotspotstore/3/b/3b8f8fdee2831a1ce83de5bf0c0683e802f31359,5/d/5d115d9268056399a35df6e90b062ae9a5b063c3
+w
+G.idea/sonarlint/issuestore/3/b/3b8f8fdee2831a1ce83de5bf0c0683e802f31359,f/7/f78d21bf2b4519a58b8be120f564c9aeac398391
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8/8/88a9255124c95bdc913197c120a8d560edc59c8e
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
