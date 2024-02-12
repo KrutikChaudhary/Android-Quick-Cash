@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".Dashboard_User">
 
+
     <ImageView
         android:id="@+id/myImage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="149dp"
+        android:layout_height="72dp"
         android:layout_marginStart="6dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="22dp"
@@ -22,11 +23,10 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-
     <TextView
         android:id="@+id/JobPostings2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="169dp"
+        android:layout_height="317dp"
         android:layout_marginEnd="27dp"
         android:layout_marginBottom="284dp"
         android:background="@drawable/box"
@@ -41,13 +41,13 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="242dp"
+        android:layout_height="44dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="77dp"
         android:layout_marginBottom="99dp"
         android:paddingTop="11dp"
-        android:text="quick_cash_dashboard"
+        android:text="USER DASHBOARD"
+        android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/JobPostings2"
@@ -58,33 +58,33 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="211dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="635dp"
+        android:layout_width="225dp"
+        android:layout_height="34dp"
         android:gravity="center"
-        android:text="Navbar"
+        android:text="Search"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/JobPostings2"
         app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/PostJobs"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="151dp"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="15dp"
         android:layout_marginBottom="22dp"
         android:text="Find Job"
         app:layout_constraintBottom_toTopOf="@+id/postedJobs"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="@+id/postedJobs"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myImage" />
 
     <Button
         android:id="@+id/postedJobs"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="151dp"
+        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="74dp"
         android:layout_marginBottom="21dp"
@@ -97,8 +97,8 @@
 
     <Button
         android:id="@+id/stats"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="151dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="16dp"
         android:text="Stats"
         app:layout_constraintBottom_toTopOf="@+id/Profile"
@@ -108,8 +108,8 @@
 
     <Button
         android:id="@+id/Profile"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="151dp"
+        android:layout_height="60dp"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="6dp"
         android:layout_marginBottom="274dp"
