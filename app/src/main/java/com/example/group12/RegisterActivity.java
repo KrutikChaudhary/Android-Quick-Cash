@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -17,6 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         signupButtonSetup();
+        databaseInit();
     }
 
     protected void signupButtonSetup(){
@@ -81,7 +85,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     protected void databaseInit(){
-
+        FirebaseDatabase db = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_LINK));
+        DatabaseReference dbref = db.getReference("test");
+        dbref.setValue("This is a test");
     }
 
     protected void saveToFirebase(){
