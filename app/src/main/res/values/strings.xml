@@ -17,4 +17,6 @@
     <string name="PASSWORD_MISMATCH">Passwords don\'t match</string>
     <string name="PASSWORD_INVALID">Password should contain a capital letter and a number</string>
     <string name="PASSWORD_INVALID_LENGTH">Password should contain 7–16 characters</string>
+
+    <string name="FIREBASE_LINK">https://quickcash-197c8-default-rtdb.firebaseio.com/</string>
 </resources>
