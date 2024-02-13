@@ -26,12 +26,6 @@
         android:padding="8dp">
 
         <!-- Your Jobs button -->
-        <Button
-            android:id="@+id/findJobsButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Find Jobs" />
 
         <!-- Post a Job button -->
 
@@ -40,22 +34,29 @@
         <!-- Your Profile button -->
 
         <Button
+            android:id="@+id/findJobsButton"
+            android:layout_width="24dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Find Jobs" />
+
+        <Button
             android:id="@+id/allJobButton"
-            android:layout_width="0dp"
+            android:layout_width="13dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="All Jobs" />
 
         <Button
             android:id="@+id/StatsButton"
-            android:layout_width="16dp"
-            android:layout_height="62dp"
+            android:layout_width="23dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Stats" />
+            android:text="All Stats" />
 
         <Button
             android:id="@+id/yourProfileButton"
-            android:layout_width="9dp"
+            android:layout_width="46dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Your Profile" />
