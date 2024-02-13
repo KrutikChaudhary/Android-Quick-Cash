@@ -1,123 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dashboard_User">
+    android:orientation="vertical">
 
-
-    <ImageView
-        android:id="@+id/myImage"
-        android:layout_width="149dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="72dp"
-        android:contentDescription="this_is_the_profile_picture_image_which_will_later_be_updated_for_every_user"
-        android:src="@drawable/project_profile_photo"
-        app:layout_constraintBottom_toTopOf="@+id/PostJobs"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
+    <!-- Header -->
     <TextView
-        android:id="@+id/JobPostings2"
-        android:layout_width="169dp"
-        android:layout_height="317dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="284dp"
-        android:background="@drawable/box"
-        android:gravity="center"
-        android:text="Jobs"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/postedJobs"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#3E2F78"
+        android:padding="16dp"
+        android:text="Quick Cash - User Dashboard"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="242dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="99dp"
-        android:paddingTop="11dp"
-        android:text="USER DASHBOARD"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/JobPostings2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/myImage"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+    <!-- Navigation buttons -->
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="225dp"
-        android:layout_height="34dp"
-        android:gravity="center"
-        android:text="Search"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/JobPostings2"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.0" />
+    <!-- Job Postings -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D4CAEC"
+        android:orientation="horizontal"
+        android:padding="8dp">
 
-    <Button
-        android:id="@+id/PostJobs"
-        android:layout_width="151dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="22dp"
-        android:text="Find Job"
-        app:layout_constraintBottom_toTopOf="@+id/postedJobs"
-        app:layout_constraintEnd_toEndOf="@+id/postedJobs"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myImage" />
+        <!-- Your Jobs button -->
+        <Button
+            android:id="@+id/findJobsButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Find Jobs" />
 
-    <Button
-        android:id="@+id/postedJobs"
-        android:layout_width="151dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="74dp"
-        android:layout_marginBottom="21dp"
-        android:text="All Jobs"
-        app:layout_constraintBottom_toTopOf="@+id/stats"
-        app:layout_constraintEnd_toEndOf="@+id/PostJobs"
-        app:layout_constraintEnd_toStartOf="@+id/JobPostings2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PostJobs" />
+        <!-- Post a Job button -->
 
-    <Button
-        android:id="@+id/stats"
-        android:layout_width="151dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="16dp"
-        android:text="Stats"
-        app:layout_constraintBottom_toTopOf="@+id/Profile"
-        app:layout_constraintEnd_toEndOf="@+id/postedJobs"
-        app:layout_constraintStart_toStartOf="@+id/Profile"
-        app:layout_constraintTop_toBottomOf="@+id/postedJobs" />
+        <!-- Help and Support button -->
 
-    <Button
-        android:id="@+id/Profile"
-        android:layout_width="151dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="274dp"
-        android:text="Profile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/PostJobs"
-        app:layout_constraintStart_toStartOf="@+id/myImage"
-        app:layout_constraintTop_toBottomOf="@+id/stats" />
+        <!-- Your Profile button -->
+
+        <Button
+            android:id="@+id/allJobButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="All Jobs" />
+
+        <Button
+            android:id="@+id/StatsButton"
+            android:layout_width="16dp"
+            android:layout_height="62dp"
+            android:layout_weight="1"
+            android:text="Stats" />
+
+        <Button
+            android:id="@+id/yourProfileButton"
+            android:layout_width="9dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Your Profile" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp">
+
+        <GridLayout
+            android:id="@+id/jobPostingsGridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:rowCount="3"
+            android:orientation="horizontal">
+
+            <!-- Box 1 -->
+            <TextView
+                android:id="@+id/jobPosting1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 1"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+
+            <!-- Box 2 -->
+            <TextView
+                android:id="@+id/jobPosting2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 2"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+
+            <!-- Box 3 -->
+            <TextView
+                android:id="@+id/jobPosting3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 3"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/jobPosting4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 4"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/jobPosting5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 5"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/jobPosting6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 6"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/jobPosting7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 7"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/jobPosting8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 8"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/jobPosting9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 9"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+
+        </GridLayout>
+    </ScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
