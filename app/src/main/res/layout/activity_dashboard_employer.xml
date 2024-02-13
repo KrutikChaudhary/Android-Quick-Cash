@@ -26,32 +26,32 @@
         <!-- Your Jobs button -->
         <Button
             android:id="@+id/yourJobsButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="8dp"
+            android:layout_height="73dp"
             android:layout_weight="1"
-            android:text="Your Jobs"/>
+            android:text="Your Jobs" />
 
         <!-- Post a Job button -->
         <Button
             android:id="@+id/postJobButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="17dp"
+            android:layout_height="71dp"
             android:layout_weight="1"
-            android:text="Post a Job"/>
+            android:text="Post a Job" />
 
         <!-- Help and Support button -->
         <Button
             android:id="@+id/helpSupportButton"
-            android:layout_width="16dp"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="71dp"
             android:layout_weight="1"
             android:text="Help and Support" />
 
         <!-- Your Profile button -->
         <Button
             android:id="@+id/yourProfileButton"
-            android:layout_width="9dp"
-            android:layout_height="wrap_content"
+            android:layout_width="16dp"
+            android:layout_height="69dp"
             android:layout_weight="1"
             android:text="Your Profile" />
     </LinearLayout>
