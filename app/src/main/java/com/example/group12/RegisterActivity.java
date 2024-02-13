@@ -12,8 +12,13 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class RegisterActivity extends AppCompatActivity {
+
+    FirebaseDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,13 +90,15 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     protected void databaseInit(){
-        FirebaseDatabase db = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_LINK));
-        DatabaseReference dbref = db.getReference("test");
-        dbref.setValue("This is a test");
+        db = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_LINK));
     }
 
     protected void saveToFirebase(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("Email", getEmail());
+        map.put("Password", getPassword());
 
+        db.getReference().child("User").push().setValue(map);
     }
 
     protected String getEmail(){
