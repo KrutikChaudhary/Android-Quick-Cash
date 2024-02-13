@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Activity_Dashboard_User_FindJob extends AppCompatActivity {
+public class Dashboard_User_FindJob extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard_user_findjob);
+        setContentView(R.layout.activity_dashboard_user_find_job);
     }
 }
