@@ -8,6 +8,9 @@
       <entry key="caseEmailEmpty()">
         <State />
       </entry>
+      <entry key="checkIfHomePageVisible()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>
