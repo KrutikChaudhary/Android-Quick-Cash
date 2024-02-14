@@ -25,3 +25,5 @@ P
 -.idea/sonarlint/securityhotspotstore/index.pb,8/8/88a9255124c95bdc913197c120a8d560edc59c8e
 S
 #.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
+j
+:app/src/test/java/com/example/group12/ExampleUnitTest.java,7/0/70af09e3bf63353e268cba9496952e601aafb76c
