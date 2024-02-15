@@ -3,12 +3,6 @@
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 g
 7app/src/main/java/com/example/group12/MainActivity.java,3/b/3b8f8fdee2831a1ce83de5bf0c0683e802f31359
-g
-7app/src/main/java/com/example/group12/SpalshScreen.java,0/6/06b6f957036a284e72aca45c5137dbe1c1da47ff
-g
-7app/src/main/java/com/example/group12/SplashScreen.java,7/8/785fb75eb9572af33c3358c8b620db8bbb0c0251
-c
-3app/src/main/java/com/example/group12/Register.java,6/9/6968c85047a8e6a265ec49c0ecd870b7bd2ec4e3
 `
 0app/src/main/java/com/example/group12/LogIn.java,f/a/fa128da701fa39bdc00ff55a488687fb356d266a
 Å
@@ -27,3 +21,5 @@ S
 #.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
 j
 :app/src/test/java/com/example/group12/ExampleUnitTest.java,7/0/70af09e3bf63353e268cba9496952e601aafb76c
+y
+Iapp/src/androidTest/java/com/example/group12/ExampleInstrumentedTest.java,7/7/776215b4ef97ab4e0860d9ec88fde644de54254e
