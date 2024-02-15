@@ -27,7 +27,6 @@ import java.util.Locale;
 public class LocationDetector extends AppCompatActivity {
     private final FusedLocationProviderClient fusedLocationProviderClient;
     private final LocationRequest locationRequest;
-    //private final LocationUpdatesListener listener;
     private final Context context;
     private static final int REQUEST_CODE = 100;
 
