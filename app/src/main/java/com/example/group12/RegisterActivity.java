@@ -19,6 +19,7 @@ import java.util.Map;
 public class RegisterActivity extends AppCompatActivity {
 
     FirebaseDatabase db;
+    DatabaseReference userRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (validated){
                     saveToFirebase();
                     Intent selectRoleIntent = new Intent(RegisterActivity.this, SelectRoleActivity.class);
+                    selectRoleIntent.putExtra("key", userRef.getKey());
                     RegisterActivity.this.startActivity(selectRoleIntent);
                 }
                 else{
@@ -98,7 +100,9 @@ public class RegisterActivity extends AppCompatActivity {
         map.put("Email", getEmail());
         map.put("Password", getPassword());
 
-        db.getReference().child("User").push().setValue(map);
+        userRef = db.getReference().child("User").push();
+        userRef.setValue(map);
+
     }
 
     protected String getEmail(){
