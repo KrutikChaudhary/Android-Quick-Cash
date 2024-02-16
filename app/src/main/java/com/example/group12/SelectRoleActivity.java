@@ -31,7 +31,6 @@ public class SelectRoleActivity extends AppCompatActivity {
         userKey = getIntent().getStringExtra("key");
         Log.e("key", userKey);
         setContentView(R.layout.activity_select_role);
-        updateRole("Buyer");
         employeeRole();
         employerRole();
     }
@@ -42,15 +41,16 @@ public class SelectRoleActivity extends AppCompatActivity {
 
         employee.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                updateRole("Employee");
                 //connect to employee dashboard
-                Intent a = new Intent(SelectRoleActivity.this, DashBoard_User.class);
+                Intent a = new Intent(SelectRoleActivity.this, MainActivity.class);
                 startActivity(a);
                 //Test for changing pages
-                if (a == DashBoard_User.class) {
-                    Toast.makeText(SelectRoleActivity.this, "Changed page to employee dashboard", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(SelectRoleActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                }
+               // if (a.getName().equals(MainActivity.class)) {
+                 //   Toast.makeText(SelectRoleActivity.this, "Changed page to employee dashboard", Toast.LENGTH_SHORT).show();
+               // } else {
+                  //  Toast.makeText(SelectRoleActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                //}
             }
         });
     }
@@ -59,15 +59,17 @@ public class SelectRoleActivity extends AppCompatActivity {
 
             employer.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
+                    updateRole("Employer");
                     //connect to employer dashboard
-                    Intent a = new Intent(SelectRoleActivity.this, DashBoard_Employer.class);
+                    Intent a = new Intent(SelectRoleActivity.this, MainActivity.class);
                     startActivity(a);
+
                     //Test for changing pages
-                    if (a == DashBoard_Employer.class) {
-                        Toast.makeText(SelectRoleActivity.this, "Changed page to employer dashboard", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(SelectRoleActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                    }
+                 //   if (a.getName().equals(MainActivity.class)) {
+                  //      Toast.makeText(SelectRoleActivity.this, "Changed page to employer dashboard", Toast.LENGTH_SHORT).show();
+                   // } else {
+                  //      Toast.makeText(SelectRoleActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                  //  }
                 }
             });
         }

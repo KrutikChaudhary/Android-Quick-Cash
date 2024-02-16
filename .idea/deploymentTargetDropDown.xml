@@ -2,6 +2,9 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="MainActivity">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -17,12 +20,6 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-02-09T14:42:11.062140200Z" />
         </State>
-      </entry>
-      <entry key="caseEmailEmpty()">
-        <State />
-      </entry>
-      <entry key="checkIfHomePageVisible()">
-        <State />
       </entry>
     </value>
   </component>
