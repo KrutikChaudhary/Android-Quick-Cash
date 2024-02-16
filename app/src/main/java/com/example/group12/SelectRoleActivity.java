@@ -44,7 +44,7 @@ public class SelectRoleActivity extends AppCompatActivity {
                 Intent a = new Intent(SelectRoleActivity.this, DashBoard_User.class);
                 startActivity(a);
                 //Test for changing pages
-                if (a == DashBoard_Employee.class) {
+                if (a == DashBoard_User.class) {
                     Toast.makeText(SelectRoleActivity.this, "Changed page to employee dashboard", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(SelectRoleActivity.this, "Error", Toast.LENGTH_SHORT).show();
