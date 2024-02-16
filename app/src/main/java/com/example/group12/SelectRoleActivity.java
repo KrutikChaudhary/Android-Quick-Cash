@@ -32,6 +32,8 @@ public class SelectRoleActivity extends AppCompatActivity {
         Log.e("key", userKey);
         setContentView(R.layout.activity_select_role);
         updateRole("Buyer");
+        employeeRole();
+        employerRole();
     }
 
 
