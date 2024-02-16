@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.util.Patterns;
 import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class LogIn extends AppCompatActivity {
 
@@ -29,25 +30,29 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                String email_text = email.getText().toString();
+                String password_text = password.getText().toString();
 
-                if(email.getText().toString().equals("user") && password.getText().toString().equals("12345")){
-                    Toast.makeText(LogIn.this, "Login successful", Toast.LENGTH_SHORT).show();
-                } else{
-                    Toast.makeText(LogIn.this, "Login unsuccessful", Toast.LENGTH_SHORT).show();
-                }
-                
-
-
+                if (isValidEmail(email_text) && isValidPassword(password_text)) {
+                                    Toast.makeText(LogIn.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                } else {
+                                       Toast.makeText(LogIn.this, "Login Unsuccessful", Toast.LENGTH_SHORT).show();
+                                  }
             }
         });
-
-
-
-
-
-
-
-
-
     }
+
+    private boolean isValidEmail(String email) {
+               String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+               Pattern pattern = Pattern.compile(regex);
+               Matcher matcher = pattern.matcher(email);
+              return matcher.matches();
+           }
+
+           private boolean isValidPassword(String password) {
+             if (password.length() < 8) {
+                       return false;
+                    }
+               return true;
+           }
 }
