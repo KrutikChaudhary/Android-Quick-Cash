@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.Firebase;
 import com.google.firebase.database.DataSnapshot;
@@ -34,32 +35,40 @@ public class SelectRoleActivity extends AppCompatActivity {
     }
 
 
-    protected void employeeRole(){
+    protected void employeeRole() {
         Button employee = findViewById(R.id.selectEmployee);
-        Button employer = findViewById(R.id.selectEmployer);
 
         employee.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 //connect to employee dashboard
-                Intent a = new Intent(SelectRoleActivity.this, DashBoard_User);
+                Intent a = new Intent(SelectRoleActivity.this, DashBoard_User.class);
                 startActivity(a);
-                //add role to database
+                //Test for changing pages
+                if (a == DashBoard_Employee.class) {
+                    Toast.makeText(SelectRoleActivity.this, "Changed page to employee dashboard", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SelectRoleActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                }
             }
-        }
+        });
     }
-    protected void employerRole(){
-    Button employer = findViewById(R.id.selectEmployer);
+        protected void employerRole() {
+            Button employer = findViewById(R.id.selectEmployer);
 
-        employer.setOnClickListener(new View.OnClickListener() {
-        public void onClick(View view) {
-            //connect to employer dashboard
-            Intent a = new Intent(SelectRoleActivity.this, DashBoard_Employer);
-            startActivity(a);
-            //add role to database
-
+            employer.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    //connect to employer dashboard
+                    Intent a = new Intent(SelectRoleActivity.this, DashBoard_Employer.class);
+                    startActivity(a);
+                    //Test for changing pages
+                    if (a == DashBoard_Employer.class) {
+                        Toast.makeText(SelectRoleActivity.this, "Changed page to employer dashboard", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(SelectRoleActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
-    }
-}
 
     protected void updateRole(String role){
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("User").child(userKey);
