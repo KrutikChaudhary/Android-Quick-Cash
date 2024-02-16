@@ -9,14 +9,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class RegisterActivity extends AppCompatActivity {
+
+    FirebaseDatabase db;
+    DatabaseReference userRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         signupButtonSetup();
+        databaseInit();
     }
 
     protected void signupButtonSetup(){
@@ -38,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (!validator.isPasswordEmpty(getPassword())){
                             if (validator.isPasswordMatch(getPassword(), getConfirmedPassword())){
                                 if (validator.checkPasswordLength(getPassword())){
-                                    if (validator.isValidPassword(getPassword())){
+                                    if (validator.isPasswordValid(getPassword())){
                                         validated = true;
                                     }
                                     else{
@@ -66,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (validated){
                     saveToFirebase();
                     Intent selectRoleIntent = new Intent(RegisterActivity.this, SelectRoleActivity.class);
+                    selectRoleIntent.putExtra("key", userRef.getKey());
                     RegisterActivity.this.startActivity(selectRoleIntent);
                 }
                 else{
@@ -81,10 +92,16 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     protected void databaseInit(){
-
+        db = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_LINK));
     }
 
     protected void saveToFirebase(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("Email", getEmail());
+        map.put("Password", getPassword());
+
+        userRef = db.getReference().child("User").push();
+        userRef.setValue(map);
 
     }
 

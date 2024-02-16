@@ -38,7 +38,7 @@ public class Validator {
      * @param password
      * @return
      */
-    protected boolean isValidPassword(String password){
+    protected boolean isPasswordValid(String password){
         String passwordRegex = "^(?=.*[A-Z])(?=.*\\d).+$";
         Pattern passwordPattern = Pattern.compile(passwordRegex);
         Matcher matcher = passwordPattern.matcher(password);

@@ -18,6 +18,12 @@
           <timeTargetWasSelectedWithDropDown value="2024-02-09T14:42:11.062140200Z" />
         </State>
       </entry>
+      <entry key="caseEmailEmpty()">
+        <State />
+      </entry>
+      <entry key="checkIfHomePageVisible()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>
