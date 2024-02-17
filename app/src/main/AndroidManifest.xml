@@ -40,6 +40,12 @@
             android:name=".Dashboard_Employer"
             android:exported="false" />
         <activity
+            android:name=".SelectRoleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
