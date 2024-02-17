@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         registerButtonSetup();
         loginButtonSetup();
-
     }
 
     protected void registerButtonSetup(){
@@ -37,7 +36,8 @@ public class MainActivity extends AppCompatActivity{
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent loginIntent = new Intent(MainActivity.this, LogIn.class);
+                MainActivity.this.startActivity(loginIntent);
             }
         });
     }
