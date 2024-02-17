@@ -3,27 +3,27 @@
   <component name="AndroidTestResultsUserPreferences">
     <option name="androidTestResultsTableState">
       <map>
-        <entry key="1061389433">
+        <entry key="-1888205901">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Pixel_7_API_26" value="120" />
                   <entry key="Tests" value="360" />
-                  <entry key="yashroushan-api34" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
           </value>
         </entry>
-        <entry key="1984166925">
+        <entry key="-1279301731">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Pixel_7_API_26" value="120" />
                   <entry key="Tests" value="360" />
-                  <entry key="yashroushan-api34" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
