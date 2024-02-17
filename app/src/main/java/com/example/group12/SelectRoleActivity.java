@@ -43,7 +43,7 @@ public class SelectRoleActivity extends AppCompatActivity {
             public void onClick(View view) {
                 updateRole("Employee");
                 //connect to employee dashboard
-                Intent a = new Intent(SelectRoleActivity.this, MainActivity.class);
+                Intent a = new Intent(SelectRoleActivity.this, Dashboard_User.class);
                 startActivity(a);
                 //Test for changing pages
              //   if (a.getName().equals(MainActivity.class)) {
@@ -61,7 +61,7 @@ public class SelectRoleActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     updateRole("Employer");
                     //connect to employer dashboard
-                    Intent a = new Intent(SelectRoleActivity.this, MainActivity.class);
+                    Intent a = new Intent(SelectRoleActivity.this, Dashboard_Employer.class);
                     startActivity(a);
 
                     //Test for changing pages
