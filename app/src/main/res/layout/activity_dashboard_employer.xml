@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Header -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quick Cash - Employer Dashboard"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:background="#3E2F78"
+        android:textColor="@android:color/white"/>
+
+    <!-- Navigation buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:background="#D4CAEC">
+
+        <!-- Your Jobs button -->
+        <Button
+            android:id="@+id/yourJobsButton"
+            android:layout_width="8dp"
+            android:layout_height="73dp"
+            android:layout_weight="1"
+            android:text="Your Jobs" />
+
+        <!-- Post a Job button -->
+        <Button
+            android:id="@+id/postJobButton"
+            android:layout_width="17dp"
+            android:layout_height="71dp"
+            android:layout_weight="1"
+            android:text="Post a Job" />
+
+        <!-- Help and Support button -->
+        <Button
+            android:id="@+id/helpSupportButton"
+            android:layout_width="35dp"
+            android:layout_height="71dp"
+            android:layout_weight="1"
+            android:text="Help and Support" />
+
+        <!-- Your Profile button -->
+        <Button
+            android:id="@+id/yourProfileButton"
+            android:layout_width="16dp"
+            android:layout_height="69dp"
+            android:layout_weight="1"
+            android:text="Your Profile" />
+    </LinearLayout>
+
+    <!-- Job Postings -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp">
+
+        <GridLayout
+            android:id="@+id/jobPostingsGridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:rowCount="3"
+            android:orientation="horizontal">
+
+            <!-- Box 1 -->
+            <TextView
+                android:id="@+id/jobPosting1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 1"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+
+            <!-- Box 2 -->
+            <TextView
+                android:id="@+id/jobPosting2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 2"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+
+            <!-- Box 3 -->
+            <TextView
+                android:id="@+id/jobPosting3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 3"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/jobPosting4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 4"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/jobPosting5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 5"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/jobPosting6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 6"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/jobPosting7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 7"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/jobPosting8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 8"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/jobPosting9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job Posting 9"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textSize="18sp"/>
+
+        </GridLayout>
+    </ScrollView>
+
+
+</LinearLayout>
