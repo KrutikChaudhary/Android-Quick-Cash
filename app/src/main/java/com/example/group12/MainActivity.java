@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         registerButtonSetup();
         loginButtonSetup();
-        Toast.makeText(this, "Changed page to employee dashboard", Toast.LENGTH_SHORT).show();
 
     }
 
