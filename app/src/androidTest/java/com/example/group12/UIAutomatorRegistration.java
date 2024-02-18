@@ -31,7 +31,8 @@ public class UIAutomatorRegistration {
         device = UiDevice.getInstance(getInstrumentation());
         Context context = ApplicationProvider.getApplicationContext();
         final Intent appIntent = context.getPackageManager().getLaunchIntentForPackage(launcherPackage);
-        appIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        appIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(appIntent);
         device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT);
     }
 
