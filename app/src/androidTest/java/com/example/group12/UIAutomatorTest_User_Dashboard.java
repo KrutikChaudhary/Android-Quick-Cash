@@ -41,11 +41,11 @@ public class UIAutomatorTest_User_Dashboard {
     @Test
     public void checkIfUserDashboardPageIsVisible() {
         // this test checks if the User Dashboard page is visible
-        UiObject FindJobButton = device.findObject(new UiSelector().text("Find a job"));
+        UiObject FindJobButton = device.findObject(new UiSelector().text("Find Jobs"));
         assertTrue(FindJobButton.exists());
         UiObject AllJobButton = device.findObject(new UiSelector().text("All Jobs"));
         assertTrue(AllJobButton.exists());
-        UiObject StatsButton = device.findObject(new UiSelector().text("Stats"));
+        UiObject StatsButton = device.findObject(new UiSelector().text("All Stats"));
         assertTrue(StatsButton.exists());
         UiObject YourProfileButton = device.findObject(new UiSelector().text("Your Profile"));
         assertTrue(YourProfileButton.exists());

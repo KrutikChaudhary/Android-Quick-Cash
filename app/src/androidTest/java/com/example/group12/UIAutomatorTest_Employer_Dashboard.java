@@ -41,10 +41,10 @@ public class UIAutomatorTest_Employer_Dashboard {
     @Test
     public void checkIfEmployerDashboardPageIsVisible() {
         //this test method exists to check if the employer dashboard page is visible
-        UiObject postJobButton = device.findObject(new UiSelector().text("Post a job"));
-        assertTrue(postJobButton.exists());
         UiObject yourJobsButton = device.findObject(new UiSelector().text("Your Jobs"));
         assertTrue(yourJobsButton.exists());
+        UiObject postJobButton = device.findObject(new UiSelector().text("Post a Job"));
+        assertTrue(postJobButton.exists());
         UiObject helpSupportButton = device.findObject(new UiSelector().text("Help and Support"));
         assertTrue(helpSupportButton.exists());
         UiObject yourProfileButton = device.findObject(new UiSelector().text("Your Profile"));
