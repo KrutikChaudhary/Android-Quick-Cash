@@ -29,25 +29,26 @@ public class UIAutomatorTest_Employer_Dashboard {
     final String launcherPackage = "com.example.group12";
 
     @Before
-    public void setup(){
+    public void setup() {
         device = UiDevice.getInstance(getInstrumentation());
         Context context = ApplicationProvider.getApplicationContext();
-        final Intent appIntent = context.getPackageManager().getLaunchIntentForPackage(launcherPackage);
-        appIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Intent intent = new Intent(context, Dashboard_Employer.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
         device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT);
     }
 
     @Test
     public void checkIfEmployerDashboardPageIsVisible() {
         //this test method exists to check if the employer dashboard page is visible
-        UiObject PostJobButton = device.findObject(new UiSelector().text("Post a job"));
-        assertTrue(PostJobButton.exists());
-        UiObject YourJobButton = device.findObject(new UiSelector().text("Your Jobs"));
-        assertTrue(YourJobButton.exists());
-        UiObject HelpAndSupportButton = device.findObject(new UiSelector().text("Help and Support"));
-        assertTrue(HelpAndSupportButton.exists());
-        UiObject YourProfileButton = device.findObject(new UiSelector().text("Your Profile"));
-        assertTrue(YourProfileButton.exists());
+        UiObject postJobButton = device.findObject(new UiSelector().text("Post a job"));
+        assertTrue(postJobButton.exists());
+        UiObject yourJobsButton = device.findObject(new UiSelector().text("Your Jobs"));
+        assertTrue(yourJobsButton.exists());
+        UiObject helpSupportButton = device.findObject(new UiSelector().text("Help and Support"));
+        assertTrue(helpSupportButton.exists());
+        UiObject yourProfileButton = device.findObject(new UiSelector().text("Your Profile"));
+        assertTrue(yourProfileButton.exists());
     }
 
     @Test

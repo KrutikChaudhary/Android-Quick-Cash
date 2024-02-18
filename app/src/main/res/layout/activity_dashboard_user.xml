@@ -25,14 +25,7 @@
         android:orientation="horizontal"
         android:padding="8dp">
 
-        <!-- Your Jobs button -->
-
-        <!-- Post a Job button -->
-
-        <!-- Help and Support button -->
-
-        <!-- Your Profile button -->
-
+        <!-- Find jobs button -->
         <Button
             android:id="@+id/findJobsButton"
             android:layout_width="24dp"
@@ -40,6 +33,7 @@
             android:layout_weight="1"
             android:text="@string/find_jobs" />
 
+        <!-- All jobs button -->
         <Button
             android:id="@+id/allJobButton"
             android:layout_width="13dp"
@@ -47,6 +41,7 @@
             android:layout_weight="1"
             android:text="@string/all_jobs" />
 
+        <!-- Stats button -->
         <Button
             android:id="@+id/StatsButton"
             android:layout_width="23dp"
@@ -54,6 +49,7 @@
             android:layout_weight="1"
             android:text="@string/all_stats" />
 
+        <!-- Your Profile button -->
         <Button
             android:id="@+id/yourProfileButton"
             android:layout_width="46dp"
