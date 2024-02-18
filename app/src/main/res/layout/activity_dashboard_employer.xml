@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Quick Cash - Employer Dashboard"
+        android:text="@string/quick_cash_employer_dashboard"
         android:textSize="28sp"
         android:textStyle="bold"
         android:padding="16dp"
@@ -29,7 +29,7 @@
             android:layout_width="8dp"
             android:layout_height="73dp"
             android:layout_weight="1"
-            android:text="Your Jobs" />
+            android:text="@string/your_jobs" />
 
         <!-- Post a Job button -->
         <Button
@@ -37,7 +37,7 @@
             android:layout_width="17dp"
             android:layout_height="71dp"
             android:layout_weight="1"
-            android:text="Post a Job" />
+            android:text="@string/post_a_job" />
 
         <!-- Help and Support button -->
         <Button
@@ -45,7 +45,7 @@
             android:layout_width="35dp"
             android:layout_height="71dp"
             android:layout_weight="1"
-            android:text="Help and Support" />
+            android:text="@string/help_and_support" />
 
         <!-- Your Profile button -->
         <Button
@@ -53,7 +53,7 @@
             android:layout_width="16dp"
             android:layout_height="69dp"
             android:layout_weight="1"
-            android:text="Your Profile" />
+            android:text="@string/your_profile_employer" />
     </LinearLayout>
 
     <!-- Job Postings -->

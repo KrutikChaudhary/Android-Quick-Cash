@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:background="#3E2F78"
         android:padding="16dp"
-        android:text="Quick Cash - User Dashboard"
+        android:text="@string/quick_cash_user_dashboard"
         android:textColor="@android:color/white"
         android:textSize="28sp"
         android:textStyle="bold" />
@@ -38,28 +38,28 @@
             android:layout_width="24dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Find Jobs" />
+            android:text="@string/find_jobs" />
 
         <Button
             android:id="@+id/allJobButton"
             android:layout_width="13dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="All Jobs" />
+            android:text="@string/all_jobs" />
 
         <Button
             android:id="@+id/StatsButton"
             android:layout_width="23dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="All Stats" />
+            android:text="@string/all_stats" />
 
         <Button
             android:id="@+id/yourProfileButton"
             android:layout_width="46dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Your Profile" />
+            android:text="@string/your_profile_user" />
     </LinearLayout>
 
     <ScrollView
