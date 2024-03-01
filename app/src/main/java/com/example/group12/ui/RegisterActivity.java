@@ -1,4 +1,4 @@
-package com.example.group12;
+package com.example.group12.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,17 +9,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.firebase.database.DatabaseReference;
+import com.example.group12.R;
+import com.example.group12.core.Constants;
+import com.example.group12.logic.UserCredentialValidator;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.example.group12.Firebase.FirebaseDatabaseManager;
 
 
 public class RegisterActivity extends AppCompatActivity {
 
-    FirebaseDatabase db;
-    DatabaseReference userRef;
+    FirebaseDatabaseManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,48 +35,48 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cleanupLabels();
-                Validator validator = new Validator();
+                UserCredentialValidator userCredentialValidator = new UserCredentialValidator();
                 boolean validated = false;
                 String emailMessage = "";
                 String passwordMessage = "";
 
-                if (validator.isEmailEmpty(getEmail())){
-                    emailMessage = getResources().getString(R.string.EMAIL_EMPTY).trim();
+                if (userCredentialValidator.isEmailEmpty(getEmail())){
+                    emailMessage = Constants.EMAIL_EMPTY;
                 }
                 else{
-                    if (validator.isValidEmailAddress(getEmail())){
-                        if (!validator.isPasswordEmpty(getPassword())){
-                            if (validator.isPasswordMatch(getPassword(), getConfirmedPassword())){
-                                if (validator.checkPasswordLength(getPassword())){
-                                    if (validator.isPasswordValid(getPassword())){
+                    if (userCredentialValidator.isValidEmailAddress(getEmail())){
+                        if (!userCredentialValidator.isPasswordEmpty(getPassword())){
+                            if (userCredentialValidator.isPasswordMatch(getPassword(), getConfirmedPassword())){
+                                if (userCredentialValidator.checkPasswordLength(getPassword())){
+                                    if (userCredentialValidator.isPasswordValid(getPassword())){
                                         validated = true;
                                     }
                                     else{
-                                        passwordMessage = getResources().getString(R.string.PASSWORD_INVALID).trim();
+                                        passwordMessage = Constants.PASSWORD_INVALID;
                                     }
                                 }
                                 else{
-                                    passwordMessage = getResources().getString(R.string.PASSWORD_INVALID_LENGTH).trim();
+                                    passwordMessage = Constants.PASSWORD_INVALID_LENGTH;
                                 }
                             }
                             else{
-                                passwordMessage = getResources().getString(R.string.PASSWORD_MISMATCH);
+                                passwordMessage = Constants.PASSWORD_INVALID_LENGTH;
                             }
                         }
                         else{
-                            passwordMessage = getResources().getString(R.string.PASSWORD_EMPTY);
+                            passwordMessage = Constants.PASSWORD_EMPTY;
                         }
                     }
                     //if email is not valid
                     else{
-                        emailMessage = getResources().getString(R.string.EMAIL_INVALID).trim();
+                        emailMessage = Constants.EMAIL_INVALID;
                     }
                 }
 
                 if (validated){
                     saveToFirebase();
                     Intent selectRoleIntent = new Intent(RegisterActivity.this, SelectRoleActivity.class);
-                    selectRoleIntent.putExtra("key", userRef.getKey());
+                    selectRoleIntent.putExtra("key", dbManager.getUserRef().getKey());
                     RegisterActivity.this.startActivity(selectRoleIntent);
                 }
                 else{
@@ -92,17 +92,12 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     protected void databaseInit(){
-        db = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_LINK));
+        FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
+        dbManager = new FirebaseDatabaseManager(db);
     }
 
     protected void saveToFirebase(){
-        Map<String, Object> map = new HashMap<>();
-        map.put("Email", getEmail());
-        map.put("Password", getPassword());
-
-        userRef = db.getReference().child("User").push();
-        userRef.setValue(map);
-
+        dbManager.saveUserCredentialsToFirebase(getEmail(), getPassword());
     }
 
     protected String getEmail(){

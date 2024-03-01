@@ -1,14 +1,14 @@
-package com.example.group12;
+package com.example.group12.logic;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validator {
-    protected boolean isEmailEmpty(String email){
+public class UserCredentialValidator {
+    public boolean isEmailEmpty(String email){
         return email.isEmpty();
     }
 
-    protected boolean isPasswordEmpty(String password1){
+    public boolean isPasswordEmpty(String password1){
         return password1.isEmpty();
     }
 
@@ -17,7 +17,7 @@ public class Validator {
      * @param emailAddress
      * @return
      */
-    protected boolean isValidEmailAddress(String emailAddress) {
+    public boolean isValidEmailAddress(String emailAddress) {
         String email_format = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}$";
         Pattern email_pattern = Pattern.compile(email_format);
         Matcher matcher = email_pattern.matcher(emailAddress);
@@ -25,11 +25,11 @@ public class Validator {
     }
 
 
-    protected boolean isPasswordMatch(String p1, String p2){
+    public boolean isPasswordMatch(String p1, String p2){
         return p1.equals(p2);
     }
 
-    protected boolean checkPasswordLength(String password){
+    public boolean checkPasswordLength(String password){
         return password.length() >= 7 && password.length() <= 16;
     }
 
@@ -38,7 +38,7 @@ public class Validator {
      * @param password
      * @return
      */
-    protected boolean isPasswordValid(String password){
+    public boolean isPasswordValid(String password){
         String passwordRegex = "^(?=.*[A-Z])(?=.*\\d).+$";
         Pattern passwordPattern = Pattern.compile(passwordRegex);
         Matcher matcher = passwordPattern.matcher(password);

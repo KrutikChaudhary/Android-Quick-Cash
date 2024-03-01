@@ -21,6 +21,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.example.group12.ui.Dashboard_Employer;
+
 
 @RunWith(AndroidJUnit4.class)
 public class UIAutomatorTest_Employer_Dashboard {

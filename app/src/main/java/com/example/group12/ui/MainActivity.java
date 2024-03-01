@@ -1,4 +1,4 @@
-package com.example.group12;
+package com.example.group12.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+
+import com.example.group12.LocationDetector;
+import com.example.group12.R;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -36,14 +38,10 @@ public class MainActivity extends AppCompatActivity{
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent loginIntent = new Intent(MainActivity.this, LogIn.class);
+                Intent loginIntent = new Intent(MainActivity.this, LogInActivity.class);
                 MainActivity.this.startActivity(loginIntent);
             }
         });
-    }
-
-    protected void saveToFirebase(String email, String password){
-
     }
 
 }

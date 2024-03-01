@@ -6,13 +6,15 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-public class JUnitValidator {
+import com.example.group12.logic.UserCredentialValidator;
 
-    Validator val;
+public class JUnitUserCredentialValidator {
+
+    UserCredentialValidator val;
 
     @Before
     public void setup(){
-        val = new Validator();
+        val = new UserCredentialValidator();
     }
 
     @Test
