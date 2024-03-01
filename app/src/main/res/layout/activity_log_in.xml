@@ -8,7 +8,7 @@
     android:gravity="center"
     android:padding="16dp"
 
-    tools:context=".LogIn">
+    tools:context=".ui.LogInActivity">
 
 
 

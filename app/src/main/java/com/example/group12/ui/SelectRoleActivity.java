@@ -1,4 +1,4 @@
-package com.example.group12;
+package com.example.group12.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,9 +10,8 @@ import android.view.View;
 import android.widget.Button;
 
 import android.util.Log;
-import android.widget.Toast;
 
-import com.google.firebase.Firebase;
+import com.example.group12.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
