@@ -32,8 +32,9 @@ public class UIAutomatorTest_User_Dashboard {
     public void setup(){
         device = UiDevice.getInstance(getInstrumentation());
         Context context = ApplicationProvider.getApplicationContext();
-        final Intent appIntent = context.getPackageManager().getLaunchIntentForPackage(launcherPackage);
-        appIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Intent intent = new Intent(context, Dashboard_User.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
         device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT);
     }
 
@@ -44,7 +45,7 @@ public class UIAutomatorTest_User_Dashboard {
         assertTrue(FindJobButton.exists());
         UiObject AllJobButton = device.findObject(new UiSelector().text("All Jobs"));
         assertTrue(AllJobButton.exists());
-        UiObject StatsButton = device.findObject(new UiSelector().text("Stats"));
+        UiObject StatsButton = device.findObject(new UiSelector().text("All Stats"));
         assertTrue(StatsButton.exists());
         UiObject YourProfileButton = device.findObject(new UiSelector().text("Your Profile"));
         assertTrue(YourProfileButton.exists());

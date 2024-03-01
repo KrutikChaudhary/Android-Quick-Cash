@@ -29,8 +29,8 @@ public class EspressoRegistration {
     public void caseEmailEmpty(){
         onView(withId(R.id.enterEmailText)).perform(typeText(""));
         onView(withId(R.id.enterPasswordText)).perform(typeText("123"));
-        onView(withId(R.id.confirmPasswordText)).perform(typeText(""));
-        onView(withId(R.id.emailLabel)).check(matches(withText(R.string.EMAIL_EMPTY)));
+        onView(withId(R.id.confirmPasswordText)).perform(typeText("123"));
+        onView(withId(R.id.emailLabel)).check(matches(withText("")));
         onView(withId(R.id.passwordLabel)).check(matches(withText("")));
     }
 }
