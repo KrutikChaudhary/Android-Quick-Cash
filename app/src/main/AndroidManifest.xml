@@ -34,25 +34,25 @@
             android:name=".Dashboard_User_Profile"
             android:exported="false" />
         <activity
-            android:name=".Dashboard_User"
+            android:name=".ui.Dashboard_User"
             android:exported="false" />
         <activity
-            android:name=".Dashboard_Employer"
+            android:name=".ui.Dashboard_Employer"
             android:exported="false" />
         <activity
-            android:name=".SelectRoleActivity"
+            android:name=".ui.SelectRoleActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".ui.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LogIn"
+            android:name=".ui.LogInActivity"
             android:exported="false" />
 
 
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
