@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import android.util.Log;
 
+import com.example.group12.Firebase.FirebaseDatabaseManager;
 import com.example.group12.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,14 +25,15 @@ import java.util.Map;
 public class SelectRoleActivity extends AppCompatActivity {
 
     String userKey;
+    FirebaseDatabaseManager dbManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         userKey = getIntent().getStringExtra("key");
-        Log.e("key", userKey);
         setContentView(R.layout.activity_select_role);
         employeeRole();
         employerRole();
+        dbManager = new FirebaseDatabaseManager();
     }
 
 
@@ -40,7 +42,7 @@ public class SelectRoleActivity extends AppCompatActivity {
 
         employee.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                updateRole("Employee");
+                dbManager.updateRole("Employee", userKey);
                 //connect to employee dashboard
                 Intent a = new Intent(SelectRoleActivity.this, Dashboard_User.class);
                 startActivity(a);
@@ -58,7 +60,7 @@ public class SelectRoleActivity extends AppCompatActivity {
 
             employer.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
-                    updateRole("Employer");
+                    dbManager.updateRole("Employer", userKey);
                     //connect to employer dashboard
                     Intent a = new Intent(SelectRoleActivity.this, Dashboard_Employer.class);
                     startActivity(a);
@@ -72,30 +74,5 @@ public class SelectRoleActivity extends AppCompatActivity {
                 }
             });
         }
-
-    protected void updateRole(String role){
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("User").child(userKey);
-
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Map<String, Object> user = (Map<String, Object>) snapshot.getValue();
-                if (user != null){
-                    user.put("Role", role);
-                    userRef.setValue(user);
-                }
-                else{
-                    Log.e("null user", "User map is null");
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
 
 }
