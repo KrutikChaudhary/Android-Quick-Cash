@@ -1,4 +1,4 @@
-package com.example.group12;
+package com.example.group12.model;
 
 import java.io.Serializable;
 
