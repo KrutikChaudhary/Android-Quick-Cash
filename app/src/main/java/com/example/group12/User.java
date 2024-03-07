@@ -2,7 +2,7 @@ package com.example.group12;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public abstract class User {
 
     private String email;
     private String password;
