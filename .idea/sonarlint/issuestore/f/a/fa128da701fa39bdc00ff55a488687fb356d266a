@@ -1,0 +1,14 @@
+
+r	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ²†‘ýÿÿÿÿ8…‚žÇÛ1
+m	java:S117,"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÓðù8…‚žÇÛ1
+m	java:S117D"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©»š‚8…‚žÇÛ1
+m	java:S117E"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ©Î±8…‚žÇÛ1
+J
+java:S1604("(Make this anonymous inner class a lambda(«–Âæþÿÿÿÿ8…‚žÇÛ1
+p	java:S116"URename this field "ValidEmail" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖãÂt8˜‚žÇÛ1
+y	java:S116"XRename this field "ValidPassword" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùºÐÐþÿÿÿÿ8˜‚žÇÛ1
+]	java:S125#"<This block of commented-out lines of code should be removed.(³ç‘âüÿÿÿÿ8 ‚žÇÛ1
+ž
+java:S1186Q"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ô°¤¦8¢‚žÇÛ1
+U
+java:S1117B"8Rename "user" which hides the field declared at line 28.(ËŒ²Ä8¤‚žÇÛ1

@@ -23,3 +23,9 @@ j
 :app/src/test/java/com/example/group12/ExampleUnitTest.java,7/0/70af09e3bf63353e268cba9496952e601aafb76c
 y
 Iapp/src/androidTest/java/com/example/group12/ExampleInstrumentedTest.java,7/7/776215b4ef97ab4e0860d9ec88fde644de54254e
+@
+build.gradle.kts,d/b/dbcff70658daf80b53ce624f6adcaa529df5ed8d
+D
+app/build.gradle.kts,d/2/d2a4383452aad84a18429a5844d31330a012a9e6
+m
+=app/src/main/java/com/example/group12/JobDetailsActivity.java,1/a/1ab0c08c3bb3d41ee1986f7fd000eec8f93db4e3
