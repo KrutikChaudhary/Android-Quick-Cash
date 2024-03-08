@@ -20,6 +20,7 @@ public class LoginValidator {
     FirebaseDatabaseManager dbManager;
 
     public boolean valid = false;
+    public String role = "user";
 
     public LoginValidator(){
         dbManager = new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
@@ -37,6 +38,7 @@ public class LoginValidator {
                     String password_firebase = (String) userCredentials.get("Password");
                     if (email_firebase.equals(email) && password_firebase.equals(password)) {
                         valid = true;
+                        role = (String) userCredentials.get("Role");
                         break; // Exit the loop once email is found
                     }
                 }
