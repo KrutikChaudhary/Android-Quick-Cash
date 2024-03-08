@@ -1,6 +1,8 @@
 package com.example.group12.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -46,11 +48,20 @@ public class LogInActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent;
                 String email_text = email.getText().toString();
                 String password_text = password.getText().toString();
                 validator.isValidLogin(email_text,password_text);
                 if (validator.valid){
                     Toast.makeText(LogInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    if (validator.role.equals("Employee")){
+                        intent = new Intent(LogInActivity.this, Dashboard_User.class);
+                    }
+                    else{
+                        intent = new Intent(LogInActivity.this, Dashboard_Employer.class);
+                    }
+
+                    LogInActivity.this.startActivity(intent);
                 } else {
                     Toast.makeText(LogInActivity.this, "Login Unsuccessful", Toast.LENGTH_SHORT).show();
                 }

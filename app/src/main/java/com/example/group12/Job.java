@@ -8,6 +8,10 @@ public class Job implements Serializable {
     private String duration;
     private String salary;
 
+    private String startDate;
+
+    private String urgency;
+
     public Job(){
     }
 
@@ -33,5 +37,21 @@ public class Job implements Serializable {
 
     public void setSalary(String salary) {
         this.salary = salary;
+    }
+
+    public String getStartDate() {
+        return this.startDate;
+    }
+
+    public String getUrgency(){
+        return this.urgency;
+    }
+
+    public void setStartDate(String date){
+        this.startDate = date;
+    }
+
+    public void setUrgency(String urgency){
+        this.urgency = urgency;
     }
 }
