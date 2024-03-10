@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.util.Map;
 
 import com.example.group12.Firebase.FirebaseDatabaseManager;
+import com.example.group12.LoginCallback;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
 import com.example.group12.logic.LoginValidator;
@@ -48,23 +49,28 @@ public class LogInActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
+
                 String email_text = email.getText().toString();
                 String password_text = password.getText().toString();
-                validator.isValidLogin(email_text,password_text);
-                if (validator.valid){
-                    Toast.makeText(LogInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    if (validator.role.equals("Employee")){
-                        intent = new Intent(LogInActivity.this, Dashboard_User.class);
-                    }
-                    else{
-                        intent = new Intent(LogInActivity.this, Dashboard_Employer.class);
-                    }
+                validator.isValidLogin(email_text, password_text, new LoginCallback() {
+                    @Override
+                    public void onLoginResult(boolean isValid, String role) {
+                        Intent intent;
+                        if (isValid){
+                            Toast.makeText(LogInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            if (validator.getRole().equals("Employee")){
+                                intent = new Intent(LogInActivity.this, Dashboard_User.class);
+                            }
+                            else{
+                                intent = new Intent(LogInActivity.this, Dashboard_Employer.class);
+                            }
 
-                    LogInActivity.this.startActivity(intent);
-                } else {
-                    Toast.makeText(LogInActivity.this, "Login Unsuccessful", Toast.LENGTH_SHORT).show();
-                }
+                            LogInActivity.this.startActivity(intent);
+                        } else {
+                            Toast.makeText(LogInActivity.this, "Login Unsuccessful", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
     }
