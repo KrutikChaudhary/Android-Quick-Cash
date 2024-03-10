@@ -12,7 +12,6 @@
     <string name="employee">EMPLOYEE</string>
 
 
-
     <string name="quick_cash_employer_dashboard">Quick Cash - Employer Dashboard</string>
     <string name="your_jobs">Your Jobs</string>
     <string name="post_a_job">Post a Job</string>
@@ -24,4 +23,5 @@
     <string name="all_jobs">All Jobs</string>
     <string name="all_stats">All Stats</string>
     <string name="your_profile_user">Your Profile</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
