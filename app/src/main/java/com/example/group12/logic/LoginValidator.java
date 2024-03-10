@@ -6,8 +6,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.group12.Firebase.FirebaseDatabaseManager;
-import com.example.group12.LoginCallback;
-import com.example.group12.R;
+import com.example.group12.util.LoginCallback;
 import com.example.group12.core.Constants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

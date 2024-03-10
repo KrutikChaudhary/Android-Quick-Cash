@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.group12.Job;
-import com.example.group12.JobAdapter;
+import com.example.group12.model.Job;
+import com.example.group12.util.JobAdapter;
 import com.example.group12.R;
-import com.example.group12.WrapLinearLayoutManager;
+import com.example.group12.util.WrapLinearLayoutManager;
 import com.example.group12.core.Constants;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;

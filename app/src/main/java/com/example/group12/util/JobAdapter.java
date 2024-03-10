@@ -1,4 +1,4 @@
-package com.example.group12;
+package com.example.group12.util;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.group12.R;
+import com.example.group12.model.Job;
 import com.example.group12.ui.JobDetailActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
