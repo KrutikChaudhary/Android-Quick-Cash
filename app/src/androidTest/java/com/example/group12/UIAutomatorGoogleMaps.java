@@ -40,7 +40,7 @@ public class UIAutomatorGoogleMaps {
 
     @Test
     public void checkIfMapsIsVisible() {
-        UiObject mapObject = device.findObject(new UiSelector().resourceId("id/map"));
+        UiObject mapObject = device.findObject(new UiSelector().resourceId("com.example.group12:id/map"));
         assertTrue("Google Maps is not visible", mapObject.exists());
     }
 }
