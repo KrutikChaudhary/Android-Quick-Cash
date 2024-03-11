@@ -24,4 +24,10 @@
     <string name="all_jobs">All Jobs</string>
     <string name="all_stats">All Stats</string>
     <string name="your_profile_user">Your Profile</string>
+
+    <string name="quick_cash_employer_post_job">Quick Cash - Post A Job</string>
+    <string name="employer_postJobs_your_jobs">Your Jobs</string>
+    <string name="employer_postJobs_post_a_job">Post a Job</string>
+    <string name="employer_postJobs_help_and_support">Help and Support</string>
+    <string name="employer_postJobs_your_profile_employer">Your Profile</string>
 </resources>
