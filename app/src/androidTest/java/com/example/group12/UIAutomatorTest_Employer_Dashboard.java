@@ -1,13 +1,22 @@
 package com.example.group12;
 
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import static java.util.regex.Pattern.matches;
+
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.assertion.ViewAssertions;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.uiautomator.By;
@@ -54,8 +63,12 @@ public class UIAutomatorTest_Employer_Dashboard {
     }
 
     @Test
-    public void checkIfMoved2FindJobPage() throws UiObjectNotFoundException {
+    public void checkIfMoved2PostJobPage() throws UiObjectNotFoundException {
         //this test method exists to check if the Find Job page is visible
+        Espresso.onView(ViewMatchers.withId(R.id.postJobButton)).perform(click());
+
+        // Check if the post job page is visible by asserting that a view in the post job page is displayed
+        Espresso.onView(ViewMatchers.withId(R.id.employerPostJob)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
     @Test
     public void checkIfMoved2YourJobsPage() throws UiObjectNotFoundException {
