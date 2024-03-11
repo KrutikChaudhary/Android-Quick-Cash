@@ -38,7 +38,7 @@ public class UIAutomatorTest_Employer_PostJob {
     public void setup() {
         device = UiDevice.getInstance(getInstrumentation());
         Context context = ApplicationProvider.getApplicationContext();
-        Intent intent = new Intent(context, Dashboard_Employer.class);
+        Intent intent = new Intent(context, Dashboard_Employer_PostJob.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
         device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT);
