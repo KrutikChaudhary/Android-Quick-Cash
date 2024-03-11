@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         registerButtonSetup();
         loginButtonSetup();
+        initializeLocationDetector();
     }
 
     protected void registerButtonSetup(){
@@ -42,6 +43,11 @@ public class MainActivity extends AppCompatActivity{
                 MainActivity.this.startActivity(loginIntent);
             }
         });
+    }
+
+
+    protected void initializeLocationDetector(){
+        locationDetector = new LocationDetector(this);
     }
 
 }
