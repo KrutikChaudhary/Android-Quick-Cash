@@ -43,7 +43,7 @@
 
         <!-- Stats button -->
         <Button
-            android:id="@+id/StatsButton"
+            android:id="@+id/statsButton"
             android:layout_width="23dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

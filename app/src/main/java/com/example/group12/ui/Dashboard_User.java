@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.group12.model.Job;
 import com.example.group12.util.JobAdapter;
@@ -19,17 +22,37 @@ public class Dashboard_User extends AppCompatActivity {
     RecyclerView recyclerView;
     JobAdapter viewJobAdapter;
 
+    Button findJobButton;
+    Button allJobButton;
+    Button statsButton;
+    Button yourProfileButton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_user);
         init();
+        findJobButtonSetup();
         viewJobs();
     }
 
     protected void init(){
         recyclerView = findViewById(R.id.job_recyclerView);
         recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
+    }
+
+    protected void findJobButtonSetup(){
+        findJobButton = findViewById(R.id.findJobsButton);
+
+        findJobButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard_User.this, SearchJobActivity.class);
+                Dashboard_User.this.startActivity(intent);
+            }
+        });
     }
 
     protected void viewJobs(){
