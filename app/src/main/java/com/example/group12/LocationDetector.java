@@ -13,11 +13,15 @@ import android.location.Location;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.group12.Firebase.FirebaseDatabaseManager;
+import com.example.group12.core.Constants;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,6 +32,7 @@ public class LocationDetector extends AppCompatActivity {
     private final FusedLocationProviderClient fusedLocationProviderClient;
     private final LocationRequest locationRequest;
     private final Context context;
+    private LocationInfo locationInfo;
     private static final int REQUEST_CODE = 100;
 
     public LocationDetector(Context context) {
@@ -76,6 +81,11 @@ public class LocationDetector extends AppCompatActivity {
         Log.d("Address: ","Latitude :" + addresses.get(0).getLatitude() + "\nLongitude :" + addresses.get(0).getLongitude() +
                 "\nAddress :" + addresses.get(0).getAddressLine(0) + "\nCity :" + addresses.get(0).getLocality() +
                 "\nCountry :" + addresses.get(0).getCountryCode());
+
+        //save to location info object
+        this.locationInfo = new LocationInfo(addresses.get(0).getLatitude(),addresses.get(0).getLongitude(),
+                addresses.get(0).getAddressLine(0),addresses.get(0).getLocality(),addresses.get(0).getCountryCode());
+
 
     }
 
