@@ -33,6 +33,8 @@ public class LocationDetector extends AppCompatActivity {
     private final LocationRequest locationRequest;
     private final Context context;
     private LocationInfo locationInfo;
+    FirebaseDatabaseManager firebaseDatabaseManager;
+    FirebaseDatabase db;
     private static final int REQUEST_CODE = 100;
 
     public LocationDetector(Context context) {
@@ -43,7 +45,8 @@ public class LocationDetector extends AppCompatActivity {
         this.locationRequest.setInterval(10000); // 10 seconds
         this.locationRequest.setFastestInterval(5000); // 5 seconds
         this.locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
+        db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
+        firebaseDatabaseManager = new FirebaseDatabaseManager(db);
         initializeLocationCallback();
     }
 
