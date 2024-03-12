@@ -50,6 +50,11 @@ public class LocationDetector extends AppCompatActivity {
         initializeLocationCallback();
     }
 
+    /*
+     * Initializes and configures the location callback for receiving location updates.
+     * If location access permission is already granted, it starts requesting location updates.
+     * Otherwise, it requests the necessary location permission from the user.
+     */
     private void initializeLocationCallback() {
         LocationCallback locationCallback = new LocationCallback() {
             @Override
@@ -69,10 +74,15 @@ public class LocationDetector extends AppCompatActivity {
         }
     }
 
-    public void stopLocationUpdates(LocationCallback locationCallback) {
-        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
-    }
 
+    /*
+     * Handles the location update event. Converts the Location object to a String
+     * using the Geocoder class, logs the address details, and saves the location into location info object.
+     * calls save to firebase function to save to database
+     * If the geocoding process fails, a RuntimeException is thrown.
+     *
+     * @param location The Location object containing the new location data.
+     */
     public void onLocationUpdated(Location location) {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         List<Address> addresses = null;
@@ -92,13 +102,6 @@ public class LocationDetector extends AppCompatActivity {
         saveToFirebase(locationInfo);
     }
 
-    public LocationInfo getLocationInfo(){
-        return this.locationInfo;
-    }
-
-    public static int getRequestCode() {
-        return REQUEST_CODE;
-    }
 
     /*
      * This method calls save location to firebase method in firebase manager class
@@ -112,9 +115,18 @@ public class LocationDetector extends AppCompatActivity {
 
     public void onLocationUpdateFailed() {
         Log.e("DetectionError", "Failed to process location");
-
     }
 
+    public void stopLocationUpdates(LocationCallback locationCallback) {
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+    }
+    public LocationInfo getLocationInfo(){
+        return this.locationInfo;
+    }
+
+    public static int getRequestCode() {
+        return REQUEST_CODE;
+    }
     @Override
     protected void onPause() {
         super.onPause();
