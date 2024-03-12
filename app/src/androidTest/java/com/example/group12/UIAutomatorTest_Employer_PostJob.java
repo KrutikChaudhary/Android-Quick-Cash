@@ -74,37 +74,37 @@ public class UIAutomatorTest_Employer_PostJob {
         //this test method exists to check if the Your Profile page is visible
     }
     @Test
-    public void checkDateTextViewVisibility() {
-        // Check if the Date TextView is visible
-        Espresso.onView(ViewMatchers.withText("Date"))
+    public void checkDateEditTextVisibility() {
+        // Check if the Date EditText is visible
+        Espresso.onView(ViewMatchers.withId(R.id.editTextDate))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
     @Test
-    public void checkExpectedDurationTextViewVisibility() {
-        // Check if the Expected Duration TextView is visible
-        Espresso.onView(ViewMatchers.withText("Expected Duration"))
+    public void checkExpectedDurationEditTextVisibility() {
+        // Check if the Expected Duration EditText is visible
+        Espresso.onView(ViewMatchers.withId(R.id.editTextExpectedDuration))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
     @Test
-    public void checkUrgencyTextViewVisibility() {
-        // Check if the Urgency TextView is visible
-        Espresso.onView(ViewMatchers.withText("Urgency"))
+    public void checkUrgencyEditTextVisibility() {
+        // Check if the Urgency EditText is visible
+        Espresso.onView(ViewMatchers.withId(R.id.editTextUrgency))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
     @Test
-    public void checkSalaryTextViewVisibility() {
-        // Check if the Salary TextView is visible
-        Espresso.onView(ViewMatchers.withText("Salary"))
+    public void checkSalaryEditTextVisibility() {
+        // Check if the Salary EditText is visible
+        Espresso.onView(ViewMatchers.withId(R.id.editTextSalary))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
     @Test
-    public void checkJobLocationTextViewVisibility() {
-        // Check if the Job Location TextView is visible
-        Espresso.onView(ViewMatchers.withText("Job Location"))
+    public void checkJobLocationEditTextVisibility() {
+        // Check if the Job Location EditText is visible
+        Espresso.onView(ViewMatchers.withId(R.id.editTextJobLocation))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
