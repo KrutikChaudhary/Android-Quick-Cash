@@ -48,6 +48,8 @@
         <activity
             android:name=".ui.LogInActivity"
             android:exported="false" />
+        <activity android:name=".ui.SearchJobActivity"
+            android:exported="false"  />
 
 
 
