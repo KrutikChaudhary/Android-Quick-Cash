@@ -2,13 +2,10 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="UIAutomatorRegistration">
+        <State />
+      </entry>
       <entry key="app">
-        <State />
-      </entry>
-      <entry key="checkIfHomePageVisible()">
-        <State />
-      </entry>
-      <entry key="checkIfUserDashboardPageIsVisible()">
         <State />
       </entry>
     </value>
