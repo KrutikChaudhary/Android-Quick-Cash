@@ -5,7 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Button;
 
+import android.view.View;
+import android.content.Intent;
 import com.example.group12.model.Job;
 import com.example.group12.util.JobAdapter;
 import com.example.group12.R;
@@ -19,12 +22,14 @@ public class Dashboard_User extends AppCompatActivity {
     RecyclerView recyclerView;
     JobAdapter viewJobAdapter;
 
+    Button findJobButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_user);
         init();
         viewJobs();
+        findJobButtonSetup();
     }
 
     protected void init(){
@@ -40,6 +45,16 @@ public class Dashboard_User extends AppCompatActivity {
         recyclerView.setAdapter(viewJobAdapter);
     }
 
+    protected void findJobButtonSetup(){
+        findJobButton = findViewById(R.id.findJobsButton);
+        findJobButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard_User.this, SearchJobActivity.class);
+                Dashboard_User.this.startActivity(intent);
+            }
+        });
+    }
     // Lifecycle method called when the activity is started.
     // Start listening for changes in the data and update the UI accordingly.
     @Override
