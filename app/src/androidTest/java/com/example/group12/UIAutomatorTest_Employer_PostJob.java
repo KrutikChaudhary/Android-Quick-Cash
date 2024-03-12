@@ -74,6 +74,12 @@ public class UIAutomatorTest_Employer_PostJob {
         //this test method exists to check if the Your Profile page is visible
     }
     @Test
+    public void checkJobTitleEditTextVisibility() {
+        // Check if the Date EditText is visible
+        Espresso.onView(ViewMatchers.withId(R.id.editTextJobTitle))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+    @Test
     public void checkDateEditTextVisibility() {
         // Check if the Date EditText is visible
         Espresso.onView(ViewMatchers.withId(R.id.editTextDate))
