@@ -1,18 +1,10 @@
 
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-g
-7app/src/main/java/com/example/group12/MainActivity.java,3/b/3b8f8fdee2831a1ce83de5bf0c0683e802f31359
-`
-0app/src/main/java/com/example/group12/LogIn.java,f/a/fa128da701fa39bdc00ff55a488687fb356d266a
 Å
 Q.idea/sonarlint/securityhotspotstore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,1/0/10a03f31c4dce92cb371e761ce9429428bb6c176
 w
 G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b/4/b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
-Å
-Q.idea/sonarlint/securityhotspotstore/3/b/3b8f8fdee2831a1ce83de5bf0c0683e802f31359,5/d/5d115d9268056399a35df6e90b062ae9a5b063c3
-w
-G.idea/sonarlint/issuestore/3/b/3b8f8fdee2831a1ce83de5bf0c0683e802f31359,f/7/f78d21bf2b4519a58b8be120f564c9aeac398391
 P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 ]
@@ -23,3 +15,13 @@ j
 :app/src/test/java/com/example/group12/ExampleUnitTest.java,7/0/70af09e3bf63353e268cba9496952e601aafb76c
 y
 Iapp/src/androidTest/java/com/example/group12/ExampleInstrumentedTest.java,7/7/776215b4ef97ab4e0860d9ec88fde644de54254e
+o
+?app/src/main/java/com/example/group12/logic/LoginValidator.java,1/1/11e3d5a66e9dbbb99634f27e14989cb645e57501
+_
+/app/src/main/java/com/example/group12/User.java,0/3/03c566c53552ab7279562c78c8b9b518cc257b08
+k
+;app/src/main/java/com/example/group12/ui/LogInActivity.java,f/5/f5d22044fbbf254754addd02d2a6c1098ade2bd8
+y
+Iapp/src/androidTest/java/com/example/group12/UIAutomatorRegistration.java,6/c/6c2329c5062abeddbcf2c9c2f98a7fb5fa03755a
+i
+9app/src/main/java/com/example/group12/ui/job_details.java,f/8/f8eb8d0e215ad90af16d8ab5f5d3f7e705dd887c
