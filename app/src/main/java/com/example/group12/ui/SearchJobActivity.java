@@ -1,6 +1,8 @@
 package com.example.group12.ui;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.group12.Firebase.FirebaseDatabaseManager;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
+import com.example.group12.model.Job;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
 
 public class SearchJobActivity  extends AppCompatActivity {
 
@@ -24,6 +31,12 @@ public class SearchJobActivity  extends AppCompatActivity {
 
     Button jobSearchButton;
 
+    String parameter = "";
+    String salary = "";
+    String duration = "";
+    String location = "";
+
+    FirebaseDatabaseManager dbManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,5 +76,45 @@ public class SearchJobActivity  extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locationOptions);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         locationSpinner.setAdapter(adapter);
+    }
+
+    protected void buttonSetup(){
+        jobSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                retrieveUserInput();
+                List<Job> options = dbManager.jobFilter(parameter, salary, duration, location);
+            }
+        });
+    }
+
+    protected void retrieveUserInput(){
+        parameter = jobParameterText.getText().toString();
+
+        salarySpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                salary = parent.getItemAtPosition(position).toString();
+            }
+        });
+
+        durationSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                duration = parent.getItemAtPosition(position).toString();
+            }
+        });
+
+        locationSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                location = parent.getItemAtPosition(position).toString();
+            }
+        });
+    }
+
+    protected void databaseInit(){
+        FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
+        dbManager = new FirebaseDatabaseManager(db);
     }
 }

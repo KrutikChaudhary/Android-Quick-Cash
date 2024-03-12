@@ -6,13 +6,21 @@ public class Job implements Serializable {
 
     private String title;
     private String duration;
-    private String salary;
+
+    private String salary;  //per hour
+
+    //private LatLng location;
 
     private String startDate;
 
     private String urgency;
 
-    public Job(){
+    public Job(String title, String salary, String duration, String startDate){
+        this.title = title;
+        this.duration = duration;
+        this.salary = salary;
+        this.startDate = startDate;
+        //this.location = location;
     }
 
     public String getTitle(){
