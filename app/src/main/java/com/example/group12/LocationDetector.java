@@ -92,6 +92,14 @@ public class LocationDetector extends AppCompatActivity {
 
     }
 
+    public LocationInfo getLocationInfo(){
+        return this.locationInfo;
+    }
+
+    public static int getRequestCode() {
+        return REQUEST_CODE;
+    }
+
 
     public void onLocationUpdateFailed() {
         Log.e("DetectionError", "Failed to process location");
