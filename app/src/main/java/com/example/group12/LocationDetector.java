@@ -89,7 +89,7 @@ public class LocationDetector extends AppCompatActivity {
         this.locationInfo = new LocationInfo(addresses.get(0).getLatitude(),addresses.get(0).getLongitude(),
                 addresses.get(0).getAddressLine(0),addresses.get(0).getLocality(),addresses.get(0).getCountryCode());
 
-
+        saveToFirebase(locationInfo);
     }
 
     public LocationInfo getLocationInfo(){
@@ -100,6 +100,15 @@ public class LocationDetector extends AppCompatActivity {
         return REQUEST_CODE;
     }
 
+    /*
+     * This method calls save location to firebase method in firebase manager class
+     *  To perform save operation
+     * @param locationInfo Location info objects which stores the location
+     * @return the result of the operation
+     */
+    public void saveToFirebase(LocationInfo locationInfo){
+        firebaseDatabaseManager.saveLocationToFirebase(locationInfo);
+    }
 
     public void onLocationUpdateFailed() {
         Log.e("DetectionError", "Failed to process location");
