@@ -73,4 +73,39 @@ public class UIAutomatorTest_Employer_PostJob {
     public void checkIfMoved2YourProfile() throws UiObjectNotFoundException {
         //this test method exists to check if the Your Profile page is visible
     }
+    @Test
+    public void checkDateTextViewVisibility() {
+        // Check if the Date TextView is visible
+        Espresso.onView(ViewMatchers.withText("Date"))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+
+    @Test
+    public void checkExpectedDurationTextViewVisibility() {
+        // Check if the Expected Duration TextView is visible
+        Espresso.onView(ViewMatchers.withText("Expected Duration"))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+
+    @Test
+    public void checkUrgencyTextViewVisibility() {
+        // Check if the Urgency TextView is visible
+        Espresso.onView(ViewMatchers.withText("Urgency"))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+
+    @Test
+    public void checkSalaryTextViewVisibility() {
+        // Check if the Salary TextView is visible
+        Espresso.onView(ViewMatchers.withText("Salary"))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+
+    @Test
+    public void checkJobLocationTextViewVisibility() {
+        // Check if the Job Location TextView is visible
+        Espresso.onView(ViewMatchers.withText("Job Location"))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+
 }
