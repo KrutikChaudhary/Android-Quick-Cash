@@ -47,6 +47,7 @@ public class LocationDetector extends AppCompatActivity {
         this.locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
         firebaseDatabaseManager = new FirebaseDatabaseManager(db);
+
         initializeLocationCallback();
     }
 
