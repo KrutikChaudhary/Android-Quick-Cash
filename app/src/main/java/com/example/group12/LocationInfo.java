@@ -1,5 +1,11 @@
 package com.example.group12;
+/*
 
+AUTHOR: Yash Roushan, Krutik Chaudhary
+
+This file includes a class named LocationInfo that is designed to encapsulate
+all the necessary information regarding a geographical location.
+ */
 public class LocationInfo {
     private double latitude;
     private double longitude;
