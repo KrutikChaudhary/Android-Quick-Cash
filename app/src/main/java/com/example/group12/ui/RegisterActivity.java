@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         databaseInit();
     }
 
-    public void signupButtonSetup(){
+    protected void signupButtonSetup(){
         Button signupButton = findViewById(R.id.signUpButton);
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
