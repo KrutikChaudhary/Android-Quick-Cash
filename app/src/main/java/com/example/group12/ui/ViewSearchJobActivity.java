@@ -47,6 +47,7 @@ public class ViewSearchJobActivity extends AppCompatActivity {
     protected void viewJob(){
         JobListAdapter adapter = new JobListAdapter(jobList);
         recyclerView.setAdapter(adapter);
+
     }
 
 
