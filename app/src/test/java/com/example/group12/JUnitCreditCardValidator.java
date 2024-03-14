@@ -55,8 +55,8 @@ public class JUnitCreditCardValidator {
 
     @Test
     public void checkIfCVVInvalid(){
-        assertFalse(value.isInvalidCVV("42A"));
-        assertFalse(value.isInvalidCVV("ABA"));
+        assertFalse(value.isValidCVV("42A"));
+        assertFalse(value.isValidCVV("ABA"));
     }
 
     @Test
@@ -67,10 +67,10 @@ public class JUnitCreditCardValidator {
 
     @Test
     public void checkIfExpiryInvalid(){
-        assertTrue(value.isInvalidCVV("12 23"));
-        assertTrue(value.isInvalidCVV("1223"));
-        assertTrue(value.isInvalidCVV("123"));
-        assertTrue(value.isInvalidCVV("80/01"));
+        assertFalse(value.isValidExpiry("12 23"));
+        assertFalse(value.isValidExpiry("1223"));
+        assertFalse(value.isValidExpiry("123"));
+        assertFalse(value.isValidExpiry("80/01"));
     }
 
     @Test
