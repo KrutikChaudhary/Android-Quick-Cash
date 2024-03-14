@@ -1,8 +1,8 @@
-package com.example.group12;
+package com.example.group12.model;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public abstract class User {
 
     private String email;
     private String password;
