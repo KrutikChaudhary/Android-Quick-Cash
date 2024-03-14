@@ -27,7 +27,7 @@ public class JUnitCreditCardValidator {
 
     @Test
     public void checkIfCVVEmpty(){
-        assertTrue(value.isCVEmpty(""));
+        assertTrue(value.isCVVEmpty(""));
         assertFalse(value.isCVVEmpty("cvv"));
     }
 
@@ -50,7 +50,7 @@ public class JUnitCreditCardValidator {
 
     @Test
     public void checkIfExpiryValid(){
-        assertTrue(value.isValidCVV("05/24"));
+        assertTrue(value.isValidExpiry("05/24"));
     }
 
     @Test
