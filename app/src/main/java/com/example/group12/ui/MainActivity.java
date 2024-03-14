@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         registerButtonSetup();
         loginButtonSetup();
-        //testJob();
+        testJob();
     }
 
     protected void registerButtonSetup(){
@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity{
         DatabaseReference dbref = db.getReference("Job");
         Map<String, Object> job = new HashMap<>();
         job.put("title", "Dish Washing");
-        job.put("Duration", "2 hour");
-        job.put("Salary", "50$");
-        job.put("Start Date", "today");
-        job.put("Urgency", "Urgent");
+        job.put("duration", "2 hours");
+        job.put("salary", "20$ per hour");
+        job.put("longitude", 3.23);
+        job.put("latitude", 5.5);
 
         dbref.push().setValue(job);
     }
