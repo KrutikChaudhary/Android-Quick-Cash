@@ -1,16 +1,24 @@
 package com.example.group12;
 
-import androidx.fragment.app.FragmentActivity;
+import
+
+        androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
+import com.example.group12.model.Job;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.group12.databinding.ActivityMapsBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -31,21 +39,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
+     *
+     * This function displays/locates the list of jobs on google maps
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        List<Job> filteredJobList = new ArrayList<>();
+        mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // add test jobs to the list
+        Job shoppingCentre = new Job("Security", "2 hours", "20$/h", "ASAP", "HIGH", 44.649107, -63.618599);
+        Job fairView = new Job("Dish Washing", "1 hours", "18$/h", "ASAP", "LOW", 44.656073, -63.646536);
+        Job waterFront = new Job("Event Setup", "6 hours", "18$/h", "ASAP", "HIGH", 44.652058, -63.586019);
+        filteredJobList.add(shoppingCentre);
+        filteredJobList.add(fairView);
+        filteredJobList.add(waterFront);
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+        for(int i=0; i<filteredJobList.size(); i++){
+            Job temp = filteredJobList.get(i);
+            LatLng position = new LatLng(temp.getLat(), temp.getLng());
+            mMap.addMarker(new MarkerOptions().position(position).title(temp.getTitle())
+                    .snippet(temp.getSalary() + " - " + temp.getDuration()));
+            builder.include(position);
+        }
+        LatLngBounds bounds = builder.build();
+        int padding = 100;
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
+        mMap.animateCamera(cu);
     }
 }

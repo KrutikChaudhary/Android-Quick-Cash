@@ -9,6 +9,26 @@ public class Job implements Serializable {
     private String salary;
 
     private String startDate;
+    private double lat;
+    private double lng;
+
+    public Job(String title, String duration, String salary, String startDate,String urgency, double lat, double lng ) {
+        this.title = title;
+        this.duration = duration;
+        this.salary = salary;
+        this.startDate = startDate;
+        this.lat = lat;
+        this.lng = lng;
+        this.urgency = urgency;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
 
     private String urgency;
 
