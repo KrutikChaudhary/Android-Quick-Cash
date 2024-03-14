@@ -30,4 +30,11 @@
     <string name="employer_postJobs_post_a_job">Post a Job</string>
     <string name="employer_postJobs_help_and_support">Help and Support</string>
     <string name="employer_postJobs_your_profile_employer">Your Profile</string>
+    <string name="upload_job">Upload Job</string>
+    <string name="job_location">Job Location</string>
+    <string name="salary">Salary</string>
+    <string name="urgency">Urgency</string>
+    <string name="expected_duration">Expected Duration</string>
+    <string name="date">Date</string>
+    <string name="job_title">Job Title</string>
 </resources>

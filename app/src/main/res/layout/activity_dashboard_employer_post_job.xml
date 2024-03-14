@@ -81,14 +81,14 @@
             android:id="@+id/editTextJobTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Job Title"
+            android:hint="@string/job_title"
             android:textSize="18sp"
             android:padding="16dp"/>
         <EditText
             android:id="@+id/editTextDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date"
+            android:hint="@string/date"
             android:textSize="18sp"
             android:padding="16dp"/>
 
@@ -96,7 +96,7 @@
             android:id="@+id/editTextExpectedDuration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Expected Duration"
+            android:hint="@string/expected_duration"
             android:textSize="18sp"
             android:padding="16dp"/>
 
@@ -104,7 +104,7 @@
             android:id="@+id/editTextUrgency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Urgency"
+            android:hint="@string/urgency"
             android:textSize="18sp"
             android:padding="16dp"/>
 
@@ -112,7 +112,7 @@
             android:id="@+id/editTextSalary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Salary"
+            android:hint="@string/salary"
             android:textSize="18sp"
             android:padding="16dp"/>
 
@@ -120,10 +120,21 @@
             android:id="@+id/editTextJobLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Job Location"
+            android:hint="@string/job_location"
             android:textSize="18sp"
             android:padding="16dp"/>
 
     </LinearLayout>
+
+    <!-- Button to send job to database -->
+    <Button
+        android:id="@+id/sendToDatabaseButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/upload_job"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
