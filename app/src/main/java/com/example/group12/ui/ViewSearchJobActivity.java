@@ -14,12 +14,14 @@ import com.example.group12.util.JobListAdapter;
 import com.example.group12.util.WrapLinearLayoutManager;
 
 import java.nio.Buffer;
+import java.util.Arrays;
 import java.util.List;
 
 public class ViewSearchJobActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     Button backButton;
+    Job[] jobArray;
     List<Job> jobList;
 
 
@@ -32,8 +34,9 @@ public class ViewSearchJobActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_search_job);
         init();
 
-//        jobList = getIntent().getExtras();
-//        viewJob()
+        jobArray = (Job[])getIntent().getSerializableExtra("JobList");
+        jobList = Arrays.asList(jobArray);
+        viewJob();
     }
 
 
@@ -49,8 +52,5 @@ public class ViewSearchJobActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
-
-
-
 
 }
