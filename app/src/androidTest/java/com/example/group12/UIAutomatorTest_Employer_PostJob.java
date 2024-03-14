@@ -55,6 +55,8 @@ public class UIAutomatorTest_Employer_PostJob {
         assertTrue(helpSupportButton.exists());
         UiObject yourProfileButton = device.findObject(new UiSelector().text("Your Profile"));
         assertTrue(yourProfileButton.exists());
+        UiObject upload_job = device.findObject(new UiSelector().text("Upload Job"));
+        assertTrue(upload_job.exists());
     }
 
     @Test
