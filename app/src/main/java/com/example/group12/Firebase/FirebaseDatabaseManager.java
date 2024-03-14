@@ -101,13 +101,13 @@ public class FirebaseDatabaseManager
                     String jobStartDate = (String) jobMap.get("Start Date");
 
                     //LatLng jobLcation = (LatLng) jobMap.get("Location");
-                    //Double jobLat = job.get("Latitude")
-                    //Double jobLat = job.get("Longitude")
+                    double jobLat = (double) jobMap.get("Latitude");
+                    double jobLng = (double) jobMap.get("Longitude");
 
 
                     // include job location
-                    if(containsParameters(parameter, jobTitle) && containsSalary(salary, jobSalary) && containsDuration(duration, jobDuration) && inDistance(distance, jobLat, jobLong)){
-                        Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate);
+                    if(containsParameters(parameter, jobTitle) && containsSalary(salary, jobSalary) && containsDuration(duration, jobDuration)){
+                        Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate, jobLng, jobLat);
                         filterdJobList.add(job);
                     }
 
@@ -197,60 +197,60 @@ public class FirebaseDatabaseManager
         return result;
     }
 
-    protected boolean inDistance(String param, String lat, String lng){
-        if(param.equals("")){
-            return true;
-        }
-
-        // get user location
-
-        // distance = user location - job location <- euclidean
-         getLatitude();
-
-
-        float distance = getDistance();
-
-        if(param.equals(Constants.SPINNER_LOCATION_RANGE_ONE)){
-            if(.5 >= distance){
-                return true;
-            }
-        }
-        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_TWO)){
-            if(1.0 >= distance){
-                return true;
-            }
-        }
-        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_THREE)){
-            if(2.0 >= distance){
-                return true;
-            }
-        }
-        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_FOUR)){
-            if(3.0 >= distance){
-                return true;
-            }
-        }
-        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_FIVE)){
-            if(5.0 >= distance){
-                return true;
-            }
-        }
-        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_SIX)){
-            if(10.0 >= distance){
-                return true;
-            }
-        }
-
-        // if distiance is in param return true
-        return false;
-    }
+//    protected boolean inDistance(String param, String lat, String lng){
+//        if(param.equals("")){
+//            return true;
+//        }
+//
+//        // get user location
+//
+//        // distance = user location - job location <- euclidean
+//         //getLatitude();
+//
+//
+//        //float distance = getDistance();
+//
+//        if(param.equals(Constants.SPINNER_LOCATION_RANGE_ONE)){
+//            if(.5 >= distance){
+//                return true;
+//            }
+//        }
+//        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_TWO)){
+//            if(1.0 >= distance){
+//                return true;
+//            }
+//        }
+//        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_THREE)){
+//            if(2.0 >= distance){
+//                return true;
+//            }
+//        }
+//        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_FOUR)){
+//            if(3.0 >= distance){
+//                return true;
+//            }
+//        }
+//        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_FIVE)){
+//            if(5.0 >= distance){
+//                return true;
+//            }
+//        }
+//        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_SIX)){
+//            if(10.0 >= distance){
+//                return true;
+//            }
+//        }
+//
+//        // if distiance is in param return true
+//        return false;
+//    }
 
 
     // return euclidean distance
     protected double getDistance(Double lat_x, Double lng_x, Double lat_y, Double lng_y){
         // convert degree to km
         double km_lat = (lat_x - lat_y)/110.574; //
-        double km_lng = (lng_x - lng_y)/Math.cos((lat_x - lat_y) * Math.pi / 180);
+        double km_lng = (lng_x - lng_y)/Math.cos((lat_x - lat_y) * Math.PI / 180);
 
         // eaclidean distance formula
         double km_x = km_lng*km_lng;

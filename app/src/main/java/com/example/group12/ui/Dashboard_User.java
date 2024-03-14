@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import android.view.View;
@@ -41,6 +42,7 @@ public class Dashboard_User extends AppCompatActivity {
         final FirebaseRecyclerOptions<Job> options = new FirebaseRecyclerOptions.Builder<Job>()
                 .setQuery(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK)
                         .getReference().child("Job"), Job.class).build();
+
         viewJobAdapter = new JobAdapter(options);
         recyclerView.setAdapter(viewJobAdapter);
     }
