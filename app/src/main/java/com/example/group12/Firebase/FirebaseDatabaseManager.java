@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.example.group12.core.Constants;
-
 /*
 DatabaseConnection.java
 AUTHOR: Chaz Davies
@@ -102,10 +101,12 @@ public class FirebaseDatabaseManager
                     String jobStartDate = (String) jobMap.get("Start Date");
 
                     //LatLng jobLcation = (LatLng) jobMap.get("Location");
+                    //Double jobLat = job.get("Latitude")
+                    //Double jobLat = job.get("Longitude")
 
 
                     // include job location
-                    if(containsParameters(parameter, jobTitle) && containsSalary(salary, jobSalary)){
+                    if(containsParameters(parameter, jobTitle) && containsSalary(salary, jobSalary) && containsDuration(duration, jobDuration) && inDistance(distance, jobLat, jobLong)){
                         Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate);
                         filterdJobList.add(job);
                     }
@@ -193,18 +194,69 @@ public class FirebaseDatabaseManager
         else if(duration.equals(Constants.SPINNER_DURATION_RANGE_SIX)){
             result = param.equals(Constants.SPINNER_DURATION_RANGE_ONE) || param.equals(Constants.SPINNER_DURATION_RANGE_TWO) || param.equals(Constants.SPINNER_DURATION_RANGE_THREE)||  param.equals(Constants.SPINNER_DURATION_RANGE_FOUR)||param.equals(Constants.SPINNER_DURATION_RANGE_FIVE)||param.equals(duration);
         }
-
         return result;
     }
 
-    protected boolean inDistance(String param, String location){
+    protected boolean inDistance(String param, String lat, String lng){
+        if(param.equals("")){
+            return true;
+        }
 
         // get user location
 
         // distance = user location - job location <- euclidean
+         getLatitude();
+
+
+        float distance = getDistance();
+
+        if(param.equals(Constants.SPINNER_LOCATION_RANGE_ONE)){
+            if(.5 >= distance){
+                return true;
+            }
+        }
+        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_TWO)){
+            if(1.0 >= distance){
+                return true;
+            }
+        }
+        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_THREE)){
+            if(2.0 >= distance){
+                return true;
+            }
+        }
+        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_FOUR)){
+            if(3.0 >= distance){
+                return true;
+            }
+        }
+        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_FIVE)){
+            if(5.0 >= distance){
+                return true;
+            }
+        }
+        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_SIX)){
+            if(10.0 >= distance){
+                return true;
+            }
+        }
 
         // if distiance is in param return true
-        return true;
+        return false;
+    }
+
+
+    // return euclidean distance
+    protected double getDistance(Double lat_x, Double lng_x, Double lat_y, Double lng_y){
+        // convert degree to km
+        double km_lat = (lat_x - lat_y)/110.574; //
+        double km_lng = (lng_x - lng_y)/Math.cos((lat_x - lat_y) * Math.pi / 180);
+
+        // eaclidean distance formula
+        double km_x = km_lng*km_lng;
+        double km_y = km_lat*km_lat;
+
+        return Math.sqrt(km_x + km_y);
     }
 
 }

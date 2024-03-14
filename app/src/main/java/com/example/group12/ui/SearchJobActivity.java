@@ -1,5 +1,6 @@
 package com.example.group12.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
@@ -136,6 +137,9 @@ public class SearchJobActivity extends AppCompatActivity {
 
                 List<Job> options = dbManager.jobFilter(parameter, salary, duration, location);
 
+                Intent searchIntent = new Intent(SearchJobActivity.this, ViewSearchJobActivity.class);
+                searchIntent.putExtra("JobList", options.toArray(new Job[options.size()]));
+                SearchJobActivity.this.startActivity(searchIntent);
             }
 
         });
