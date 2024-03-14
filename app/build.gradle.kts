@@ -2,6 +2,12 @@ plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
 }
+//accessing file
+def credentialsPropertiesFile = rootProject.file("local.properties")
+//properties object to access key value
+def credentialsProperties = new Properties
+//input the file
+credentialsProperties.load(new FileInputStream(credentialPropertiesFile))
 
 android {
     namespace = "com.example.group12"
@@ -15,6 +21,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        //accessing variable
+        buildConfigField "String", "PAYPAL_CLIENT_ID", ("\"".concat(credentialsProperties["PAYPAL_CLIENT_ID"]).CONCAT("\""))
     }
 
     buildTypes {
