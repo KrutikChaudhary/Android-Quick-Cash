@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
+import com.example.group12.Dashboard_User_MyPayPal;
 import com.example.group12.model.Job;
 import com.example.group12.util.JobAdapter;
 import com.example.group12.R;
@@ -18,6 +22,7 @@ public class Dashboard_User extends AppCompatActivity {
 
     RecyclerView recyclerView;
     JobAdapter viewJobAdapter;
+    Button myPayPal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,15 @@ public class Dashboard_User extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_user);
         init();
         viewJobs();
+        myPayPal = findViewById(R.id.PayPalButton);
+
+        myPayPal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard_User.this, Dashboard_User_MyPayPal.class);
+                Dashboard_User.this.startActivity(intent);
+            }
+        });
     }
 
     protected void init(){

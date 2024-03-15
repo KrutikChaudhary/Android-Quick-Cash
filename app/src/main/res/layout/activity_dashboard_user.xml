@@ -43,11 +43,11 @@
 
         <!-- Stats button -->
         <Button
-            android:id="@+id/StatsButton"
+            android:id="@+id/PayPalButton"
             android:layout_width="23dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/all_stats" />
+            android:text="@string/my_npaypal" />
 
         <!-- Your Profile button -->
         <Button
