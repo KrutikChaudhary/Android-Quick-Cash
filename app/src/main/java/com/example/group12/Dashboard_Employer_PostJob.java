@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.group12.Firebase.FirebaseDatabaseManager;
 import com.example.group12.core.Constants;
@@ -65,6 +66,10 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
 
 
                 saveJobsToFirebase(jobTitle, date, expectedDuration, urgency, salary, jobLocation);
+
+                // navigating back to the your Jobs page
+                Intent yourJobIntent = new Intent(Dashboard_Employer_PostJob.this, Dashboard_Employer.class);
+                Dashboard_Employer_PostJob.this.startActivity(yourJobIntent);
 
             }
         });
