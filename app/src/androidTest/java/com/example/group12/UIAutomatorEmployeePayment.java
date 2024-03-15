@@ -11,6 +11,7 @@ import androidx.test.core.app.ApplicationProvider;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject;
+import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
@@ -37,11 +38,17 @@ public class UIAutomatorEmployeePayment {
     @Test
     public void checkIfMyPayPalButtonVisible() {
         // this test checks if the pay pal button is visible
+        UiObject yourJobsButton = device.findObject(new UiSelector().text("My Pay Pal"));
+        assertTrue(yourJobsButton.exists());
     }
 
     @Test
-    public void moveToMyPayPalPage(){
-        // this test checks if the we moved to paypal page
+    public void moveToMyPayPalPage() throws UiObjectNotFoundException {
+        // this test checks if the we moved to paypal page and find for "Pay Pal" option
+        UiObject myPayPalButton = device.findObject(new UiSelector().text("My Pay Pal"));
+        myPayPalButton.click();
+        UiObject payPalFeature = device.findObject(new UiSelector().text("Pay Pal"));
+        assertTrue(payPalFeature.exists());
     }
 
 
