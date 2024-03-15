@@ -25,7 +25,6 @@ public class FirebaseDatabaseManager
 
     private FirebaseDatabase database;
     private DatabaseReference userRef;
-
     private DatabaseReference jobRef;
 
 
@@ -54,6 +53,7 @@ public class FirebaseDatabaseManager
 
     protected void initializeDatabaseRefs() {
         userRef = database.getReference().child("User").push();
+        jobRef = database.getReference().child("Job").push();
     }
 
     public void saveUserCredentialsToFirebase(String email, String password){
@@ -63,6 +63,22 @@ public class FirebaseDatabaseManager
 
         userRef.setValue(map);
     }
+
+
+    public void saveJobsToFirebase(String jobTitle, String date, String expectedDuration, String urgency, String salary, String jobLocation){
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("JobTitle", jobTitle);
+        map.put("Data", date);
+        map.put("ExpectedDuration", expectedDuration);
+        map.put("Urgency", urgency);
+        map.put("Salary", salary);
+        map.put("JobLocation", jobLocation);
+
+        jobRef.setValue(map);
+    }
+
+
 
     public void updateRole(String role, String userKey){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(userKey);
