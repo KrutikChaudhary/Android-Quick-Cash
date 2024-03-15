@@ -1,5 +1,10 @@
 package com.example.group12;
 
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
 import android.content.Context;
@@ -71,5 +76,68 @@ public class Espresso_Employer_PostJobDetails {
         Espresso.onView(ViewMatchers.withId(R.id.editTextJobLocation))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
+
+    @Test
+    public void checkJobTitleEditTextHasNoInput() {
+        onView(withId(R.id.editTextJobTitle)).perform(typeText(""));
+        onView(withId(R.id.editTextDate)).perform(typeText("03-14-2024"));
+        onView(withId(R.id.editTextExpectedDuration)).perform(typeText("4 months"));
+        onView(withId(R.id.editTextUrgency)).perform(typeText("Immediately"));
+        onView(withId(R.id.editTextSalary)).perform(typeText("1000"));
+        onView(withId(R.id.editTextJobLocation)).perform(typeText("Halifax"));
+        onView(withId(R.id.editTextJobTitle)).check(matches(withText("")));
+    }
+
+    @Test
+    public void checkDateEditTextHasNoInput() {
+        onView(withId(R.id.editTextJobTitle)).perform(typeText("Gardener"));
+        onView(withId(R.id.editTextDate)).perform(typeText(""));
+        onView(withId(R.id.editTextExpectedDuration)).perform(typeText("4 months"));
+        onView(withId(R.id.editTextUrgency)).perform(typeText("Immediately"));
+        onView(withId(R.id.editTextSalary)).perform(typeText("1000"));
+        onView(withId(R.id.editTextJobLocation)).perform(typeText("Halifax"));
+        onView(withId(R.id.editTextDate)).check(matches(withText("")));
+    }
+
+    @Test
+    public void checkExpectedDurationEditTextHasNoInput() {
+        onView(withId(R.id.editTextJobTitle)).perform(typeText("Gardener"));
+        onView(withId(R.id.editTextDate)).perform(typeText("03-14-2024"));
+        onView(withId(R.id.editTextExpectedDuration)).perform(typeText(""));
+        onView(withId(R.id.editTextUrgency)).perform(typeText("Immediately"));
+        onView(withId(R.id.editTextSalary)).perform(typeText("1000"));
+        onView(withId(R.id.editTextJobLocation)).perform(typeText("Halifax"));
+        onView(withId(R.id.editTextExpectedDuration)).check(matches(withText("")));
+    }
+
+    @Test
+    public void checkUrgencyEditTextHasNoInput() {
+        onView(withId(R.id.editTextJobTitle)).perform(typeText("Gardener"));
+        onView(withId(R.id.editTextDate)).perform(typeText("03-14-2024"));
+        onView(withId(R.id.editTextExpectedDuration)).perform(typeText("4 months"));
+        onView(withId(R.id.editTextUrgency)).perform(typeText(""));
+        onView(withId(R.id.editTextSalary)).perform(typeText("1000"));
+        onView(withId(R.id.editTextJobLocation)).perform(typeText("Halifax"));
+        onView(withId(R.id.editTextUrgency)).check(matches(withText("")));     }
+
+    @Test
+    public void checkSalaryEditTextHasNoInput() {
+        onView(withId(R.id.editTextJobTitle)).perform(typeText("Gardener"));
+        onView(withId(R.id.editTextDate)).perform(typeText("03-14-2024"));
+        onView(withId(R.id.editTextExpectedDuration)).perform(typeText("4 months"));
+        onView(withId(R.id.editTextUrgency)).perform(typeText("Immediately"));
+        onView(withId(R.id.editTextSalary)).perform(typeText(""));
+        onView(withId(R.id.editTextJobLocation)).perform(typeText("Halifax"));
+        onView(withId(R.id.editTextSalary)).check(matches(withText("")));     }
+
+    @Test
+    public void checkJobLocationEditTextHasNoInput() {
+        onView(withId(R.id.editTextJobTitle)).perform(typeText("Gardener"));
+        onView(withId(R.id.editTextDate)).perform(typeText("03-14-2024"));
+        onView(withId(R.id.editTextExpectedDuration)).perform(typeText("4 months"));
+        onView(withId(R.id.editTextUrgency)).perform(typeText("Immediately"));
+        onView(withId(R.id.editTextSalary)).perform(typeText("1000"));
+        onView(withId(R.id.editTextJobLocation)).perform(typeText(""));
+        onView(withId(R.id.editTextJobLocation)).check(matches(withText("")));     }
 
 }
