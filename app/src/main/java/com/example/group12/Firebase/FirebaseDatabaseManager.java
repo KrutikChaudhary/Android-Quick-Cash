@@ -101,13 +101,12 @@ public class FirebaseDatabaseManager
                     String jobStartDate = (String) jobMap.get("Start Date");
 
                     //LatLng jobLcation = (LatLng) jobMap.get("Location");
-                    double jobLat = (double) jobMap.get("Latitude");
-                    double jobLng = (double) jobMap.get("Longitude");
+                    String location = (String) jobMap.get("Location");
 
 
                     // include job location
                     if(containsParameters(parameter, jobTitle) && containsSalary(salary, jobSalary) && containsDuration(duration, jobDuration)){
-                        Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate, jobLng, jobLat);
+                        Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate, location);
                         filterdJobList.add(job);
                     }
 
@@ -197,18 +196,16 @@ public class FirebaseDatabaseManager
         return result;
     }
 
-//    protected boolean inDistance(String param, String lat, String lng){
-//        if(param.equals("")){
-//            return true;
-//        }
+    protected boolean inDistance(String param, String location){
+        if(param.equals("")){
+            return true;
+        }
+
+        // get user location
+
+//        double distance = getDistance();
+//         distance = user location - job location <- euclidean
 //
-//        // get user location
-//
-//        // distance = user location - job location <- euclidean
-//         //getLatitude();
-//
-//
-//        //float distance = getDistance();
 //
 //        if(param.equals(Constants.SPINNER_LOCATION_RANGE_ONE)){
 //            if(.5 >= distance){
@@ -240,10 +237,10 @@ public class FirebaseDatabaseManager
 //                return true;
 //            }
 //        }
-//
-//        // if distiance is in param return true
-//        return false;
-//    }
+
+        // if distiance is in param return true
+        return false;
+    }
 
 
     // return euclidean distance
