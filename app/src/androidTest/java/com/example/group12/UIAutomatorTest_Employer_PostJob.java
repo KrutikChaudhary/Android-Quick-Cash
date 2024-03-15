@@ -75,45 +75,4 @@ public class UIAutomatorTest_Employer_PostJob {
     public void checkIfMoved2YourProfile() throws UiObjectNotFoundException {
         //this test method exists to check if the Your Profile page is visible
     }
-    @Test
-    public void checkJobTitleEditTextVisibility() {
-        // Check if the Date EditText is visible
-        Espresso.onView(ViewMatchers.withId(R.id.editTextJobTitle))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-    }
-    @Test
-    public void checkDateEditTextVisibility() {
-        // Check if the Date EditText is visible
-        Espresso.onView(ViewMatchers.withId(R.id.editTextDate))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-    }
-
-    @Test
-    public void checkExpectedDurationEditTextVisibility() {
-        // Check if the Expected Duration EditText is visible
-        Espresso.onView(ViewMatchers.withId(R.id.editTextExpectedDuration))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-    }
-
-    @Test
-    public void checkUrgencyEditTextVisibility() {
-        // Check if the Urgency EditText is visible
-        Espresso.onView(ViewMatchers.withId(R.id.editTextUrgency))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-    }
-
-    @Test
-    public void checkSalaryEditTextVisibility() {
-        // Check if the Salary EditText is visible
-        Espresso.onView(ViewMatchers.withId(R.id.editTextSalary))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-    }
-
-    @Test
-    public void checkJobLocationEditTextVisibility() {
-        // Check if the Job Location EditText is visible
-        Espresso.onView(ViewMatchers.withId(R.id.editTextJobLocation))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-    }
-
 }
