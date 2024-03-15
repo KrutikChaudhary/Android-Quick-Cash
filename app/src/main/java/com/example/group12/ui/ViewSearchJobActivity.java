@@ -41,16 +41,14 @@ public class ViewSearchJobActivity extends AppCompatActivity {
 
 
     protected void init(){
-
         recyclerView = findViewById(R.id.job_recyclerView);
-
         recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
     }
     protected void viewJob(){
         JobListAdapter adapter = new JobListAdapter(jobList);
         recyclerView.setAdapter(adapter);
 
     }
+
 
 }
