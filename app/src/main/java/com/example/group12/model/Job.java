@@ -5,19 +5,18 @@ public class Job implements Serializable {
     private String duration;
     private String salary; //per hour
     private String startDate;
-    private double longitude;
-    private double latitude;
+
+    private String location;
 
     public Job(){
 
     }
-    public Job(String title, String salary, String duration, String startDate, double longitude, double latitude){
+    public Job(String title, String salary, String duration, String startDate, String location){
         this.title = title;
         this.duration = duration;
         this.salary = salary;
         this.startDate = startDate;
-        this.longitude = longitude;
-        this.latitude = latitude;
+        this.location = location;
 //this.location = location;
     }
     public String getTitle(){
@@ -41,19 +40,11 @@ public class Job implements Serializable {
     public String getStartDate() {
         return this.startDate;
     }
-    public double getLongitude(){
-        return this.longitude;
-    }
-    public double getLatitude(){
-        return this.latitude;
-    }
+
+    public String getLocation(){ return this.location;}
     public void setStartDate(String date){
         this.startDate = date;
     }
-    public void setLongitude(double lng){
-        this.longitude = lng;
-    }
-    public void setLatitude(double lat){
-        this.latitude = lat;
-    }
+
+    public void setLocation(String location){ this.location = location;}
 }

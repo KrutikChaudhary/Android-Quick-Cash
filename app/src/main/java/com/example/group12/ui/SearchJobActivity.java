@@ -76,6 +76,8 @@ public class SearchJobActivity extends AppCompatActivity {
 
         jobSearchButton = findViewById(R.id.jobSearchButton);
 
+        buttonSetup();
+
     }
 
     protected void salarySpinnerSetup(){
@@ -150,37 +152,41 @@ public class SearchJobActivity extends AppCompatActivity {
 
         parameter = jobParameterText.getText().toString();
 
-        salarySpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        salarySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                    @Override
+                                                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                        salary = parent.getItemAtPosition(position).toString();
+                                                    }
+
+                                                    @Override
+                                                    public void onNothingSelected(AdapterView<?> parent) {
+
+                                                    }
+                                                });
+
+
+        durationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                salary = parent.getItemAtPosition(position).toString();
-
-            }
-
-        });
-
-        durationSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 duration = parent.getItemAtPosition(position).toString();
-
             }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
 
-        locationSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 location = parent.getItemAtPosition(position).toString();
-
             }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
 
     }
