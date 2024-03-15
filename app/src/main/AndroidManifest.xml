@@ -28,7 +28,7 @@
             android:name=".Dashboard_User_FindJob"
             android:exported="false" />
         <activity
-            android:name=".Dashboard_User_Stats"
+            android:name=".Dashboard_User_MyPayPal"
             android:exported="false" />
         <activity
             android:name=".Dashboard_User_Profile"
