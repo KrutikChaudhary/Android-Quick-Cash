@@ -57,23 +57,32 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String jobTitle =title.getText().toString();
+                String jobTitle = title.getText().toString();
                 String date = jobDate.getText().toString();
-                String expectedDuration =duration.getText().toString();
-                String urgency =jobUrgency.getText().toString();
+                String expectedDuration = duration.getText().toString();
+                String urgency = jobUrgency.getText().toString();
                 String salary = jobSalary.getText().toString();
                 String jobLocation = location.getText().toString();
 
+                // Check if any field is empty
+                if(jobTitle.isEmpty() || date.isEmpty() || expectedDuration.isEmpty() || urgency.isEmpty() || salary.isEmpty() || jobLocation.isEmpty()) {
+                    // Display toast for incomplete fields
+                    Toast.makeText(Dashboard_Employer_PostJob.this, "Enter all the fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    // All fields are entered, proceed to save to Firebase
+                    saveJobsToFirebase(jobTitle, date, expectedDuration, urgency, salary, jobLocation);
 
-                saveJobsToFirebase(jobTitle, date, expectedDuration, urgency, salary, jobLocation);
+                    // Display success message
+                    Toast.makeText(Dashboard_Employer_PostJob.this, "Job uploaded successfully", Toast.LENGTH_SHORT).show();
 
-                // navigating back to the your Jobs page
-                Intent yourJobIntent = new Intent(Dashboard_Employer_PostJob.this, Dashboard_Employer.class);
-                Dashboard_Employer_PostJob.this.startActivity(yourJobIntent);
-
+                    // Navigating back to the your Jobs page
+                    Intent yourJobIntent = new Intent(Dashboard_Employer_PostJob.this, Dashboard_Employer.class);
+                    Dashboard_Employer_PostJob.this.startActivity(yourJobIntent);
+                }
             }
         });
     }
+
 
     public void saveJobsToFirebase(String jobTitle, String date, String expectedDuration, String urgency, String salary, String jobLocation){
         dbManager.saveJobsToFirebase(jobTitle, date, expectedDuration, urgency, salary, jobLocation);
