@@ -68,12 +68,12 @@ public class FirebaseDatabaseManager
     public void saveJobsToFirebase(String jobTitle, String date, String expectedDuration, String urgency, String salary, String jobLocation){
         Map<String, Object> map = new HashMap<>();
 
-        map.put("JobTitle", jobTitle);
-        map.put("Data", date);
-        map.put("ExpectedDuration", expectedDuration);
-        map.put("Urgency", urgency);
-        map.put("Salary", salary);
-        map.put("JobLocation", jobLocation);
+        map.put("title", jobTitle);
+        map.put("startDate", date);
+        map.put("duration", expectedDuration);
+        map.put("urgency", urgency);
+        map.put("salary", salary);
+        map.put("location", jobLocation);
 
         jobRef.setValue(map);
     }
