@@ -32,6 +32,10 @@ public class Dashboard_User extends AppCompatActivity {
         init();
         viewJobs();
         email = getIntent().getStringExtra("email");
+        paypalButtonSetup();
+    }
+
+    public void paypalButtonSetup(){
         myPayPal = findViewById(R.id.PayPalButton);
 
         myPayPal.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +47,8 @@ public class Dashboard_User extends AppCompatActivity {
             }
         });
     }
+
+
 
     protected void init(){
         recyclerView = findViewById(R.id.job_recyclerView);
