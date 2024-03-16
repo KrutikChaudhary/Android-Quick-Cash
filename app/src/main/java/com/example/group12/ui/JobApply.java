@@ -7,14 +7,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.group12.Firebase.FirebaseDatabaseManager;
 import com.example.group12.R;
+import com.example.group12.core.Constants;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class JobApply extends AppCompatActivity {
     EditText fullName;
     Button applyJob;
     String email;
+    String merchantID;
     TextView emailView;
+    FirebaseDatabaseManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +30,7 @@ public class JobApply extends AppCompatActivity {
         fullName = findViewById(R.id.applyEnterFullName);
         emailView = findViewById(R.id.TempEmail);
         email = getIntent().getStringExtra("email");
+        merchantID = getIntent().getStringExtra("merchantID");
         emailView.setText(email);
         applyJobButtonSetup();
     }
@@ -33,9 +41,19 @@ public class JobApply extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = fullName.getText().toString();
-
+                if(name!=null&&!name.equals("")){
+                    saveJobApplicationToFirebase(email, name, merchantID);
+                } else {
+                    Toast.makeText(JobApply.this, "Please add your Full name", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
+
+    public DatabaseReference saveJobApplicationToFirebase(String email, String fullname, String merchantID){
+        dbManager = new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
+        DatabaseReference ref =  dbManager.saveJobApplicationToFirebase(email,fullname,merchantID);
+        return ref;
     }
 
 

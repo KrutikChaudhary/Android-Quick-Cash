@@ -78,6 +78,7 @@ public class JobAdapter extends FirebaseRecyclerAdapter<Job, JobAdapter.JobViewH
                     if(isValid){
                         Intent applyIntent = new Intent(holder.context, JobApply.class);
                         applyIntent.putExtra("email", email);
+                        applyIntent.putExtra("merchantID",merchantID);
                         Log.d("JobAdapter", "Email received: " + email);
                         holder.context.startActivity(applyIntent);
                     } else {
