@@ -25,6 +25,7 @@ public class FirebaseDatabaseManager
 
     private FirebaseDatabase database;
     private DatabaseReference userRef;
+    private DatabaseReference merchantRef;
 
     private DatabaseReference jobRef;
 
@@ -54,6 +55,7 @@ public class FirebaseDatabaseManager
 
     protected void initializeDatabaseRefs() {
         userRef = database.getReference().child("User");
+        merchantRef = database.getReference().child("MerchantID");
     }
 
     public DatabaseReference saveUserCredentialsToFirebase(String email, String password){
@@ -90,7 +92,20 @@ public class FirebaseDatabaseManager
         });
     }
 
+
+    public void saveMerchantIDtoFirebase(String email,String merchantID){
+        Map<String, Object> map = new HashMap<>();
+        map.put("Email", email);
+        map.put("MerchantID", merchantID);
+
+        DatabaseReference dbref = this.merchantRef.push();
+        dbref.setValue(map);
+    }
+
     public DatabaseReference getUserRef(){
         return this.userRef;
+    }
+    public DatabaseReference getMerchantRef(){
+        return this.merchantRef;
     }
 }
