@@ -2,6 +2,7 @@ package com.example.group12.util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.group12.R;
 import com.example.group12.model.Job;
+import com.example.group12.ui.Dashboard_User;
+import com.example.group12.ui.JobApply;
 import com.example.group12.ui.JobDetailActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 public class JobAdapter extends FirebaseRecyclerAdapter<Job, JobAdapter.JobViewHolder>{
-
-    public JobAdapter(@NonNull FirebaseRecyclerOptions<Job> options){
+    private String email;
+    public JobAdapter(@NonNull FirebaseRecyclerOptions<Job> options, String email){
         super(options);
+        this.email=email;
+        //Log.d("JobAdapter", "Email received: " + this.email);
     }
 
     @NonNull
@@ -33,13 +38,16 @@ public class JobAdapter extends FirebaseRecyclerAdapter<Job, JobAdapter.JobViewH
     public class JobViewHolder extends RecyclerView.ViewHolder{
         private final TextView title;
         private final Button seeDetailsButton;
+        private final Button applyToJob;
 
         private final Context context;
 
         public JobViewHolder(View view){
             super(view);
+//            email = emailId;
             title = view.findViewById(R.id.jobTitle);
             seeDetailsButton = view.findViewById(R.id.seeDetailButton);
+            applyToJob = view.findViewById(R.id.applyButton);
             context = view.getContext();
         }
     }
@@ -53,6 +61,13 @@ public class JobAdapter extends FirebaseRecyclerAdapter<Job, JobAdapter.JobViewH
             intent.putExtra("key", getRef(position).getKey());
             intent.putExtra("job", job);
             holder.context.startActivity(intent);
+        });
+
+        holder.applyToJob.setOnClickListener(view -> {
+            Intent applyIntent = new Intent(holder.context, JobApply.class);
+            applyIntent.putExtra("email", email);
+            //Log.d("JobAdapter", "Email received: " + email);
+            holder.context.startActivity(applyIntent);
         });
     }
 }

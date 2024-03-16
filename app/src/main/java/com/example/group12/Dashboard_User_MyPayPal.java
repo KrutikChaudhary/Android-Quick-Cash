@@ -39,6 +39,7 @@ public class Dashboard_User_MyPayPal extends AppCompatActivity {
                 if(ref !=null){
                     Toast.makeText(Dashboard_User_MyPayPal.this,"Merchant Id Saved Successfully",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Dashboard_User_MyPayPal.this, Dashboard_User.class);
+                    intent.putExtra("user_email", email);
                     Dashboard_User_MyPayPal.this.startActivity(intent);
                 } else {
                     Toast.makeText(Dashboard_User_MyPayPal.this,"Merchant Id is not Saved try again!!!",Toast.LENGTH_SHORT).show();

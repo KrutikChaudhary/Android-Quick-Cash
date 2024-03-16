@@ -29,9 +29,9 @@ public class Dashboard_User extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_user);
+        email = getIntent().getStringExtra("email");
         init();
         viewJobs();
-        email = getIntent().getStringExtra("email");
         paypalButtonSetup();
     }
 
@@ -59,7 +59,7 @@ public class Dashboard_User extends AppCompatActivity {
         final FirebaseRecyclerOptions<Job> options = new FirebaseRecyclerOptions.Builder<Job>()
                 .setQuery(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK)
                         .getReference().child("Job"), Job.class).build();
-        viewJobAdapter = new JobAdapter(options);
+        viewJobAdapter = new JobAdapter(options,email);
         recyclerView.setAdapter(viewJobAdapter);
     }
 
