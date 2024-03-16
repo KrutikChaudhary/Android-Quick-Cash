@@ -93,13 +93,14 @@ public class FirebaseDatabaseManager
     }
 
 
-    public void saveMerchantIDtoFirebase(String email,String merchantID){
+    public DatabaseReference saveMerchantIDtoFirebase(String email,String merchantID){
         Map<String, Object> map = new HashMap<>();
         map.put("Email", email);
         map.put("MerchantID", merchantID);
 
         DatabaseReference dbref = this.merchantRef.push();
         dbref.setValue(map);
+        return dbref;
     }
 
     public DatabaseReference getUserRef(){
