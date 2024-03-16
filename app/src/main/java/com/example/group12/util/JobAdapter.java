@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.group12.Dashboard_User_MyPayPal;
 import com.example.group12.R;
+import com.example.group12.logic.MerchantIDValidator;
 import com.example.group12.model.Job;
 import com.example.group12.ui.Dashboard_User;
 import com.example.group12.ui.JobApply;
@@ -64,10 +67,27 @@ public class JobAdapter extends FirebaseRecyclerAdapter<Job, JobAdapter.JobViewH
         });
 
         holder.applyToJob.setOnClickListener(view -> {
-            Intent applyIntent = new Intent(holder.context, JobApply.class);
-            applyIntent.putExtra("email", email);
-            //Log.d("JobAdapter", "Email received: " + email);
-            holder.context.startActivity(applyIntent);
+//            Intent applyIntent = new Intent(holder.context, JobApply.class);
+//            applyIntent.putExtra("email", email);
+//            //Log.d("JobAdapter", "Email received: " + email);
+//            holder.context.startActivity(applyIntent);
+            MerchantIDValidator validator = new MerchantIDValidator();
+            validator.isMerchantIDConnected(email, new MerchantIDCallBack() {
+                @Override
+                public void merchantIdAvailableResult(boolean isValid, String merchantID) {
+                    if(isValid){
+                        Intent applyIntent = new Intent(holder.context, JobApply.class);
+                        applyIntent.putExtra("email", email);
+                        Log.d("JobAdapter", "Email received: " + email);
+                        holder.context.startActivity(applyIntent);
+                    } else {
+                        Intent applyIntent = new Intent(holder.context, Dashboard_User_MyPayPal.class);
+                        applyIntent.putExtra("email", email);
+                        Toast.makeText(holder.context, "Add your Merchant ID first", Toast.LENGTH_SHORT).show();
+                        holder.context.startActivity(applyIntent);
+                    }
+                }
+            });
         });
     }
 }

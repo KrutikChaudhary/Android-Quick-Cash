@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import com.example.group12.Firebase.FirebaseDatabaseManager;
 import com.example.group12.core.Constants;
 import com.example.group12.util.LoginCallback;
+import com.example.group12.util.MerchantIDCallBack;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +25,7 @@ public class MerchantIDValidator {
         dbManager = new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
     }
 
-    public void isMerchantIDConnected(String email, LoginCallback callback) {
+    public void isMerchantIDConnected(String email, MerchantIDCallBack callback) {
         valid = false;
 
         DatabaseReference ref = dbManager.getMerchantRef();
@@ -44,12 +45,12 @@ public class MerchantIDValidator {
                         break; // Exit the loop once merchantID is found
                     }
                 }
-                callback.onLoginResult(valid, merchant);
+                callback.merchantIdAvailableResult(valid, merchant);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                callback.onLoginResult(false, "");
+                callback.merchantIdAvailableResult(false, "");
             }
         });
 
