@@ -23,6 +23,7 @@ public class Dashboard_User extends AppCompatActivity {
     RecyclerView recyclerView;
     JobAdapter viewJobAdapter;
     Button myPayPal;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +31,14 @@ public class Dashboard_User extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_user);
         init();
         viewJobs();
+        email = getIntent().getStringExtra("email");
         myPayPal = findViewById(R.id.PayPalButton);
 
         myPayPal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard_User.this, Dashboard_User_MyPayPal.class);
+                intent.putExtra("email", email);
                 Dashboard_User.this.startActivity(intent);
             }
         });

@@ -54,6 +54,7 @@ public class LogInActivity extends AppCompatActivity {
                             Toast.makeText(LogInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             if (role.equals("Employee")){
                                 intent = new Intent(LogInActivity.this, Dashboard_User.class);
+                                intent.putExtra("email", email_text);
                             }
                             else{
                                 intent = new Intent(LogInActivity.this, Dashboard_Employer.class);
