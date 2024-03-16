@@ -20,6 +20,7 @@
     <string name="your_profile_employer">Your Profile</string>
 
     <string name="quick_cash_user_dashboard">Quick Cash - User Dashboard</string>
+    <string name="quick_cash_user_dashboard_jobDetails">Quick Cash - Job Details</string>
     <string name="find_jobs">Find Jobs</string>
     <string name="all_jobs">All Jobs</string>
     <string name="all_stats">All Stats</string>
