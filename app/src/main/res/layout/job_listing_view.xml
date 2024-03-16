@@ -15,10 +15,17 @@
         android:text="TextView"
         android:textSize="20sp"
         android:textStyle="bold" />
-
+    <Button
+        android:id="@+id/applyJobButton"
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:layout_marginTop="3dp"
+        android:text="Apply" />
     <Button
         android:id="@+id/seeDetailButton"
-        android:layout_width="121dp"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_gravity="center"
