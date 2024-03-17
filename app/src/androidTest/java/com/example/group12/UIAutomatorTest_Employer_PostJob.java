@@ -27,7 +27,9 @@ import org.junit.runner.RunWith;
 
 import com.example.group12.ui.Dashboard_Employer;
 
-
+/**
+ * UI test class for employer actions in the app.
+ */
 @RunWith(AndroidJUnit4.class)
 public class UIAutomatorTest_Employer_PostJob {
     private UiDevice device;
@@ -44,9 +46,11 @@ public class UIAutomatorTest_Employer_PostJob {
         device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT);
     }
 
+    /**
+     * Check if the employer post job page is visible.
+     */
     @Test
     public void checkIfEmployerPostJobPageIsVisible() {
-        //this test method exists to check if the employer dashboard page is visible
         UiObject yourJobsButton = device.findObject(new UiSelector().text("Your Jobs"));
         assertTrue(yourJobsButton.exists());
         UiObject postJobButton = device.findObject(new UiSelector().text("Post a Job"));
@@ -59,20 +63,33 @@ public class UIAutomatorTest_Employer_PostJob {
         assertTrue(upload_job.exists());
     }
 
+    /**
+     * Check if the user can navigate to the Your Jobs page.
+     * @throws UiObjectNotFoundException
+     */
     @Test
     public void checkIfMoved2YourJobPage() throws UiObjectNotFoundException {
-        //this test method exists to check if the your Job page is visible
         Espresso.onView(ViewMatchers.withId(R.id.yourJobsButton)).perform(click());
 
         // Check if the post job page is visible by asserting that a view in the post job page is displayed
         Espresso.onView(ViewMatchers.withId(R.id.employerDashboard)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
+
+    /**
+     * Check if the user can navigate to the Help and Support page.
+     * @throws UiObjectNotFoundException
+     */
     @Test
     public void checkIfMoved2HelpAndSupportPage() throws UiObjectNotFoundException {
-        //this test method exists to check if the Help and Support page is visible
+        // Test method for checking if the Help and Support page is visible
     }
+
+    /**
+     * Check if the user can navigate to the Your Profile page.
+     * @throws UiObjectNotFoundException
+     */
     @Test
     public void checkIfMoved2YourProfile() throws UiObjectNotFoundException {
-        //this test method exists to check if the Your Profile page is visible
+        // Test method for checking if the Your Profile page is visible
     }
 }
