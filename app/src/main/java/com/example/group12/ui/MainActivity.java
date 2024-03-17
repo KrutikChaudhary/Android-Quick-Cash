@@ -9,6 +9,13 @@ import android.widget.Button;
 
 import com.example.group12.LocationDetector;
 import com.example.group12.R;
+import com.example.group12.core.Constants;
+import com.google.firebase.Firebase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -19,6 +26,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         registerButtonSetup();
         loginButtonSetup();
+        //testJob();
     }
 
     protected void registerButtonSetup(){
@@ -43,5 +51,19 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
+
+    public void testJob(){
+        FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
+        DatabaseReference dbref = db.getReference("Job");
+        Map<String, Object> job = new HashMap<>();
+        job.put("title", "Dish Washing");
+        job.put("Duration", "2 hour");
+        job.put("Salary", "50$");
+        job.put("Start Date", "today");
+        job.put("Urgency", "Urgent");
+
+        dbref.push().setValue(job);
+    }
+
 
 }

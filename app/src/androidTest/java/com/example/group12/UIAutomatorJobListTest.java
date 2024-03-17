@@ -1,0 +1,62 @@
+package com.example.group12;
+
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import android.content.Context;
+import android.content.Intent;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.uiautomator.By;
+import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiObject;
+import androidx.test.uiautomator.UiObjectNotFoundException;
+import androidx.test.uiautomator.UiScrollable;
+import androidx.test.uiautomator.UiSelector;
+import androidx.test.uiautomator.Until;
+
+import com.example.group12.ui.Dashboard_User;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+@RunWith(AndroidJUnit4.class)
+public class UIAutomatorJobListTest {
+
+    private UiDevice device;
+    private static final int LAUNCH_TIMEOUT = 5000;
+    final String launcherPackage = "com.example.group12";
+    @Before
+    public void setup(){
+
+        device = UiDevice.getInstance(getInstrumentation());
+        Context context = ApplicationProvider.getApplicationContext();
+        final Intent appIntent = new Intent(context, Dashboard_User.class);
+        appIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(appIntent);
+        device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT);
+
+
+    }
+
+    public void checkIfJobListingExists() throws UiObjectNotFoundException {
+        UiScrollable recyclerView = new UiScrollable(new UiSelector().scrollable(false));
+        assertTrue(recyclerView.exists());
+        recyclerView.scrollIntoView(new UiSelector().text("Shovel Sidewalk"));
+        UiObject jobTitle = device.findObject(new UiSelector().text("Shovel Sidewalk"));
+        assertTrue(jobTitle.exists());
+        UiObject selectJob = device.findObject(new UiSelector().text("Select"));
+        assertTrue(selectJob.exists());
+        UiObject jobPay = device.findObject(new UiSelector().text("$50"));
+        assertTrue(jobPay.exists());
+        UiObject jobDuration = device.findObject(new UiSelector().text("2 hours"));
+        assertTrue(jobDuration.exists());
+    }
+
+
+
+}
