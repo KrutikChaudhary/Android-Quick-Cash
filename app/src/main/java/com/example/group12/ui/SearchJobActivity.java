@@ -3,6 +3,7 @@ package com.example.group12.ui;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 
 import android.widget.AdapterView;
@@ -67,6 +68,8 @@ public class SearchJobActivity extends AppCompatActivity {
         locationSpinnerSetup();
 
         init();
+
+        databaseInit();
 
     }
 
@@ -138,7 +141,7 @@ public class SearchJobActivity extends AppCompatActivity {
                 retrieveUserInput();
 
                 List<Job> options = dbManager.jobFilter(parameter, salary, duration, location);
-
+                Log.e("SearJobActivity list size: ", "Size is: " + options.size());
                 Intent searchIntent = new Intent(SearchJobActivity.this, ViewSearchJobActivity.class);
                 searchIntent.putExtra("JobList", options.toArray(new Job[options.size()]));
                 SearchJobActivity.this.startActivity(searchIntent);

@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 
 import android.view.View;
@@ -34,7 +33,7 @@ public class Dashboard_User extends AppCompatActivity {
     }
 
     protected void init(){
-        recyclerView = findViewById(R.id.job_recyclerView);
+        recyclerView = findViewById(R.id.filteredJob_recyclerView);
         recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
 
