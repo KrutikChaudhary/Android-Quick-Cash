@@ -29,10 +29,13 @@ import java.util.Locale;
 
 
 public class LocationDetector extends AppCompatActivity {
+    public static final int INTERVAL_MILLIS = 10000;
+    public static final int FASTEST_INTERVAL_MILLIS = 5000;
     private final FusedLocationProviderClient fusedLocationProviderClient;
     private final LocationRequest locationRequest;
     private final Context context;
     private LocationInfo locationInfo;
+    
     FirebaseDatabaseManager firebaseDatabaseManager;
     FirebaseDatabase db;
     private static final int REQUEST_CODE = 100;
@@ -42,8 +45,8 @@ public class LocationDetector extends AppCompatActivity {
         this.fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context);
 
         this.locationRequest = LocationRequest.create();
-        this.locationRequest.setInterval(10000); // 10 seconds
-        this.locationRequest.setFastestInterval(5000); // 5 seconds
+        this.locationRequest.setInterval(INTERVAL_MILLIS); // 10 seconds
+        this.locationRequest.setFastestInterval(FASTEST_INTERVAL_MILLIS); // 5 seconds
         this.locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
         firebaseDatabaseManager = new FirebaseDatabaseManager(db);
