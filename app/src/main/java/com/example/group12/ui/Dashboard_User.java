@@ -21,7 +21,7 @@ public class Dashboard_User extends AppCompatActivity {
 
     RecyclerView recyclerView;
     JobAdapter viewJobAdapter;
-
+    String key;
     Button findJobButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class Dashboard_User extends AppCompatActivity {
     protected void init(){
         recyclerView = findViewById(R.id.filteredJob_recyclerView);
         recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        key = getIntent().getStringExtra("key");
     }
 
     protected void viewJobs(){
@@ -52,6 +53,7 @@ public class Dashboard_User extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard_User.this, SearchJobActivity.class);
+                intent.putExtra("key", key);
                 Dashboard_User.this.startActivity(intent);
             }
         });
