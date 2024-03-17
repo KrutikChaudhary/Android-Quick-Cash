@@ -5,6 +5,7 @@ public class JobApplication {
     private String Name;
     public JobApplication(){
     }
+    //Getters and setters of email, merchantID, and name of employee
     public JobApplication(String email, String merchantID, String name) {
         Email = email;
         MerchantID = merchantID;

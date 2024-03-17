@@ -26,10 +26,12 @@ public class Dashboard_Employer_PayEmployee extends AppCompatActivity {
         init();
         viewApplications();
     }
+    //shows jobs that have been applied for
     protected void init(){
         recyclerView = findViewById(R.id.job_application_recyclerView);
         recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
+    //View all job applications on employer side
     protected void viewApplications(){
         final FirebaseRecyclerOptions<JobApplication> options = new FirebaseRecyclerOptions.Builder<JobApplication>()
                 .setQuery(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK)
