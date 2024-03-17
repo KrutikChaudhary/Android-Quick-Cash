@@ -20,7 +20,6 @@ AUTHOR: Chaz Davies
 This file includes a class with all methods related to the database.
  */
 
-package com.example.group12.Firebase;
 import android.content.Context;
 import android.util.Log;
 import androidx.annotation.NonNull;
