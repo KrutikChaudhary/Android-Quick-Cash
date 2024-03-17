@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         registerButtonSetup();
         loginButtonSetup();
-        //testJob();
+        initializeLocationDetector();
     }
 
     protected void registerButtonSetup(){
@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity{
         job.put("longitude", 3.23);
         job.put("latitude", 5.5);
 
-        dbref.push().setValue(job);
+    protected void initializeLocationDetector(){
+        locationDetector = new LocationDetector(this);
     }
-
 
 }
