@@ -109,7 +109,7 @@ public class FirebaseDatabaseManager
                     float jobSalary = (float) jobMap.get("salary");
                     int jobDuration = (int) jobMap.get("duration");
                     String jobStartDate = (String) jobMap.get("startDate");
-
+                    String jobUrgency = (String) jobMap.get("urgency");
                     String jobLocation = (String) jobMap.get("Location");
                     float jobLongitude = (float) jobMap.get("longitude");
                     float jobLatitude = (float) jobMap.get("longitude");
@@ -122,7 +122,7 @@ public class FirebaseDatabaseManager
 
 
                     if (filterJob.containsParameters(parameter, jobTitle) && filterJob.containsSalary(salary, jobSalary) && filterJob.containsDuration(duration, jobDuration)){
-                        Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate, jobLocation);
+                        Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate, jobLocation, jobUrgency, jobLatitude, jobLongitude);
                         filterdJobList.add(job);
                     }
 
