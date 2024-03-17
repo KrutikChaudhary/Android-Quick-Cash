@@ -54,8 +54,8 @@ public class FirebaseDatabaseManager
 
 
     protected void initializeDatabaseRefs() {
-        userRef = database.getReference().child("User").push();
-        userLocation = database.getReference().child("Location").push();
+        userRef = database.getReference().child("User");
+        userLocation = database.getReference().child("Location");
     }
 
     public DatabaseReference saveUserCredentialsToFirebase(String email, String password){
@@ -81,8 +81,8 @@ public class FirebaseDatabaseManager
         locationMap.put("address", locationInfo.getAddress());
         locationMap.put("locality", locationInfo.getLocality());
         locationMap.put("countryCode", locationInfo.getCountryCode());
-
-        userLocation.setValue(locationMap);
+        DatabaseReference dbref = this.userLocation.push();
+        dbref.setValue(locationMap);
     }
     public void updateRole(String role, String userKey){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(userKey);
