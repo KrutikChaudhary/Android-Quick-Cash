@@ -50,6 +50,8 @@
             android:exported="false" />
         <activity android:name=".ui.SearchJobActivity"
             android:exported="false"  />
+        <activity android:name=".ui.ViewSearchJobActivity"
+            android:exported="false" />
 
 
 

@@ -1,7 +1,7 @@
 package com.example.group12.ui;
 
 import android.os.Bundle;
-import android.widget.AbsListView;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,6 @@ import com.example.group12.model.Job;
 import com.example.group12.util.JobListAdapter;
 import com.example.group12.util.WrapLinearLayoutManager;
 
-import java.nio.Buffer;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,9 +24,6 @@ public class ViewSearchJobActivity extends AppCompatActivity {
     List<Job> jobList;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +32,13 @@ public class ViewSearchJobActivity extends AppCompatActivity {
 
         jobArray = (Job[])getIntent().getSerializableExtra("JobList");
         jobList = Arrays.asList(jobArray);
+        Log.e("Length", "The size of the list: " + jobList.size());
         viewJob();
     }
 
 
     protected void init(){
-        recyclerView = findViewById(R.id.job_recyclerView);
+        recyclerView = findViewById(R.id.filteredJob_recyclerView);
         recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
     protected void viewJob(){
@@ -49,6 +46,5 @@ public class ViewSearchJobActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
-
 
 }
