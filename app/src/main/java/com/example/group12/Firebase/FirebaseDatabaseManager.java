@@ -7,8 +7,11 @@ This file includes a class with all methods related to the database.
  */
 
 package com.example.group12.Firebase;
+import android.content.Context;
 import android.util.Log;
 import androidx.annotation.NonNull;
+
+import com.example.group12.logic.FilterJob;
 import com.example.group12.model.Job;
 import com.example.group12.util.JobFilterCallback;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -102,23 +105,24 @@ public class FirebaseDatabaseManager
                 for (DataSnapshot jobSnapshot : snapshot.getChildren()){
                     Map<String, Object> jobMap = (Map<String, Object>) jobSnapshot.getValue();
                     String jobTitle = (String) jobMap.get("title");
-                    String jobSalary = (String) jobMap.get("salary");
-                    String jobDuration = (String) jobMap.get("duration");
+                    float jobSalary = (float) jobMap.get("salary");
+                    int jobDuration = (int) jobMap.get("duration");
                     String jobStartDate = (String) jobMap.get("startDate");
 
-                    //LatLng jobLcation = (LatLng) jobMap.get("Location");
-                    String location = (String) jobMap.get("location");
+                    String jobLocation = (String) jobMap.get("Location");
+                    float jobLongitude = (float) jobMap.get("longitude");
+                    float jobLatitude = (float) jobMap.get("longitude");
+
+                    // getUser location
 
 
-                    // include job location
-//                    if(containsParameters(parameter, jobTitle) && containsSalary(salary, jobSalary) && containsDuration(duration, jobDuration)){
-//                        Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate, location);
-//                        filterdJobList.add(job);
-//                    }
-                    if (containsParameters(parameter, jobTitle)){
-                        Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate, location);
+                    FilterJob filterJob = new FilterJob();
+
+
+
+                    if (filterJob.containsParameters(parameter, jobTitle) && filterJob.containsSalary(salary, jobSalary) && filterJob.containsDuration(duration, jobDuration)){
+                        Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate, jobLocation);
                         filterdJobList.add(job);
-                        Log.e("size of filtered list", "Size is: " + filterdJobList.size());
                     }
 
                     callback.onJobFilterSuccess(filterdJobList);
@@ -130,141 +134,5 @@ public class FirebaseDatabaseManager
         });
     }
 
-
-    protected boolean containsParameters(String param, String title){
-        return title.contains(param);
-    }
-
-    protected boolean containsSalary(String param, String salary){
-
-        if(param.equals("")){
-            return true;
-        }
-
-        String sal = String.valueOf(salary.charAt(0)) + String.valueOf(salary.charAt(1));
-        boolean results = false;
-
-        int num = Integer.parseInt(sal);
-
-        if(param.equals(Constants.SPINNER_SALARY_RANGE_ONE)){
-            if(num >= 15) {
-                results = true;
-            }
-        }
-        else if(param.equals(Constants.SPINNER_SALARY_RANGE_TWO)){
-            if(num >= 20) {
-                results = true;
-            }
-        }
-        else if(param.equals(Constants.SPINNER_SALARY_RANGE_THREE)){
-            if(num >= 30) {
-                results = true;
-            }
-        }
-        else if(param.equals(Constants.SPINNER_SALARY_RANGE_FOUR)){
-            if(num >= 40) {
-                results = true;
-            }
-        }
-        else if(param.equals(Constants.SPINNER_SALARY_RANGE_FIVE)){
-            if(num >= 50) {
-                results = true;
-            }
-        }
-        else if(param.equals(Constants.SPINNER_SALARY_RANGE_SIX)){
-            if(num >= 100) {
-                results = true;
-            }
-        }
-
-        return results;
-    }
-
-    protected boolean containsDuration(String param, String duration){
-
-        if(param.equals("")) return true;
-
-        boolean result = false;
-
-        if(duration.equals(Constants.SPINNER_DURATION_RANGE_ONE)){
-            result = param.equals(duration);
-        }
-        else if(duration.equals(Constants.SPINNER_DURATION_RANGE_TWO)){
-            result = param.equals(Constants.SPINNER_DURATION_RANGE_ONE) || param.equals(duration);
-        }
-        else if(duration.equals(Constants.SPINNER_DURATION_RANGE_THREE)){
-            result = param.equals(Constants.SPINNER_DURATION_RANGE_ONE) || param.equals(Constants.SPINNER_DURATION_RANGE_TWO) || param.equals(duration);
-        }
-        else if(duration.equals(Constants.SPINNER_DURATION_RANGE_FOUR)){
-            result = param.equals(Constants.SPINNER_DURATION_RANGE_ONE) || param.equals(Constants.SPINNER_DURATION_RANGE_TWO) || param.equals(Constants.SPINNER_DURATION_RANGE_THREE)|| param.equals(duration);
-        }
-        else if(duration.equals(Constants.SPINNER_DURATION_RANGE_FIVE)){
-            result = param.equals(Constants.SPINNER_DURATION_RANGE_ONE) || param.equals(Constants.SPINNER_DURATION_RANGE_TWO) || param.equals(Constants.SPINNER_DURATION_RANGE_THREE)||  param.equals(Constants.SPINNER_DURATION_RANGE_FOUR)||param.equals(duration);
-        }
-        else if(duration.equals(Constants.SPINNER_DURATION_RANGE_SIX)){
-            result = param.equals(Constants.SPINNER_DURATION_RANGE_ONE) || param.equals(Constants.SPINNER_DURATION_RANGE_TWO) || param.equals(Constants.SPINNER_DURATION_RANGE_THREE)||  param.equals(Constants.SPINNER_DURATION_RANGE_FOUR)||param.equals(Constants.SPINNER_DURATION_RANGE_FIVE)||param.equals(duration);
-        }
-        return result;
-    }
-
-    protected boolean inDistance(String param, String location){
-        if(param.equals("")){
-            return true;
-        }
-
-        // get user location
-
-//        double distance = getDistance();
-//         distance = user location - job location <- euclidean
-//
-//
-//        if(param.equals(Constants.SPINNER_LOCATION_RANGE_ONE)){
-//            if(.5 >= distance){
-//                return true;
-//            }
-//        }
-//        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_TWO)){
-//            if(1.0 >= distance){
-//                return true;
-//            }
-//        }
-//        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_THREE)){
-//            if(2.0 >= distance){
-//                return true;
-//            }
-//        }
-//        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_FOUR)){
-//            if(3.0 >= distance){
-//                return true;
-//            }
-//        }
-//        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_FIVE)){
-//            if(5.0 >= distance){
-//                return true;
-//            }
-//        }
-//        else if(param.equals(Constants.SPINNER_LOCATION_RANGE_SIX)){
-//            if(10.0 >= distance){
-//                return true;
-//            }
-//        }
-
-        // if distiance is in param return true
-        return false;
-    }
-
-
-    // return euclidean distance
-    protected double getDistance(Double lat_x, Double lng_x, Double lat_y, Double lng_y){
-        // convert degree to km
-        double km_lat = (lat_x - lat_y)/110.574; //
-        double km_lng = (lng_x - lng_y)/Math.cos((lat_x - lat_y) * Math.PI / 180);
-
-        // eaclidean distance formula
-        double km_x = km_lng*km_lng;
-        double km_y = km_lat*km_lat;
-
-        return Math.sqrt(km_x + km_y);
-    }
 
 }
