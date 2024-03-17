@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         registerButtonSetup();
         loginButtonSetup();
-        //testJob();
+        initializeLocationDetector();
     }
 
     protected void registerButtonSetup(){
@@ -52,18 +52,9 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
-    public void testJob(){
-        FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
-        DatabaseReference dbref = db.getReference("Job");
-        Map<String, Object> job = new HashMap<>();
-        job.put("title", "Dish Washing");
-        job.put("Duration", "2 hour");
-        job.put("Salary", "50$");
-        job.put("Start Date", "today");
-        job.put("Urgency", "Urgent");
 
-        dbref.push().setValue(job);
+    protected void initializeLocationDetector(){
+        locationDetector = new LocationDetector(this);
     }
-
 
 }
