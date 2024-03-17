@@ -31,6 +31,7 @@ public class JUnitJobFilter {
         assertTrue(filter.containsParameters("painter", "PAINTER"));
         assertTrue(filter.containsParameters("paint", "PAINTER"));
         assertFalse(filter.containsParameters("SHOVEL", "PAINTER"));
+
     }
     @Test
     public void checkIfSalaryMatches(){
@@ -42,6 +43,7 @@ public class JUnitJobFilter {
     public void checkIfDurationMatches(){
         assertTrue(filter.containsDuration(Constants.SPINNER_DURATION_RANGE_TWO, 4));
         assertFalse(filter.containsDuration(Constants.SPINNER_DURATION_RANGE_TWO, 10));
+
     }
 
 
