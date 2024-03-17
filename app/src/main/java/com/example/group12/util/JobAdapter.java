@@ -52,8 +52,9 @@ public class JobAdapter extends FirebaseRecyclerAdapter<Job, JobAdapter.JobViewH
 
         holder.seeDetailsButton.setOnClickListener(view -> {
             Intent intent = new Intent(holder.context, JobDetailActivity.class);
-            intent.putExtra("key", getRef(position).getKey());
-            intent.putExtra("job", job);
+            intent.putExtra("title", job.getTitle());
+            intent.putExtra("description","Description:\nSalary: " + job.getSalary() +"\nDuration: "
+                    + job.getDuration() + "\nStart date: "+ job.getStartDate() + "\nUrgency: " + job.getUrgency());
             holder.context.startActivity(intent);
         });
     }
