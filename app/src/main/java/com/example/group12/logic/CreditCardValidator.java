@@ -5,6 +5,10 @@ import java.util.regex.Pattern;
 
 public class CreditCardValidator {
 
+    public static final int CARDLENGTHFLOOR = 13;
+    public static final int CARDLENGTHCEILING = 16;
+    public static final int CVVLENGTH = 3;
+
     public boolean isCVVEmpty(String cvv){
         return cvv.isEmpty();
     }
@@ -36,9 +40,9 @@ public class CreditCardValidator {
         return matcher.matches();
     }
     public boolean checkCardLength(String cardNumber){
-        return cardNumber.length() == 13 || cardNumber.length() == 16;
+        return cardNumber.length() == CARDLENGTHFLOOR || cardNumber.length() == CARDLENGTHCEILING;
     }
     public boolean checkCVVLength(String cvv){
-        return cvv.length() == 3;
+        return cvv.length() == CVVLENGTH;
     }
 }
