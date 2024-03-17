@@ -26,13 +26,14 @@ import com.example.group12.core.Constants;
 
 import com.example.group12.model.Job;
 
+import com.example.group12.util.JobFilterCallback;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class SearchJobActivity extends AppCompatActivity {
+public class SearchJobActivity extends AppCompatActivity implements JobFilterCallback {
 
     EditText jobParameterText;
 
@@ -140,11 +141,7 @@ public class SearchJobActivity extends AppCompatActivity {
 
                 retrieveUserInput();
 
-                List<Job> options = dbManager.jobFilter(parameter, salary, duration, location);
-                Log.e("SearJobActivity list size: ", "Size is: " + options.size());
-                Intent searchIntent = new Intent(SearchJobActivity.this, ViewSearchJobActivity.class);
-                searchIntent.putExtra("JobList", options.toArray(new Job[options.size()]));
-                SearchJobActivity.this.startActivity(searchIntent);
+                dbManager.jobFilter(parameter, salary, duration, location, SearchJobActivity.this);
             }
 
         });
@@ -200,6 +197,14 @@ public class SearchJobActivity extends AppCompatActivity {
 
         dbManager = new FirebaseDatabaseManager(db);
 
+    }
+
+    @Override
+    public void onJobFilterSuccess(List<Job> jobList) {
+        Log.e("SearchJobActivity list size:", "Size is: " + jobList.size());
+        Intent searchIntent = new Intent(SearchJobActivity.this, ViewSearchJobActivity.class);
+        searchIntent.putExtra("JobList", jobList.toArray(new Job[jobList.size()]));
+        startActivity(searchIntent);
     }
 
 }
