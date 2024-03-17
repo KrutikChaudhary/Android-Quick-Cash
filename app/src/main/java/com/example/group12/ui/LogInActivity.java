@@ -1,8 +1,8 @@
 package com.example.group12.ui;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,14 +11,11 @@ import android.widget.Toast;
 import java.util.Map;
 
 import com.example.group12.Firebase.FirebaseDatabaseManager;
+import com.example.group12.util.LoginCallback;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
 import com.example.group12.logic.LoginValidator;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -46,14 +43,28 @@ public class LogInActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String email_text = email.getText().toString();
                 String password_text = password.getText().toString();
-                validator.isValidLogin(email_text,password_text);
-                if (validator.valid){
-                    Toast.makeText(LogInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(LogInActivity.this, "Login Unsuccessful", Toast.LENGTH_SHORT).show();
-                }
+                validator.isValidLogin(email_text, password_text, new LoginCallback() {
+                    @Override
+                    public void onLoginResult(boolean isValid, String role) {
+                        Intent intent;
+                        if (isValid){
+                            Toast.makeText(LogInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            if (role.equals("Employee")){
+                                intent = new Intent(LogInActivity.this, Dashboard_User.class);
+                            }
+                            else{
+                                intent = new Intent(LogInActivity.this, Dashboard_Employer.class);
+                            }
+
+                            LogInActivity.this.startActivity(intent);
+                        } else {
+                            Toast.makeText(LogInActivity.this, "Login Unsuccessful", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
     }

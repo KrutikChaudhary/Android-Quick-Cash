@@ -58,12 +58,14 @@ public class FirebaseDatabaseManager
         userLocation = database.getReference().child("Location").push();
     }
 
-    public void saveUserCredentialsToFirebase(String email, String password){
+    public DatabaseReference saveUserCredentialsToFirebase(String email, String password){
         Map<String, Object> map = new HashMap<>();
         map.put("Email", email);
         map.put("Password", password);
 
-        userRef.setValue(map);
+        DatabaseReference dbref = this.userRef.push();
+        dbref.setValue(map);
+        return dbref;
     }
 
     /*

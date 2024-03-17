@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
 import com.example.group12.logic.UserCredentialValidator;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import com.example.group12.Firebase.FirebaseDatabaseManager;
@@ -20,6 +21,7 @@ import com.example.group12.Firebase.FirebaseDatabaseManager;
 public class RegisterActivity extends AppCompatActivity {
 
     FirebaseDatabaseManager dbManager;
+    DatabaseReference dbref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         databaseInit();
     }
 
-    protected void signupButtonSetup(){
+    public void signupButtonSetup(){
         Button signupButton = findViewById(R.id.signUpButton);
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (validated){
                     saveToFirebase();
                     Intent selectRoleIntent = new Intent(RegisterActivity.this, SelectRoleActivity.class);
-                    selectRoleIntent.putExtra("key", dbManager.getUserRef().getKey());
+                    selectRoleIntent.putExtra("key", dbref.getKey());
                     RegisterActivity.this.startActivity(selectRoleIntent);
                 }
                 else{
@@ -97,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     protected void saveToFirebase(){
-        dbManager.saveUserCredentialsToFirebase(getEmail(), getPassword());
+        dbref = dbManager.saveUserCredentialsToFirebase(getEmail(), getPassword());
     }
 
     protected String getEmail(){
