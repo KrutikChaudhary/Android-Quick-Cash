@@ -10,9 +10,16 @@ public class Job implements Serializable {
 
     private String startDate;
 
-    private String urgency;
+    private String location;
 
     public Job(){
+    }
+    public Job(String title, String salary, String duration, String startDate, String location){
+        this.title = title;
+        this.duration = duration;
+        this.salary = salary;
+        this.startDate = startDate;
+        this.location = location;
     }
 
     public String getTitle(){
@@ -43,15 +50,15 @@ public class Job implements Serializable {
         return this.startDate;
     }
 
-    public String getUrgency(){
-        return this.urgency;
+    public String getLocation(){
+        return this.location;
     }
 
     public void setStartDate(String date){
         this.startDate = date;
     }
 
-    public void setUrgency(String urgency){
-        this.urgency = urgency;
+    public void setLocation(String urgency){
+        this.location = location;
     }
 }

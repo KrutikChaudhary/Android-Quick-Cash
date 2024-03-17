@@ -2,8 +2,12 @@ package com.example.group12.maps;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 
+import com.example.group12.R;
+import com.example.group12.model.Job;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -11,6 +15,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.group12.databinding.ActivityMapsBinding;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -41,11 +49,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        String location = "Halifax Shopping Centre";
+        List<Job> filteredJobList = new ArrayList<>();
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // add test jobs to the list
+        Job shoppingCentre = new Job("Security", "20$/h", "2 hours", "ASAP",  "Halifax Shopping Centre");
+        Job fairView = new Job("Dish Washing",  "18$/h","1 hours", "ASAP",  "Dalhousie University");
+        Job waterFront = new Job("Event Setup", "18$/h","6 hours",  "ASAP","MicMac Mall halifax");
+        filteredJobList.add(shoppingCentre);
+        filteredJobList.add(fairView);
+        filteredJobList.add(waterFront);
+
+
+        Geocoder geocoder = new Geocoder(MapsActivity.this);
+        List<Address> addressList = null;
+        //initialize map
+        mMap = googleMap;
+        for(int i=0; i<filteredJobList.size(); i++){
+            try{
+                addressList = geocoder.getFromLocationName(filteredJobList.get(i).getLocation(),1);
+                if (!addressList.isEmpty()) {
+                    Address address = addressList.get(0);
+                    LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(filteredJobList.get(i).getTitle()));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (!addressList.isEmpty()) {
+            Address address = addressList.get(0);
+            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+        }
+
     }
 }
