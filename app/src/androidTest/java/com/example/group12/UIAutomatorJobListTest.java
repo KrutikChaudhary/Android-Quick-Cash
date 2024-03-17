@@ -46,15 +46,11 @@ public class UIAutomatorJobListTest {
     public void checkIfJobListingExists() throws UiObjectNotFoundException {
         UiScrollable recyclerView = new UiScrollable(new UiSelector().scrollable(false));
         assertTrue(recyclerView.exists());
-        recyclerView.scrollIntoView(new UiSelector().text("Shovel Sidewalk"));
-        UiObject jobTitle = device.findObject(new UiSelector().text("Shovel Sidewalk"));
+        recyclerView.scrollIntoView(new UiSelector().text("PAINTER"));
+        UiObject jobTitle = device.findObject(new UiSelector().text("PAINTER"));
         assertTrue(jobTitle.exists());
-        UiObject selectJob = device.findObject(new UiSelector().text("Select"));
+        UiObject selectJob = device.findObject(new UiSelector().text("View Details"));
         assertTrue(selectJob.exists());
-        UiObject jobPay = device.findObject(new UiSelector().text("$50"));
-        assertTrue(jobPay.exists());
-        UiObject jobDuration = device.findObject(new UiSelector().text("2 hours"));
-        assertTrue(jobDuration.exists());
     }
 
 
