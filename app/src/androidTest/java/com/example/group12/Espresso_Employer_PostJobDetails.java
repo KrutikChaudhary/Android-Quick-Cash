@@ -21,11 +21,24 @@ import androidx.test.uiautomator.Until;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Espresso test class for checking employer post job details activity.
+ */
 public class Espresso_Employer_PostJobDetails {
+
+    // UiDevice instance for interacting with the device
     private UiDevice device;
+
+    // Timeout duration for launching activity
     private static final int LAUNCH_TIMEOUT = 5000;
+
+    // Package name of the launcher activity
     final String launcherPackage = "com.example.group12";
 
+
+    /**
+     * Sets up the test environment before each test case.
+     */
     @Before
     public void setup() {
 
@@ -36,12 +49,20 @@ public class Espresso_Employer_PostJobDetails {
         context.startActivity(intent);
         device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT);
     }
+
+    /**
+     * Check if the Job Title EditText is visible.
+     */
     @Test
     public void checkJobTitleEditTextVisibility() {
         // Check if the Date EditText is visible
         Espresso.onView(ViewMatchers.withId(R.id.editTextJobTitle))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
+
+    /**
+     * Check if the Date EditText is visible.
+     */
     @Test
     public void checkDateEditTextVisibility() {
         // Check if the Date EditText is visible
@@ -49,6 +70,9 @@ public class Espresso_Employer_PostJobDetails {
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
+    /**
+     * Check if the Expected Duration EditText is visible.
+     */
     @Test
     public void checkExpectedDurationEditTextVisibility() {
         // Check if the Expected Duration EditText is visible
@@ -56,6 +80,9 @@ public class Espresso_Employer_PostJobDetails {
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
+    /**
+     * Check if the Urgency EditText is visible.
+     */
     @Test
     public void checkUrgencyEditTextVisibility() {
         // Check if the Urgency EditText is visible
@@ -63,6 +90,9 @@ public class Espresso_Employer_PostJobDetails {
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
+    /**
+     * Check if the Salary EditText is visible.
+     */
     @Test
     public void checkSalaryEditTextVisibility() {
         // Check if the Salary EditText is visible
@@ -70,6 +100,9 @@ public class Espresso_Employer_PostJobDetails {
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
+    /**
+     * Check if the Job Location EditText is visible.
+     */
     @Test
     public void checkJobLocationEditTextVisibility() {
         // Check if the Job Location EditText is visible
@@ -77,6 +110,9 @@ public class Espresso_Employer_PostJobDetails {
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
+    /**
+     * Check if the Job Title EditText has no input.
+     */
     @Test
     public void checkJobTitleEditTextHasNoInput() {
         onView(withId(R.id.editTextJobTitle)).perform(typeText(""));
@@ -88,6 +124,9 @@ public class Espresso_Employer_PostJobDetails {
         onView(withId(R.id.editTextJobTitle)).check(matches(withText("")));
     }
 
+    /**
+     * Check if the Date EditText has no input.
+     */
     @Test
     public void checkDateEditTextHasNoInput() {
         onView(withId(R.id.editTextJobTitle)).perform(typeText("Gardener"));
@@ -99,6 +138,9 @@ public class Espresso_Employer_PostJobDetails {
         onView(withId(R.id.editTextDate)).check(matches(withText("")));
     }
 
+    /**
+     * Check if the Expected Duration EditText has no input.
+     */
     @Test
     public void checkExpectedDurationEditTextHasNoInput() {
         onView(withId(R.id.editTextJobTitle)).perform(typeText("Gardener"));
@@ -110,6 +152,9 @@ public class Espresso_Employer_PostJobDetails {
         onView(withId(R.id.editTextExpectedDuration)).check(matches(withText("")));
     }
 
+    /**
+     * Check if the Urgency EditText has no input.
+     */
     @Test
     public void checkUrgencyEditTextHasNoInput() {
         onView(withId(R.id.editTextJobTitle)).perform(typeText("Gardener"));
@@ -120,6 +165,9 @@ public class Espresso_Employer_PostJobDetails {
         onView(withId(R.id.editTextJobLocation)).perform(typeText("Halifax"));
         onView(withId(R.id.editTextUrgency)).check(matches(withText("")));     }
 
+    /**
+     * Check if the Salary EditText has no input.
+     */
     @Test
     public void checkSalaryEditTextHasNoInput() {
         onView(withId(R.id.editTextJobTitle)).perform(typeText("Gardener"));
@@ -130,6 +178,9 @@ public class Espresso_Employer_PostJobDetails {
         onView(withId(R.id.editTextJobLocation)).perform(typeText("Halifax"));
         onView(withId(R.id.editTextSalary)).check(matches(withText("")));     }
 
+    /**
+     * Check if the Job Location EditText has no input.
+     */
     @Test
     public void checkJobLocationEditTextHasNoInput() {
         onView(withId(R.id.editTextJobTitle)).perform(typeText("Gardener"));
