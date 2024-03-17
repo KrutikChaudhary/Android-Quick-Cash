@@ -52,7 +52,7 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
     String duration = "";
 
     String location = "";
-
+    String key;
     FirebaseDatabaseManager dbManager;
     @Override
 
@@ -82,6 +82,7 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
 
         buttonSetup();
 
+        key = getIntent().getStringExtra("key");
     }
 
     protected void salarySpinnerSetup(){
@@ -140,8 +141,8 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
             public void onClick(View v) {
 
                 retrieveUserInput();
-
                 dbManager.jobFilter(parameter, salary, duration, location, SearchJobActivity.this);
+
             }
 
         });
@@ -203,6 +204,7 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
     public void onJobFilterSuccess(List<Job> jobList) {
         Log.e("SearchJobActivity list size:", "Size is: " + jobList.size());
         Intent searchIntent = new Intent(SearchJobActivity.this, ViewSearchJobActivity.class);
+        searchIntent.putExtra("key", key);
         searchIntent.putExtra("JobList", jobList.toArray(new Job[jobList.size()]));
         startActivity(searchIntent);
     }

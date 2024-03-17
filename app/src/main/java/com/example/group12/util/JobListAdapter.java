@@ -1,5 +1,7 @@
 package com.example.group12.util;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.group12.R;
 import com.example.group12.model.Job;
+import com.example.group12.ui.JobDetailActivity;
 
 import java.util.List;
 
@@ -47,17 +50,26 @@ public class JobListAdapter extends RecyclerView.Adapter<JobListAdapter.JobViewH
     // ViewHolder class to hold references to views within each item of the RecyclerView
     public static class JobViewHolder extends RecyclerView.ViewHolder {
         private TextView titleTextView;
-        private Button seeDetailButton;
+        private Button seeDetailsButton;
+        Context context;
+
 
         public JobViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.jobTitle);
-            seeDetailButton = itemView.findViewById(R.id.seeDetailButton);
+            seeDetailsButton = itemView.findViewById(R.id.seeDetailButton);
+            context = itemView.getContext();
         }
 
         public void bind(Job job) {
             // Bind data from Job object to views
             titleTextView.setText(job.getTitle());
+
+            this.seeDetailsButton.setOnClickListener(view -> {
+                Intent intent = new Intent(this.context, JobDetailActivity.class);
+                intent.putExtra("job", job);
+                this.context.startActivity(intent);
+            });
         }
     }
 }

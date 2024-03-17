@@ -22,6 +22,8 @@ public class LoginValidator {
     private boolean valid = false;
     private String role = "";
 
+    String key;
+
     public LoginValidator(){
         dbManager = new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
     }
@@ -43,16 +45,17 @@ public class LoginValidator {
                     if (email_firebase.equals(email) && password_firebase.equals(password)) {
                         valid = true;
                         role = (String) userCredentials.get("Role");
+                        key = user.getKey();
                         Log.e("Match", "True");
                         break; // Exit the loop once email is found
                     }
                 }
-                callback.onLoginResult(valid, role);
+                callback.onLoginResult(valid, role, key);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                callback.onLoginResult(false, "");
+                callback.onLoginResult(false, "", "");
             }
         });
 

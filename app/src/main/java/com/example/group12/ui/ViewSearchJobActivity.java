@@ -1,7 +1,9 @@
 package com.example.group12.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +24,7 @@ public class ViewSearchJobActivity extends AppCompatActivity {
     Button backButton;
     Job[] jobArray;
     List<Job> jobList;
+    String key;
 
 
     @Override
@@ -40,11 +43,24 @@ public class ViewSearchJobActivity extends AppCompatActivity {
     protected void init(){
         recyclerView = findViewById(R.id.filteredJob_recyclerView);
         recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        key = getIntent().getStringExtra("key");
     }
     protected void viewJob(){
         JobListAdapter adapter = new JobListAdapter(jobList);
         recyclerView.setAdapter(adapter);
 
+    }
+
+    protected void buttonSetup(){
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewSearchJobActivity.this, Dashboard_User.class);
+                intent.putExtra("key", key);
+                ViewSearchJobActivity.this.startActivity(intent);
+            }
+        });
     }
 
 }
