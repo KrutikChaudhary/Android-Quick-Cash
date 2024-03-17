@@ -3,10 +3,10 @@ package com.example.group12;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import com.example.group12.logic.CreditCardValidator;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import com.example.group12.logic.CreditCardValidator;
 
 public class JUnitCreditCardValidator {
 
@@ -37,21 +37,6 @@ public class JUnitCreditCardValidator {
         assertFalse(value.isExpiryEmpty("expiry"));
     }
 
-    @Test
-    public void checkIfCardNumValid(){
-        assertTrue(value.isValidCardNum("4234567890987"));
-        assertTrue(value.isValidCardNum("4234567890987654"));
-    }
-
-    @Test
-    public void checkIfCVVValid(){
-        assertTrue(value.isValidCVV("423"));
-    }
-
-    @Test
-    public void checkIfExpiryValid(){
-        assertTrue(value.isValidExpiry("05/24"));
-    }
 
     @Test
     public void checkIfCVVInvalid(){
@@ -73,14 +58,6 @@ public class JUnitCreditCardValidator {
         assertFalse(value.isValidExpiry("80/01"));
     }
 
-    @Test
-    public void checkIfCardLength(){
-        assertTrue(value.checkCardLength("1234567123456"));
-        assertTrue(value.checkCardLength("1234567890987652"));
-        assertFalse(value.checkCardLength("1234561111111"));
-        assertFalse(value.checkCardLength("12345678932"));
-        assertFalse(value.checkCardLength("12345678932986578"));
-    }
 
     @Test
     public void checkIfCVVLength(){

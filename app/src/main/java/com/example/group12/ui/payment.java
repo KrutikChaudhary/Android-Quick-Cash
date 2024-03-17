@@ -1,6 +1,5 @@
 package com.example.group12.ui;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.group12.R;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
 
@@ -25,63 +24,64 @@ import org.json.JSONObject;
 import java.math.BigDecimal;
 
 public class payment extends AppCompatActivity {
-    private static final String TAG = payment.class.getName();
-
-    private ActivityResultLauncher<Intent> intentActivityResultLauncher;
-
-    //for using Paypal related methods
-    public static PayPalConfiguration configurtion;
-
-    //UI Elements
     EditText editText;
-    String merchantId;
     Button button;
-    String name;
-
-
+    String merchantID;
+    String employeeName;
+    public static PayPalConfiguration configuration;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-        button = findViewById(R.id.pay);
         editText = findViewById(R.id.amntPay);
-        name = getIntent().getStringExtra("name");
-        merchantId = getIntent().getStringExtra("MerchantID");
+        button = findViewById(R.id.pay);
+        merchantID=getIntent().getStringExtra("MerchantID");
+        employeeName=getIntent().getStringExtra("Name");
 
-        configurtion = new PayPalConfiguration().environment(PayPalConfiguration.ENVIRONMENT_SANDBOX).clientId(merchantId);
+        configuration = new PayPalConfiguration().environment(PayPalConfiguration.ENVIRONMENT_SANDBOX).clientId(merchantID);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getPay();
+                getPayment();
             }
         });
     }
 
-    private void getPay() {
-        String amt = editText.getText().toString();
+    private void getPayment(){
+        String amount = editText.getText().toString();
+        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(amount)),"CAD",employeeName, PayPalPayment.PAYMENT_INTENT_SALE);
         Intent intent = new Intent(this, PaymentActivity.class);
-        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(amt)), "CAD", name, PayPalPayment.PAYMENT_INTENT_SALE);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,configuration);
+        intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payPalPayment);
+        startActivityForResult(intent,123);
+
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-    protected void activityResult(int request, int result, @Nullable Intent data) {
-        super.onActivityResult(request, result, data);
-
-        if (request == 123) {
+        if(requestCode==123){
             PaymentConfirmation paymentConfirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-            if (paymentConfirmation != null) {
-                try {
-                    String details = paymentConfirmation.toJSONObject().toString();
-                    JSONObject o = new JSONObject(details);
-                } catch (JSONException e) {
-                    Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                }
-            } else if (request == Activity.RESULT_CANCELED) {
-                Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
-            } else if (request == PaymentActivity.RESULT_EXTRAS_INVALID) {
-                Toast.makeText(this, "Not valid payment", Toast.LENGTH_SHORT).show();
-            }
 
+            if(paymentConfirmation!=null){
+                try{
+                    String details = paymentConfirmation.toJSONObject().toString();
+                    JSONObject object = new JSONObject(details);
+                } catch (JSONException e){
+                    Toast.makeText(this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            }
+            else if(requestCode == Activity.RESULT_CANCELED){
+                Toast.makeText(this,"Canceled",Toast.LENGTH_SHORT).show();
+            }
+        } else if (requestCode==PaymentActivity.RESULT_EXTRAS_INVALID) {
+            Toast.makeText(this,"Invalid Payment",Toast.LENGTH_SHORT).show();
         }
+
+
     }
 }
