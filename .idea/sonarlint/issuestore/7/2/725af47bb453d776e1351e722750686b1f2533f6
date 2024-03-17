@@ -1,0 +1,11 @@
+
+q
+java:S1450"VRemove the "binding" field and declare it as a local variable in the relevant methods.(…ÖéŽÿÿÿÿÿ
+n
+java:S1450"SRemove the "mMap" field and declare it as a local variable in the relevant methods.(—­ƒÌÿÿÿÿÿ
+R
+java:S18544"<Remove this useless assignment to local variable "location".(ëßÿ 
+C
+java:S14814"-Remove this unused "location" local variable.(ëßÿ 
+Q
+java:S1874F";Remove this use of "getFromLocationName"; it is deprecated.(£‰Êí
