@@ -21,20 +21,26 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Activity class for posting a job from the employer dashboard.
+ */
 public class Dashboard_Employer_PostJob extends AppCompatActivity {
 
+    // Firebase database manager instance
     FirebaseDatabaseManager dbManager;
+
+    // EditText fields for job details
     EditText title, duration, jobUrgency, jobSalary, location, jobDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_employer_post_job);
+
+        // Initialize Firebase database manager
         databaseInit();
 
-        //initialize edit text fields
+        // Initialize EditText fields
         title = findViewById(R.id.editTextJobTitle);
         jobDate = findViewById(R.id.editTextDate);
         duration = findViewById(R.id.editTextExpectedDuration);
@@ -42,12 +48,16 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
         jobSalary = findViewById(R.id.editTextSalary);
         location = findViewById(R.id.editTextJobLocation);
 
-
-
+        // Setup button for navigating to the employer's jobs page
         YourJobButtonSetup();
+
+        // Setup button for posting a job
         postJobButtonSetup();
     }
 
+    /**
+     * Sets up the button to navigate to the employer's jobs page.
+     */
     protected void YourJobButtonSetup() {
         Button yourJobButton = findViewById(R.id.yourJobsButton);
         yourJobButton.setOnClickListener(new View.OnClickListener() {
@@ -59,14 +69,15 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
         });
     }
 
-
-
+    /**
+     * Sets up the button for posting a job.
+     */
     public void postJobButtonSetup(){
         Button postJobButton = findViewById(R.id.sendToDatabaseButton);
         postJobButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // Retrieve job details from EditText fields
                 String jobTitle = title.getText().toString();
                 String date = jobDate.getText().toString();
                 int expectedDuration = Integer.parseInt(duration.getText().toString());
@@ -77,8 +88,9 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
                 float latitude = 0;
                 float longitude = 0;
 
+                // Get latitude and longitude of the job location
                 Geocoder geocoder = new Geocoder(Dashboard_Employer_PostJob.this);
-                List <Address> addresses;
+                List<Address> addresses;
 
                 try {
                     addresses = geocoder.getFromLocationName(jobLocation,1);
@@ -113,11 +125,24 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Saves job details to Firebase.
+     * @param jobTitle Title of the job
+     * @param date Date of the job
+     * @param expectedDuration Expected duration of the job
+     * @param urgency Urgency of the job
+     * @param salary Salary of the job
+     * @param jobLocation Location of the job
+     * @param latitude Latitude of the job location
+     * @param longitude Longitude of the job location
+     */
     public void saveJobsToFirebase(String jobTitle, String date, int expectedDuration, String urgency, float salary, String jobLocation, float latitude, float longitude){
         dbManager.saveJobsToFirebase(jobTitle, date, expectedDuration, urgency, salary, jobLocation, latitude, longitude);
     }
 
+    /**
+     * Initializes the Firebase database.
+     */
     protected void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
         dbManager = new FirebaseDatabaseManager(db);
