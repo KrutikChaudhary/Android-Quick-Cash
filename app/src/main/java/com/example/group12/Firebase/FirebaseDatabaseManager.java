@@ -56,6 +56,7 @@ public class FirebaseDatabaseManager
 
     protected void initializeDatabaseRefs() {
         userRef = database.getReference().child("User");
+        jobRef = database.getReference().child("Job");
     }
     public DatabaseReference saveUserCredentialsToFirebase(String email, String password){
         Map<String, Object> map = new HashMap<>();
@@ -87,27 +88,36 @@ public class FirebaseDatabaseManager
     public DatabaseReference getUserRef(){
         return this.userRef;
     }
+
+    public DatabaseReference getJobRef(){
+        return this.jobRef;
+    }
     public List<Job> jobFilter(String parameter, String salary, String duration, String distance){
         List<Job> filterdJobList = new ArrayList<>();
-        this.getUserRef().addListenerForSingleValueEvent(new ValueEventListener() {
+        this.getJobRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot jobSnapshot : snapshot.getChildren()){
                     Map<String, Object> jobMap = (Map<String, Object>) jobSnapshot.getValue();
                     String jobTitle = (String) jobMap.get("title");
-                    String jobSalary = (String) jobMap.get("Salary");
-                    String jobDuration = (String) jobMap.get("Duration");
-                    String jobStartDate = (String) jobMap.get("Start Date");
+                    String jobSalary = (String) jobMap.get("salary");
+                    String jobDuration = (String) jobMap.get("duration");
+                    String jobStartDate = (String) jobMap.get("startDate");
 
                     //LatLng jobLcation = (LatLng) jobMap.get("Location");
-                    String location = (String) jobMap.get("Location");
+                    String location = (String) jobMap.get("location");
 
 
                     // include job location
-                    if(containsParameters(parameter, jobTitle) && containsSalary(salary, jobSalary) && containsDuration(duration, jobDuration)){
+//                    if(containsParameters(parameter, jobTitle) && containsSalary(salary, jobSalary) && containsDuration(duration, jobDuration)){
+//                        Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate, location);
+//                        filterdJobList.add(job);
+//                    }
+                    if (containsParameters(parameter, jobTitle)){
                         Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate, location);
                         filterdJobList.add(job);
+                        Log.e("size of filtered list", "Size is: " + filterdJobList.size());
                     }
 
                 }
