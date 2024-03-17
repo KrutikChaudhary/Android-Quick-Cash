@@ -29,16 +29,5 @@ public class Dashboard_Employer extends AppCompatActivity {
                 Dashboard_Employer.this.startActivity(loginIntent);
             }
         });
-        setupPayEmployeeButton();
-    }
-    public void setupPayEmployeeButton() {
-        payEmployeesButton = findViewById(R.id.payEmployee);
-
-        payEmployeesButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Dashboard_Employer.this, Dashboard_Employer_PayEmployee.class);
-                Dashboard_Employer.this.startActivity(intent);
-            }
-        });
     }
 }
