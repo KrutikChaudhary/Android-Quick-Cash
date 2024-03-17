@@ -10,6 +10,7 @@ package com.example.group12.Firebase;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import com.example.group12.model.Job;
+import com.example.group12.util.JobFilterCallback;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -92,7 +93,7 @@ public class FirebaseDatabaseManager
     public DatabaseReference getJobRef(){
         return this.jobRef;
     }
-    public List<Job> jobFilter(String parameter, String salary, String duration, String distance){
+    public void jobFilter(String parameter, String salary, String duration, String distance, JobFilterCallback callback){
         List<Job> filterdJobList = new ArrayList<>();
         this.getJobRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -120,13 +121,13 @@ public class FirebaseDatabaseManager
                         Log.e("size of filtered list", "Size is: " + filterdJobList.size());
                     }
 
+                    callback.onJobFilterSuccess(filterdJobList);
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-        return filterdJobList;
     }
 
 
