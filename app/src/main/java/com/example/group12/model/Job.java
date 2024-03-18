@@ -18,7 +18,7 @@ public class Job implements Serializable {
     }
 
 
-    }
+
     public Job(String title, float salary, int duration, String startDate, String location, String urgency, float latitude, float longitude){
         this.title = title;
         this.duration = duration;
