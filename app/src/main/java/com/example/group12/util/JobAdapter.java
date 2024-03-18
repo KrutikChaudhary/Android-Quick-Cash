@@ -2,6 +2,7 @@ package com.example.group12.util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class JobAdapter extends FirebaseRecyclerAdapter<Job, JobAdapter.JobViewH
     @Override
     protected void onBindViewHolder(@NonNull JobViewHolder holder, int position, @NonNull Job job){
         holder.title.setText(job.getTitle());
+        //Log.e("title", job.getTitle());
 
         holder.seeDetailsButton.setOnClickListener(view -> {
             Intent intent = new Intent(holder.context, JobDetailActivity.class);
