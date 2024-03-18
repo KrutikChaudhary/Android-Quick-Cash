@@ -16,16 +16,7 @@ public class Job implements Serializable {
 
     public Job(){
     }
-    public Job(String title, float salary, int duration, String startDate, String location, String urgency, float latitude, float longitude){
-        this.title = title;
-        this.duration = duration;
-        this.salary = salary;
-        this.startDate = startDate;
-        this.location = location;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.urgency = urgency;
-    }
+
 
     }
     public Job(String title, float salary, int duration, String startDate, String location, String urgency, float latitude, float longitude){
@@ -67,17 +58,7 @@ public class Job implements Serializable {
         return urgency;
     }
 
-    public String getLocation() {
-        return location;
-    }
 
-    public float getLongitude() {
-        return longitude;
-    }
-
-    public float getLatitude() {
-        return latitude;
-    }
 
     public float getLongitude(){ return this.longitude;}
     public float getLatitude(){ return this.latitude; }
