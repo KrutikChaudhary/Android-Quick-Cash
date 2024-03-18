@@ -67,7 +67,8 @@
             android:exported="false"  />
         <activity android:name=".ui.ViewSearchJobActivity"
             android:exported="false" />
-
+        <activity android:name=".ui.JobDetailActivity"
+            android:exported="false" />
 
 
         <activity
