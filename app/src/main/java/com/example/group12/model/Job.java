@@ -3,14 +3,29 @@ import java.io.Serializable;
 public class Job implements Serializable {
     private String title;
     private int duration;
-    private float salary; //per hour
+    private float salary;
+
     private String startDate;
+    private String urgency;
 
     private String location;
 
     private float longitude;
     private float latitude;
+
+
     public Job(){
+    }
+    public Job(String title, float salary, int duration, String startDate, String location, String urgency, float latitude, float longitude){
+        this.title = title;
+        this.duration = duration;
+        this.salary = salary;
+        this.startDate = startDate;
+        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.urgency = urgency;
+    }
 
     }
     public Job(String title, float salary, int duration, String startDate, String location, String urgency, float latitude, float longitude){
@@ -25,18 +40,22 @@ public class Job implements Serializable {
     public String getTitle(){
         return this.title;
     }
+
     public int getDuration(){
         return this.duration;
     }
+
     public float getSalary(){
         return this.salary;
     }
     public void setTitle(String title) {
         this.title = title;
     }
+
     public void setDuration(int duration) {
         this.duration = duration;
     }
+
     public void setSalary(float salary) {
         this.salary = salary;
     }
@@ -44,8 +63,20 @@ public class Job implements Serializable {
         return this.startDate;
     }
 
-    public String getUrgency(){
-        return this.getUrgency();
+    public String getUrgency() {
+        return urgency;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public float getLatitude() {
+        return latitude;
     }
 
     public float getLongitude(){ return this.longitude;}
@@ -55,5 +86,7 @@ public class Job implements Serializable {
         this.startDate = date;
     }
 
-    public void setLocation(String location){ this.location = location;}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }
