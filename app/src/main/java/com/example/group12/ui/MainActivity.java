@@ -52,8 +52,17 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
-
-    protected void initializeLocationDetector(){
+    public void testJob() {
+        FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
+        DatabaseReference dbref = db.getReference("Job");
+        Map<String, Object> job = new HashMap<>();
+        job.put("title", "Dish Washing");
+        job.put("duration", "2 hours");
+        job.put("salary", "20$ per hour");
+        job.put("longitude", 3.23);
+        job.put("latitude", 5.5);
+    }
+    public void initializeLocationDetector(){
         locationDetector = new LocationDetector(this);
     }
 
