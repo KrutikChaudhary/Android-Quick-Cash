@@ -59,7 +59,7 @@ public class LocationDetector extends AppCompatActivity {
      * If location access permission is already granted, it starts requesting location updates.
      * Otherwise, it requests the necessary location permission from the user.
      */
-    private void initializeLocationCallback() {
+    public void initializeLocationCallback() {
         LocationCallback locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
