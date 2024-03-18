@@ -49,6 +49,7 @@ dependencies {
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("androidx.test.uiautomator:uiautomator:2.2.0")
     implementation("com.google.androidbrowserhelper:billing:1.0.0-alpha10")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
     testImplementation("junit:junit:4.13.2")
     implementation("com.google.android.gms:play-services-location:21.1.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
