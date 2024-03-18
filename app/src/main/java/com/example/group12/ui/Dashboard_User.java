@@ -50,7 +50,7 @@ public class Dashboard_User extends AppCompatActivity {
                 .setQuery(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK)
                         .getReference().child("Job"), Job.class).build();
 
-        viewJobAdapter = new JobAdapter(options);
+        viewJobAdapter = new JobAdapter(options,email);
         recyclerView.setAdapter(viewJobAdapter);
     }
 
