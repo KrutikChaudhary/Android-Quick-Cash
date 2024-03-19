@@ -24,4 +24,17 @@
     <string name="all_stats">All Stats</string>
     <string name="your_profile_user">Your Profile</string>
     <string name="my_paypal">My PayPal</string>
+
+    <string name="quick_cash_employer_post_job">Quick Cash - Post A Job</string>
+    <string name="employer_postJobs_your_jobs">Your Jobs</string>
+    <string name="employer_postJobs_post_a_job">Post a Job</string>
+    <string name="employer_postJobs_help_and_support">Help and Support</string>
+    <string name="employer_postJobs_your_profile_employer">Your Profile</string>
+    <string name="upload_job">Upload Job</string>
+    <string name="job_location">Job Location</string>
+    <string name="salary">Salary</string>
+    <string name="urgency">Urgency</string>
+    <string name="expected_duration">Expected Duration</string>
+    <string name="date">Date</string>
+    <string name="job_title">Job Title</string>
 </resources>
