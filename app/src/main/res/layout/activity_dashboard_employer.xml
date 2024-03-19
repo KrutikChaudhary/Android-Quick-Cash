@@ -40,13 +40,13 @@
             android:layout_weight="1"
             android:text="@string/post_a_job" />
 
-        <!-- Help and Support button -->
+        <!-- Your Employees button -->
         <Button
-            android:id="@+id/helpSupportButton"
+            android:id="@+id/payEmployee"
             android:layout_width="35dp"
             android:layout_height="71dp"
             android:layout_weight="1"
-            android:text="@string/help_and_support" />
+            android:text="Pay Employee" />
 
         <!-- Your Profile button -->
         <Button
