@@ -28,6 +28,9 @@ import java.util.List;
 import java.util.Locale;
 
 
+/**
+ * The LocationDetector class is responsible for detecting and managing location updates.
+ */
 public class LocationDetector extends AppCompatActivity {
     public static final int INTERVAL_MILLIS = 10000;
     public static final int FASTEST_INTERVAL_MILLIS = 5000;
@@ -35,26 +38,28 @@ public class LocationDetector extends AppCompatActivity {
     private final LocationRequest locationRequest;
     private final Context context;
     private LocationInfo locationInfo;
-    
     FirebaseDatabaseManager firebaseDatabaseManager;
     FirebaseDatabase db;
     private static final int REQUEST_CODE = 100;
 
+    /**
+     * Constructs a new LocationDetector object with the given context.
+     *
+     * @param context The context in which this LocationDetector operates.
+     */
     public LocationDetector(Context context) {
         this.context = context;
         this.fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context);
-
         this.locationRequest = LocationRequest.create();
         this.locationRequest.setInterval(INTERVAL_MILLIS); // 10 seconds
         this.locationRequest.setFastestInterval(FASTEST_INTERVAL_MILLIS); // 5 seconds
         this.locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
         firebaseDatabaseManager = new FirebaseDatabaseManager(db);
-
         initializeLocationCallback();
     }
 
-    /*
+    /**
      * Initializes and configures the location callback for receiving location updates.
      * If location access permission is already granted, it starts requesting location updates.
      * Otherwise, it requests the necessary location permission from the user.
@@ -78,11 +83,9 @@ public class LocationDetector extends AppCompatActivity {
         }
     }
 
-
-    /*
+    /**
      * Handles the location update event. Converts the Location object to a String
      * using the Geocoder class, logs the address details, and saves the location into location info object.
-     * calls save to firebase function to save to database
      * If the geocoding process fails, a RuntimeException is thrown.
      *
      * @param location The Location object containing the new location data.
@@ -99,10 +102,11 @@ public class LocationDetector extends AppCompatActivity {
                 "\nAddress :" + addresses.get(0).getAddressLine(0) + "\nCity :" + addresses.get(0).getLocality() +
                 "\nCountry :" + addresses.get(0).getCountryCode());
 
-        //save to location info object
+        // Save location to location info object
         this.locationInfo = new LocationInfo(addresses.get(0).getLatitude(),addresses.get(0).getLongitude(),
                 addresses.get(0).getAddressLine(0),addresses.get(0).getLocality(),addresses.get(0).getCountryCode());
 
+        // Call save to firebase function to save to database
         saveToFirebase(locationInfo);
     }
 
@@ -117,23 +121,42 @@ public class LocationDetector extends AppCompatActivity {
         firebaseDatabaseManager.saveLocationToFirebase(locationInfo);
     }
 
+    /**
+     * Logs an error message if location update fails.
+     */
     public void onLocationUpdateFailed() {
         Log.e("DetectionError", "Failed to process location");
     }
 
+    /**
+     * Stops location updates.
+     *
+     * @param locationCallback The location callback to be removed.
+     */
     public void stopLocationUpdates(LocationCallback locationCallback) {
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
     }
+
+    /**
+     * Retrieves the last known location information.
+     *
+     * @return The last known location information.
+     */
     public LocationInfo getLocationInfo(){
         return this.locationInfo;
     }
 
+    /**
+     * Retrieves the request code used for location permission.
+     *
+     * @return The request code used for location permission.
+     */
     public static int getRequestCode() {
         return REQUEST_CODE;
     }
+
     @Override
     protected void onPause() {
         super.onPause();
     }
 }
-
