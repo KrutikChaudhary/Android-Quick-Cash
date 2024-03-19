@@ -12,12 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.group12.Firebase.FirebaseDatabaseManager;
-import com.example.group12.R;
 import com.example.group12.core.Constants;
 import com.example.group12.ui.Dashboard_User;
-import com.example.group12.ui.LogInActivity;
 import com.example.group12.util.MerchantIDCallBack;
-import com.example.group12.util.MerchantIDValidator;
+import com.example.group12.logic.MerchantIDValidator;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
