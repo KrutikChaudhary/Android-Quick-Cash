@@ -9,6 +9,8 @@ import android.widget.Button;
 
 import android.view.View;
 import android.content.Intent;
+
+import com.example.group12.Dashboard_User_MyPayPal;
 import com.example.group12.model.Job;
 import com.example.group12.util.JobAdapter;
 import com.example.group12.R;
@@ -23,13 +25,18 @@ public class Dashboard_User extends AppCompatActivity {
     JobAdapter viewJobAdapter;
     String key;
     Button findJobButton;
+    Button myPayPal;
+    String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_user);
+        email = getIntent().getStringExtra("email");
         init();
         viewJobs();
         findJobButtonSetup();
+        paypalButtonSetup();
     }
 
     protected void init(){
@@ -43,9 +50,24 @@ public class Dashboard_User extends AppCompatActivity {
                 .setQuery(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK)
                         .getReference().child("Job"), Job.class).build();
 
-        viewJobAdapter = new JobAdapter(options);
+        viewJobAdapter = new JobAdapter(options,email);
         recyclerView.setAdapter(viewJobAdapter);
     }
+
+    public void paypalButtonSetup(){
+        myPayPal = findViewById(R.id.PayPalButton);
+
+        myPayPal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard_User.this, Dashboard_User_MyPayPal.class);
+                intent.putExtra("email", email);
+                Dashboard_User.this.startActivity(intent);
+            }
+        });
+    }
+
+
 
     protected void findJobButtonSetup(){
         findJobButton = findViewById(R.id.findJobsButton);
