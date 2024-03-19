@@ -1,4 +1,4 @@
-package com.example.group12.ui;
+package com.example.group12.ui.employer;
 
 import android.os.Bundle;
 import android.widget.TextView;

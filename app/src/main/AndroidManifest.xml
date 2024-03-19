@@ -25,7 +25,7 @@
             android:name=".maps.MapsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.Dashboard_Employer_PayEmployee"
+            android:name=".ui.employer.Dashboard_Employer_PayEmployee"
             android:exported="false" />
         <activity
             android:name=".job_application_view"
@@ -34,10 +34,10 @@
             android:name=".ui.payment"
             android:exported="false" />
         <activity
-            android:name=".Dashboard_Employer_Profile"
+            android:name=".ui.employer.Dashboard_Employer_Profile"
             android:exported="false" />
         <activity
-            android:name=".Dashboard_Employer_PostJob"
+            android:name=".ui.employer.Dashboard_Employer_PostJob"
             android:exported="false" />
         <activity
             android:name=".Dashboard_User_FindJob"
@@ -52,7 +52,7 @@
             android:name=".ui.Dashboard_User"
             android:exported="false" />
         <activity
-            android:name=".ui.Dashboard_Employer"
+            android:name=".ui.employer.Dashboard_Employer"
             android:exported="false" />
         <activity
             android:name=".ui.SelectRoleActivity"

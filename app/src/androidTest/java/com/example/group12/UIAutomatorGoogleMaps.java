@@ -17,7 +17,6 @@ import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
 import com.example.group12.maps.MapsActivity;
-import com.example.group12.ui.Dashboard_Employer;
 
 import org.junit.Before;
 import org.junit.Test;
