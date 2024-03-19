@@ -1,4 +1,4 @@
-package com.example.group12;
+package com.example.group12.ui.employer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,13 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.content.Context;
 import android.location.Address;
-import com.google.firebase.database.DatabaseReference;
 
 import com.example.group12.Firebase.FirebaseDatabaseManager;
+import com.example.group12.R;
 import com.example.group12.core.Constants;
-import com.example.group12.ui.Dashboard_Employer;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;

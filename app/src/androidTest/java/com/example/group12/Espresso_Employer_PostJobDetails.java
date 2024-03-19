@@ -18,6 +18,8 @@ import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.Until;
 
+import com.example.group12.ui.employer.Dashboard_Employer_PostJob;
+
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.example.group12.ui;
+package com.example.group12.ui.employer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.group12.Dashboard_Employer_PostJob;
 import com.example.group12.R;
 
 /**
