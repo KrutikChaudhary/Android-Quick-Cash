@@ -1,4 +1,4 @@
-package com.example.group12.ui;
+package com.example.group12.ui.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.view.View;
 import android.content.Intent;
 
-import com.example.group12.Dashboard_User_MyPayPal;
 import com.example.group12.model.Job;
+import com.example.group12.ui.SearchJobActivity;
 import com.example.group12.util.JobAdapter;
 import com.example.group12.R;
 import com.example.group12.util.WrapLinearLayoutManager;

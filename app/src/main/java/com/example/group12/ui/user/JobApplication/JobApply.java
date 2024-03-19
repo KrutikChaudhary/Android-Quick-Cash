@@ -1,4 +1,4 @@
-package com.example.group12;
+package com.example.group12.ui.user.JobApplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,8 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.group12.Firebase.FirebaseDatabaseManager;
+import com.example.group12.R;
 import com.example.group12.core.Constants;
-import com.example.group12.ui.Dashboard_User;
+import com.example.group12.ui.user.Dashboard_User;
+import com.example.group12.ui.user.Dashboard_User_MyPayPal;
 import com.example.group12.util.MerchantIDCallBack;
 import com.example.group12.logic.MerchantIDValidator;
 import com.google.firebase.database.DatabaseReference;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dashboard_User_MyPayPal">
+    tools:context=".ui.user.Dashboard_User_MyPayPal">
 
     <EditText
         android:id="@+id/merchant"
