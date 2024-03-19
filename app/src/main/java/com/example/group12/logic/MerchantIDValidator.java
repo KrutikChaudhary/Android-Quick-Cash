@@ -1,4 +1,4 @@
-package com.example.group12.util;
+package com.example.group12.logic;
 
 import android.util.Log;
 
