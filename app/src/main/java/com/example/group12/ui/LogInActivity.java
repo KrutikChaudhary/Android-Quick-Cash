@@ -48,15 +48,18 @@ public class LogInActivity extends AppCompatActivity {
                 String password_text = password.getText().toString();
                 validator.isValidLogin(email_text, password_text, new LoginCallback() {
                     @Override
-                    public void onLoginResult(boolean isValid, String role) {
+                    public void onLoginResult(boolean isValid, String role, String key) {
                         Intent intent;
                         if (isValid){
                             Toast.makeText(LogInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             if (role.equals("Employee")){
+
                                 intent = new Intent(LogInActivity.this, Dashboard_User.class);
+                                intent.putExtra("key", key);
                             }
                             else{
                                 intent = new Intent(LogInActivity.this, Dashboard_Employer.class);
+                                intent.putExtra("key", key);
                             }
 
                             LogInActivity.this.startActivity(intent);
