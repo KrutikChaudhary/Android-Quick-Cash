@@ -28,7 +28,7 @@
         <!-- Find jobs button -->
         <Button
             android:id="@+id/findJobsButton"
-            android:layout_width="24dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/find_jobs" />
@@ -36,7 +36,7 @@
         <!-- All jobs button -->
         <Button
             android:id="@+id/allJobButton"
-            android:layout_width="13dp"
+            android:layout_width="18dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/all_jobs" />
@@ -44,7 +44,7 @@
         <!-- Stats button -->
         <Button
             android:id="@+id/PayPalButton"
-            android:layout_width="23dp"
+            android:layout_width="31dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/my_paypal" />
