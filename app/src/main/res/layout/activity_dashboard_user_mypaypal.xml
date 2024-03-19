@@ -6,4 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".Dashboard_User_MyPayPal">
 
+    <EditText
+        android:id="@+id/merchant"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="187dp"
+        android:hint="Pay Pal Merchant Id"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/connectMyMerchantId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:text="Connect my Payment ID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/merchant" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

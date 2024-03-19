@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.example.group12.R;
 import com.example.group12.model.Job;
 import com.example.group12.ui.JobDetailActivity;
@@ -19,9 +20,10 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 public class JobAdapter extends FirebaseRecyclerAdapter<Job, JobAdapter.JobViewHolder>{
-
-    public JobAdapter(@NonNull FirebaseRecyclerOptions<Job> options){
+    private String email;
+    public JobAdapter(@NonNull FirebaseRecyclerOptions<Job> options, String email){
         super(options);
+        this.email=email;
     }
 
     @NonNull
@@ -53,6 +55,7 @@ public class JobAdapter extends FirebaseRecyclerAdapter<Job, JobAdapter.JobViewH
         holder.seeDetailsButton.setOnClickListener(view -> {
             Intent intent = new Intent(holder.context, JobDetailActivity.class);
             intent.putExtra("title", job.getTitle());
+            intent.putExtra("email",email);
             intent.putExtra("description","Description:\nSalary: " + job.getSalary() +"\nDuration: "
                     + job.getDuration() + "\nStart date: "+ job.getStartDate() + "\nUrgency: " + job.getUrgency());
             holder.context.startActivity(intent);
