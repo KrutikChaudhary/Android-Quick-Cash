@@ -49,6 +49,8 @@ public class FirebaseDatabaseManager
 {
     private FirebaseDatabase database;
     private DatabaseReference userRef;
+    private DatabaseReference merchantRef;
+    private DatabaseReference jobApplicationRef;
     private DatabaseReference userLocation;
     private DatabaseReference jobRef;
 
@@ -76,7 +78,9 @@ public class FirebaseDatabaseManager
     protected void initializeDatabaseRefs() {
         userRef = database.getReference().child("User");
         userLocation = database.getReference().child("Location");
-        jobRef = database.getReference().child("Job");
+        merchantRef = database.getReference().child("MerchantID");
+        jobApplicationRef = database.getReference().child("Job Application");
+
     }
     public DatabaseReference saveUserCredentialsToFirebase(String email, String password){
         Map<String, Object> map = new HashMap<>();
@@ -87,22 +91,27 @@ public class FirebaseDatabaseManager
         return dbref;
     }
 
-
-    public void saveJobsToFirebase(String jobTitle, String date, int expectedDuration, String urgency,
-                                   float salary, String jobLocation, float latitude, float longitude){
+    public DatabaseReference saveMerchantIDtoFirebase(String email,String merchantID){
         Map<String, Object> map = new HashMap<>();
+        map.put("Email", email);
+        map.put("MerchantID", merchantID);
 
-        map.put("title", jobTitle);
-        map.put("startDate", date);
-        map.put("duration", expectedDuration);
-        map.put("urgency", urgency);
-        map.put("salary", salary);
-        map.put("location", jobLocation);
-        map.put("latitude", latitude);
-        map.put("longitude", longitude);
-
-        jobRef.setValue(map);
+        DatabaseReference dbref = this.merchantRef.push();
+        dbref.setValue(map);
+        return dbref;
     }
+
+    public DatabaseReference saveJobApplicationToFirebase(String email,String name, String merchantID){
+        Map<String, Object> map = new HashMap<>();
+        map.put("Email", email);
+        map.put("Name", name);
+        map.put("MerchantID", merchantID);
+
+        DatabaseReference dbref = this.jobApplicationRef.push();
+        dbref.setValue(map);
+        return dbref;
+    }
+
 
     /*
      * This method saves the location details to firebase
@@ -141,6 +150,9 @@ public class FirebaseDatabaseManager
     }
     public DatabaseReference getUserRef(){
         return this.userRef;
+    }
+    public DatabaseReference getMerchantRef(){
+        return this.merchantRef;
     }
 
     public DatabaseReference getJobRef(){
