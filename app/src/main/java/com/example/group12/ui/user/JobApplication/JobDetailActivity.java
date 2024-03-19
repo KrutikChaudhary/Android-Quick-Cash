@@ -1,4 +1,4 @@
-package com.example.group12.ui;
+package com.example.group12.ui.user.JobApplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,8 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.group12.Dashboard_User_MyPayPal;
-import com.example.group12.JobApply;
+import com.example.group12.ui.user.Dashboard_User_MyPayPal;
 import com.example.group12.R;
 import com.example.group12.util.MerchantIDCallBack;
 import com.example.group12.logic.MerchantIDValidator;

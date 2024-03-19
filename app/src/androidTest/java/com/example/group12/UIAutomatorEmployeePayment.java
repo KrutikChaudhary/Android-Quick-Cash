@@ -15,7 +15,7 @@ import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
-import com.example.group12.ui.Dashboard_User;
+import com.example.group12.ui.user.Dashboard_User;
 
 import org.junit.Before;
 import org.junit.Test;

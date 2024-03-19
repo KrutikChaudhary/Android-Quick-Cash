@@ -20,7 +20,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.example.group12.ui.Dashboard_User;
+import com.example.group12.ui.user.Dashboard_User;
 
 @RunWith(AndroidJUnit4.class)
 public class UIAutomatorTest_User_Dashboard {
