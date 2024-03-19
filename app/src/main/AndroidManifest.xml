@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Group12"
         tools:targetApi="31">
         <activity
-            android:name=".JobApply"
+            android:name=".ui.user.JobApplication.JobApply"
             android:exported="false" />
         <activity
             android:name=".maps.MapsActivity"
@@ -28,7 +28,7 @@
             android:name=".ui.employer.Dashboard_Employer_PayEmployee"
             android:exported="false" />
         <activity
-            android:name=".job_application_view"
+            android:name=".ui.user.JobApplication.job_application_view"
             android:exported="false" />
         <activity
             android:name=".ui.payment"
@@ -40,16 +40,16 @@
             android:name=".ui.employer.Dashboard_Employer_PostJob"
             android:exported="false" />
         <activity
-            android:name=".Dashboard_User_FindJob"
+            android:name=".ui.user.Dashboard_User_FindJob"
             android:exported="false" />
         <activity
-            android:name=".Dashboard_User_MyPayPal"
+            android:name=".ui.user.Dashboard_User_MyPayPal"
             android:exported="false" />
         <activity
-            android:name=".Dashboard_User_Profile"
+            android:name=".ui.user.Dashboard_User_Profile"
             android:exported="false" />
         <activity
-            android:name=".ui.Dashboard_User"
+            android:name=".ui.user.Dashboard_User"
             android:exported="false" />
         <activity
             android:name=".ui.employer.Dashboard_Employer"
@@ -70,7 +70,7 @@
             android:name=".ui.ViewSearchJobActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.JobDetailActivity"
+            android:name=".ui.user.JobApplication.JobDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
