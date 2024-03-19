@@ -104,8 +104,8 @@ public class FirebaseDatabaseManager
         map.put("location", jobLocation);
         map.put("latitude", latitude);
         map.put("longitude", longitude);
-
-        jobRef.setValue(map);
+        DatabaseReference dbref = this.jobRef.push();
+        dbref.setValue(map);
     }
 
     public DatabaseReference saveMerchantIDtoFirebase(String email,String merchantID){
