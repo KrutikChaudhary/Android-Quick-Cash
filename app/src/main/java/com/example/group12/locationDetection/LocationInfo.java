@@ -1,4 +1,4 @@
-package com.example.group12;
+package com.example.group12.locationDetection;
 /*
 
 AUTHOR: Yash Roushan, Krutik Chaudhary
