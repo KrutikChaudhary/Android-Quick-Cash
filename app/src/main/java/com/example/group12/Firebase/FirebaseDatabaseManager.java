@@ -3,7 +3,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.group12.LocationInfo;
+import com.example.group12.locationDetection.LocationInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,24 +20,12 @@ AUTHOR: Chaz Davies
 This file includes a class with all methods related to the database.
  */
 
-import android.content.Context;
-import android.util.Log;
-import androidx.annotation.NonNull;
-
 import com.example.group12.logic.FilterJob;
 import com.example.group12.model.Job;
 import com.example.group12.util.JobFilterCallback;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import com.example.group12.core.Constants;
 
 /*
 DatabaseConnection.java
