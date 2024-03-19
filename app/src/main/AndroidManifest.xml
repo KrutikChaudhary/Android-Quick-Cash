@@ -37,9 +37,6 @@
             android:name=".Dashboard_Employer_Profile"
             android:exported="false" />
         <activity
-            android:name=".Dashboard_Employer_HelpSupport"
-            android:exported="false" />
-        <activity
             android:name=".Dashboard_Employer_PostJob"
             android:exported="false" />
         <activity
