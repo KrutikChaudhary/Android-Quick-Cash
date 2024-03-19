@@ -6,16 +6,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.group12.Dashboard_User_MyPayPal;
 import com.example.group12.JobApply;
 import com.example.group12.R;
-import com.example.group12.model.Job;
 import com.example.group12.util.MerchantIDCallBack;
-import com.example.group12.util.MerchantIDValidator;
+import com.example.group12.logic.MerchantIDValidator;
 
 public class JobDetailActivity extends AppCompatActivity {
     String title;
