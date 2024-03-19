@@ -78,6 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (validated){
                     saveToFirebase();
                     Intent selectRoleIntent = new Intent(RegisterActivity.this, SelectRoleActivity.class);
+                    selectRoleIntent.putExtra("email",getEmail());
                     selectRoleIntent.putExtra("key", dbref.getKey());
                     RegisterActivity.this.startActivity(selectRoleIntent);
                 }
