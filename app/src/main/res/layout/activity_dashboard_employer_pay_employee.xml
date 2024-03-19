@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dashboard_User_Stats">
+    tools:context=".ui.Dashboard_Employer_PayEmployee">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/job_application_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
