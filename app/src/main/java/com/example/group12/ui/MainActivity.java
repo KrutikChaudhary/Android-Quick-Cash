@@ -7,10 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.group12.LocationDetector;
+import com.example.group12.locationDetection.LocationDetector;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
-import com.google.firebase.Firebase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
