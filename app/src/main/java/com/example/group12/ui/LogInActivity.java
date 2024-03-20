@@ -19,6 +19,9 @@ import com.example.group12.core.Constants;
 import com.example.group12.logic.LoginValidator;
 import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * Activity class for user login.
+ */
 public class LogInActivity extends AppCompatActivity {
 
     EditText email;
@@ -38,6 +41,9 @@ public class LogInActivity extends AppCompatActivity {
         validator = new LoginValidator();
     }
 
+    /**
+     * Set up UI components.
+     */
     public void uiSetUp(){
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -74,11 +80,12 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Initialize Firebase database.
+     */
     protected void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
         dbManager = new FirebaseDatabaseManager(db);
     }
-
-
-
 }
