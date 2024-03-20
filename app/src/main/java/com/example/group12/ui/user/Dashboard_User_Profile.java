@@ -6,6 +6,9 @@ import android.os.Bundle;
 
 import com.example.group12.R;
 
+/**
+ * Activity class for displaying the user profile in the user dashboard.
+ */
 public class Dashboard_User_Profile extends AppCompatActivity {
 
     @Override
