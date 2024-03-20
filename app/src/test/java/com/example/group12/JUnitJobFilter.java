@@ -14,16 +14,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/**
+ * JUnit test class for validating the job filtering logic.
+ */
 public class JUnitJobFilter {
 
     FilterJob filter;
-
 
     @Before
     public void setup(){
         filter = new FilterJob();
     }
-
 
     @Test
     public void checkIfTitleMatches(){
@@ -31,8 +32,8 @@ public class JUnitJobFilter {
         assertTrue(filter.containsParameters("painter", "PAINTER"));
         assertTrue(filter.containsParameters("paint", "PAINTER"));
         assertFalse(filter.containsParameters("SHOVEL", "PAINTER"));
-
     }
+
     @Test
     public void checkIfSalaryMatches(){
         assertTrue(filter.containsSalary(Constants.SPINNER_SALARY_RANGE_ONE, (float) 15.5));
@@ -45,7 +46,4 @@ public class JUnitJobFilter {
         assertFalse(filter.containsDuration(Constants.SPINNER_DURATION_RANGE_TWO, 10));
 
     }
-
-
-
 }
