@@ -15,6 +15,10 @@ import com.example.group12.core.Constants;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * Activity class for connecting a PayPal merchant ID in the user dashboard.
+ * Users can input their PayPal merchant ID to connect to their account.
+ */
 public class Dashboard_User_MyPayPal extends AppCompatActivity {
     EditText merchantEditText;
     Button connectMerchantId;
@@ -37,24 +41,29 @@ public class Dashboard_User_MyPayPal extends AppCompatActivity {
                     ref = saveMerchantIDToFirebase(email,merchantID);
                 }
                 if(ref !=null){
+                    // Display success message and navigate to user dashboard
                     Toast.makeText(Dashboard_User_MyPayPal.this,"Merchant Id Saved Successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Dashboard_User_MyPayPal.this, Dashboard_User.class);
                     intent.putExtra("user_email", email);
                     Dashboard_User_MyPayPal.this.startActivity(intent);
                 } else {
+                    // Display error message if saving fails
                     Toast.makeText(Dashboard_User_MyPayPal.this,"Merchant Id is not Saved try again!!!",Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
+    /**
+     * Saves the PayPal merchant ID to Firebase database.
+     *
+     * @param email      User's email address
+     * @param merchantID PayPal merchant ID
+     * @return DatabaseReference pointing to the saved merchant ID
+     */
     public DatabaseReference saveMerchantIDToFirebase(String email, String merchantID){
         dbManager=new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
         DatabaseReference ref = dbManager.saveMerchantIDtoFirebase(email,merchantID);
         return ref;
     }
-
-
-
-
 }
