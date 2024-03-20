@@ -23,6 +23,9 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 
+/**
+ * Activity for processing payments via PayPal.
+ */
 public class payment extends AppCompatActivity {
     EditText editText;
     Button button;
@@ -33,12 +36,18 @@ public class payment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+        // Initialize UI elements
         editText = findViewById(R.id.amntPay);
         button = findViewById(R.id.pay);
-        merchantID=getIntent().getStringExtra("MerchantID");
-        employeeName=getIntent().getStringExtra("Name");
 
+        // Retrieve merchant ID and employee name from intent
+        merchantID = getIntent().getStringExtra("MerchantID");
+        employeeName = getIntent().getStringExtra("Name");
+
+        // PayPal configuration setup
         configuration = new PayPalConfiguration().environment(PayPalConfiguration.ENVIRONMENT_SANDBOX).clientId(merchantID);
+
+        // Set onClickListener for the payment button
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +56,9 @@ public class payment extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initiates the payment process.
+     */
     private void getPayment(){
         String amount = editText.getText().toString();
         PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(amount)),"CAD",employeeName, PayPalPayment.PAYMENT_INTENT_SALE);
@@ -57,6 +69,13 @@ public class payment extends AppCompatActivity {
 
     }
 
+    /**
+     * Handles the result of the activity after payment processing.
+     *
+     * @param requestCode The request code passed to startActivityForResult().
+     * @param resultCode  The result code returned by the child activity.
+     * @param data        An Intent that carries the result data.
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -71,9 +90,6 @@ public class payment extends AppCompatActivity {
                 } catch (JSONException e){
                     Toast.makeText(this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
                 }
-
-
-
             }
             else if(requestCode == Activity.RESULT_CANCELED){
                 Toast.makeText(this,"Canceled",Toast.LENGTH_SHORT).show();
@@ -81,7 +97,5 @@ public class payment extends AppCompatActivity {
         } else if (requestCode==PaymentActivity.RESULT_EXTRAS_INVALID) {
             Toast.makeText(this,"Invalid Payment",Toast.LENGTH_SHORT).show();
         }
-
-
     }
 }
