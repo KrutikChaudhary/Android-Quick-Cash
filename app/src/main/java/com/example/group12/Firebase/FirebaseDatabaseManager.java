@@ -232,13 +232,13 @@ public class FirebaseDatabaseManager
                     // Extract job details from the DataSnapshot
                     Map<String, Object> jobMap = (Map<String, Object>) jobSnapshot.getValue();
                     String jobTitle = (String) jobMap.get("title");
-                    float jobSalary = (float) jobMap.get("salary");
-                    int jobDuration = (int) jobMap.get("duration");
+                    float jobSalary = ((Number) jobMap.get("salary")).floatValue();
+                    int jobDuration = ((Number) jobMap.get("duration")).intValue();
                     String jobStartDate = (String) jobMap.get("startDate");
                     String jobUrgency = (String) jobMap.get("urgency");
                     String jobLocation = (String) jobMap.get("Location");
-                    float jobLongitude = (float) jobMap.get("longitude");
-                    float jobLatitude = (float) jobMap.get("longitude");
+                    float jobLongitude = ((Number) jobMap.get("longitude")).floatValue();
+                    float jobLatitude = ((Number) jobMap.get("latitude")).floatValue();
 
                     // Create a new instance of FilterJob to perform filtering
                     FilterJob filterJob = new FilterJob();
