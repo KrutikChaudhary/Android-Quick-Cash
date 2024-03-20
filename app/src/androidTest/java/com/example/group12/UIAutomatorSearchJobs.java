@@ -22,30 +22,37 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * UI Automator test class for searching jobs functionality.
+ */
 @RunWith(AndroidJUnit4.class)
 public class UIAutomatorSearchJobs {
 
     private UiDevice device;
     private static final int LAUNCH_TIMEOUT = 5000;
     final String launcherPackage = "com.example.group12";
+
+    /**
+     * Set up method to launch the SearchJobActivity.
+     */
     @Before
     public void setup(){
-
         device = UiDevice.getInstance(getInstrumentation());
         Context context = ApplicationProvider.getApplicationContext();
         final Intent appIntent = new Intent(context, SearchJobActivity.class);
         appIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(appIntent);
         device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT);
-
-
     }
 
+    /**
+     * Test to check if the elements related to job search are visible.
+     */
     @Test
     public void searchJobExists(){
-        UiObject searchParameter = device.findObject(new UiSelector().text("Search Job Title"));
+        UiObject searchParameter = device.findObject(new UiSelector().resourceId("com.example.group12:id/jobParametersText"));
         assertTrue(searchParameter.exists());
-        UiObject salaryRange = device.findObject(new UiSelector().text("Select Salary Range"));
+        UiObject salaryRange = device.findObject(new UiSelector().resourceId("com.example.group12:id/salarySpinner"));
         assertTrue(salaryRange.exists());
         UiObject searchButton = device.findObject(new UiSelector().text("Search"));
         assertTrue(searchButton.exists());

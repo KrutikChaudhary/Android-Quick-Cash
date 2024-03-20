@@ -20,12 +20,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * UI Automator test class for registration functionality.
+ */
 @RunWith(AndroidJUnit4.class)
 public class UIAutomatorRegistration {
     private UiDevice device;
     private static final int LAUNCH_TIMEOUT = 5000;
     final String launcherPackage = "com.example.group12";
 
+    /**
+     * Set up method to launch the application.
+     */
     @Before
     public void setup(){
         device = UiDevice.getInstance(getInstrumentation());
@@ -36,6 +42,9 @@ public class UIAutomatorRegistration {
         device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT);
     }
 
+    /**
+     * Test to check if the home page is visible, containing register and login buttons.
+     */
     @Test
     public void checkIfHomePageVisible(){
         UiObject registerButton = device.findObject(new UiSelector().text("Register"));
