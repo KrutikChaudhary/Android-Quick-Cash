@@ -21,6 +21,10 @@ import com.example.group12.logic.MerchantIDValidator;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * Activity class for applying to a job.
+ * This activity allows users to apply for a job by entering their full name and, if required, their merchant ID.
+ */
 public class JobApply extends AppCompatActivity {
     EditText fullName;
     Button applyJob;
@@ -41,6 +45,10 @@ public class JobApply extends AppCompatActivity {
         applyJobButtonSetup();
     }
 
+    /**
+     * Sets up the Apply Job button click listener.
+     * Handles the process of applying for a job, including validation and saving the application to Firebase.
+     */
     public void applyJobButtonSetup(){
         applyJob=findViewById(R.id.applyToJob);
         applyJob.setOnClickListener(new View.OnClickListener() {
@@ -74,12 +82,16 @@ public class JobApply extends AppCompatActivity {
         });
     }
 
+    /**
+     * Saves the job application to Firebase.
+     * @param email The email of the applicant.
+     * @param fullname The full name of the applicant.
+     * @param merchantID The merchant ID of the applicant.
+     * @return DatabaseReference representing the location where the job application is saved in Firebase.
+     */
     public DatabaseReference saveJobApplicationToFirebase(String email, String fullname, String merchantID){
         dbManager = new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
         DatabaseReference ref =  dbManager.saveJobApplicationToFirebase(email,fullname,merchantID);
         return ref;
     }
-
-
-
 }
