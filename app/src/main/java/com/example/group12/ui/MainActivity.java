@@ -16,6 +16,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The main activity of the application, responsible for handling user registration and login.
+ */
 public class MainActivity extends AppCompatActivity{
 
     LocationDetector locationDetector;
@@ -23,16 +26,26 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Set up register button
         registerButtonSetup();
+
+        // Set up login button
         loginButtonSetup();
+
+        // Initialize location detector
         initializeLocationDetector();
     }
 
+    /**
+     * Set up the register button.
+     */
     protected void registerButtonSetup(){
         Button registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Start RegisterActivity when the register button is clicked
                 Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
                 MainActivity.this.startActivity(registerIntent);
             }
@@ -40,17 +53,24 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+    /**
+     * Set up the login button.
+     */
     protected void loginButtonSetup(){
         Button loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Start LogInActivity when the login button is clicked
                 Intent loginIntent = new Intent(MainActivity.this, LogInActivity.class);
                 MainActivity.this.startActivity(loginIntent);
             }
         });
     }
 
+    /**
+     * Test method to create a sample job entry in Firebase.
+     */
     public void testJob() {
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
         DatabaseReference dbref = db.getReference("Job");
@@ -61,6 +81,10 @@ public class MainActivity extends AppCompatActivity{
         job.put("longitude", 3.23);
         job.put("latitude", 5.5);
     }
+
+    /**
+     * Initialize the location detector.
+     */
     public void initializeLocationDetector(){
         locationDetector = new LocationDetector(this);
     }
