@@ -2,16 +2,21 @@ package com.example.group12.model;
 
 import java.io.Serializable;
 
+/**
+ * Abstract class representing a user of the application.
+ * This class provides basic attributes and methods common to all types of users.
+ */
 public abstract class User {
 
-    private String email;
-    private String password;
-    private String role;
+    private String email; // The email address of the user
+    private String password; // The password of the user
+    private String role; // The role of the user (e.g., employee, employer)
 
+    // Default Constructor
     public User(){
-
     }
 
+    // Getters and Setters
     public String getEmail(){
         return this.email;
     }

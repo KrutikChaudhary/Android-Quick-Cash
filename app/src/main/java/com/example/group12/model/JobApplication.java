@@ -1,4 +1,8 @@
  package com.example.group12.model;
+
+ /**
+  * Represents a job application submitted by an employee.
+  */
 public class JobApplication {
     private String Email;
     private String MerchantID;
