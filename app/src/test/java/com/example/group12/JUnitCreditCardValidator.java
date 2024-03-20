@@ -8,16 +8,17 @@ import com.example.group12.logic.CreditCardValidator;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * JUnit test class for validating the CreditCardValidator class.
+ */
 public class JUnitCreditCardValidator {
 
     CreditCardValidator value;
-
 
     @Before
     public void setup(){
         value = new CreditCardValidator();
     }
-
 
     @Test
     public void checkIfCardNumEmpty(){
@@ -36,7 +37,6 @@ public class JUnitCreditCardValidator {
         assertTrue(value.isExpiryEmpty(""));
         assertFalse(value.isExpiryEmpty("expiry"));
     }
-
 
     @Test
     public void checkIfCVVInvalid(){
@@ -57,7 +57,6 @@ public class JUnitCreditCardValidator {
         assertFalse(value.isValidExpiry("123"));
         assertFalse(value.isValidExpiry("80/01"));
     }
-
 
     @Test
     public void checkIfCVVLength(){
