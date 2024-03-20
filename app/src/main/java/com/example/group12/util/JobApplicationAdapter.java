@@ -17,13 +17,16 @@ import com.example.group12.ui.payment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+/**
+ * Adapter for binding JobApplication data to RecyclerView.
+ */
 public class JobApplicationAdapter extends FirebaseRecyclerAdapter<JobApplication, JobApplicationAdapter.JobApplicationViewHolder> {
 
     /**
-     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
-     * {@link FirebaseRecyclerOptions} for configuration options.
+     * Initialize a JobApplicationAdapter.
      *
-     * @param options
+     * @param options FirebaseRecyclerOptions<JobApplication> object
+     * containing query and configuration for FirebaseRecyclerAdapter.
      */
     public JobApplicationAdapter(@NonNull FirebaseRecyclerOptions<JobApplication> options) {
         super(options);
@@ -36,10 +39,19 @@ public class JobApplicationAdapter extends FirebaseRecyclerAdapter<JobApplicatio
         return new JobApplicationViewHolder(view);
     }
 
+    /**
+     * ViewHolder class for JobApplicationAdapter.
+     */
     public class JobApplicationViewHolder extends RecyclerView.ViewHolder{
         private final TextView name;
         private final Button payToEmployee;
         private final Context context;
+
+        /**
+         * Constructor for JobApplicationViewHolder.
+         *
+         * @param view The view associated with the ViewHolder.
+         */
         public JobApplicationViewHolder(View view){
             super(view);
             name = view.findViewById(R.id.name);
@@ -57,7 +69,6 @@ public class JobApplicationAdapter extends FirebaseRecyclerAdapter<JobApplicatio
             intent.putExtra("MerchantID",merchantID);
             intent.putExtra("Name",model.getName());
             holder.context.startActivity(intent);
-
         });
     }
 }

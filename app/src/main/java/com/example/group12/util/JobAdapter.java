@@ -18,8 +18,18 @@ import com.example.group12.ui.user.JobApplication.JobDetailActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+/**
+ * Adapter for binding Job data to RecyclerView.
+ */
 public class JobAdapter extends FirebaseRecyclerAdapter<Job, JobAdapter.JobViewHolder>{
     private String email;
+
+    /**
+     * Constructs a new JobAdapter.
+     *
+     * @param options FirebaseRecyclerOptions<Job> object containing query and configuration for FirebaseRecyclerAdapter.
+     * @param email   Email of the user.
+     */
     public JobAdapter(@NonNull FirebaseRecyclerOptions<Job> options, String email){
         super(options);
         this.email=email;
@@ -32,12 +42,19 @@ public class JobAdapter extends FirebaseRecyclerAdapter<Job, JobAdapter.JobViewH
         return new JobViewHolder(view);
     }
 
+    /**
+     * ViewHolder class for JobAdapter.
+     */
     public class JobViewHolder extends RecyclerView.ViewHolder{
         private final TextView title;
         private final Button seeDetailsButton;
-
         private final Context context;
 
+        /**
+         * Constructor for JobViewHolder.
+         *
+         * @param view The view associated with the ViewHolder.
+         */
         public JobViewHolder(View view){
             super(view);
             title = view.findViewById(R.id.jobTitle);
@@ -49,7 +66,6 @@ public class JobAdapter extends FirebaseRecyclerAdapter<Job, JobAdapter.JobViewH
     @Override
     protected void onBindViewHolder(@NonNull JobViewHolder holder, int position, @NonNull Job job){
         holder.title.setText(job.getTitle());
-        //Log.e("title", job.getTitle());
 
         holder.seeDetailsButton.setOnClickListener(view -> {
             Intent intent = new Intent(holder.context, JobDetailActivity.class);

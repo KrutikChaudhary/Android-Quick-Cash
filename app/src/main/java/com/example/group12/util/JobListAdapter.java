@@ -17,11 +17,17 @@ import com.example.group12.ui.user.JobApplication.JobDetailActivity;
 
 import java.util.List;
 
-
+/**
+ * Adapter class for displaying a list of Job objects in a RecyclerView.
+ */
 public class JobListAdapter extends RecyclerView.Adapter<JobListAdapter.JobViewHolder> {
     private List<Job> jobList;
 
-    // Constructor to initialize the list of Job objects
+    /**
+     * Constructor to initialize the list of Job objects.
+     *
+     * @param jobList List of Job objects to display.
+     */
     public JobListAdapter(List<Job> jobList) {
         this.jobList = jobList;
     }
@@ -61,11 +67,17 @@ public class JobListAdapter extends RecyclerView.Adapter<JobListAdapter.JobViewH
             context = itemView.getContext();
         }
 
+        /**
+         * Method to bind data from a Job object to views within the ViewHolder.
+         *
+         * @param job The Job object to bind.
+         */
         public void bind(Job job) {
             // Bind data from Job object to views
             titleTextView.setText(job.getTitle());
 
             this.seeDetailsButton.setOnClickListener(view -> {
+                // Navigate to JobDetailActivity when the see details button is clicked
                 Intent intent = new Intent(this.context, JobDetailActivity.class);
                 intent.putExtra("job", job);
                 this.context.startActivity(intent);
