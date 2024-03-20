@@ -6,6 +6,10 @@ import android.util.Log;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * Custom LinearLayoutManager that catches IndexOutOfBoundsException during the layout process
+ * in a RecyclerView to prevent crashes caused by invalid indices.
+ */
 public class WrapLinearLayoutManager extends LinearLayoutManager {
 
     /**
