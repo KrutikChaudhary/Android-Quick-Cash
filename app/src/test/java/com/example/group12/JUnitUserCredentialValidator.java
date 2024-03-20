@@ -8,6 +8,9 @@ import org.junit.Test;
 
 import com.example.group12.logic.UserCredentialValidator;
 
+/**
+ * JUnit test class for validating user credentials.
+ */
 public class JUnitUserCredentialValidator {
 
     UserCredentialValidator val;
