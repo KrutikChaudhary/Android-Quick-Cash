@@ -14,6 +14,10 @@ import com.example.group12.R;
 import com.example.group12.util.MerchantIDCallBack;
 import com.example.group12.logic.MerchantIDValidator;
 
+/**
+ * Activity class for displaying job details and applying for a job.
+ * This activity displays the details of a job and allows users to apply for it.
+ */
 public class JobDetailActivity extends AppCompatActivity {
     String title;
     String desc;
@@ -34,11 +38,19 @@ public class JobDetailActivity extends AppCompatActivity {
         setTextView();
         applyButtonSetup();
     }
+
+    /**
+     * Sets the text views with job title and description.
+     */
     public void setTextView(){
         jobTitle.setText(title);
         jobDesc.setText(desc);
     }
 
+    /**
+     * Sets up the Apply button click listener.
+     * Handles the process of applying for a job, including validation and navigating to the JobApply activity.
+     */
     public void applyButtonSetup(){
         apply = findViewById(R.id.jobDetailsApply);
         apply.setOnClickListener(new View.OnClickListener() {
