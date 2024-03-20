@@ -6,6 +6,10 @@ import android.os.Bundle;
 
 import com.example.group12.R;
 
+/**
+ * Activity class for finding a job in the user dashboard.
+ * This activity allows users to search for available jobs.
+ */
 public class Dashboard_User_FindJob extends AppCompatActivity {
 
     @Override

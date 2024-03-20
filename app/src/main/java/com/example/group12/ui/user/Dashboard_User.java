@@ -19,6 +19,10 @@ import com.example.group12.core.Constants;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * Activity class for the user dashboard.
+ * This activity displays a list of jobs and allows users to search for jobs and access their PayPal account.
+ */
 public class Dashboard_User extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -39,12 +43,18 @@ public class Dashboard_User extends AppCompatActivity {
         paypalButtonSetup();
     }
 
+    /**
+     * Initializes the RecyclerView and other necessary components.
+     */
     protected void init(){
         recyclerView = findViewById(R.id.filteredJob_recyclerView);
         recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         key = getIntent().getStringExtra("key");
     }
 
+    /**
+     * Retrieves and displays the list of jobs from the Firebase Realtime Database.
+     */
     protected void viewJobs(){
         final FirebaseRecyclerOptions<Job> options = new FirebaseRecyclerOptions.Builder<Job>()
                 .setQuery(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK)
@@ -54,6 +64,9 @@ public class Dashboard_User extends AppCompatActivity {
         recyclerView.setAdapter(viewJobAdapter);
     }
 
+    /**
+     * Sets up the button for accessing the user's PayPal account.
+     */
     public void paypalButtonSetup(){
         myPayPal = findViewById(R.id.PayPalButton);
 
@@ -67,8 +80,9 @@ public class Dashboard_User extends AppCompatActivity {
         });
     }
 
-
-
+    /**
+     * Sets up the button for finding jobs.
+     */
     protected void findJobButtonSetup(){
         findJobButton = findViewById(R.id.findJobsButton);
         findJobButton.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +94,7 @@ public class Dashboard_User extends AppCompatActivity {
             }
         });
     }
+
     // Lifecycle method called when the activity is started.
     // Start listening for changes in the data and update the UI accordingly.
     @Override
