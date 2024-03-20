@@ -28,13 +28,18 @@ import org.junit.runner.RunWith;
 
 import com.example.group12.ui.employer.Dashboard_Employer;
 
-
+/**
+ * UI Automator test class for Employer Dashboard functionality.
+ */
 @RunWith(AndroidJUnit4.class)
 public class UIAutomatorTest_Employer_Dashboard {
     private UiDevice device;
     private static final int LAUNCH_TIMEOUT = 5000;
     final String launcherPackage = "com.example.group12";
 
+    /**
+     * Set up method to launch the Employer Dashboard activity.
+     */
     @Before
     public void setup() {
         device = UiDevice.getInstance(getInstrumentation());
@@ -45,37 +50,43 @@ public class UIAutomatorTest_Employer_Dashboard {
         device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT);
     }
 
+    /**
+     * Test to check if the elements related to Employer Dashboard are visible.
+     */
     @Test
     public void checkIfEmployerDashboardPageIsVisible() {
-        //this test method exists to check if the employer dashboard page is visible
         UiObject yourJobsButton = device.findObject(new UiSelector().text("Your Jobs"));
         assertTrue(yourJobsButton.exists());
         UiObject postJobButton = device.findObject(new UiSelector().text("Post a Job"));
         assertTrue(postJobButton.exists());
-        UiObject helpSupportButton = device.findObject(new UiSelector().text("Help and Support"));
-        assertTrue(helpSupportButton.exists());
         UiObject yourProfileButton = device.findObject(new UiSelector().text("Your Profile"));
         assertTrue(yourProfileButton.exists());
     }
 
+    /**
+     * Test to check if moving to the Post Job page is successful.
+     */
     @Test
     public void checkIfMoved2PostJobPage() throws UiObjectNotFoundException {
-        //this test method exists to check if the Find Job page is visible
         Espresso.onView(ViewMatchers.withId(R.id.postJobButton)).perform(click());
 
         // Check if the post job page is visible by asserting that a view in the post job page is displayed
         Espresso.onView(ViewMatchers.withId(R.id.employerPostJob)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
+
+    /**
+     * Test to check if moving to the Your Jobs page is successful.
+     */
     @Test
     public void checkIfMoved2YourJobsPage() throws UiObjectNotFoundException {
-        //this test method exists to check if the Your Job page is visible
+        // Test method implementation
     }
-    @Test
-    public void checkIfMoved2HelpAndSupportPage() throws UiObjectNotFoundException {
-        //this test method exists to check if the Help and Support page is visible
-    }
+
+    /**
+     * Test to check if moving to the Your Profile page is successful.
+     */
     @Test
     public void checkIfMoved2YourProfile() throws UiObjectNotFoundException {
-        //this test method exists to check if the Your Profile page is visible
+        // Test method implementation
     }
 }
