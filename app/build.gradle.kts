@@ -1,7 +1,9 @@
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
+    //id("com.google.firebase.crashlytics") version "18.6.2"
 }
+
 
 android {
     namespace = "com.example.group12"
@@ -57,5 +59,16 @@ dependencies {
     androidTestImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     implementation("com.firebaseui:firebase-ui-database:8.0.0")
     implementation ("com.paypal.sdk:paypal-android-sdk:2.16.0")
+
+    //3rd party library - for network request or api request to the firebase server
+    implementation("com.android.volley:volley:1.2.1")
+
+    // messaging libraries
+    implementation("com.google.firebase:firebase-messaging:23.4.1")
+    implementation("com.google.firebase:firebase-bom:32.7.4")
+
+    //for getting the error messages related to firebase
+    //implementation("com.google.firebase:firebase-crashlytics:18.6.2")
+    implementation("com.google.firebase:firebase-analytics:21.5.1")
 
 }
