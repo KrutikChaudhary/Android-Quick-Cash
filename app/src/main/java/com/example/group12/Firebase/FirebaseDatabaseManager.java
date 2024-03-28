@@ -254,6 +254,7 @@ public class FirebaseDatabaseManager
 
 
                     LocationDetector locationDetector = new LocationDetector(context);
+
                     LocationInfo location = locationDetector.getLocationInfo();
 
 
