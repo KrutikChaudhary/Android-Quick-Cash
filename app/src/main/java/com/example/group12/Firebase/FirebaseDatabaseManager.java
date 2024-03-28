@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.group12.locationDetection.LocationDetector;
 import com.example.group12.locationDetection.LocationInfo;
+import com.example.group12.ui.MainActivity;
 import com.example.group12.ui.SearchJobActivity;
 import com.example.group12.ui.ViewSearchJobActivity;
 import com.google.firebase.database.DataSnapshot;
@@ -37,6 +38,7 @@ public class FirebaseDatabaseManager
     private DatabaseReference jobApplicationRef;
     private DatabaseReference userLocation;
     private DatabaseReference jobRef;
+    private LocationDetector locationDetector;
 
     /**
      * Default constructor.
@@ -52,10 +54,11 @@ public class FirebaseDatabaseManager
         this.initializeDatabaseRefs();
     }
 
-    public FirebaseDatabaseManager(FirebaseDatabase database, Context context) {
+    public FirebaseDatabaseManager(FirebaseDatabase database, Context context, LocationDetector locationDetector) {
         this.database = database;
         this.initializeDatabaseRefs();
         this.context = context;
+        this.locationDetector = locationDetector;
     }
 
     /**
@@ -253,13 +256,14 @@ public class FirebaseDatabaseManager
 
 
 
-                    LocationDetector locationDetector = new LocationDetector(context);
+                    //LocationDetector locationDetector = new LocationDetector(context);
 
                     LocationInfo location = locationDetector.getLocationInfo();
 
 
                     float usrLatitude = (float) location.getLatitude();
                     float usrLongitude = (float) location.getLongitude();
+                    Log.d("LatLong","LatLong " + usrLatitude + " " +usrLongitude);
 
                     // Create a new instance of FilterJob to perform filtering
                     FilterJob filterJob = new FilterJob();

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.group12.Firebase.FirebaseDatabaseManager;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
+import com.example.group12.locationDetection.LocationDetector;
 import com.example.group12.model.Job;
 import com.example.group12.util.JobFilterCallback;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -35,6 +36,7 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
     String location = "";
     String key;
     FirebaseDatabaseManager dbManager;
+    LocationDetector locationDetector;
 
     /**
      * Initializes the activity layout and sets up spinners and button.
@@ -43,6 +45,7 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_job);
+        locationDetector = new LocationDetector(this);
         salarySpinnerSetup();
         durationSpinnerSetup();
         locationSpinnerSetup();
@@ -154,7 +157,7 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
     protected void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
 
-        dbManager = new FirebaseDatabaseManager(db, this);
+        dbManager = new FirebaseDatabaseManager(db, this, locationDetector);
     }
 
     /**
