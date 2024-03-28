@@ -34,7 +34,7 @@ public class FilterJob {
      * @param num The salary of the job.
      * @return true if the job salary is within the specified range, false otherwise.
      */
-    public boolean containsSalary(String param, float num){
+    public boolean containsSalary(String param, int num){
         // Check if the salary parameter is empty
         if(param.equals("")){
             return true;
@@ -44,32 +44,32 @@ public class FilterJob {
 
         // Compare the job salary with each salary range
         if(param.equals(Constants.SPINNER_SALARY_RANGE_ONE)){
-            if(num >= (float) 15) {
+            if(num >= 15) {
                 results = true;
             }
         }
         else if(param.equals(Constants.SPINNER_SALARY_RANGE_TWO)){
-            if(num >= (float) 20) {
+            if(num >=  20) {
                 results = true;
             }
         }
         else if(param.equals(Constants.SPINNER_SALARY_RANGE_THREE)){
-            if(num >= (float) 30) {
+            if(num >=  30) {
                 results = true;
             }
         }
         else if(param.equals(Constants.SPINNER_SALARY_RANGE_FOUR)){
-            if(num >= (float) 40) {
+            if(num >= 40) {
                 results = true;
             }
         }
         else if(param.equals(Constants.SPINNER_SALARY_RANGE_FIVE)){
-            if(num >= (float) 50) {
+            if(num >= 50) {
                 results = true;
             }
         }
         else if(param.equals(Constants.SPINNER_SALARY_RANGE_SIX)){
-            if(num >= (float) 100) {
+            if(num >= 100) {
                 results = true;
             }
         }
@@ -143,7 +143,7 @@ public class FilterJob {
 
         // Compare the distance with each distance range
         if(param.equals(Constants.SPINNER_LOCATION_RANGE_ONE)){
-            if(.5 >= distance){
+            if(0.5 >= distance){
                 return true;
             }
         }

@@ -36,8 +36,8 @@ public class JUnitJobFilter {
 
     @Test
     public void checkIfSalaryMatches(){
-        assertTrue(filter.containsSalary(Constants.SPINNER_SALARY_RANGE_ONE, (float) 15.5));
-        assertFalse(filter.containsSalary(Constants.SPINNER_SALARY_RANGE_THREE, (float) 15.5));
+        assertTrue(filter.containsSalary(Constants.SPINNER_SALARY_RANGE_ONE,  15));
+        assertFalse(filter.containsSalary(Constants.SPINNER_SALARY_RANGE_THREE,  15));
     }
 
     @Test

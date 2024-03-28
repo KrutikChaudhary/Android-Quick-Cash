@@ -153,7 +153,8 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
      */
     protected void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
-        dbManager = new FirebaseDatabaseManager(db);
+
+        dbManager = new FirebaseDatabaseManager(db, this);
     }
 
     /**

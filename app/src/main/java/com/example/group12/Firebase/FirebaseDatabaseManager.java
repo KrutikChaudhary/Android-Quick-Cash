@@ -1,9 +1,13 @@
 package com.example.group12.Firebase;
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.group12.locationDetection.LocationDetector;
 import com.example.group12.locationDetection.LocationInfo;
+import com.example.group12.ui.SearchJobActivity;
+import com.example.group12.ui.ViewSearchJobActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +31,7 @@ import java.util.List;
 public class FirebaseDatabaseManager
 {
     private FirebaseDatabase database;
+    private Context context;
     private DatabaseReference userRef;
     private DatabaseReference merchantRef;
     private DatabaseReference jobApplicationRef;
@@ -45,6 +50,12 @@ public class FirebaseDatabaseManager
     public FirebaseDatabaseManager(FirebaseDatabase database) {
         this.database = database;
         this.initializeDatabaseRefs();
+    }
+
+    public FirebaseDatabaseManager(FirebaseDatabase database, Context context) {
+        this.database = database;
+        this.initializeDatabaseRefs();
+        this.context = context;
     }
 
     /**
@@ -232,7 +243,7 @@ public class FirebaseDatabaseManager
                     // Extract job details from the DataSnapshot
                     Map<String, Object> jobMap = (Map<String, Object>) jobSnapshot.getValue();
                     String jobTitle = (String) jobMap.get("title");
-                    float jobSalary = ((Number) jobMap.get("salary")).floatValue();
+                    int jobSalary = ((Number) jobMap.get("salary")).intValue();
                     int jobDuration = ((Number) jobMap.get("duration")).intValue();
                     String jobStartDate = (String) jobMap.get("startDate");
                     String jobUrgency = (String) jobMap.get("urgency");
@@ -240,11 +251,20 @@ public class FirebaseDatabaseManager
                     float jobLongitude = ((Number) jobMap.get("longitude")).floatValue();
                     float jobLatitude = ((Number) jobMap.get("latitude")).floatValue();
 
+
+
+                    LocationDetector locationDetector = new LocationDetector(context);
+                    LocationInfo location = locationDetector.getLocationInfo();
+
+
+                    float usrLatitude = (float) location.getLatitude();
+                    float usrLongitude = (float) location.getLongitude();
+
                     // Create a new instance of FilterJob to perform filtering
                     FilterJob filterJob = new FilterJob();
 
                     // Check if the job satisfies the filtering criteria
-                    if (filterJob.containsParameters(parameter, jobTitle) && filterJob.containsSalary(salary, jobSalary) && filterJob.containsDuration(duration, jobDuration)){
+                    if (filterJob.containsParameters(parameter, jobTitle) && filterJob.containsSalary(salary, jobSalary) && filterJob.containsDuration(duration, jobDuration) && filterJob.inDistance(distance, usrLatitude, usrLongitude, jobLatitude, jobLongitude)){
                         // If the job meets the criteria, create a Job object and add it to the filtered job list
                         Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate, jobLocation, jobUrgency, jobLatitude, jobLongitude);
                         filterdJobList.add(job);
