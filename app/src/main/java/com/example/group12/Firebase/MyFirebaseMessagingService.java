@@ -44,6 +44,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         //getting the data
         final Map<String, String> data = message.getData();
 
+        final String jobTitle = data.get("jobTitle");
         final String jobSalary = data.get("jobSalary");
         final String jobLocation = data.get("jobLocation");
 
@@ -51,6 +52,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Intent intent = new Intent(this, ViewPushNotificationActivity.class);
         intent.putExtra("title", title);
         intent.putExtra("body", body);
+        intent.putExtra("jobTitle", jobTitle);
         intent.putExtra("jobSalary", jobSalary);
         intent.putExtra("jobLocation", jobLocation);
         //based on the flag, the notification will be displayed
