@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import com.google.auth.oauth2.GoogleCredentials;
@@ -52,7 +53,7 @@ public class MyApplication extends Application {
 
     FirebaseDatabaseManager dbManager;
 
-    private boolean initialDataLoaded = false;
+    //private long orginalCount; //Count the number items in the database
 
     @Override
     public void onCreate(){
@@ -64,9 +65,24 @@ public class MyApplication extends Application {
         databaseInit();
         requestQueue = Volley.newRequestQueue(this);
         FirebaseMessaging.getInstance().subscribeToTopic("jobs");
-        Log.e("Application test", "Success");
         databaseListener();
     }
+
+//    private void getCountOfItemsInDatabase() {
+//        DatabaseReference dbRef = dbManager.getJobRef();
+//        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                orginalCount = dataSnapshot.getChildrenCount();
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Log.e("Database Error", "Error fetching item count: " + databaseError.getMessage());
+//            }
+//        });
+//    }
 
     private void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
@@ -113,7 +129,6 @@ public class MyApplication extends Application {
                         exception.printStackTrace();
                     }
                 });
-                //sendNotification(job, token);
             }
 
             @Override
