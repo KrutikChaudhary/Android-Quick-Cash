@@ -163,6 +163,7 @@ public class MyApplication extends Application {
         try {
             String jobLocation = (String) job.get("location");
             long jobSalary = (long) job.get("salary");
+            String jobTitle = (String) job.get("Title");
             //the first json object - to
             JSONObject notificationJSONBody = new JSONObject();
             notificationJSONBody.put("title", "A job that you prefer!");
@@ -172,6 +173,7 @@ public class MyApplication extends Application {
             JSONObject dataJSONBody = new JSONObject();
             dataJSONBody.put("jobLocation", jobLocation);
             dataJSONBody.put("jobSalary", String.valueOf(jobSalary));
+            dataJSONBody.put("jobTitle", jobTitle);
 
             // Create the message JSON object and attach notification and data
             JSONObject messageJSONBody = new JSONObject();
