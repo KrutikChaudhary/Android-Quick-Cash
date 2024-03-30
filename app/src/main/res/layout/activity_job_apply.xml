@@ -8,12 +8,13 @@
 
     <EditText
         android:id="@+id/applyEnterFullName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="194dp"
-        android:hint="Full Name"
+        android:layout_width="141dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="164dp"
+        android:hint="First Name"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.751"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,20 +22,27 @@
         android:id="@+id/applyToJob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="412dp"
         android:text="Apply To Job"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/applyEnterFullName" />
 
     <TextView
-        android:id="@+id/TempEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="27dp"
-        android:text="email"
-        app:layout_constraintBottom_toTopOf="@+id/applyEnterFullName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/textView2"
+        android:layout_width="113dp"
+        android:layout_height="28dp"
+        android:text="Job Title:"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="50dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="111dp"
+        android:layout_height="26dp"
+        android:text="Job Description:"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="103dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
