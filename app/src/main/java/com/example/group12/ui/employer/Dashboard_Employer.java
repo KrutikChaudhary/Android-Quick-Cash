@@ -16,7 +16,6 @@ import com.example.group12.R;
  */
 public class Dashboard_Employer extends AppCompatActivity {
     Button payEmployeesButton; // Button to navigate to the pay employees activity
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +24,7 @@ public class Dashboard_Employer extends AppCompatActivity {
         // Set up UI components
         setupPayEmployeeButton();
         postJobButtonSetup();
+        viewStatsButton();
     }
 
     /**
@@ -37,8 +37,8 @@ public class Dashboard_Employer extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to the post job activity
-                Intent loginIntent = new Intent(Dashboard_Employer.this, Dashboard_Employer_PostJob.class);
-                Dashboard_Employer.this.startActivity(loginIntent);
+                Intent intent = new Intent(Dashboard_Employer.this, Dashboard_Employer_PostJob.class);
+                Dashboard_Employer.this.startActivity(intent);
             }
         });
     }
@@ -58,4 +58,17 @@ public class Dashboard_Employer extends AppCompatActivity {
             }
         });
     }
+
+    protected void viewStatsButton() {
+        Button viewStatsButton = findViewById(R.id.employerViewStats);
+        viewStatsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to the post job activity
+                Intent intent = new Intent(Dashboard_Employer.this, Dashboard_Employer_View_Stats.class);
+                Dashboard_Employer.this.startActivity(intent);
+            }
+        });
+    }
+
 }
