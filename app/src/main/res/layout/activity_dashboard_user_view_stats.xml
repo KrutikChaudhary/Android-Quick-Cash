@@ -4,6 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.user.Dashboard_User_Profile">
+    android:background="@color/white"
+    tools:context=".ui.user.Dashboard_User_View_Stats">
+
+    <!-- User Statistics Header -->
+    <TextView
+        android:id="@+id/textViewHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Employee Statistics"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:background="#3E2F78"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <!-- Your Jobs Graph TextView -->
+    <TextView
+        android:id="@+id/textViewJobsGraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Jobs Graph"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:padding="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
