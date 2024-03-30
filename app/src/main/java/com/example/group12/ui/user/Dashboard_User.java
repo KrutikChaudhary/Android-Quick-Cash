@@ -41,6 +41,7 @@ public class Dashboard_User extends AppCompatActivity {
         viewJobs();
         findJobButtonSetup();
         paypalButtonSetup();
+        MyPreferenceButton();
     }
 
     /**
@@ -90,6 +91,17 @@ public class Dashboard_User extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard_User.this, SearchJobActivity.class);
                 intent.putExtra("key", key);
+                Dashboard_User.this.startActivity(intent);
+            }
+        });
+    }
+
+    protected void MyPreferenceButton(){
+        Button myPreference = findViewById(R.id.preferredJobsButton);
+        myPreference.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard_User.this, Dashboard_User_PreferredJobs.class);
                 Dashboard_User.this.startActivity(intent);
             }
         });
