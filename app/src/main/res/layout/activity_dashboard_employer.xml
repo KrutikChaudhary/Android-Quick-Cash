@@ -50,11 +50,11 @@
 
         <!-- Your Profile button -->
         <Button
-            android:id="@+id/yourProfileButton"
+            android:id="@+id/employerViewStats"
             android:layout_width="16dp"
             android:layout_height="69dp"
             android:layout_weight="1"
-            android:text="@string/your_profile_employer" />
+            android:text="@string/view_stats" />
     </LinearLayout>
 
     <!-- Job Postings -->

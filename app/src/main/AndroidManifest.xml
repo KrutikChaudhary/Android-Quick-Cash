@@ -34,7 +34,7 @@
             android:name=".ui.payment"
             android:exported="false" />
         <activity
-            android:name=".ui.employer.Dashboard_Employer_Profile"
+            android:name=".ui.employer.Dashboard_Employer_View_Stats"
             android:exported="false" />
         <activity
             android:name=".ui.employer.Dashboard_Employer_PostJob"
