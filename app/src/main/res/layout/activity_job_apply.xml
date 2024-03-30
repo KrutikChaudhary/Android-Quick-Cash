@@ -10,11 +10,35 @@
         android:id="@+id/applyEnterFullName"
         android:layout_width="141dp"
         android:layout_height="40dp"
-        android:layout_marginTop="164dp"
-        android:hint="First Name"
+        android:layout_marginTop="324dp"
+        android:hint="Full Name"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.751"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/applyEnterEmail"
+        android:layout_width="141dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="384dp"
+        android:hint="Email"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/applyEnterExperience"
+        android:layout_width="404dp"
+        android:layout_height="147dp"
+        android:layout_marginTop="440dp"
+        android:hint="Experience:"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +46,7 @@
         android:id="@+id/applyToJob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="412dp"
+        android:layout_marginTop="284dp"
         android:text="Apply To Job"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -34,15 +58,23 @@
         android:layout_width="113dp"
         android:layout_height="28dp"
         android:text="Job Title:"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="50dp" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="91dp" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="111dp"
-        android:layout_height="26dp"
+        android:layout_width="364dp"
+        android:layout_height="117dp"
         android:text="Job Description:"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="103dp" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="137dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="116dp"
+        android:layout_height="29dp"
+        android:text="Job Application:"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="279dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
