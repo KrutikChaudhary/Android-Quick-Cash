@@ -46,7 +46,7 @@
             android:name=".ui.user.Dashboard_User_MyPayPal"
             android:exported="false" />
         <activity
-            android:name=".ui.user.Dashboard_User_Profile"
+            android:name=".ui.user.Dashboard_User_View_Stats"
             android:exported="false" />
         <activity
             android:name=".ui.user.Dashboard_User"
