@@ -10,11 +10,11 @@ import com.example.group12.R;
  * Activity class for the employer profile dashboard.
  * This activity displays the profile information of the employer.
  */
-public class Dashboard_Employer_Profile extends AppCompatActivity {
+public class Dashboard_Employer_View_Stats extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard_employer_profile);
+        setContentView(R.layout.activity_dashboard_employer_view_stats);
     }
 }
