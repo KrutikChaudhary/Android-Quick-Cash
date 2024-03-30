@@ -57,5 +57,7 @@ dependencies {
     androidTestImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     implementation("com.firebaseui:firebase-ui-database:8.0.0")
     implementation ("com.paypal.sdk:paypal-android-sdk:2.16.0")
+    implementation ("com.github.blackfizz:eazegraph:1.2.5l@aar")
+    implementation ("com.nineoldandroids:library:2.4.0")
 
 }
