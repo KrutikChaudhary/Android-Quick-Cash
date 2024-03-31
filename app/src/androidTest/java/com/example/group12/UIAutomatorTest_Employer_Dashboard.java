@@ -82,11 +82,16 @@ public class UIAutomatorTest_Employer_Dashboard {
         // Test method implementation
     }
 
-    /**
-     * Test to check if moving to the Your Profile page is successful.
-     */
     @Test
-    public void checkIfMoved2YourProfile() throws UiObjectNotFoundException {
-        // Test method implementation
+    public void checkIfStatsButtonVisible() {
+        UiObject viewStatsButton = device.findObject(new UiSelector().text("View Stats"));
+        assertTrue(viewStatsButton.exists());
+    }
+
+    @Test
+    public void checkIfMoveToStatsPage() throws UiObjectNotFoundException {
+        UiObject viewStatsButton = device.findObject(new UiSelector().text("View Stats"));
+        assertTrue(viewStatsButton.exists());
+        viewStatsButton.click();
     }
 }
