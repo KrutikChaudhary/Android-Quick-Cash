@@ -17,6 +17,7 @@ import androidx.test.uiautomator.Until;
 
 import com.example.group12.ui.employer.Dashboard_Employer;
 import com.example.group12.ui.user.Dashboard_User;
+import com.example.group12.ui.user.Dashboard_User_View_Stats;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,24 +34,33 @@ public class UIAutomator_Visualize_User {
     public void setup() {
         device = UiDevice.getInstance(getInstrumentation());
         Context context = ApplicationProvider.getApplicationContext();
-        Intent intent = new Intent(context, Dashboard_User.class);
+        Intent intent = new Intent(context, Dashboard_User_View_Stats.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
         device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT);
     }
 
+
     @Test
-    public void checkIfStatsButtonVisible() {
-        UiObject viewStatsButton = device.findObject(new UiSelector().text("View Stats"));
-        assertTrue(viewStatsButton.exists());
+    public void testHeaderVisibility() throws UiObjectNotFoundException {
+        // Check if the "Employer Statistics" header is visible
+        UiObject header = device.findObject(new UiSelector().text("Employee Statistics"));
+        assertTrue("Employer Statistics header not found", header.exists());
     }
 
     @Test
-    public void checkIfMoveToStatsPage() throws UiObjectNotFoundException {
-        UiObject viewStatsButton = device.findObject(new UiSelector().text("View Stats"));
-        assertTrue(viewStatsButton.exists());
-        viewStatsButton.click();
-        UiObject stats = device.findObject(new UiSelector().text("Your Jobs Graph"));
-        stats.exists();
+    public void testPieChartVisibility() throws UiObjectNotFoundException {
+        // Check if the pie chart is visible
+        UiObject pieChart = device.findObject(new UiSelector().resourceId("com.example.group12:id/chart"));
+        assertTrue("Pie chart not found", pieChart.exists());
     }
+
+    @Test
+    public void testJobsGraphTextVisibility() throws UiObjectNotFoundException {
+        // Check if the text "Your Jobs Graph" is visible
+        UiObject jobsGraphText = device.findObject(new UiSelector().text("Your Jobs Graph"));
+        assertTrue("Your Jobs Graph text not found", jobsGraphText.exists());
+    }
+
+
 }
