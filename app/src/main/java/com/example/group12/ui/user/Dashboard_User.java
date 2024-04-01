@@ -95,7 +95,6 @@ public class Dashboard_User extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard_User.this, SearchJobActivity.class);
-                intent.putExtra("key", key);
                 Dashboard_User.this.startActivity(intent);
             }
         });

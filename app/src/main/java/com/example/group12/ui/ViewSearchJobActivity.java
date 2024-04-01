@@ -1,6 +1,8 @@
 package com.example.group12.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,7 +31,7 @@ public class ViewSearchJobActivity extends AppCompatActivity {
     Job[] jobArray;
     List<Job> jobList;
     String key;
-
+    private SharedPreferences preferences;
 
     /**
      * Initializes the activity and sets up the UI components.
@@ -40,10 +42,11 @@ public class ViewSearchJobActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_search_job);
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         init();
+        buttonSetup();
         jobArray = (Job[])getIntent().getSerializableExtra("JobList");
         jobList = Arrays.asList(jobArray);
-        Log.e("Length", "The size of the list: " + jobList.size());
         viewJob();
     }
 
@@ -53,7 +56,7 @@ public class ViewSearchJobActivity extends AppCompatActivity {
     protected void init(){
         recyclerView = findViewById(R.id.filteredJob_recyclerView);
         recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        key = getIntent().getStringExtra("key");
+        key = preferences.getString("key","");
     }
 
     /**
@@ -72,7 +75,6 @@ public class ViewSearchJobActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewSearchJobActivity.this, Dashboard_User.class);
-                intent.putExtra("key", key);
                 ViewSearchJobActivity.this.startActivity(intent);
             }
         });
