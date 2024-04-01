@@ -2,7 +2,9 @@ package com.example.group12.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +27,8 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseDatabaseManager dbManager;
     DatabaseReference dbref;
 
+    private SharedPreferences preferences;
+
     /**
      * Initializes the activity layout and sets up the signup button.
      */
@@ -32,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        preferences = getSharedPreferences("userKey", Context.MODE_PRIVATE);
         signupButtonSetup();
         databaseInit();
     }
@@ -91,6 +96,9 @@ public class RegisterActivity extends AppCompatActivity {
                 // If credentials are validated, save to Firebase and redirect to SelectRoleActivity
                 if (validated){
                     saveToFirebase();
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("key", dbref.getKey());
+                    editor.apply();
                     Intent selectRoleIntent = new Intent(RegisterActivity.this, SelectRoleActivity.class);
                     selectRoleIntent.putExtra("email",getEmail());
                     selectRoleIntent.putExtra("key", dbref.getKey());
