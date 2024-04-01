@@ -76,6 +76,29 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
 
     }
 
+    public void getTotalApplications(String employerEmail, FirebaseCountCallback callback){
+        DatabaseReference jobApplicationRef = db.getReference().child("Job Application");
+        jobApplicationRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int counter = 0;
+                //iterate the data and find count the total job applications posted by employer.
+                for (DataSnapshot jobApplications: snapshot.getChildren()){
+                    counter ++;
+                }
+                callback.dataCount(counter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+
     private void updatePieChart(int jobs, int applications) {
         if (jobs > 0) {
             pieChart.addPieSlice(new PieModel("My Jobs", jobs, Color.parseColor("#008000"))); //yellow
