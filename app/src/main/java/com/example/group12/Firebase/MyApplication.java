@@ -2,6 +2,7 @@ package com.example.group12.Firebase;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
@@ -53,8 +54,11 @@ public class MyApplication extends Application {
 
     FirebaseDatabaseManager dbManager;
 
-    //private long orginalCount; //Count the number items in the database
-
+    private SharedPreferences userPreferences;
+    private String salaryPreferences;
+    private String titlePreferences;
+    private boolean salaryMatch = true;
+    private boolean titleMatch = true;
     @Override
     public void onCreate(){
         super.onCreate();
@@ -116,19 +120,41 @@ public class MyApplication extends Application {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Map<String, Object> job = (Map<String, Object>) snapshot.getValue();
                 //test if job is a preferred job
-                getAccessToken(getApplicationContext(), new AccessTokenListener() {
-                    @Override
-                    public void onAccessTokenReceived(String token) {
-                        sendNotification(job, token);
+                retrievePreference();
+                if (checkPreferenceExist()) {
+                    float jobSalary = ((Number) job.get("salary")).floatValue();
+                    String title = (String) job.get("Title");
+                    if (salaryPreferences == null) {
+                        salaryMatch = true;
+                    } else {
+                        checkSalaryMatch(jobSalary);
+                    }
+                    if (titlePreferences == null) {
+                        titleMatch = true;
+                    } else {
+                        checkTitleMatch(title);
                     }
 
-                    @Override
-                    public void onAccessTokenError(Exception exception) {
-                        // Handle the error appropriately
-                        Log.d("Token Error", "Error getting access token: " + exception.getMessage());
-                        exception.printStackTrace();
+                    if (salaryMatch && titleMatch) {
+                        getAccessToken(getApplicationContext(), new AccessTokenListener() {
+                            @Override
+                            public void onAccessTokenReceived(String token) {
+                                sendNotification(job, token);
+                            }
+
+                            @Override
+                            public void onAccessTokenError(Exception exception) {
+                                // Handle the error appropriately
+                                Log.d("Token Error", "Error getting access token: " + exception.getMessage());
+                                exception.printStackTrace();
+                            }
+                        });
                     }
-                });
+
+                }
+                else{
+                    Log.d("No use preference", "true");
+                }
             }
 
             @Override
@@ -218,6 +244,35 @@ public class MyApplication extends Application {
         } catch (JSONException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
+        }
+    }
+
+    public void retrievePreference(){
+        userPreferences = getSharedPreferences("userPreferences", Context.MODE_PRIVATE);
+        salaryPreferences = userPreferences.getString("preferred_salary", null);
+        titlePreferences = userPreferences.getString("preferred_job_title", null);
+    }
+
+    private boolean checkPreferenceExist(){
+        return !(salaryPreferences == null & titlePreferences == null);
+    }
+
+    private void checkSalaryMatch(float jobSalary){
+        int preferenceInt = Integer.parseInt(salaryPreferences);
+        if (jobSalary >= preferenceInt - 5 && jobSalary <= preferenceInt + 5){
+            salaryMatch = true;
+        }
+        else{
+            salaryMatch = false;
+        }
+    }
+
+    private void checkTitleMatch(String title){
+        if (title.toLowerCase().contains(titlePreferences.toLowerCase())){
+            titleMatch = true;
+        }
+        else{
+            titleMatch = false;
         }
     }
 
