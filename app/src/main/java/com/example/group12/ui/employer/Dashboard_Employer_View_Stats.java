@@ -37,18 +37,23 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
         pieChart = findViewById(R.id.chart);
         initializeDatabase();
         employerEmail = getIntent().getStringExtra("email");
-        pieChart.addPieSlice(
-                new PieModel(
-                        "R",
-                        17,
-                        Color.parseColor("#FFA726")));
+        getTotalJobs(employerEmail, new FirebaseCountCallback() {
+            @Override
+            public void dataCount(int countOfJobs) {
+                Log.d("Job Count", "Count: "+ countOfJobs);
+                updatePieChart(countOfJobs, 0); // Initial call with 0 applications
+            }
+        });
 
-        pieChart.addPieSlice(
-                new PieModel(
-                        "Python",
-                        6,
-                        Color.parseColor("#66BB6A")));
-        pieChart.startAnimation();
+        getTotalApplications(employerEmail, new FirebaseCountCallback() {
+            @Override
+            public void dataCount(int countOfApplications) {
+                Log.d("Job Application", "Count: " + countOfApplications);
+                updatePieChart(0, countOfApplications); // Update only the applications part
+            }
+        });
+
+
     }
 
     public void getTotalJobs(String employerEmail, FirebaseCountCallback callback){
