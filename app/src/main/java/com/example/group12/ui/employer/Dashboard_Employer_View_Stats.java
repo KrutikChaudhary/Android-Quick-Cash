@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.group12.R;
 import com.example.group12.core.Constants;
@@ -22,7 +23,7 @@ import org.eazegraph.lib.models.PieModel;
 import java.util.Map;
 
 /**
- * Activity class for displaying the employer profile in the user dashboard.
+ * Activity class for displaying the employer statistics.
  */
 public class Dashboard_Employer_View_Stats extends AppCompatActivity {
     PieChart pieChart;
@@ -37,6 +38,29 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
         pieChart = findViewById(R.id.chart);
         initializeDatabase();
         employerEmail = getIntent().getStringExtra("email");
+
+        // Retrieve TextViews representing job and application counts
+        TextView textViewGreenCount = findViewById(R.id.textViewGreenCount);
+        TextView textViewYellowCount = findViewById(R.id.textViewYellowCount);
+
+        getTotalJobs(employerEmail, new FirebaseCountCallback() {
+            @Override
+            public void dataCount(int countOfJobs) {
+                Log.d("Job Count", "Count: "+ countOfJobs);
+                updatePieChart(countOfJobs, 0); // Initial call with 0 applications
+                textViewGreenCount.setText(String.valueOf(countOfJobs)); // Set job count
+            }
+        });
+
+        getTotalApplications(employerEmail, new FirebaseCountCallback() {
+            @Override
+            public void dataCount(int countOfApplications) {
+                Log.d("Job Application", "Count: " + countOfApplications);
+                updatePieChart(0, countOfApplications); // Update only the applications part
+                textViewYellowCount.setText(String.valueOf(countOfApplications)); // Set application count
+            }
+        });
+
         getTotalJobs(employerEmail, new FirebaseCountCallback() {
             @Override
             public void dataCount(int countOfJobs) {
@@ -108,10 +132,10 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
 
     private void updatePieChart(int jobs, int applications) {
         if (jobs > 0) {
-            pieChart.addPieSlice(new PieModel("My Jobs", jobs, Color.parseColor("#008000"))); //yellow
+            pieChart.addPieSlice(new PieModel("My Jobs", jobs, Color.parseColor("#008000"))); //green
         }
         if (applications > 0) {
-            pieChart.addPieSlice(new PieModel("Job Applications", applications, Color.parseColor("#FFA726"))); //grey
+            pieChart.addPieSlice(new PieModel("Job Applications", applications, Color.parseColor("#FFA726"))); //yellow
         }
         pieChart.startAnimation();
     }
