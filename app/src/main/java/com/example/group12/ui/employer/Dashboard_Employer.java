@@ -16,10 +16,12 @@ import com.example.group12.R;
  */
 public class Dashboard_Employer extends AppCompatActivity {
     Button payEmployeesButton; // Button to navigate to the pay employees activity
+    String employerEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_employer);
+        employerEmail = getIntent().getStringExtra("email");
 
         // Set up UI components
         setupPayEmployeeButton();
@@ -66,6 +68,7 @@ public class Dashboard_Employer extends AppCompatActivity {
             public void onClick(View v) {
                 // Navigate to the post job activity
                 Intent intent = new Intent(Dashboard_Employer.this, Dashboard_Employer_View_Stats.class);
+                intent.putExtra("email",employerEmail);
                 Dashboard_Employer.this.startActivity(intent);
             }
         });
