@@ -4,6 +4,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.group12.locationDetection.LocationInfo;
+import com.example.group12.util.EmailCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -183,6 +184,26 @@ public class FirebaseDatabaseManager
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Handle database error if any
+            }
+        });
+    }
+
+    public void getUserEmail(String key, EmailCallback callback) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(key);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Map<String, Object> user = (Map<String, Object>) snapshot.getValue();
+                String email = null;
+                if (user != null) {
+                    email = (String) user.get("Email");
+                }
+                callback.onCallback(email); // Invoke the callback with the email value
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle onCancelled
             }
         });
     }
