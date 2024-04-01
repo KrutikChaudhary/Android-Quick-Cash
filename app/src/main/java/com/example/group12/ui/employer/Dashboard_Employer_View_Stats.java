@@ -28,14 +28,16 @@ import java.util.Map;
 public class Dashboard_Employer_View_Stats extends AppCompatActivity {
     PieChart pieChart;
     FirebaseDatabase db;
+    String employerEmail;
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_employer_view_stats);
         pieChart = findViewById(R.id.chart);
         initializeDatabase();
+        employerEmail = getIntent().getStringExtra("email");
         pieChart.addPieSlice(
                 new PieModel(
                         "R",
