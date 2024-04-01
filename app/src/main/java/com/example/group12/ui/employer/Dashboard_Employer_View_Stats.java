@@ -37,4 +37,14 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
                         Color.parseColor("#66BB6A")));
         pieChart.startAnimation();
     }
+
+    private void updatePieChart(int jobs, int applications) {
+        if (jobs > 0) {
+            pieChart.addPieSlice(new PieModel("My Jobs", jobs, Color.parseColor("#008000"))); //yellow
+        }
+        if (applications > 0) {
+            pieChart.addPieSlice(new PieModel("Job Applications", applications, Color.parseColor("#FFA726"))); //grey
+        }
+        pieChart.startAnimation();
+    }
 }
