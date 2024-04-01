@@ -61,23 +61,6 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
             }
         });
 
-        getTotalJobs(employerEmail, new FirebaseCountCallback() {
-            @Override
-            public void dataCount(int countOfJobs) {
-                Log.d("Job Count", "Count: "+ countOfJobs);
-                updatePieChart(countOfJobs, 0); // Initial call with 0 applications
-            }
-        });
-
-        getTotalApplications(employerEmail, new FirebaseCountCallback() {
-            @Override
-            public void dataCount(int countOfApplications) {
-                Log.d("Job Application", "Count: " + countOfApplications);
-                updatePieChart(0, countOfApplications); // Update only the applications part
-            }
-        });
-
-
     }
 
     public void getTotalJobs(String employerEmail, FirebaseCountCallback callback){
