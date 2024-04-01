@@ -75,8 +75,8 @@ public class LogInActivity extends AppCompatActivity {
                         Intent intent;
                         if (isValid){
                             Toast.makeText(LogInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            updateSavedUserInfo(key);
                             if (role.equals("Employee")){
-
                                 intent = new Intent(LogInActivity.this, Dashboard_User.class);
                                 intent.putExtra("key", key);
                                 intent.putExtra("email", email_text);
@@ -106,6 +106,12 @@ public class LogInActivity extends AppCompatActivity {
 
     private void retriveSaved(){
         userKey = preferences.getString("key", null);
+    }
+
+    private void updateSavedUserInfo(String key){
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("key", key);
+        editor.apply();
     }
 
 }
