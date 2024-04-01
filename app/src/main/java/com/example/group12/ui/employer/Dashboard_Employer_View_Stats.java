@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.group12.R;
+import com.example.group12.core.Constants;
 import com.example.group12.util.FirebaseCountCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,7 +35,7 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_employer_view_stats);
         pieChart = findViewById(R.id.chart);
-
+        initializeDatabase();
         pieChart.addPieSlice(
                 new PieModel(
                         "R",
@@ -107,5 +108,9 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
             pieChart.addPieSlice(new PieModel("Job Applications", applications, Color.parseColor("#FFA726"))); //grey
         }
         pieChart.startAnimation();
+    }
+
+    private void initializeDatabase(){
+        this.db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
     }
 }
