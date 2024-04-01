@@ -42,7 +42,7 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         databaseInit();
         setContentView(R.layout.activity_log_in);
-        preferences = getSharedPreferences("userKey", Context.MODE_PRIVATE);
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         retriveSaved();
         uiSetUp();
         validator = new LoginValidator();
@@ -75,15 +75,12 @@ public class LogInActivity extends AppCompatActivity {
                         Intent intent;
                         if (isValid){
                             Toast.makeText(LogInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                            updateSavedUserInfo(key);
+                            updateSavedUserInfo(key, email_text);
                             if (role.equals("Employee")){
                                 intent = new Intent(LogInActivity.this, Dashboard_User.class);
-                                intent.putExtra("key", key);
-                                intent.putExtra("email", email_text);
                             }
                             else{
                                 intent = new Intent(LogInActivity.this, Dashboard_Employer.class);
-                                intent.putExtra("key", key);
                             }
 
                             LogInActivity.this.startActivity(intent);
@@ -108,9 +105,10 @@ public class LogInActivity extends AppCompatActivity {
         userKey = preferences.getString("key", null);
     }
 
-    private void updateSavedUserInfo(String key){
+    private void updateSavedUserInfo(String key, String email){
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("key", key);
+        editor.putString("email", email);
         editor.apply();
     }
 

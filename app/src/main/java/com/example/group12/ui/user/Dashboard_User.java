@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.ContentInfo;
 import android.widget.Button;
 
 import android.view.View;
@@ -28,15 +31,17 @@ public class Dashboard_User extends AppCompatActivity {
     RecyclerView recyclerView;
     JobAdapter viewJobAdapter;
     String key;
+    String email;
     Button findJobButton;
     Button myPayPal;
-    String email;
+
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_user);
-        email = getIntent().getStringExtra("email");
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         init();
         viewJobs();
         findJobButtonSetup();
@@ -49,7 +54,8 @@ public class Dashboard_User extends AppCompatActivity {
     protected void init(){
         recyclerView = findViewById(R.id.filteredJob_recyclerView);
         recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        key = getIntent().getStringExtra("key");
+        key = preferences.getString("key", "");
+        email = preferences.getString("email", "");
     }
 
     /**
