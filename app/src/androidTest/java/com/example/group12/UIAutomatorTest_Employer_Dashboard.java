@@ -59,7 +59,7 @@ public class UIAutomatorTest_Employer_Dashboard {
         assertTrue(yourJobsButton.exists());
         UiObject postJobButton = device.findObject(new UiSelector().text("Post a Job"));
         assertTrue(postJobButton.exists());
-        UiObject yourProfileButton = device.findObject(new UiSelector().text("Your Profile"));
+        UiObject yourProfileButton = device.findObject(new UiSelector().text("View Stats"));
         assertTrue(yourProfileButton.exists());
     }
 
@@ -82,11 +82,16 @@ public class UIAutomatorTest_Employer_Dashboard {
         // Test method implementation
     }
 
-    /**
-     * Test to check if moving to the Your Profile page is successful.
-     */
     @Test
-    public void checkIfMoved2YourProfile() throws UiObjectNotFoundException {
-        // Test method implementation
+    public void checkIfStatsButtonVisible() {
+        UiObject viewStatsButton = device.findObject(new UiSelector().text("View Stats"));
+        assertTrue(viewStatsButton.exists());
+    }
+
+    @Test
+    public void checkIfMoveToStatsPage() throws UiObjectNotFoundException {
+        UiObject viewStatsButton = device.findObject(new UiSelector().text("View Stats"));
+        assertTrue(viewStatsButton.exists());
+        viewStatsButton.click();
     }
 }

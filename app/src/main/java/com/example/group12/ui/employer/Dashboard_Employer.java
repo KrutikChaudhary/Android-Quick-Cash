@@ -16,15 +16,17 @@ import com.example.group12.R;
  */
 public class Dashboard_Employer extends AppCompatActivity {
     Button payEmployeesButton; // Button to navigate to the pay employees activity
-
+    String employerEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_employer);
+        employerEmail = getIntent().getStringExtra("email");
 
         // Set up UI components
         setupPayEmployeeButton();
         postJobButtonSetup();
+        viewStatsButton();
     }
 
     /**
@@ -37,8 +39,8 @@ public class Dashboard_Employer extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to the post job activity
-                Intent loginIntent = new Intent(Dashboard_Employer.this, Dashboard_Employer_PostJob.class);
-                Dashboard_Employer.this.startActivity(loginIntent);
+                Intent intent = new Intent(Dashboard_Employer.this, Dashboard_Employer_PostJob.class);
+                Dashboard_Employer.this.startActivity(intent);
             }
         });
     }
@@ -58,4 +60,18 @@ public class Dashboard_Employer extends AppCompatActivity {
             }
         });
     }
+
+    protected void viewStatsButton() {
+        Button viewStatsButton = findViewById(R.id.employerViewStats);
+        viewStatsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to the post job activity
+                Intent intent = new Intent(Dashboard_Employer.this, Dashboard_Employer_View_Stats.class);
+                intent.putExtra("email",employerEmail);
+                Dashboard_Employer.this.startActivity(intent);
+            }
+        });
+    }
+
 }
