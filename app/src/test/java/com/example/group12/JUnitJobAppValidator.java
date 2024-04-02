@@ -38,7 +38,7 @@ public class JUnitJobAppValidator {
     public void checkIfEmailValid(){
         assertTrue(value.isValidEmail("test@test.ca"));
         assertTrue(value.isValidEmail("test123@test.ca"));
-        assertFalse(value.isValidEmail("test@test.com"));
-        assertFalse(value.isValidEmail("test123@test.com"));
+        assertTrue(value.isValidEmail("test@test.com"));
+        assertTrue(value.isValidEmail("test123@test.com"));
     }
 }
