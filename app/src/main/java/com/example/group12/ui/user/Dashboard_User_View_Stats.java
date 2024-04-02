@@ -19,12 +19,15 @@ import org.eazegraph.lib.models.PieModel;
 public class Dashboard_User_View_Stats extends AppCompatActivity {
     PieChart pieChart;
     FirebaseDatabase db;
+    String email;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_user_view_stats);
         pieChart = findViewById(R.id.chart);
+        email = getIntent().getStringExtra("email");
         initializeDatabase();
 
         pieChart.addPieSlice(
