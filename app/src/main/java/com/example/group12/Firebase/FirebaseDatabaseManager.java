@@ -212,6 +212,26 @@ public class FirebaseDatabaseManager
             }
         });
     }
+    public void getUserEmail(String key, EmailCallback callback) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(key);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Map<String, Object> user = (Map<String, Object>) snapshot.getValue();
+                String email = null;
+                if (user != null) {
+                    email = (String) user.get("Email");
+                }
+                callback.onCallback(email); // Invoke the callback with the email value
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle onCancelled
+            }
+        });
+    }
+
 
     /**
      * Retrieves DatabaseReference for User node.
