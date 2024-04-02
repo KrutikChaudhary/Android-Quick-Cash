@@ -37,20 +37,141 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHeader" />
 
-    <!-- Your Jobs Graph TextView -->
-    <TextView
-        android:id="@+id/textViewJobsGraph"
+    <!-- Your Jobs Graph Layout -->
+    <LinearLayout
+        android:id="@+id/layoutJobsGraph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="16dp"
-        android:text="Your Jobs Graph"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.915" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Green Box for One Category -->
+        <LinearLayout
+            android:id="@+id/layoutGreenBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_vertical">
+
+            <View
+                android:id="@+id/greenBox"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="#008000" />
+
+            <TextView
+                android:id="@+id/textViewGreenCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jobs Accepted"
+                android:textColor="@color/black"
+                android:layout_marginStart="8dp" />
+
+            <TextView
+                android:id="@+id/textViewGreenArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="->"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp" />
+
+            <TextView
+                android:id="@+id/textViewGreenCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textColor="@color/black"
+                android:layout_marginStart="4dp" />
+        </LinearLayout>
+
+        <!-- Yellow Box for Another Category -->
+        <LinearLayout
+            android:id="@+id/layoutYellowBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <View
+                android:id="@+id/yellowBox"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="#FFA726" />
+
+            <TextView
+                android:id="@+id/textViewYellowCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jobs In Review"
+                android:textColor="@color/black"
+                android:layout_marginStart="8dp" />
+
+            <TextView
+                android:id="@+id/textViewGreenArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="->"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp"
+                tools:ignore="DuplicateIds" />
+
+            <TextView
+                android:id="@+id/textViewYellowCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textColor="@color/black"
+                android:layout_marginStart="4dp" />
+        </LinearLayout>
+
+        <!-- Red Box for Another Category -->
+        <LinearLayout
+            android:id="@+id/layoutRedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <View
+                android:id="@+id/redBox"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="#FF0000" />
+
+            <TextView
+                android:id="@+id/textViewRedCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jobs Rejected"
+                android:textColor="@color/black"
+                android:layout_marginStart="8dp" />
+
+            <TextView
+                android:id="@+id/textViewGreenArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="->"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp"
+                tools:ignore="DuplicateIds" />
+
+            <TextView
+                android:id="@+id/textViewRedCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textColor="@color/black"
+                android:layout_marginStart="4dp" />
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
