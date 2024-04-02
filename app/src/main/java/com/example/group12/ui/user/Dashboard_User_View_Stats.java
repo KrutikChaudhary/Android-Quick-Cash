@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.group12.R;
 import com.example.group12.core.Constants;
@@ -38,11 +39,17 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
         email = getIntent().getStringExtra("email");
         initializeDatabase();
 
+        // Retrieve TextViews representing job and application counts
+        TextView textViewGreenCount = findViewById(R.id.textViewGreenCount); // accepted jobs
+        TextView textViewYellowCount = findViewById(R.id.textViewYellowCount); // in review jobs
+        TextView textViewRedCount = findViewById(R.id.textViewRedCount); // rejected jobs
+
         getTotalInReviewJobs(email, new FirebaseCountCallback() {
             @Override
             public void dataCount(int count) {
                 Log.d("Job In Review Count", "In Review Count: "+ count);
-                updatePieChart(count, 0,0); // Initial call with 0 applications
+                updatePieChart(count, 0,0);
+                textViewYellowCount.setText(String.valueOf(count));
             }
         });
 
@@ -50,7 +57,8 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
             @Override
             public void dataCount(int count) {
                 Log.d("Job Accepted Count", "Accepted Count: "+ count);
-                updatePieChart(0, count,0); // Initial call with 0 applications
+                updatePieChart(0, count,0);
+                textViewGreenCount.setText(String.valueOf(count));
             }
         });
 
@@ -58,7 +66,8 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
             @Override
             public void dataCount(int count) {
                 Log.d("Job Rejected Count", "Rejected Count: "+ count);
-                updatePieChart(0, 0,count); // Initial call with 0 applications
+                updatePieChart(0, 0,count);
+                textViewRedCount.setText(String.valueOf(count));
             }
         });
     }
