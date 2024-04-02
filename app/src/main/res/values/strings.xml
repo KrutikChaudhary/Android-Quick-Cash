@@ -20,7 +20,7 @@
 
     <string name="quick_cash_user_dashboard">Quick Cash - User Dashboard</string>
     <string name="find_jobs">Find Jobs</string>
-    <string name="all_jobs">All Jobs</string>
+    <string name="preferred_jobs">My Preference</string>
     <string name="all_stats">All Stats</string>
     <string name="your_profile_user">Your Profile</string>
     <string name="my_paypal">My PayPal</string>
