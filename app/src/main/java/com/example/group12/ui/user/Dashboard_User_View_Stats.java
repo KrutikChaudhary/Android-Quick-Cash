@@ -1,17 +1,24 @@
 package com.example.group12.ui.user;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.group12.R;
 import com.example.group12.core.Constants;
+import com.example.group12.util.FirebaseCountCallback;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
+
+import java.util.Map;
 
 /**
  * Activity class for displaying the user profile in the user dashboard.
@@ -42,6 +49,99 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
                         6,
                         Color.parseColor("#66BB6A")));
         pieChart.startAnimation();
+    }
+
+    public void getTotalInReviewJobs(String employeeEmail, FirebaseCountCallback callback){
+        DatabaseReference jobApplicationRef = db.getReference().child("Job Application");
+        jobApplicationRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int counter =0;
+                //iterate the data and find count the total in review jobs.
+                for (DataSnapshot jobApplication: snapshot.getChildren()){
+                    Map<String, Object> userCredentials = (Map<String, Object>) jobApplication.getValue();
+                    String email = (String) userCredentials.get("Email");
+                    String applicationStatus = (String) userCredentials.get("applicationStatus");
+
+                    if(employeeEmail.equals(email)){
+                        if(applicationStatus.equals("InReview")){
+                            counter++;
+                        }
+                    }
+                }
+
+                callback.dataCount(counter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    public void getTotalAcceptedJobs(String employeeEmail, FirebaseCountCallback callback){
+        DatabaseReference jobApplicationRef = db.getReference().child("Job Application");
+        jobApplicationRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int counter =0;
+                //iterate the data and find count the total accepted jobs.
+                for (DataSnapshot jobApplication: snapshot.getChildren()){
+                    Map<String, Object> userCredentials = (Map<String, Object>) jobApplication.getValue();
+                    String email = (String) userCredentials.get("Email");
+                    String applicationStatus = (String) userCredentials.get("applicationStatus");
+
+                    if(employeeEmail.equals(email)){
+                        if(applicationStatus.equals("Accepted")){
+                            counter++;
+                        }
+                    }
+                }
+
+                callback.dataCount(counter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    public void getTotalRejectedJobs(String employeeEmail, FirebaseCountCallback callback){
+        DatabaseReference jobApplicationRef = db.getReference().child("Job Application");
+        jobApplicationRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int counter =0;
+                //iterate the data and find count the total rejected jobs.
+                for (DataSnapshot jobApplication: snapshot.getChildren()){
+                    Map<String, Object> userCredentials = (Map<String, Object>) jobApplication.getValue();
+                    String email = (String) userCredentials.get("Email");
+                    String applicationStatus = (String) userCredentials.get("applicationStatus");
+
+                    if(employeeEmail.equals(email)){
+                        if(applicationStatus.equals("Rejected")){
+                            counter++;
+                        }
+                    }
+                }
+
+                callback.dataCount(counter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     private void updatePieChart(int jobsInReview, int jobsAccepted, int jobsRejected) {
