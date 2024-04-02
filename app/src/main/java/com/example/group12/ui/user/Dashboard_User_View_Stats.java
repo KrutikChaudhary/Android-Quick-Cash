@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.group12.R;
 import com.example.group12.core.Constants;
@@ -37,18 +38,29 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
         email = getIntent().getStringExtra("email");
         initializeDatabase();
 
-        pieChart.addPieSlice(
-                new PieModel(
-                        "R",
-                        17,
-                        Color.parseColor("#FFA726")));
+        getTotalInReviewJobs(email, new FirebaseCountCallback() {
+            @Override
+            public void dataCount(int count) {
+                Log.d("Job In Review Count", "In Review Count: "+ count);
+                updatePieChart(count, 0,0); // Initial call with 0 applications
+            }
+        });
 
-        pieChart.addPieSlice(
-                new PieModel(
-                        "Python",
-                        6,
-                        Color.parseColor("#66BB6A")));
-        pieChart.startAnimation();
+        getTotalAcceptedJobs(email, new FirebaseCountCallback() {
+            @Override
+            public void dataCount(int count) {
+                Log.d("Job Accepted Count", "Accepted Count: "+ count);
+                updatePieChart(0, count,0); // Initial call with 0 applications
+            }
+        });
+
+        getTotalRejectedJobs(email, new FirebaseCountCallback() {
+            @Override
+            public void dataCount(int count) {
+                Log.d("Job Rejected Count", "Rejected Count: "+ count);
+                updatePieChart(0, 0,count); // Initial call with 0 applications
+            }
+        });
     }
 
     public void getTotalInReviewJobs(String employeeEmail, FirebaseCountCallback callback){
