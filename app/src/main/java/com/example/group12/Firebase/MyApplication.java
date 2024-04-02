@@ -259,6 +259,7 @@ public class MyApplication extends Application {
         titlePreferences = user.getString("title", null);
     }
 
+    //This method fetches user preferences from the database and stored locally
     public void fetchPreferences(FetchPreferencesCallback callback){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(user.getString("key", ""));
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
