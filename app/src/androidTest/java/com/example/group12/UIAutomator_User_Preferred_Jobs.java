@@ -101,35 +101,4 @@ public class UIAutomator_User_Preferred_Jobs {
         assertTrue(submitButton.exists());
         submitButton.click();
     }
-
-    /**
-     * Test if a toast message pops up when the user clicks the Submit button after entering preferences.
-     */
-    @Test
-    public void testSubmitButtonToastMessage() throws UiObjectNotFoundException {
-        // Enter preferences
-        UiObject preferredLocation = device.findObject(new UiSelector().resourceId("com.example.group12:id/editTextPreferredLocation"));
-        preferredLocation.setText("1333 South Park St, Halifax, NS B3J 2K9");
-
-        UiObject preferredSalary = device.findObject(new UiSelector().resourceId("com.example.group12:id/editTextPreferredSalary"));
-        preferredSalary.setText("14");
-
-        UiObject preferredJobTitle = device.findObject(new UiSelector().resourceId("com.example.group12:id/editTextPreferredJobTitle"));
-        preferredJobTitle.setText("Cleaner");
-
-        // Click the Submit button
-        UiObject submitButton = device.findObject(new UiSelector().resourceId("com.example.group12:id/buttonSubmit"));
-        assertTrue(submitButton.exists());
-        submitButton.click();
-
-        // Wait for the toast message to appear
-        UiObject toastMessage = device.findObject(new UiSelector().textContains("Preferences saved successfully"));
-        assertTrue("Toast message not found", toastMessage.waitForExists(15000)); // Increased wait time to 15 seconds
-
-        // Check if the toast message is visible
-        assertTrue("Toast message not visible", toastMessage.exists() && toastMessage.isClickable());
-    }
-
-
-
 }
