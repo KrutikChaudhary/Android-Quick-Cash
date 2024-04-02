@@ -20,6 +20,9 @@
         android:theme="@style/Theme.Group12"
         tools:targetApi="31">
         <activity
+            android:name=".ui.user.Dashboard_User_PreferredJobs"
+            android:exported="false" />
+        <activity
             android:name=".ui.user.JobApplication.JobApply"
             android:exported="false" />
         <activity
