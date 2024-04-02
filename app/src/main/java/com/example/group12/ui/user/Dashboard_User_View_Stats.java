@@ -44,6 +44,19 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
         pieChart.startAnimation();
     }
 
+    private void updatePieChart(int jobsInReview, int jobsAccepted, int jobsRejected) {
+        if (jobsInReview > 0) {
+            pieChart.addPieSlice(new PieModel("Jobs in Review", jobsInReview, Color.parseColor("#FFA726"))); //yellow
+        }
+        if (jobsAccepted > 0) {
+            pieChart.addPieSlice(new PieModel("Jobs Accepted", jobsAccepted, Color.parseColor("#008000"))); //yellow
+        }
+        if (jobsRejected > 0) {
+            pieChart.addPieSlice(new PieModel("Jobs Rejected", jobsRejected, Color.parseColor("#FF0000"))); //red
+        }
+        pieChart.startAnimation();
+    }
+
     private void initializeDatabase(){
         this.db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
     }
