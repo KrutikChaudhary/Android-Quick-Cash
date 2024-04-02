@@ -38,7 +38,7 @@ public class JobApply extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_apply);
         fullName = findViewById(R.id.applyEnterFullName);
-        emailView = findViewById(R.id.TempEmail);
+        //emailView = findViewById(R.id.TempEmail);
         email = getIntent().getStringExtra("email");
         merchantID = getIntent().getStringExtra("merchantID");
         emailView.setText(email);
