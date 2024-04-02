@@ -1,4 +1,5 @@
 package com.example.group12.Firebase;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,8 @@ public class FirebaseDatabaseManager
     private DatabaseReference jobApplicationRef;
     private DatabaseReference userLocation;
     private DatabaseReference jobRef;
+
+    private SharedPreferences preferences;
 
     /**
      * Default constructor.
