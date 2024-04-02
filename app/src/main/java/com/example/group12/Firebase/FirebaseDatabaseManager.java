@@ -187,6 +187,32 @@ public class FirebaseDatabaseManager
         });
     }
 
+    public void savePreferenceToFirebase(String key, String preferredLocation, String preferredSalary, String preferredJobTitle){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(key);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Retrieve user data as a Map from the DataSnapshot
+                Map<String, Object> user = (Map<String, Object>) snapshot.getValue();
+
+                if (user != null) {
+                // Update the user's preference with the new preference
+                    user.put("PreferredLocation", preferredLocation);
+                    user.put("PreferredSalary", preferredSalary);
+                    user.put("PreferredJobTitile", preferredJobTitle);
+                // Set the updated user data back to the database
+                    ref.setValue(user);
+                } else {
+                    // Log an error message if user data is null
+                    Log.e("null user", "User map is null");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
     /**
      * Retrieves DatabaseReference for User node.
      * @return DatabaseReference for User node
