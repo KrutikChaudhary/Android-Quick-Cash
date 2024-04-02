@@ -17,6 +17,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.group12.core.Constants;
 import com.example.group12.util.AccessTokenListener;
+import com.example.group12.util.FetchPreferencesCallback;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,15 +47,13 @@ public class MyApplication extends Application {
     //new endpoint
     private static final String PUSH_NOTIFICATION_ENDPOINT ="https://fcm.googleapis.com/v1/projects/quickcash-197c8/messages:send";
 
-    // for the send notification button
-    private Button sendNotificationBtn;
 
     //provided by volley library to make a network request
     private RequestQueue requestQueue;
 
     FirebaseDatabaseManager dbManager;
 
-    private SharedPreferences userPreferences;
+    private SharedPreferences user;
     private String salaryPreferences;
     private String titlePreferences;
     private boolean salaryMatch = true;
@@ -66,6 +65,7 @@ public class MyApplication extends Application {
     }
 
     private void init(){
+        user = getSharedPreferences("user", Context.MODE_PRIVATE);
         databaseInit();
         requestQueue = Volley.newRequestQueue(this);
         FirebaseMessaging.getInstance().subscribeToTopic("jobs");
@@ -120,41 +120,47 @@ public class MyApplication extends Application {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Map<String, Object> job = (Map<String, Object>) snapshot.getValue();
                 //test if job is a preferred job
-                retrievePreference();
-                if (checkPreferenceExist()) {
-                    float jobSalary = ((Number) job.get("salary")).floatValue();
-                    String title = (String) job.get("Title");
-                    if (salaryPreferences == null) {
-                        salaryMatch = true;
-                    } else {
-                        checkSalaryMatch(jobSalary);
-                    }
-                    if (titlePreferences == null) {
-                        titleMatch = true;
-                    } else {
-                        checkTitleMatch(title);
-                    }
-
-                    if (salaryMatch && titleMatch) {
-                        getAccessToken(getApplicationContext(), new AccessTokenListener() {
-                            @Override
-                            public void onAccessTokenReceived(String token) {
-                                sendNotification(job, token);
+                fetchPreferences(new FetchPreferencesCallback() {
+                    @Override
+                    public void onFectchPreferencesCompleted() {
+                        retrievePreference();
+                        if (checkPreferenceExist()) {
+                            float jobSalary = ((Number) job.get("salary")).floatValue();
+                            String title = (String) job.get("Title");
+                            if (salaryPreferences == null) {
+                                salaryMatch = true;
+                            } else {
+                                checkSalaryMatch(jobSalary);
+                            }
+                            if (titlePreferences == null) {
+                                titleMatch = true;
+                            } else {
+                                checkTitleMatch(title);
                             }
 
-                            @Override
-                            public void onAccessTokenError(Exception exception) {
-                                // Handle the error appropriately
-                                Log.d("Token Error", "Error getting access token: " + exception.getMessage());
-                                exception.printStackTrace();
-                            }
-                        });
-                    }
+                            if (salaryMatch && titleMatch) {
+                                getAccessToken(getApplicationContext(), new AccessTokenListener() {
+                                    @Override
+                                    public void onAccessTokenReceived(String token) {
+                                        sendNotification(job, token);
+                                    }
 
-                }
-                else{
-                    Log.d("No use preference", "true");
-                }
+                                    @Override
+                                    public void onAccessTokenError(Exception exception) {
+                                        // Handle the error appropriately
+                                        Log.d("Token Error", "Error getting access token: " + exception.getMessage());
+                                        exception.printStackTrace();
+                                    }
+                                });
+                            }
+
+                        }
+                        else{
+                            Log.d("No user preference", "true");
+                        }
+                    }
+                });
+
             }
 
             @Override
@@ -248,13 +254,58 @@ public class MyApplication extends Application {
     }
 
     public void retrievePreference(){
-        userPreferences = getSharedPreferences("userPreferences", Context.MODE_PRIVATE);
-        salaryPreferences = userPreferences.getString("preferred_salary", null);
-        titlePreferences = userPreferences.getString("preferred_job_title", null);
+
+        salaryPreferences = user.getString("salary", null);
+        titlePreferences = user.getString("title", null);
     }
 
+    public void fetchPreferences(FetchPreferencesCallback callback){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(user.getString("key", ""));
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Map<String, Object> userMap = (Map<String, Object>) snapshot.getValue();
+                SharedPreferences.Editor editor = user.edit();
+                String salary = (String) userMap.get("PreferredSalary");
+                String location = (String) userMap.get("PreferredLocation");
+                String title = (String) userMap.get("PreferredJobTitle");
+                if (salary != null){
+                    editor.putString("salary", salary);
+                    Log.e("Preferred Salary", salary);
+                }
+                else{
+                    editor.putString("salary", null);
+                }
+                if (location != null){
+                    editor.putString("location", location);
+                }
+                else{
+                    editor.putString("location", null);
+                }
+                if (title != null){
+                    editor.putString("title", title);
+                }
+                else {
+                    editor.putString("title", null);
+                }
+                editor.apply();
+
+                callback.onFectchPreferencesCompleted();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     private boolean checkPreferenceExist(){
-        return !(salaryPreferences == null & titlePreferences == null);
+        if (salaryPreferences == null && titlePreferences == null){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     private void checkSalaryMatch(float jobSalary){
