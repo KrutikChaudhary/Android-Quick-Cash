@@ -1,6 +1,9 @@
 package com.example.group12.ui.user;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,14 +22,15 @@ public class Dashboard_User_PreferredJobs extends AppCompatActivity {
     private EditText editTextPreferredJobTitle;
     private Button buttonSubmit;
 
+    private SharedPreferences preferences;
     private String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_user_preferred_jobs);
-
-        key = getIntent().getStringExtra("key");
+        preferences = getPreferences(Context.MODE_PRIVATE);
+        key = preferences.getString("key", "");
 
         // Initialize views
         editTextPreferredLocation = findViewById(R.id.editTextPreferredLocation);
@@ -35,8 +39,15 @@ public class Dashboard_User_PreferredJobs extends AppCompatActivity {
         buttonSubmit = findViewById(R.id.buttonSubmit);
 
         // Set click listener for submit button
-        buttonSubmit.setOnClickListener(view -> saveToFirebase(key,editTextPreferredLocation.getText().toString(),
-                editTextPreferredSalary.getText().toString(),editTextPreferredJobTitle.getText().toString()));
+        buttonSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveToFirebase(key,editTextPreferredLocation.getText().toString(),
+                        editTextPreferredSalary.getText().toString(),editTextPreferredJobTitle.getText().toString());
+                saveLocally(editTextPreferredLocation.getText().toString(),
+                        editTextPreferredSalary.getText().toString(),editTextPreferredJobTitle.getText().toString());
+            }
+        });
     }
 
     private void saveToFirebase(String key, String preferredLocation, String preferredSalary, String preferredJobTitle) {
@@ -54,5 +65,15 @@ public class Dashboard_User_PreferredJobs extends AppCompatActivity {
             Toast.makeText(this, "Preferences submitted successfully!", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void saveLocally(String preferredLocation, String preferredSalary, String preferredJobTitle){
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("salary", preferredSalary);
+        editor.putString("location", preferredLocation);
+        editor.putString("title", preferredJobTitle);
+        editor.apply();
+    }
+
+
 
 }
