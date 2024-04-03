@@ -57,6 +57,7 @@ public class Dashboard_Employer extends AppCompatActivity {
             public void onClick(View v){
                 // Navigate to the pay employees activity
                 Intent intent = new Intent(Dashboard_Employer.this, Dashboard_Employer_PayEmployee.class);
+                intent.putExtra("email", employerEmail);
                 Dashboard_Employer.this.startActivity(intent);
             }
         });
