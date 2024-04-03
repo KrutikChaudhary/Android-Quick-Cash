@@ -31,6 +31,8 @@ public class JobApply extends AppCompatActivity {
     String email;
     String merchantID;
     TextView jobTitle;
+    String employerEmail;
+    String title;
     FirebaseDatabaseManager dbManager;
 
 
@@ -42,6 +44,9 @@ public class JobApply extends AppCompatActivity {
         jobTitle = findViewById(R.id.textViewJobTitle);
         email = getIntent().getStringExtra("email");
         merchantID = getIntent().getStringExtra("merchantID");
+        employerEmail = getIntent().getStringExtra("employerEmail");
+        title = getIntent().getStringExtra("title");
+        jobTitle.setText(title);
         applyJobButtonSetup();
     }
 
@@ -61,7 +66,7 @@ public class JobApply extends AppCompatActivity {
                     public void merchantIdAvailableResult(boolean isValid, String merchantID) {
                         if(isValid){
                             if(name!=null&&!name.equals("")){
-                                saveJobApplicationToFirebase(email, name, merchantID);
+                                saveJobApplicationToFirebase(email,employerEmail,title, name, merchantID);
                                 Intent intent = new Intent(JobApply.this, Dashboard_User.class);
                                 intent.putExtra("email",email);
                                 Log.d("JobAdapter", "Email received: " + email);
@@ -82,16 +87,10 @@ public class JobApply extends AppCompatActivity {
         });
     }
 
-    /**
-     * Saves the job application to Firebase.
-     * @param email The email of the applicant.
-     * @param fullname The full name of the applicant.
-     * @param merchantID The merchant ID of the applicant.
-     * @return DatabaseReference representing the location where the job application is saved in Firebase.
-     */
-    public DatabaseReference saveJobApplicationToFirebase(String email, String fullname, String merchantID){
+
+    public DatabaseReference saveJobApplicationToFirebase(String employeeEmail, String employerEmail, String jobTitle, String employeeName, String employeeMerchantID){
         dbManager = new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
-        DatabaseReference ref =  dbManager.saveJobApplicationToFirebase(email,fullname,merchantID);
+        DatabaseReference ref =  dbManager.saveJobApplicationToFirebase(employeeEmail,employerEmail,jobTitle,employeeName,employeeMerchantID);
         return ref;
     }
 }
