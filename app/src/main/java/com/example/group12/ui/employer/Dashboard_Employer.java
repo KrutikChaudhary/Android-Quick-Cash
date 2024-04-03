@@ -40,6 +40,7 @@ public class Dashboard_Employer extends AppCompatActivity {
             public void onClick(View v) {
                 // Navigate to the post job activity
                 Intent intent = new Intent(Dashboard_Employer.this, Dashboard_Employer_PostJob.class);
+                intent.putExtra("email", employerEmail);
                 Dashboard_Employer.this.startActivity(intent);
             }
         });

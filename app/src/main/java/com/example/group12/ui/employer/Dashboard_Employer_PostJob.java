@@ -29,12 +29,14 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
 
     // EditText fields for job details
     EditText title, duration, jobUrgency, jobSalary, location, jobDate;
+    
+    String employerEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_employer_post_job);
-
+        employerEmail = getIntent().getStringExtra("email");
         // Initialize Firebase database manager
         databaseInit();
 
@@ -134,8 +136,21 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
      * @param latitude Latitude of the job location
      * @param longitude Longitude of the job location
      */
-    public void saveJobsToFirebase(String jobTitle, String date, int expectedDuration, String urgency, float salary, String jobLocation, float latitude, float longitude){
-        dbManager.saveJobsToFirebase(jobTitle, date, expectedDuration, urgency, salary, jobLocation, latitude, longitude);
+    public void saveJobsToFirebase(String employerEmail, String jobTitle, String date, int expectedDuration, String urgency, float salary, String jobLocation, float latitude, float longitude){
+
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("employerEmail", employerEmail);
+        map.put("title", jobTitle);
+        map.put("startDate", date);
+        map.put("duration", expectedDuration);
+        map.put("urgency", urgency);
+        map.put("salary", salary);
+        map.put("location", location);
+        map.put("latitude", latitude);
+        map.put("longitude", longitude);
+        DatabaseReference dbref = this.jobRef.psuh();
+        dbref.setValue(map);
     }
 
     /**
