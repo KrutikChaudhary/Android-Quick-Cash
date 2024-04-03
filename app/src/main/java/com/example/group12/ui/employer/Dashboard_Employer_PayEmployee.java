@@ -13,7 +13,9 @@ import com.example.group12.model.JobApplication;
 import com.example.group12.util.JobApplicationAdapter;
 import com.example.group12.util.WrapLinearLayoutManager;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 /**
  * Activity class for the employer dashboard to pay employees.
@@ -24,12 +26,13 @@ public class Dashboard_Employer_PayEmployee extends AppCompatActivity {
     TextView listOfEmployees; // TextView to display the list of employees
     RecyclerView recyclerView; // RecyclerView to display job applications
     JobApplicationAdapter jobApplicationAdapter; // Adapter for job applications
+    String employerEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_employer_pay_employee);
-
+        employerEmail = getIntent().getStringExtra("email");
         // Initialize UI components and setup RecyclerView
         init();
         viewApplications();
@@ -43,10 +46,14 @@ public class Dashboard_Employer_PayEmployee extends AppCompatActivity {
 
     // Retrieve and display job applications
     protected void viewApplications(){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK)
+                .getReference().child("Job Application");
+        Query query = databaseReference.orderByChild("employerEmail").equalTo(employerEmail);
         // Configure FirebaseRecyclerOptions to retrieve job applications from Firebase Database
+
         final FirebaseRecyclerOptions<JobApplication> options = new FirebaseRecyclerOptions.Builder<JobApplication>()
-                .setQuery(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK)
-                        .getReference().child("Job Application"), JobApplication.class).build();
+                .setQuery(query, JobApplication.class).build();
+
         // Initialize the job application adapter with the retrieved options
         jobApplicationAdapter = new JobApplicationAdapter(options);
         // Set the adapter for the RecyclerView
