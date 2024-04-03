@@ -11,6 +11,7 @@ public class Job implements Serializable {
 
     private String startDate;
     private String urgency;
+    private String employerEmail;
 
     private String location;
 
@@ -34,7 +35,7 @@ public class Job implements Serializable {
      * @param latitude The latitude of the job location.
      * @param longitude The longitude of the job location.
      */
-    public Job(String title, float salary, int duration, String startDate, String location, String urgency, float latitude, float longitude){
+    public Job(String title, String employerEmail, float salary, int duration, String startDate, String location, String urgency, float latitude, float longitude){
         this.title = title;
         this.duration = duration;
         this.salary = salary;
@@ -42,6 +43,7 @@ public class Job implements Serializable {
         this.location = location;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.employerEmail = employerEmail;
     }
 
     // Getter and setter methods
@@ -89,5 +91,13 @@ public class Job implements Serializable {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getEmployerEmail() {
+        return employerEmail;
+    }
+
+    public void setEmployerEmail(String employerEmail) {
+        this.employerEmail = employerEmail;
     }
 }
