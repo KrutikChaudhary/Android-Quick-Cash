@@ -112,7 +112,7 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
                     Toast.makeText(Dashboard_Employer_PostJob.this, "Enter all the fields", Toast.LENGTH_SHORT).show();
                 } else {
                     // All fields are entered, proceed to save to Firebase
-                    saveJobsToFirebase(jobTitle, date, expectedDuration, urgency, salary, jobLocation, latitude, longitude );
+                    saveJobsToFirebase(employerEmail, jobTitle, date, expectedDuration, urgency, salary, jobLocation, latitude, longitude );
 
                     // Display success message
                     Toast.makeText(Dashboard_Employer_PostJob.this, "Job uploaded successfully", Toast.LENGTH_SHORT).show();
@@ -137,20 +137,7 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
      * @param longitude Longitude of the job location
      */
     public void saveJobsToFirebase(String employerEmail, String jobTitle, String date, int expectedDuration, String urgency, float salary, String jobLocation, float latitude, float longitude){
-
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("employerEmail", employerEmail);
-        map.put("title", jobTitle);
-        map.put("startDate", date);
-        map.put("duration", expectedDuration);
-        map.put("urgency", urgency);
-        map.put("salary", salary);
-        map.put("location", location);
-        map.put("latitude", latitude);
-        map.put("longitude", longitude);
-        DatabaseReference dbref = this.jobRef.psuh();
-        dbref.setValue(map);
+        dbManager.saveJobsToFirebase(employerEmail, jobTitle, date, expectedDuration, urgency, salary, jobLocation, latitude, longitude);
     }
 
     /**

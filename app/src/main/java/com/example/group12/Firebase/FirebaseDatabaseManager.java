@@ -85,10 +85,11 @@ public class FirebaseDatabaseManager
      * @param latitude Latitude of the job location
      * @param longitude Longitude of the job location
      */
-    public void saveJobsToFirebase(String jobTitle, String date, int expectedDuration, String urgency,
+    public void saveJobsToFirebase(String employerEmail, String jobTitle, String date, int expectedDuration, String urgency,
                                    float salary, String jobLocation, float latitude, float longitude){
         Map<String, Object> map = new HashMap<>();
 
+        map.put("employerEmail", employerEmail);
         map.put("title", jobTitle);
         map.put("startDate", date);
         map.put("duration", expectedDuration);
