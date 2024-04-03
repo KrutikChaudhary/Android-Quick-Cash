@@ -118,19 +118,15 @@ public class FirebaseDatabaseManager
         return dbref;
     }
 
-    /**
-     * Saves job application details to Firebase database.
-     * @param email User email
-     * @param name User name
-     * @param merchantID Merchant ID
-     * @return DatabaseReference for the saved job application
-     */
-    public DatabaseReference saveJobApplicationToFirebase(String email,String name, String merchantID){
-        Map<String, Object> map = new HashMap<>();
-        map.put("Email", email);
-        map.put("Name", name);
-        map.put("MerchantID", merchantID);
 
+    public DatabaseReference saveJobApplicationToFirebase(String employeeEmail, String employerEmail, String jobTitle, String employeeName, String employeeMerchantID){
+        Map<String, Object> map = new HashMap<>();
+        map.put("Email", employeeEmail);
+        map.put("employerEmail", employerEmail);
+        map.put("Name", employeeName);
+        map.put("jobTitle", jobTitle);
+        map.put("MerchantID", employeeMerchantID);
+        map.put("applicationStatus", "InReview");
         DatabaseReference dbref = this.jobApplicationRef.push();
         dbref.setValue(map);
         return dbref;
@@ -232,6 +228,7 @@ public class FirebaseDatabaseManager
                 for (DataSnapshot jobSnapshot : snapshot.getChildren()){
                     // Extract job details from the DataSnapshot
                     Map<String, Object> jobMap = (Map<String, Object>) jobSnapshot.getValue();
+                    String employerEmail = (String) jobMap.get("employerEmail");
                     String jobTitle = (String) jobMap.get("title");
                     float jobSalary = ((Number) jobMap.get("salary")).floatValue();
                     int jobDuration = ((Number) jobMap.get("duration")).intValue();
@@ -247,7 +244,7 @@ public class FirebaseDatabaseManager
                     // Check if the job satisfies the filtering criteria
                     if (filterJob.containsParameters(parameter, jobTitle) && filterJob.containsSalary(salary, jobSalary) && filterJob.containsDuration(duration, jobDuration)){
                         // If the job meets the criteria, create a Job object and add it to the filtered job list
-                        Job job = new Job(jobTitle, jobSalary, jobDuration, jobStartDate, jobLocation, jobUrgency, jobLatitude, jobLongitude);
+                        Job job = new Job(jobTitle,employerEmail, jobSalary, jobDuration, jobStartDate, jobLocation, jobUrgency, jobLatitude, jobLongitude);
                         filterdJobList.add(job);
                     }
 
