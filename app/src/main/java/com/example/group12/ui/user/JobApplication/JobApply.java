@@ -30,18 +30,18 @@ public class JobApply extends AppCompatActivity {
     Button applyJob;
     String email;
     String merchantID;
-    TextView emailView;
+    TextView jobTitle;
     FirebaseDatabaseManager dbManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_apply);
         fullName = findViewById(R.id.applyEnterFullName);
-        //emailView = findViewById(R.id.TempEmail);
+        jobTitle = findViewById(R.id.textViewJobTitle);
         email = getIntent().getStringExtra("email");
         merchantID = getIntent().getStringExtra("merchantID");
-        emailView.setText(email);
         applyJobButtonSetup();
     }
 
