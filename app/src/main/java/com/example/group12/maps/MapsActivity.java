@@ -47,12 +47,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         List<Job> filteredJobList = new ArrayList<>();
 
         // Add test jobs to the list
-        Job shoppingCentre = new Job("Security", 20.00F, 2, "ASAP","halifax", "HIGH", 44.649107F, (float) -63.618599);
-        Job fairView = new Job("Dish Washing", 20.00F, 3,"ASAP", "fairview", "LOW", 44.656073F, (float) -63.646536);
-        Job waterFront = new Job("Event Setup", 20.00F, 4, "ASAP", "water front", "HIGH", 44.652058F, (float) -63.586019);
-        filteredJobList.add(shoppingCentre);
-        filteredJobList.add(fairView);
-        filteredJobList.add(waterFront);
+//        Job shoppingCentre = new Job("Security", 20.00F, 2, "ASAP","halifax", "HIGH", 44.649107F, (float) -63.618599);
+//        Job fairView = new Job("Dish Washing", 20.00F, 3,"ASAP", "fairview", "LOW", 44.656073F, (float) -63.646536);
+//        Job waterFront = new Job("Event Setup", 20.00F, 4, "ASAP", "water front", "HIGH", 44.652058F, (float) -63.586019);
+//        filteredJobList.add(shoppingCentre);
+//        filteredJobList.add(fairView);
+//        filteredJobList.add(waterFront);
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
