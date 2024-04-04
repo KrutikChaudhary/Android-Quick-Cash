@@ -148,17 +148,28 @@ public class MyApplication extends Application {
                                 salaryMatch = true;
                             } else {
                                 checkSalaryMatch(jobSalary);
+                                if(!salaryMatch){
+                                    Log.d("Salary does not match", "Salary False");
+                                }
                             }
                             if (titlePreferences == null) {
                                 titleMatch = true;
                             } else {
                                 checkTitleMatch(title);
+                                if(!titleMatch){
+                                    Log.d("Title does not match", "Title False");
+                                }
                             }
                             if(locationPreferences == null){
                                 locationMatch = true;
                             } else{
                                 checkLocationMatch(jobLat, jobLong);
+                                if(!locationMatch){
+                                    Log.d("Location does not match", "Location False");
+                                }
                             }
+
+
 
                             if (salaryMatch && titleMatch && locationMatch) {
                                 getAccessToken(getApplicationContext(), new AccessTokenListener() {
@@ -174,6 +185,8 @@ public class MyApplication extends Application {
                                         exception.printStackTrace();
                                     }
                                 });
+                            }else{
+                                Log.d("ERRor", "Does not send notification");
                             }
 
                         }
@@ -325,7 +338,7 @@ public class MyApplication extends Application {
         });
     }
     private boolean checkPreferenceExist(){
-        if (salaryPreferences == null && titlePreferences == null){
+        if (salaryPreferences == null && titlePreferences == null && locationPreferences == null){
             return false;
         }
         else{
@@ -356,7 +369,13 @@ public class MyApplication extends Application {
 
             float prefLat = coords[0];
             float prefLong = coords[1];
-            locationMatch = (20.0 >= filter.getDist(jobLat, jobLong, prefLat, prefLong));
+            Log.d("Coords", "Lat = " + prefLat + " Long = " + prefLong);
+            float dist = filter.getDist(jobLat, jobLong, prefLat, prefLong);
+
+            Log.d("Distance", "Distance is " + dist + " kms");
+
+
+            locationMatch = (20.0 >= dist);
         }
     }
 
@@ -386,9 +405,12 @@ public class MyApplication extends Application {
     public void checkTitleMatch(String title){
         if (title.toLowerCase().contains(titlePreferences.toLowerCase())){
             titleMatch = true;
+            Log.d("Title", "Title Matches");
         }
         else{
             titleMatch = false;
+            Log.d("Title", "Title Does not match");
+
         }
     }
 
