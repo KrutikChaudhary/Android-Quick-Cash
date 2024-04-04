@@ -140,7 +140,7 @@ public class FilterJob {
             return true;
         }
 
-        float distance = getDistance(usr_lat, usr_lng, job_lat, job_lng);
+        double distance = getDistance(usr_lat, usr_lng, job_lat, job_lng);
 
         // Compare the distance with each distance range
         if(param.equals(Constants.SPINNER_LOCATION_RANGE_ONE)){
@@ -187,15 +187,23 @@ public class FilterJob {
      * @param lng2 Longitude of the second point.
      * @return The calculated distance.
      */
-    public float getDistance(float lat1, float lng1, float lat2, float lng2){
-        // Convert degrees to kilometers
-        float km_lat = (float) ((lat1 - lat2) / 110.574);
-        float km_lng = (float) ((lng1 - lng2) / Math.cos((lat1 - lat2) * Math.PI / 180));
+    public double getDistance(float lat1, float lng1, float lat2, float lng2){
+        // Radius of the earth in kilometers. Use 3956 for miles
+        final float R = 6371;
 
-        // Euclidean distance formula
-        float km_x = km_lng * km_lng;
-        float km_y = km_lat * km_lat;
+        // Convert latitudes and longitudes from degrees to radians
+        double latDistance = Math.toRadians(lat2 - lat1);
+        double lonDistance = Math.toRadians(lng2 - lng1);
 
-        return (float) Math.sqrt(km_x + km_y);
+        // Apply the Haversine formula
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        // Calculate the distance
+        double distance = R * c;
+
+        return distance;
     }
 }
