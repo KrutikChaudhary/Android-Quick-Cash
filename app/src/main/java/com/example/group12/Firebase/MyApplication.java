@@ -18,6 +18,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.group12.core.Constants;
+import com.example.group12.logic.FacadeFilter;
 import com.example.group12.logic.FilterJob;
 import com.example.group12.ui.employer.Dashboard_Employer_PostJob;
 import com.example.group12.util.AccessTokenListener;
@@ -351,10 +352,11 @@ public class MyApplication extends Application {
         }
 
         else{
-            FilterJob filter = new FilterJob();
+            FacadeFilter filter = new FacadeFilter();
+
             float prefLat = coords[0];
             float prefLong = coords[1];
-            locationMatch = (20.0 >= filter.getDistance(jobLat, jobLong, prefLat, prefLong));
+            locationMatch = (20.0 >= filter.getDist(jobLat, jobLong, prefLat, prefLong));
         }
     }
 
