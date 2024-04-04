@@ -186,7 +186,7 @@ public class FilterJob {
      * @param lng2 Longitude of the second point.
      * @return The calculated distance.
      */
-    protected float getDistance(float lat1, float lng1, float lat2, float lng2){
+    public float getDistance(float lat1, float lng1, float lat2, float lng2){
         // Convert degrees to kilometers
         float km_lat = (float) ((lat1 - lat2) / 110.574);
         float km_lng = (float) ((lng1 - lng2) / Math.cos((lat1 - lat2) * Math.PI / 180));
