@@ -15,7 +15,7 @@ import com.example.group12.R;
  * including buttons for posting jobs and paying employees.
  */
 public class Dashboard_Employer extends AppCompatActivity {
-    Button payEmployeesButton; // Button to navigate to the pay employees activity
+    Button manageEmployee; // Button to navigate to the pay employees activity
     String employerEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class Dashboard_Employer extends AppCompatActivity {
         employerEmail = getIntent().getStringExtra("email");
 
         // Set up UI components
-        setupPayEmployeeButton();
+        setupManageEmployeeButton();
         postJobButtonSetup();
         viewStatsButton();
     }
@@ -50,10 +50,10 @@ public class Dashboard_Employer extends AppCompatActivity {
      * Set up the "Pay Employees" button.
      * This button allows the employer to navigate to the activity for paying employees.
      */
-    public void setupPayEmployeeButton(){
-        payEmployeesButton = findViewById(R.id.payEmployee);
+    public void setupManageEmployeeButton(){
+        manageEmployee = findViewById(R.id.manageEmployee);
 
-        payEmployeesButton.setOnClickListener(new View.OnClickListener(){
+        manageEmployee.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 // Navigate to the pay employees activity
                 Intent intent = new Intent(Dashboard_Employer.this, Dashboard_Employer_ManageEmployee.class);
