@@ -140,7 +140,7 @@ public class MyApplication extends Application {
                         retrievePreference();
                         if (checkPreferenceExist()) {
                             float jobSalary = ((Number) job.get("salary")).floatValue();
-                            String title = (String) job.get("Title");
+                            String title = (String) job.get("title");
                             float jobLat = ((Number) job.get("latitude")).floatValue();
                             float jobLong = ((Number) job.get("longitude")).floatValue();
 
@@ -152,6 +152,7 @@ public class MyApplication extends Application {
                                     Log.d("Salary does not match", "Salary False");
                                 }
                             }
+                            Log.d("title Preference", titlePreferences);
                             if (titlePreferences == null) {
                                 titleMatch = true;
                             } else {
@@ -306,10 +307,9 @@ public class MyApplication extends Application {
                 SharedPreferences.Editor editor = user.edit();
                 String salary = (String) userMap.get("PreferredSalary");
                 String location = (String) userMap.get("PreferredLocation");
-                String title = (String) userMap.get("PreferredJobTitle");
+                String title = (String) userMap.get("PreferredJobTitile");
                 if (salary != null){
                     editor.putString("salary", salary);
-                    Log.e("Preferred Salary", salary);
                 }
                 else{
                     editor.putString("salary", null);
@@ -370,7 +370,7 @@ public class MyApplication extends Application {
             float prefLat = coords[0];
             float prefLong = coords[1];
             Log.d("Coords", "Lat = " + prefLat + " Long = " + prefLong);
-            float dist = filter.getDist(jobLat, jobLong, prefLat, prefLong);
+            double dist = filter.getDist(jobLat, jobLong, prefLat, prefLong);
 
             Log.d("Distance", "Distance is " + dist + " kms");
 

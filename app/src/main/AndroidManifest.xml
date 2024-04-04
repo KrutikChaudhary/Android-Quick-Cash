@@ -64,7 +64,8 @@
         <activity
             android:name=".ui.RegisterActivity"
             android:exported="false" />
-        <activity android:name=".ui.ViewPushNotificationActivity"
+        <activity
+            android:name=".ui.ViewPushNotificationActivity"
             android:exported="false" />
         <activity
             android:name=".ui.LogInActivity"
