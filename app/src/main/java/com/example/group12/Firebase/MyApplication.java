@@ -3,6 +3,8 @@ package com.example.group12.Firebase;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.Address;
+import android.location.Geocoder;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
@@ -16,6 +18,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.group12.core.Constants;
+import com.example.group12.logic.FilterJob;
+import com.example.group12.ui.employer.Dashboard_Employer_PostJob;
 import com.example.group12.util.AccessTokenListener;
 import com.example.group12.util.FetchPreferencesCallback;
 import com.google.firebase.database.ChildEventListener;
@@ -35,6 +39,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -53,11 +58,19 @@ public class MyApplication extends Application {
 
     FirebaseDatabaseManager dbManager;
 
-    private SharedPreferences user;
+    public SharedPreferences user;
     private String salaryPreferences;
-    private String titlePreferences;
+    public String titlePreferences;
+
+    private String locationPreferences;
     private boolean salaryMatch = true;
     private boolean titleMatch = true;
+
+    private boolean locationMatch = true;
+
+    public MyApplication(){
+
+    }
     @Override
     public void onCreate(){
         super.onCreate();
@@ -127,6 +140,9 @@ public class MyApplication extends Application {
                         if (checkPreferenceExist()) {
                             float jobSalary = ((Number) job.get("salary")).floatValue();
                             String title = (String) job.get("Title");
+                            float jobLat = ((Number) job.get("latitude")).floatValue();
+                            float jobLong = ((Number) job.get("longitude")).floatValue();
+
                             if (salaryPreferences == null) {
                                 salaryMatch = true;
                             } else {
@@ -137,8 +153,13 @@ public class MyApplication extends Application {
                             } else {
                                 checkTitleMatch(title);
                             }
+                            if(locationPreferences == null){
+                                locationMatch = true;
+                            } else{
+                                checkLocationMatch(jobLat, jobLong);
+                            }
 
-                            if (salaryMatch && titleMatch) {
+                            if (salaryMatch && titleMatch && locationMatch) {
                                 getAccessToken(getApplicationContext(), new AccessTokenListener() {
                                     @Override
                                     public void onAccessTokenReceived(String token) {
@@ -253,10 +274,12 @@ public class MyApplication extends Application {
         }
     }
 
+
     public void retrievePreference(){
 
         salaryPreferences = user.getString("salary", null);
         titlePreferences = user.getString("title", null);
+        locationPreferences = user.getString("location", null);
     }
 
     //This method fetches user preferences from the database and stored locally
@@ -309,7 +332,7 @@ public class MyApplication extends Application {
         }
     }
 
-    private void checkSalaryMatch(float jobSalary){
+    public void checkSalaryMatch(float jobSalary){
         int preferenceInt = Integer.parseInt(salaryPreferences);
         if (jobSalary >= preferenceInt - 5 && jobSalary <= preferenceInt + 5){
             salaryMatch = true;
@@ -319,7 +342,46 @@ public class MyApplication extends Application {
         }
     }
 
-    private void checkTitleMatch(String title){
+    // location is a match if preference and job location are within 20km
+    public void checkLocationMatch(float jobLat, float jobLong){
+        float[] coords = getCoords(locationPreferences);
+
+        if(coords == null){
+            locationMatch = false;
+        }
+
+        else{
+            FilterJob filter = new FilterJob();
+            float prefLat = coords[0];
+            float prefLong = coords[1];
+            locationMatch = (20.0 >= filter.getDistance(jobLat, jobLong, prefLat, prefLong));
+        }
+    }
+
+    public  float[] getCoords(String jobLocation){
+        // Get latitude and longitude of the job location
+        Geocoder geocoder = new Geocoder(this);
+        List<Address> addresses;
+
+        float[] coords = new float[2];
+        try {
+            addresses = geocoder.getFromLocationName(jobLocation,1);
+            if(addresses != null){
+                Address address = addresses.get(0);
+                coords[0] = (float)address.getLatitude();
+                coords[1] = (float)address.getLongitude();
+            } else{
+                return null;
+            }
+
+        } catch (IOException e) {
+            return null;
+        }
+
+        return coords;
+    }
+
+    public void checkTitleMatch(String title){
         if (title.toLowerCase().contains(titlePreferences.toLowerCase())){
             titleMatch = true;
         }
