@@ -22,7 +22,7 @@ import com.google.firebase.database.Query;
  * This activity displays a list of job applications submitted by employees
  * and allows the employer to pay the selected employee.
  */
-public class Dashboard_Employer_PayEmployee extends AppCompatActivity {
+public class Dashboard_Employer_ManageEmployee extends AppCompatActivity {
     TextView listOfEmployees; // TextView to display the list of employees
     RecyclerView recyclerView; // RecyclerView to display job applications
     JobApplicationAdapter jobApplicationAdapter; // Adapter for job applications
