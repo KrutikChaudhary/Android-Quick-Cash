@@ -3,6 +3,8 @@ package com.example.group12.ui.user;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,13 +35,16 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
     FirebaseDatabase db;
     String email;
 
+    private SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_user_view_stats);
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         pieChart = findViewById(R.id.chart);
-        email = getIntent().getStringExtra("email");
+        email = preferences.getString("email", "");
         initializeDatabase();
 
         // Retrieve TextViews representing job and application counts

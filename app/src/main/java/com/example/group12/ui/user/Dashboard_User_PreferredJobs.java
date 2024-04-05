@@ -29,7 +29,7 @@ public class Dashboard_User_PreferredJobs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_user_preferred_jobs);
-        preferences = getPreferences(Context.MODE_PRIVATE);
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         key = preferences.getString("key", "");
 
         // Initialize views
