@@ -15,6 +15,7 @@ import android.content.Intent;
 
 import com.example.group12.model.Job;
 import com.example.group12.ui.SearchJobActivity;
+import com.example.group12.ui.employer.Dashboard_Employer_View_Stats;
 import com.example.group12.util.JobAdapter;
 import com.example.group12.R;
 import com.example.group12.util.WrapLinearLayoutManager;
@@ -47,6 +48,7 @@ public class Dashboard_User extends AppCompatActivity {
         findJobButtonSetup();
         paypalButtonSetup();
         MyPreferenceButton();
+        viewStatsButton();
     }
 
     /**
@@ -108,6 +110,17 @@ public class Dashboard_User extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard_User.this, Dashboard_User_PreferredJobs.class);
                 intent.putExtra("key", key);
+                Dashboard_User.this.startActivity(intent);
+            }
+        });
+    }
+    protected void viewStatsButton(){
+        Button viewStatsButton = findViewById(R.id.userViewStats);
+        viewStatsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard_User.this, Dashboard_User_View_Stats.class);
+                intent.putExtra("email", email);
                 Dashboard_User.this.startActivity(intent);
             }
         });

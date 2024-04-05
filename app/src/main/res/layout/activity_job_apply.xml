@@ -6,35 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".ui.user.JobApplication.JobApply">
 
+    <TextView
+        android:id="@+id/textViewHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Job Apply"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:background="#3E2F78"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <!-- Job Title TextView -->
+    <TextView
+        android:id="@+id/textViewJobTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Job Title:"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader"
+        app:layout_constraintEnd_toStartOf="@+id/applyToJob"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="16dp" />
+
+    <!-- Job Title EditText -->
     <EditText
         android:id="@+id/applyEnterFullName"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="194dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
         android:hint="Full Name"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewJobTitle" />
 
+    <!-- Apply Button -->
     <Button
         android:id="@+id/applyToJob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="16dp"
         android:text="Apply To Job"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/applyEnterFullName" />
-
-    <TextView
-        android:id="@+id/TempEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="27dp"
-        android:text="email"
-        app:layout_constraintBottom_toTopOf="@+id/applyEnterFullName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,6 +25,7 @@ public class JobDetailActivity extends AppCompatActivity {
     TextView jobTitle;
     TextView jobDesc;
     Button apply;
+    String employerEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,8 @@ public class JobDetailActivity extends AppCompatActivity {
         title = getIntent().getStringExtra("title");
         desc = getIntent().getStringExtra("description");
         email = getIntent().getStringExtra("email");
+        employerEmail = getIntent().getStringExtra("employerEmail");
+        Log.d("employer email", "" + employerEmail);
         setTextView();
         applyButtonSetup();
     }
@@ -64,6 +67,8 @@ public class JobDetailActivity extends AppCompatActivity {
                             Intent applyIntent = new Intent(JobDetailActivity.this, JobApply.class);
                             applyIntent.putExtra("email", email);
                             applyIntent.putExtra("merchantID",merchantID);
+                            applyIntent.putExtra("title",title);
+                            applyIntent.putExtra("employerEmail",employerEmail);
                             Log.d("JobAdapter", "Email received: " + email);
                             JobDetailActivity.this.startActivity(applyIntent);
                         } else {
