@@ -11,15 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.group12.R;
 import com.example.group12.model.JobApplication;
-import com.example.group12.ui.payment;
+import com.example.group12.ui.Payment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import java.util.Map;
+
 /**
  * Adapter for binding JobApplication data to RecyclerView.
  */
@@ -79,7 +76,7 @@ public class JobApplicationAdapter extends FirebaseRecyclerAdapter<JobApplicatio
         DatabaseReference itemRef = getRef(position);
         String itemKey = itemRef.getKey();
         holder.payToEmployee.setOnClickListener(view -> {
-            Intent intent = new Intent(holder.context, payment.class);
+            Intent intent = new Intent(holder.context, Payment.class);
             String merchantID = model.getMerchantID();
             intent.putExtra("MerchantID",merchantID);
             intent.putExtra("Name",model.getName());
