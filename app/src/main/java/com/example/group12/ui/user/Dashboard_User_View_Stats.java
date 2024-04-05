@@ -26,6 +26,9 @@ import java.util.Map;
  * Activity class for displaying the user profile in the user dashboard.
  */
 public class Dashboard_User_View_Stats extends AppCompatActivity {
+    public static final int JOBS_REJECTED = 0;
+    public static final int JOBS_ACCEPTED = 0;
+    public static final int JOBS_IN_REVIEW = 0;
     PieChart pieChart;
     FirebaseDatabase db;
     String email;
@@ -48,7 +51,7 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
             @Override
             public void dataCount(int count) {
                 Log.d("Job In Review Count", "In Review Count: "+ count);
-                updatePieChart(count, 0,0);
+                updatePieChart(count,JOBS_ACCEPTED,JOBS_REJECTED);
                 textViewYellowCount.setText(String.valueOf(count));
             }
         });
@@ -57,7 +60,7 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
             @Override
             public void dataCount(int count) {
                 Log.d("Job Accepted Count", "Accepted Count: "+ count);
-                updatePieChart(0, count,0);
+                updatePieChart(JOBS_IN_REVIEW, count,JOBS_REJECTED);
                 textViewGreenCount.setText(String.valueOf(count));
             }
         });
@@ -66,7 +69,7 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
             @Override
             public void dataCount(int count) {
                 Log.d("Job Rejected Count", "Rejected Count: "+ count);
-                updatePieChart(0, 0,count);
+                updatePieChart(JOBS_IN_REVIEW, JOBS_ACCEPTED,count);
                 textViewRedCount.setText(String.valueOf(count));
             }
         });

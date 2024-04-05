@@ -29,6 +29,8 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
     PieChart pieChart;
     FirebaseDatabase db;
     String employerEmail;
+    final int INITIAL_APPLICATION = 0;
+    final int INITIAL_JOBS = 0;
 
 
     @Override
@@ -47,7 +49,7 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
             @Override
             public void dataCount(int countOfJobs) {
                 Log.d("Job Count", "Count: "+ countOfJobs);
-                updatePieChart(countOfJobs, 0); // Initial call with 0 applications
+                updatePieChart(countOfJobs, INITIAL_APPLICATION); // Initial call with 0 applications
                 textViewGreenCount.setText(String.valueOf(countOfJobs)); // Set job count
             }
         });
@@ -56,7 +58,7 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
             @Override
             public void dataCount(int countOfApplications) {
                 Log.d("Job Application", "Count: " + countOfApplications);
-                updatePieChart(0, countOfApplications); // Update only the applications part
+                updatePieChart(INITIAL_JOBS, countOfApplications); // Update only the applications part
                 textViewYellowCount.setText(String.valueOf(countOfApplications)); // Set application count
             }
         });
