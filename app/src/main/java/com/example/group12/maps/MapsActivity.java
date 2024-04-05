@@ -14,6 +14,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap gMap;
     float jobLatitude;
     float jobLongitude;
+    String title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_maps);
         jobLatitude = getIntent().getFloatExtra("latitude",0);
         jobLongitude = getIntent().getFloatExtra("longitude", 0);
+        title = getIntent().getStringExtra("title");
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -48,25 +51,46 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         gMap = googleMap;
-        List<Job> filteredJobList = new ArrayList<>();
+//        List<Job> filteredJobList = new ArrayList<>();
+//
+//
+//        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+//
+//        // Add markers for each job location and include them in bounds
+//        for(int i=0; i<filteredJobList.size(); i++){
+//            Job temp = filteredJobList.get(i);
+//            LatLng position = new LatLng(temp.getLatitude(), temp.getLongitude());
+//            gMap.addMarker(new MarkerOptions().position(position).title(temp.getTitle())
+//                    .snippet(temp.getSalary() + " - " + temp.getDuration()));
+//            builder.include(position);
+//        }
 
+//        // Adjust camera to display all markers within bounds with padding
+//        LatLngBounds bounds = builder.build();
+//        int padding = 100;
+//        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
 
-        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+//        gMap.animateCamera(cu);
+        gMap = googleMap;
 
-        // Add markers for each job location and include them in bounds
-        for(int i=0; i<filteredJobList.size(); i++){
-            Job temp = filteredJobList.get(i);
-            LatLng position = new LatLng(temp.getLatitude(), temp.getLongitude());
-            gMap.addMarker(new MarkerOptions().position(position).title(temp.getTitle())
-                    .snippet(temp.getSalary() + " - " + temp.getDuration()));
-            builder.include(position);
+        // Check if the jobLatitude and jobLongitude are valid
+        if (jobLatitude != 0 && jobLongitude != 0) {
+            // Create a LatLng object from the latitude and longitude values
+            LatLng jobLocation = new LatLng(jobLatitude, jobLongitude);
+
+            // Add a marker for the job location
+            MarkerOptions markerOptions = new MarkerOptions()
+                    .position(jobLocation)
+                    .title(title); // Use the job title as the marker title
+
+            Marker marker = gMap.addMarker(markerOptions);
+
+            // Ensure the marker is not null, then show its info window
+            if (marker != null) {
+                marker.showInfoWindow();
+            }
+            // Move the camera to focus on the job location with an appropriate zoom level
+            gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jobLocation, 15));
         }
-
-        // Adjust camera to display all markers within bounds with padding
-        LatLngBounds bounds = builder.build();
-        int padding = 100;
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-
-        gMap.animateCamera(cu);
     }
 }
