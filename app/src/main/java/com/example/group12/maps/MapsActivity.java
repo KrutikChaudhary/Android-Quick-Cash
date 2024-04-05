@@ -51,27 +51,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         gMap = googleMap;
-//        List<Job> filteredJobList = new ArrayList<>();
-//
-//
-//        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-//
-//        // Add markers for each job location and include them in bounds
-//        for(int i=0; i<filteredJobList.size(); i++){
-//            Job temp = filteredJobList.get(i);
-//            LatLng position = new LatLng(temp.getLatitude(), temp.getLongitude());
-//            gMap.addMarker(new MarkerOptions().position(position).title(temp.getTitle())
-//                    .snippet(temp.getSalary() + " - " + temp.getDuration()));
-//            builder.include(position);
-//        }
-
-//        // Adjust camera to display all markers within bounds with padding
-//        LatLngBounds bounds = builder.build();
-//        int padding = 100;
-//        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-
-//        gMap.animateCamera(cu);
-        gMap = googleMap;
 
         // Check if the jobLatitude and jobLongitude are valid
         if (jobLatitude != 0 && jobLongitude != 0) {
