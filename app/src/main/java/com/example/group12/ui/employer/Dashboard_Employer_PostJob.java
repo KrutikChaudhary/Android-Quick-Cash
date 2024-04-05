@@ -2,7 +2,9 @@ package com.example.group12.ui.employer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
@@ -29,12 +31,17 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
 
     // EditText fields for job details
     EditText title, duration, jobUrgency, jobSalary, location, jobDate;
+    
+    String employerEmail;
+
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_employer_post_job);
-
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        employerEmail = preferences.getString("email", "");
         // Initialize Firebase database manager
         databaseInit();
 
@@ -110,7 +117,7 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
                     Toast.makeText(Dashboard_Employer_PostJob.this, "Enter all the fields", Toast.LENGTH_SHORT).show();
                 } else {
                     // All fields are entered, proceed to save to Firebase
-                    saveJobsToFirebase(jobTitle, date, expectedDuration, urgency, salary, jobLocation, latitude, longitude );
+                    saveJobsToFirebase(employerEmail, jobTitle, date, expectedDuration, urgency, salary, jobLocation, latitude, longitude );
 
                     // Display success message
                     Toast.makeText(Dashboard_Employer_PostJob.this, "Job uploaded successfully", Toast.LENGTH_SHORT).show();
@@ -134,8 +141,8 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
      * @param latitude Latitude of the job location
      * @param longitude Longitude of the job location
      */
-    public void saveJobsToFirebase(String jobTitle, String date, int expectedDuration, String urgency, float salary, String jobLocation, float latitude, float longitude){
-        dbManager.saveJobsToFirebase(jobTitle, date, expectedDuration, urgency, salary, jobLocation, latitude, longitude);
+    public void saveJobsToFirebase(String employerEmail, String jobTitle, String date, int expectedDuration, String urgency, float salary, String jobLocation, float latitude, float longitude){
+        dbManager.saveJobsToFirebase(employerEmail, jobTitle, date, expectedDuration, urgency, salary, jobLocation, latitude, longitude);
     }
 
     /**

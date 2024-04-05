@@ -59,35 +59,16 @@ public class UIAutomatorTest_User_Dashboard {
         assertTrue(YourProfileButton.exists());
     }
 
-    /**
-     * Test to check if the user can navigate to the Find Jobs page.
-     */
     @Test
-    public void checkIfMoved2FindJobsPage() throws UiObjectNotFoundException {
-        // checks if the user can navigate to find Jobs page
+    public void checkIfStatsButtonVisible() {
+        UiObject viewStatsButton = device.findObject(new UiSelector().text("View Stats"));
+        assertTrue(viewStatsButton.exists());
     }
 
-    /**
-     * Test to check if the user can navigate to the All Jobs page.
-     */
     @Test
-    public void checkIfMoved2AllJobsPage() throws UiObjectNotFoundException {
-        // checks if the user can navigate to All Jobs page
-    }
-
-    /**
-     * Test to check if the user can navigate to the Stats page.
-     */
-    @Test
-    public void checkIfMoved2StatsPage() throws UiObjectNotFoundException {
-        // this test checks if user can navigate to stats page
-    }
-
-    /**
-     * Test to check if the user can navigate to the Profile page.
-     */
-    @Test
-    public void checkIfMoved2ProfilePage() throws UiObjectNotFoundException {
-        // this test checks if user can navigate to Profile page
+    public void checkIfMoveToStatsPage() throws UiObjectNotFoundException {
+        UiObject viewStatsButton = device.findObject(new UiSelector().text("View Stats"));
+        assertTrue(viewStatsButton.exists());
+        viewStatsButton.click();
     }
 }

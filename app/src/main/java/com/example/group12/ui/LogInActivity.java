@@ -81,6 +81,8 @@ public class LogInActivity extends AppCompatActivity {
                             }
                             else{
                                 intent = new Intent(LogInActivity.this, Dashboard_Employer.class);
+                                intent.putExtra("key", key);
+                                intent.putExtra("email", email_text);
                             }
 
                             LogInActivity.this.startActivity(intent);
