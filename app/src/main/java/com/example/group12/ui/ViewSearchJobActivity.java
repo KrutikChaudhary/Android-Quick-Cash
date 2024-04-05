@@ -71,6 +71,7 @@ public class ViewSearchJobActivity extends AppCompatActivity {
      * Sets up the button for navigating back to the user dashboard.
      */
     protected void buttonSetup(){
+        backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
