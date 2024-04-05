@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".Firebase.MyApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Group12"
+        tools:targetApi="31">
+        <activity
+            android:name=".ui.user.Dashboard_User_PreferredJobs"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.JobApplication.JobApply"
+            android:exported="false" />
+        <activity
+            android:name=".maps.MapsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.employer.Dashboard_Employer_ManageEmployee"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Payment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.employer.Dashboard_Employer_View_Stats"
+            android:exported="false" />
+        <activity
+            android:name=".ui.employer.Dashboard_Employer_PostJob"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.Dashboard_User_FindJob"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.Dashboard_User_MyPayPal"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.Dashboard_User_View_Stats"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.Dashboard_User"
+            android:exported="false" />
+        <activity
+            android:name=".ui.employer.Dashboard_Employer"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SelectRoleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ViewPushNotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.LogInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SearchJobActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ViewSearchJobActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.JobApplication.JobDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCmFYp8BTUmF7-W3YaLM-yo4IbMeOGdocU" />
+    </application>
+
+</manifest>
