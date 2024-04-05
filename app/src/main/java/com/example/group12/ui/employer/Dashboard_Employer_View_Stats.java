@@ -3,6 +3,8 @@ package com.example.group12.ui.employer;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +34,8 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
     final int INITIAL_APPLICATION = 0;
     final int INITIAL_JOBS = 0;
 
+    private SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,8 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_employer_view_stats);
         pieChart = findViewById(R.id.chart);
         initializeDatabase();
-        employerEmail = getIntent().getStringExtra("email");
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        employerEmail = preferences.getString("email", "");
 
         // Retrieve TextViews representing job and application counts
         TextView textViewGreenCount = findViewById(R.id.textViewGreenCount);
