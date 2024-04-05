@@ -78,6 +78,13 @@ public class JobApplicationAdapter extends FirebaseRecyclerAdapter<JobApplicatio
         holder.name.setText(model.getName());
         DatabaseReference itemRef = getRef(position);
         String itemKey = itemRef.getKey();
+        holder.payToEmployee.setOnClickListener(view -> {
+            Intent intent = new Intent(holder.context, payment.class);
+            String merchantID = model.getMerchantID();
+            intent.putExtra("MerchantID",merchantID);
+            intent.putExtra("Name",model.getName());
+            holder.context.startActivity(intent);
+        });
 
         holder.acceptApplication.setOnClickListener(view -> {
             setApplicationStatusOnFirebase("Accepted",itemKey);
