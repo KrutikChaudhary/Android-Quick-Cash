@@ -20,7 +20,7 @@
     <!-- Job Postings -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="98dp"
+        android:layout_height="75dp"
         android:background="#D4CAEC"
         android:orientation="horizontal"
         android:padding="8dp">
@@ -28,7 +28,7 @@
         <!-- Find jobs button -->
         <Button
             android:id="@+id/findJobsButton"
-            android:layout_width="15dp"
+            android:layout_width="17dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/find_jobs" />
@@ -44,7 +44,7 @@
         <!-- Stats button -->
         <Button
             android:id="@+id/PayPalButton"
-            android:layout_width="43dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/my_paypal" />
