@@ -2,7 +2,9 @@ package com.example.group12.ui.employer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
@@ -32,11 +34,14 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
     
     String employerEmail;
 
+    private SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_employer_post_job);
-        employerEmail = getIntent().getStringExtra("email");
+        preferences = getPreferences(Context.MODE_PRIVATE);
+        employerEmail = preferences.getString("email", "");
         // Initialize Firebase database manager
         databaseInit();
 
