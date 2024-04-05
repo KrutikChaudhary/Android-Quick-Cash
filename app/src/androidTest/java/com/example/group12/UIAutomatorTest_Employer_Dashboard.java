@@ -61,6 +61,8 @@ public class UIAutomatorTest_Employer_Dashboard {
         assertTrue(postJobButton.exists());
         UiObject yourProfileButton = device.findObject(new UiSelector().text("View Stats"));
         assertTrue(yourProfileButton.exists());
+        UiObject manageEmployeeButton = device.findObject(new UiSelector().text("Manage Employee"));
+        assertTrue(manageEmployeeButton.exists());
     }
 
     /**
