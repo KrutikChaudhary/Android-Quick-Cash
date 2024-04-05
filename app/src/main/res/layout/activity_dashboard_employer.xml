@@ -42,11 +42,11 @@
 
         <!-- Your Employees button -->
         <Button
-            android:id="@+id/payEmployee"
+            android:id="@+id/manageEmployee"
             android:layout_width="35dp"
             android:layout_height="71dp"
             android:layout_weight="1"
-            android:text="Pay Employee" />
+            android:text="Manage Employee" />
 
         <!-- Your Profile button -->
         <Button
