@@ -40,7 +40,7 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_employer_post_job);
-        preferences = getPreferences(Context.MODE_PRIVATE);
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         employerEmail = preferences.getString("email", "");
         // Initialize Firebase database manager
         databaseInit();
