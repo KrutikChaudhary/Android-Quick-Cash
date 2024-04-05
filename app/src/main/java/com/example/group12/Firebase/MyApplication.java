@@ -45,10 +45,12 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+
 public class MyApplication extends Application {
 
     private static final String CREDENTIALS_FILE_PATH = "cloudMessagingKey.json";
 
+    float MAX_DIST = 20;
 
     //new endpoint
     private static final String PUSH_NOTIFICATION_ENDPOINT ="https://fcm.googleapis.com/v1/projects/quickcash-197c8/messages:send";
@@ -85,22 +87,6 @@ public class MyApplication extends Application {
         FirebaseMessaging.getInstance().subscribeToTopic("jobs");
         databaseListener();
     }
-
-//    private void getCountOfItemsInDatabase() {
-//        DatabaseReference dbRef = dbManager.getJobRef();
-//        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                orginalCount = dataSnapshot.getChildrenCount();
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                Log.e("Database Error", "Error fetching item count: " + databaseError.getMessage());
-//            }
-//        });
-//    }
 
     private void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
@@ -375,7 +361,7 @@ public class MyApplication extends Application {
             Log.d("Distance", "Distance is " + dist + " kms");
 
 
-            locationMatch = (20.0 >= dist);
+            locationMatch = (MAX_DIST >= dist);
         }
     }
 
