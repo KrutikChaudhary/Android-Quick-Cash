@@ -29,16 +29,16 @@
             android:name=".maps.MapsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.employer.Dashboard_Employer_PayEmployee"
+            android:name=".ui.employer.Dashboard_Employer_ManageEmployee"
             android:exported="false" />
         <activity
             android:name=".ui.user.JobApplication.job_application_view"
             android:exported="false" />
         <activity
-            android:name=".ui.payment"
+            android:name=".ui.Payment"
             android:exported="false" />
         <activity
-            android:name=".ui.employer.Dashboard_Employer_Profile"
+            android:name=".ui.employer.Dashboard_Employer_View_Stats"
             android:exported="false" />
         <activity
             android:name=".ui.employer.Dashboard_Employer_PostJob"
@@ -50,7 +50,7 @@
             android:name=".ui.user.Dashboard_User_MyPayPal"
             android:exported="false" />
         <activity
-            android:name=".ui.user.Dashboard_User_Profile"
+            android:name=".ui.user.Dashboard_User_View_Stats"
             android:exported="false" />
         <activity
             android:name=".ui.user.Dashboard_User"

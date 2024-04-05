@@ -2,7 +2,9 @@ package com.example.group12.ui.user.JobApplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,18 +32,26 @@ public class JobApply extends AppCompatActivity {
     Button applyJob;
     String email;
     String merchantID;
-    TextView emailView;
+    TextView jobTitle;
+    String employerEmail;
+    String title;
     FirebaseDatabaseManager dbManager;
+
+    private SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_apply);
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         fullName = findViewById(R.id.applyEnterFullName);
-        emailView = findViewById(R.id.TempEmail);
-        email = getIntent().getStringExtra("email");
+        jobTitle = findViewById(R.id.textViewJobTitle);
+        email = preferences.getString("email", "");
         merchantID = getIntent().getStringExtra("merchantID");
-        emailView.setText(email);
+        employerEmail = getIntent().getStringExtra("employerEmail");
+        title = getIntent().getStringExtra("title");
+        jobTitle.setText(title);
         applyJobButtonSetup();
     }
 
@@ -61,7 +71,7 @@ public class JobApply extends AppCompatActivity {
                     public void merchantIdAvailableResult(boolean isValid, String merchantID) {
                         if(isValid){
                             if(name!=null&&!name.equals("")){
-                                saveJobApplicationToFirebase(email, name, merchantID);
+                                saveJobApplicationToFirebase(email,employerEmail,title, name, merchantID);
                                 Intent intent = new Intent(JobApply.this, Dashboard_User.class);
                                 intent.putExtra("email",email);
                                 Log.d("JobAdapter", "Email received: " + email);
@@ -82,16 +92,10 @@ public class JobApply extends AppCompatActivity {
         });
     }
 
-    /**
-     * Saves the job application to Firebase.
-     * @param email The email of the applicant.
-     * @param fullname The full name of the applicant.
-     * @param merchantID The merchant ID of the applicant.
-     * @return DatabaseReference representing the location where the job application is saved in Firebase.
-     */
-    public DatabaseReference saveJobApplicationToFirebase(String email, String fullname, String merchantID){
+
+    public DatabaseReference saveJobApplicationToFirebase(String employeeEmail, String employerEmail, String jobTitle, String employeeName, String employeeMerchantID){
         dbManager = new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
-        DatabaseReference ref =  dbManager.saveJobApplicationToFirebase(email,fullname,merchantID);
+        DatabaseReference ref =  dbManager.saveJobApplicationToFirebase(employeeEmail,employerEmail,jobTitle,employeeName,employeeMerchantID);
         return ref;
     }
 }

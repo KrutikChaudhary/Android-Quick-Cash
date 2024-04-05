@@ -26,7 +26,7 @@ import java.math.BigDecimal;
 /**
  * Activity for processing payments via PayPal.
  */
-public class payment extends AppCompatActivity {
+public class Payment extends AppCompatActivity {
     EditText editText;
     Button button;
     String merchantID;
