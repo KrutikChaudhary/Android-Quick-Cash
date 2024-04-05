@@ -44,7 +44,7 @@ public class JobApply extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_apply);
-        preferences = getPreferences(Context.MODE_PRIVATE);
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         fullName = findViewById(R.id.applyEnterFullName);
         jobTitle = findViewById(R.id.textViewJobTitle);
         email = preferences.getString("email", "");

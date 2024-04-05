@@ -1,5 +1,7 @@
 package com.example.group12.ui.employer;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -28,11 +30,14 @@ public class Dashboard_Employer_ManageEmployee extends AppCompatActivity {
     JobApplicationAdapter jobApplicationAdapter; // Adapter for job applications
     String employerEmail;
 
+    private SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_employer_manage_employee);
-        employerEmail = getIntent().getStringExtra("email");
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        employerEmail = preferences.getString("email", "");
         // Initialize UI components and setup RecyclerView
         init();
         viewApplications();
