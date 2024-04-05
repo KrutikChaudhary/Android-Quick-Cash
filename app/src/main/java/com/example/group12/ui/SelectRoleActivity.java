@@ -2,7 +2,9 @@ package com.example.group12.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.view.View;
@@ -20,6 +22,7 @@ public class SelectRoleActivity extends AppCompatActivity {
 
     String userKey;
     FirebaseDatabaseManager dbManager;
+    private SharedPreferences preferences;
 
     /**
      * Initializes the activity and sets up the UI components.
@@ -29,7 +32,8 @@ public class SelectRoleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userKey = getIntent().getStringExtra("key");
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        userKey = preferences.getString("key", "");
         setContentView(R.layout.activity_select_role);
         employeeRole();
         employerRole();
@@ -45,6 +49,7 @@ public class SelectRoleActivity extends AppCompatActivity {
         employee.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 dbManager.updateRole("Employee", userKey);
+                updateUserInfo("Employee");
                 Intent a = new Intent(SelectRoleActivity.this, Dashboard_User.class);
                 startActivity(a);
             }
@@ -60,9 +65,16 @@ public class SelectRoleActivity extends AppCompatActivity {
         employer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 dbManager.updateRole("Employer", userKey);
+                updateUserInfo("Employer");
                 Intent a = new Intent(SelectRoleActivity.this, Dashboard_Employer.class);
                 startActivity(a);
             }
         });
+    }
+
+    private void updateUserInfo(String role){
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("role", role);
+        editor.apply();
     }
 }

@@ -1,9 +1,11 @@
 package com.example.group12.Firebase;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.example.group12.locationDetection.LocationInfo;
+import com.example.group12.util.EmailCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +34,8 @@ public class FirebaseDatabaseManager
     private DatabaseReference jobApplicationRef;
     private DatabaseReference userLocation;
     private DatabaseReference jobRef;
+
+    private SharedPreferences preferences;
 
     /**
      * Default constructor.
@@ -186,6 +190,52 @@ public class FirebaseDatabaseManager
             }
         });
     }
+
+    public void savePreferenceToFirebase(String key, String preferredLocation, String preferredSalary, String preferredJobTitle){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(key);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Retrieve user data as a Map from the DataSnapshot
+                Map<String, Object> user = (Map<String, Object>) snapshot.getValue();
+
+                if (user != null) {
+                // Update the user's preference with the new preference
+                    user.put("PreferredLocation", preferredLocation);
+                    user.put("PreferredSalary", preferredSalary);
+                    user.put("PreferredJobTitile", preferredJobTitle);
+                // Set the updated user data back to the database
+                    ref.setValue(user);
+                } else {
+                    // Log an error message if user data is null
+                    Log.e("null user", "User map is null");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+    public void getUserEmail(String key, EmailCallback callback) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(key);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Map<String, Object> user = (Map<String, Object>) snapshot.getValue();
+                String email = null;
+                if (user != null) {
+                    email = (String) user.get("Email");
+                }
+                callback.onCallback(email); // Invoke the callback with the email value
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle onCancelled
+            }
+        });
+    }
+
 
     /**
      * Retrieves DatabaseReference for User node.
