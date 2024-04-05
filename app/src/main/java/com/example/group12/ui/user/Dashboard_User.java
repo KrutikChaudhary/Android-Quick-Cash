@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.ContentInfo;
 import android.widget.Button;
 
 import android.view.View;
@@ -28,19 +31,22 @@ public class Dashboard_User extends AppCompatActivity {
     RecyclerView recyclerView;
     JobAdapter viewJobAdapter;
     String key;
+    String email;
     Button findJobButton;
     Button myPayPal;
-    String email;
+
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_user);
-        email = getIntent().getStringExtra("email");
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         init();
         viewJobs();
         findJobButtonSetup();
         paypalButtonSetup();
+        MyPreferenceButton();
     }
 
     /**
@@ -49,7 +55,8 @@ public class Dashboard_User extends AppCompatActivity {
     protected void init(){
         recyclerView = findViewById(R.id.filteredJob_recyclerView);
         recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        key = getIntent().getStringExtra("key");
+        key = preferences.getString("key", "");
+        email = preferences.getString("email", "");
     }
 
     /**
@@ -89,6 +96,17 @@ public class Dashboard_User extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard_User.this, SearchJobActivity.class);
+                Dashboard_User.this.startActivity(intent);
+            }
+        });
+    }
+
+    protected void MyPreferenceButton(){
+        Button myPreference = findViewById(R.id.preferredJobsButton);
+        myPreference.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard_User.this, Dashboard_User_PreferredJobs.class);
                 intent.putExtra("key", key);
                 Dashboard_User.this.startActivity(intent);
             }
