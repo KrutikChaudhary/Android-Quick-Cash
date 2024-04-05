@@ -83,7 +83,6 @@ public class Dashboard_User extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard_User.this, Dashboard_User_MyPayPal.class);
-                intent.putExtra("email", email);
                 Dashboard_User.this.startActivity(intent);
             }
         });
@@ -109,7 +108,6 @@ public class Dashboard_User extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard_User.this, Dashboard_User_PreferredJobs.class);
-                intent.putExtra("key", key);
                 Dashboard_User.this.startActivity(intent);
             }
         });
@@ -120,7 +118,6 @@ public class Dashboard_User extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard_User.this, Dashboard_User_View_Stats.class);
-                intent.putExtra("email", email);
                 Dashboard_User.this.startActivity(intent);
             }
         });
