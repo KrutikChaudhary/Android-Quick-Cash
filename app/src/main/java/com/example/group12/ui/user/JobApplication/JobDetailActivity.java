@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.group12.maps.MapsActivity;
 import com.example.group12.ui.user.Dashboard_User_MyPayPal;
 import com.example.group12.R;
 import com.example.group12.util.MerchantIDCallBack;
@@ -25,7 +26,10 @@ public class JobDetailActivity extends AppCompatActivity {
     TextView jobTitle;
     TextView jobDesc;
     Button apply;
+    Button viewOnMaps;
     String employerEmail;
+    float jobLatitude;
+    float jobLongitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +41,12 @@ public class JobDetailActivity extends AppCompatActivity {
         desc = getIntent().getStringExtra("description");
         email = getIntent().getStringExtra("email");
         employerEmail = getIntent().getStringExtra("employerEmail");
+        jobLatitude = getIntent().getFloatExtra("latitude",0);
+        jobLongitude = getIntent().getFloatExtra("longitude", 0);
         Log.d("employer email", "" + employerEmail);
         setTextView();
         applyButtonSetup();
+        setViewOnMaps();
     }
 
     /**
@@ -80,6 +87,20 @@ public class JobDetailActivity extends AppCompatActivity {
                     }
                 });
 
+            }
+        });
+    }
+
+    public void setViewOnMaps(){
+        viewOnMaps = findViewById(R.id.mapsButton);
+        viewOnMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(JobDetailActivity.this, MapsActivity.class);
+                intent.putExtra("latitude",jobLatitude);
+                intent.putExtra("longitude",jobLongitude);
+                intent.putExtra("title",title);
+                JobDetailActivity.this.startActivity(intent);
             }
         });
     }

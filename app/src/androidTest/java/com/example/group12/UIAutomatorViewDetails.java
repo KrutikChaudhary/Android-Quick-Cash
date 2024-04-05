@@ -64,4 +64,13 @@ public class UIAutomatorViewDetails {
         UiObject apply = device.findObject(new UiSelector().text("Apply"));
         assertTrue(apply.exists());
     }
+
+    @Test
+    public void checkIfViewOnMapsVisible() throws UiObjectNotFoundException {
+        // this test checks if the navigation
+        UiObject viewDetails = device.findObject(new UiSelector().text("View Details"));
+        viewDetails.click();
+        UiObject mapButton = device.findObject(new UiSelector().text("View on Maps"));
+        assertTrue(mapButton.exists());
+    }
 }
