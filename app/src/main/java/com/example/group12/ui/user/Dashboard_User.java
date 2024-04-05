@@ -48,6 +48,7 @@ public class Dashboard_User extends AppCompatActivity {
         findJobButtonSetup();
         paypalButtonSetup();
         MyPreferenceButton();
+        viewStatsButton();
     }
 
     /**
