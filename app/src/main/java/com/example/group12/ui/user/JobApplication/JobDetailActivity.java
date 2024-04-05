@@ -28,6 +28,8 @@ public class JobDetailActivity extends AppCompatActivity {
     Button apply;
     Button viewOnMaps;
     String employerEmail;
+    float jobLatitude;
+    float jobLongitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class JobDetailActivity extends AppCompatActivity {
         desc = getIntent().getStringExtra("description");
         email = getIntent().getStringExtra("email");
         employerEmail = getIntent().getStringExtra("employerEmail");
+        jobLatitude = getIntent().getFloatExtra("latitude",0);
+        jobLongitude = getIntent().getFloatExtra("longitude", 0);
         Log.d("employer email", "" + employerEmail);
         setTextView();
         applyButtonSetup();
@@ -93,6 +97,8 @@ public class JobDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(JobDetailActivity.this, MapsActivity.class);
+                intent.putExtra("latitude",jobLatitude);
+                intent.putExtra("longitude",jobLongitude);
                 JobDetailActivity.this.startActivity(intent);
             }
         });
