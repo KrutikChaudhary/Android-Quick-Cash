@@ -99,6 +99,7 @@ public class JobDetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(JobDetailActivity.this, MapsActivity.class);
                 intent.putExtra("latitude",jobLatitude);
                 intent.putExtra("longitude",jobLongitude);
+                intent.putExtra("title",title);
                 JobDetailActivity.this.startActivity(intent);
             }
         });
