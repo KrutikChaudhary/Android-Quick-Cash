@@ -32,9 +32,6 @@
             android:name=".ui.employer.Dashboard_Employer_ManageEmployee"
             android:exported="false" />
         <activity
-            android:name=".ui.user.JobApplication.job_application_view"
-            android:exported="false" />
-        <activity
             android:name=".ui.Payment"
             android:exported="false" />
         <activity
