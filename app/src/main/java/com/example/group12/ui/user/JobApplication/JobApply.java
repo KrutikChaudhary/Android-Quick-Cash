@@ -2,7 +2,9 @@ package com.example.group12.ui.user.JobApplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,14 +37,17 @@ public class JobApply extends AppCompatActivity {
     String title;
     FirebaseDatabaseManager dbManager;
 
+    private SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_apply);
+        preferences = getPreferences(Context.MODE_PRIVATE);
         fullName = findViewById(R.id.applyEnterFullName);
         jobTitle = findViewById(R.id.textViewJobTitle);
-        email = getIntent().getStringExtra("email");
+        email = preferences.getString("email", "");
         merchantID = getIntent().getStringExtra("merchantID");
         employerEmail = getIntent().getStringExtra("employerEmail");
         title = getIntent().getStringExtra("title");
