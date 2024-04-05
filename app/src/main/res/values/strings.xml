@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Group12</string>
+    <string name="quick_cash">Quick Cash</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="i_am_a">I am a</string>
+    <string name="employer">EMPLOYER</string>
+    <string name="employee">EMPLOYEE</string>
+
+
+    <string name="quick_cash_employer_dashboard">Quick Cash - Employer Dashboard</string>
+    <string name="your_jobs">Your Jobs</string>
+    <string name="post_a_job">Post a Job</string>
+    <string name="help_and_support">Help and Support</string>
+    <string name="view_stats">View Stats</string>
+
+    <string name="quick_cash_user_dashboard">Quick Cash - User Dashboard</string>
+    <string name="find_jobs">Find Jobs</string>
+    <string name="preferred_jobs">My Preference</string>
+    <string name="all_stats">All Stats</string>
+    <string name="your_profile_user">Your Profile</string>
+    <string name="my_paypal">My PayPal</string>
+
+    <string name="quick_cash_employer_post_job">Quick Cash - Post A Job</string>
+    <string name="employer_postJobs_your_jobs">Your Jobs</string>
+    <string name="employer_postJobs_post_a_job">Post a Job</string>
+    <string name="employer_postJobs_help_and_support">Help and Support</string>
+    <string name="employer_postJobs_your_profile_employer">Your Profile</string>
+    <string name="upload_job">Upload Job</string>
+    <string name="job_location">Job Location</string>
+    <string name="salary">Salary</string>
+    <string name="urgency">Urgency</string>
+    <string name="expected_duration">Expected Duration</string>
+    <string name="date">Date</string>
+    <string name="job_title">Job Title</string>
+    <string name="view_on_maps">View on Maps</string>
+</resources>
