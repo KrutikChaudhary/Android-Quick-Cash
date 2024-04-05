@@ -31,7 +31,7 @@ public class Dashboard_Employer_ManageEmployee extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard_employer_pay_employee);
+        setContentView(R.layout.activity_dashboard_employer_manage_employee);
         employerEmail = getIntent().getStringExtra("email");
         // Initialize UI components and setup RecyclerView
         init();
