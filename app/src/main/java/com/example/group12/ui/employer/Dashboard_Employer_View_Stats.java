@@ -106,7 +106,11 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
                 int counter = 0;
                 //iterate the data and find count the total job applications posted by employer.
                 for (DataSnapshot jobApplications: snapshot.getChildren()){
-                    counter ++;
+                    Map<String, Object> userCredentials = (Map<String, Object>) jobApplications.getValue();
+                    String email = (String) userCredentials.get("employerEmail");
+                    if(employerEmail.equals(email)){ //if the employer email matches then increment
+                        counter++;
+                    }
                 }
                 callback.dataCount(counter);
             }
