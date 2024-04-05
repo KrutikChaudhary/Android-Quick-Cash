@@ -2,7 +2,9 @@ package com.example.group12.ui.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,15 +25,18 @@ public class Dashboard_User_MyPayPal extends AppCompatActivity {
     EditText merchantEditText;
     Button connectMerchantId;
     String email;
+
+    private SharedPreferences preferences;
     FirebaseDatabaseManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_user_mypaypal);
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         merchantEditText = findViewById(R.id.merchant);
         connectMerchantId = findViewById(R.id.connectMyMerchantId);
-        email = getIntent().getStringExtra("email");
+        email = preferences.getString("email", "");
         connectMerchantId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +49,7 @@ public class Dashboard_User_MyPayPal extends AppCompatActivity {
                     // Display success message and navigate to user dashboard
                     Toast.makeText(Dashboard_User_MyPayPal.this,"Merchant Id Saved Successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Dashboard_User_MyPayPal.this, Dashboard_User.class);
-                    intent.putExtra("user_email", email);
+                    //intent.putExtra("user_email", email);
                     Dashboard_User_MyPayPal.this.startActivity(intent);
                 } else {
                     // Display error message if saving fails

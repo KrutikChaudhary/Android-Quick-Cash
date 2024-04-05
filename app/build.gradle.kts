@@ -1,7 +1,9 @@
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
+
 
 android {
     namespace = "com.example.group12"
@@ -32,6 +34,7 @@ android {
     }
 
     packagingOptions {
+        resources.excludes.add("META-INF/DEPENDENCIES")
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
             merges += "META-INF/LICENSE.md"
@@ -59,5 +62,19 @@ dependencies {
     implementation ("com.paypal.sdk:paypal-android-sdk:2.16.0")
     implementation ("com.github.blackfizz:eazegraph:1.2.5l@aar")
     implementation ("com.nineoldandroids:library:2.4.0")
+
+    //3rd party library - for network request or api request to the firebase server
+    implementation("com.android.volley:volley:1.2.1")
+
+    // messaging libraries
+    implementation("com.google.firebase:firebase-messaging:23.4.1")
+    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+
+    //auth library
+    implementation("com.google.auth:google-auth-library-oauth2-http:1.17.0")
+
+    //for getting the error messages related to firebase
+    implementation("com.google.firebase:firebase-crashlytics:18.6.3")
+    implementation("com.google.firebase:firebase-analytics:21.6.1")
 
 }
