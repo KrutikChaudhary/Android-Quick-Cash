@@ -20,10 +20,6 @@ import com.example.group12.ui.user.Dashboard_User;
  */
 public class SelectRoleActivity extends AppCompatActivity {
 
-    String userKey;
-    FirebaseDatabaseManager dbManager;
-    private SharedPreferences preferences;
-
     /**
      * Initializes the activity and sets up the UI components.
      *
@@ -32,12 +28,9 @@ public class SelectRoleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
-        userKey = preferences.getString("key", "");
         setContentView(R.layout.activity_select_role);
         employeeRole();
         employerRole();
-        dbManager = new FirebaseDatabaseManager();
     }
 
     /**
@@ -48,9 +41,8 @@ public class SelectRoleActivity extends AppCompatActivity {
 
         employee.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                dbManager.updateRole("Employee", userKey);
-                updateUserInfo("Employee");
-                Intent a = new Intent(SelectRoleActivity.this, Dashboard_User.class);
+                Intent a = new Intent(SelectRoleActivity.this, RegisterActivity.class);
+                a.putExtra("Role", "Employee");
                 startActivity(a);
             }
         });
@@ -64,17 +56,12 @@ public class SelectRoleActivity extends AppCompatActivity {
 
         employer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                dbManager.updateRole("Employer", userKey);
-                updateUserInfo("Employer");
-                Intent a = new Intent(SelectRoleActivity.this, Dashboard_Employer.class);
+
+                Intent a = new Intent(SelectRoleActivity.this, RegisterActivity.class);
+                a.putExtra("Role", "Employer");
                 startActivity(a);
             }
         });
     }
 
-    private void updateUserInfo(String role){
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("role", role);
-        editor.apply();
-    }
 }

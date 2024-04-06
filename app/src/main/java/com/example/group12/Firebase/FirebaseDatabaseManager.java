@@ -69,10 +69,11 @@ public class FirebaseDatabaseManager
      * @param password User password
      * @return DatabaseReference for the saved user credentials
      */
-    public DatabaseReference saveUserCredentialsToFirebase(String email, String password){
+    public DatabaseReference saveUserCredentialsToFirebase(String email, String password, String role){
         Map<String, Object> map = new HashMap<>();
         map.put("Email", email);
         map.put("Password", password);
+        map.put("Role", role);
         DatabaseReference dbref = this.userRef.push();
         dbref.setValue(map);
         return dbref;
