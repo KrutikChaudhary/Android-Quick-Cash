@@ -57,101 +57,10 @@
             android:text="@string/view_stats" />
     </LinearLayout>
 
-    <!-- Job Postings -->
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/employer_jobs_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="8dp">
-
-        <GridLayout
-            android:id="@+id/jobPostingsGridLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="1"
-            android:rowCount="3"
-            android:orientation="horizontal">
-
-            <!-- Box 1 -->
-            <TextView
-                android:id="@+id/jobPosting1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Job Posting 1"
-                android:padding="16dp"
-                android:layout_margin="8dp"
-                android:textSize="18sp"/>
-
-            <!-- Box 2 -->
-            <TextView
-                android:id="@+id/jobPosting2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Job Posting 2"
-                android:padding="16dp"
-                android:layout_margin="8dp"
-                android:textSize="18sp"/>
-
-            <!-- Box 3 -->
-            <TextView
-                android:id="@+id/jobPosting3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Job Posting 3"
-                android:padding="16dp"
-                android:layout_margin="8dp"
-                android:textSize="18sp"/>
-            <TextView
-                android:id="@+id/jobPosting4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Job Posting 4"
-                android:padding="16dp"
-                android:layout_margin="8dp"
-                android:textSize="18sp"/>
-            <TextView
-                android:id="@+id/jobPosting5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Job Posting 5"
-                android:padding="16dp"
-                android:layout_margin="8dp"
-                android:textSize="18sp"/>
-            <TextView
-                android:id="@+id/jobPosting6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Job Posting 6"
-                android:padding="16dp"
-                android:layout_margin="8dp"
-                android:textSize="18sp"/>
-            <TextView
-                android:id="@+id/jobPosting7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Job Posting 7"
-                android:padding="16dp"
-                android:layout_margin="8dp"
-                android:textSize="18sp"/>
-            <TextView
-                android:id="@+id/jobPosting8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Job Posting 8"
-                android:padding="16dp"
-                android:layout_margin="8dp"
-                android:textSize="18sp"/>
-            <TextView
-                android:id="@+id/jobPosting9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Job Posting 9"
-                android:padding="16dp"
-                android:layout_margin="8dp"
-                android:textSize="18sp"/>
-
-        </GridLayout>
-    </ScrollView>
+        android:layout_height="match_parent"/>
 
 
 </LinearLayout>
