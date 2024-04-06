@@ -1,141 +1,115 @@
 package com.example.group12.ui.user;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.ContentInfo;
-import android.widget.Button;
-
 import android.view.View;
-import android.content.Intent;
-
-import com.example.group12.model.Job;
-import com.example.group12.ui.SearchJobActivity;
-import com.example.group12.ui.employer.Dashboard_Employer_View_Stats;
-import com.example.group12.util.JobAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.group12.Firebase.FirebaseDatabaseManager;
 import com.example.group12.R;
-import com.example.group12.util.WrapLinearLayoutManager;
 import com.example.group12.core.Constants;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-/**
- * Activity class for the user dashboard.
- * This activity displays a list of jobs and allows users to search for jobs and access their PayPal account.
- */
-public class Dashboard_User extends AppCompatActivity {
-
-    RecyclerView recyclerView;
-    JobAdapter viewJobAdapter;
-    String key;
-    String email;
-    Button findJobButton;
-    Button myPayPal;
-
+import com.google.firebase.database.ValueEventListener;
+public class Dashboard_User_PreferredJobs extends AppCompatActivity {
+    private EditText editTextPreferredLocation;
+    private EditText editTextPreferredSalary;
+    private EditText editTextPreferredJobTitle;
+    private TextView textViewPreferredLocation;
+    private TextView textViewPreferredSalary;
+    private TextView textViewPreferredJobTitle;
+    private Button buttonSubmit;
     private SharedPreferences preferences;
-
+    private String key;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard_user);
+        setContentView(R.layout.activity_dashboard_user_preferred_jobs);
         preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
-        init();
-        viewJobs();
-        findJobButtonSetup();
-        paypalButtonSetup();
-        MyPreferenceButton();
-        viewStatsButton();
-    }
-
-    /**
-     * Initializes the RecyclerView and other necessary components.
-     */
-    protected void init(){
-        recyclerView = findViewById(R.id.filteredJob_recyclerView);
-        recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         key = preferences.getString("key", "");
-        email = preferences.getString("email", "");
-    }
-
-    /**
-     * Retrieves and displays the list of jobs from the Firebase Realtime Database.
-     */
-    protected void viewJobs(){
-        final FirebaseRecyclerOptions<Job> options = new FirebaseRecyclerOptions.Builder<Job>()
-                .setQuery(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK)
-                        .getReference().child("Job"), Job.class).build();
-
-        viewJobAdapter = new JobAdapter(options,email);
-        recyclerView.setAdapter(viewJobAdapter);
-    }
-
-    /**
-     * Sets up the button for accessing the user's PayPal account.
-     */
-    public void paypalButtonSetup(){
-        myPayPal = findViewById(R.id.PayPalButton);
-
-        myPayPal.setOnClickListener(new View.OnClickListener() {
+// Initialize views
+        editTextPreferredLocation = findViewById(R.id.editTextPreferredLocation);
+        editTextPreferredSalary = findViewById(R.id.editTextPreferredSalary);
+        editTextPreferredJobTitle = findViewById(R.id.editTextPreferredJobTitle);
+        buttonSubmit = findViewById(R.id.buttonSubmit);
+// Set click listener for submit button
+        buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Dashboard_User.this, Dashboard_User_MyPayPal.class);
-                Dashboard_User.this.startActivity(intent);
+                saveToFirebase(key, editTextPreferredLocation.getText().toString(),
+                        editTextPreferredSalary.getText().toString(), editTextPreferredJobTitle.getText().toString());
+                saveLocally(editTextPreferredLocation.getText().toString(),
+                        editTextPreferredSalary.getText().toString(), editTextPreferredJobTitle.getText().toString());
             }
         });
+// Initialize TextViews
+        textViewPreferredLocation = findViewById(R.id.textViewPreferredLocation);
+        textViewPreferredSalary = findViewById(R.id.textViewPreferredSalary);
+        textViewPreferredJobTitle = findViewById(R.id.textViewPreferredJobTitle);
+// Retrieve preferences from Firebase
+        retrievePreferencesFromFirebase(key);
     }
-
-    /**
-     * Sets up the button for finding jobs.
-     */
-    protected void findJobButtonSetup(){
-        findJobButton = findViewById(R.id.findJobsButton);
-        findJobButton.setOnClickListener(new View.OnClickListener() {
+    private void saveToFirebase(String key, String preferredLocation, String preferredSalary, String preferredJobTitle) {
+// Check if any preference field is empty
+        if (preferredLocation.isEmpty() && preferredSalary.isEmpty() && preferredJobTitle.isEmpty()) {
+// Show toast message for empty preferences
+            Toast.makeText(this, "Failed to submit preference. Enter at least one preference!", Toast.LENGTH_SHORT).show();
+        } else {
+// Proceed to save preferences to Firebase
+            FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
+            FirebaseDatabaseManager firebaseDatabaseManager = new FirebaseDatabaseManager(db);
+            firebaseDatabaseManager.savePreferenceToFirebase(key, preferredLocation, preferredSalary, preferredJobTitle);
+// Show success message
+            Toast.makeText(this, "Preferences submitted successfully!", Toast.LENGTH_SHORT).show();
+        }
+    }
+    private void saveLocally(String preferredLocation, String preferredSalary, String preferredJobTitle){
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("salary", preferredSalary);
+        editor.putString("location", preferredLocation);
+        editor.putString("title", preferredJobTitle);
+        editor.apply();
+    }
+    private void retrievePreferencesFromFirebase(String key) {
+// Get reference to the Firebase database
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
+        DatabaseReference databaseReference = firebaseDatabase.getReference("User").child(key);
+// Add listener for fetching data
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Dashboard_User.this, SearchJobActivity.class);
-                Dashboard_User.this.startActivity(intent);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+// Check if preferences exist
+                if (snapshot.exists()) {
+// Get preference data
+                    String preferredLocation = snapshot.child("PreferredLocation").getValue(String.class);
+                    String preferredSalary = snapshot.child("PreferredSalary").getValue(String.class);
+                    String preferredJobTitle = snapshot.child("PreferredJobTitile").getValue(String.class);
+// Update TextViews with preference data
+                    if(preferredLocation!=null){
+                        textViewPreferredLocation.setText("Preferred Location: " + preferredLocation);
+                    }
+                    if(preferredJobTitle!=null){
+                        textViewPreferredSalary.setText("Preferred Salary: " + preferredSalary);
+                    }
+                    if(preferredJobTitle!=null){
+                        textViewPreferredJobTitle.setText("Preferred Job Title: " + preferredJobTitle);
+                    }
+                } else {
+// If no preferences found, show a message
+                    Toast.makeText(Dashboard_User_PreferredJobs.this, "No preferences found.", Toast.LENGTH_SHORT).show();
+                }
             }
-        });
-    }
-
-    protected void MyPreferenceButton(){
-        Button myPreference = findViewById(R.id.preferredJobsButton);
-        myPreference.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Dashboard_User.this, Dashboard_User_PreferredJobs.class);
-                Dashboard_User.this.startActivity(intent);
+            public void onCancelled(@NonNull DatabaseError error) {
+// If an error occurs, show a message
+                Toast.makeText(Dashboard_User_PreferredJobs.this, "Failed to retrieve preferences: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-    protected void viewStatsButton(){
-        Button viewStatsButton = findViewById(R.id.userViewStats);
-        viewStatsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Dashboard_User.this, Dashboard_User_View_Stats.class);
-                Dashboard_User.this.startActivity(intent);
-            }
-        });
-    }
-
-    // Lifecycle method called when the activity is started.
-    // Start listening for changes in the data and update the UI accordingly.
-    @Override
-    protected void onStart() {
-        super.onStart();
-        viewJobAdapter.startListening();
-    }
-
-    // Lifecycle method called when the activity is stopped.
-    // Stop listening for changes in the data to conserve resources.
-    @Override
-    protected void onStop() {
-        super.onStop();
-        viewJobAdapter.stopListening();
     }
 }
