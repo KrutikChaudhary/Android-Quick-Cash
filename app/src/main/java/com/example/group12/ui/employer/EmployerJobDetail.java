@@ -1,7 +1,10 @@
 package com.example.group12.ui.employer;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import com.example.group12.R;
 
@@ -10,6 +13,8 @@ public class EmployerJobDetail extends AppCompatActivity {
     String desc;
     TextView jobTitle;
     TextView jobDesc;
+    Button goBackButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +24,7 @@ public class EmployerJobDetail extends AppCompatActivity {
         title = getIntent().getStringExtra("title");
         desc = getIntent().getStringExtra("description");
         setTextView();
+        setupGoBackButton();
     }
     /**
      * Sets the text views with job title and description.
@@ -26,5 +32,11 @@ public class EmployerJobDetail extends AppCompatActivity {
     public void setTextView(){
         jobTitle.setText(title);
         jobDesc.setText(desc);
+    }
+
+    public void setupGoBackButton(){
+        goBackButton = findViewById(R.id.buttonGoBack);
+        Intent intent = new Intent(EmployerJobDetail.this, Dashboard_Employer.class);
+        EmployerJobDetail.this.startActivity(intent);
     }
 }
