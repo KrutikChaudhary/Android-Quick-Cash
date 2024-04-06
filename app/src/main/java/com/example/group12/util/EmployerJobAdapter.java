@@ -1,6 +1,7 @@
 package com.example.group12.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.group12.R;
 import com.example.group12.model.Job;
+import com.example.group12.ui.employer.EmployerJobDetail;
+import com.example.group12.ui.user.JobApplication.JobDetailActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
@@ -66,7 +69,15 @@ public class EmployerJobAdapter extends FirebaseRecyclerAdapter<Job, EmployerJob
         holder.title.setText(job.getTitle());
 
         holder.seeDetailsButton.setOnClickListener(view -> {
-
+            Intent intent = new Intent(holder.context, EmployerJobDetail.class);
+            intent.putExtra("title", job.getTitle());
+            intent.putExtra("email",email);
+            intent.putExtra("employerEmail",job.getEmployerEmail());
+            intent.putExtra("latitude",job.getLatitude());
+            intent.putExtra("longitude",job.getLongitude());
+            intent.putExtra("description","Description:\nSalary: " + job.getSalary() +"\nDuration: "
+                    + job.getDuration() + "\nStart date: "+ job.getStartDate() + "\nUrgency: " + job.getUrgency());
+            holder.context.startActivity(intent);
         });
     }
 }
