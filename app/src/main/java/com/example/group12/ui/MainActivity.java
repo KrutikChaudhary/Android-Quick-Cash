@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 // Start RegisterActivity when the register button is clicked
-                Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
+                Intent registerIntent = new Intent(MainActivity.this, SelectRoleActivity.class);
                 MainActivity.this.startActivity(registerIntent);
             }
         });
