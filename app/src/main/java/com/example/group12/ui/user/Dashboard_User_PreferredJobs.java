@@ -6,20 +6,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.group12.Firebase.FirebaseDatabaseManager;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Dashboard_User_PreferredJobs extends AppCompatActivity {
 
     private EditText editTextPreferredLocation;
     private EditText editTextPreferredSalary;
     private EditText editTextPreferredJobTitle;
+    private TextView textViewPreferredLocation;
+    private TextView textViewPreferredSalary;
+    private TextView textViewPreferredJobTitle;
     private Button buttonSubmit;
 
     private SharedPreferences preferences;
@@ -42,12 +51,20 @@ public class Dashboard_User_PreferredJobs extends AppCompatActivity {
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveToFirebase(key,editTextPreferredLocation.getText().toString(),
-                        editTextPreferredSalary.getText().toString(),editTextPreferredJobTitle.getText().toString());
+                saveToFirebase(key, editTextPreferredLocation.getText().toString(),
+                        editTextPreferredSalary.getText().toString(), editTextPreferredJobTitle.getText().toString());
                 saveLocally(editTextPreferredLocation.getText().toString(),
-                        editTextPreferredSalary.getText().toString(),editTextPreferredJobTitle.getText().toString());
+                        editTextPreferredSalary.getText().toString(), editTextPreferredJobTitle.getText().toString());
             }
         });
+
+        // Initialize TextViews
+        textViewPreferredLocation = findViewById(R.id.textViewPreferredLocation);
+        textViewPreferredSalary = findViewById(R.id.textViewPreferredSalary);
+        textViewPreferredJobTitle = findViewById(R.id.textViewPreferredJobTitle);
+
+        // Retrieve preferences from Firebase
+        retrievePreferencesFromFirebase(key);
     }
 
     private void saveToFirebase(String key, String preferredLocation, String preferredSalary, String preferredJobTitle) {
@@ -74,6 +91,38 @@ public class Dashboard_User_PreferredJobs extends AppCompatActivity {
         editor.apply();
     }
 
+    private void retrievePreferencesFromFirebase(String key) {
+        // Get reference to the Firebase database
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
+        DatabaseReference databaseReference = firebaseDatabase.getReference("users").child(key).child("preferences");
 
+        // Add listener for fetching data
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Check if preferences exist
+                if (snapshot.exists()) {
+                    // Get preference data
+                    String preferredLocation = snapshot.child("PreferredLocation").getValue(String.class);
+                    String preferredSalary = snapshot.child("PreferredSalary").getValue(String.class);
+                    String preferredJobTitle = snapshot.child("PreferredJobTitle").getValue(String.class);
+
+                    // Update TextViews with preference data
+                    textViewPreferredLocation.setText("Preferred Location: " + preferredLocation);
+                    textViewPreferredSalary.setText("Preferred Salary: " + preferredSalary);
+                    textViewPreferredJobTitle.setText("Preferred Job Title: " + preferredJobTitle);
+                } else {
+                    // If no preferences found, show a message
+                    Toast.makeText(Dashboard_User_PreferredJobs.this, "No preferences found.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // If an error occurs, show a message
+                Toast.makeText(Dashboard_User_PreferredJobs.this, "Failed to retrieve preferences: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }
