@@ -15,9 +15,7 @@ import android.widget.Button;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
 import com.example.group12.model.Job;
-import com.example.group12.model.JobApplication;
-import com.example.group12.util.EmployeeJobAdapter;
-import com.example.group12.util.JobAdapter;
+import com.example.group12.util.EmployerJobAdapter;
 import com.example.group12.util.WrapLinearLayoutManager;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +30,7 @@ import com.google.firebase.database.Query;
 public class Dashboard_Employer extends AppCompatActivity {
     Button manageEmployee; // Button to navigate to the pay employees activity
     RecyclerView recyclerView;
-    EmployeeJobAdapter viewJobAdapter;
+    EmployerJobAdapter viewJobAdapter;
     String email;
     private SharedPreferences preferences;
 
@@ -71,7 +69,7 @@ public class Dashboard_Employer extends AppCompatActivity {
         final FirebaseRecyclerOptions<Job> options = new FirebaseRecyclerOptions.Builder<Job>()
                 .setQuery(query, Job.class).build();
 
-        viewJobAdapter = new EmployeeJobAdapter(options,email);
+        viewJobAdapter = new EmployerJobAdapter(options,email);
         recyclerView.setAdapter(viewJobAdapter);
     }
 
