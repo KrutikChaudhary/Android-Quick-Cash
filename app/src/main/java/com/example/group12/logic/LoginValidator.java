@@ -4,7 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.group12.firebase.FirebaseReadManager;
+import com.example.group12.firebase.crud.FirebaseReadManager;
 import com.example.group12.util.LoginCallback;
 import com.example.group12.core.Constants;
 import com.google.firebase.database.DataSnapshot;
