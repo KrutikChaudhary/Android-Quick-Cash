@@ -1,4 +1,4 @@
-package com.example.group12.ui.user.JobApplication;
+package com.example.group12.ui.user.jobApplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 

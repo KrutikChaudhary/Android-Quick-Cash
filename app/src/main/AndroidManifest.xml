@@ -26,7 +26,7 @@
             android:name=".ui.user.Dashboard_User_PreferredJobs"
             android:exported="false" />
         <activity
-            android:name=".ui.user.JobApplication.JobApply"
+            android:name=".ui.user.jobApplication.JobApply"
             android:exported="false" />
         <activity
             android:name=".maps.MapsActivity"
@@ -77,7 +77,7 @@
             android:name=".ui.ViewSearchJobActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.user.JobApplication.JobDetailActivity"
+            android:name=".ui.user.jobApplication.JobDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
