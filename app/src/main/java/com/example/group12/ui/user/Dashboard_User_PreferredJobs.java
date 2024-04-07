@@ -9,9 +9,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.group12.firebase.FirebaseDatabaseManager;
+
 import com.example.group12.R;
 import com.example.group12.core.Constants;
+import com.example.group12.firebase.FirebaseUpdateManager;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -77,8 +78,8 @@ public class Dashboard_User_PreferredJobs extends AppCompatActivity {
         } else {
             // Proceed to save preferences to Firebase
             FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
-            FirebaseDatabaseManager firebaseDatabaseManager = new FirebaseDatabaseManager(db);
-            firebaseDatabaseManager.savePreferenceToFirebase(key, preferredLocation, preferredSalary, preferredJobTitle);
+            FirebaseUpdateManager dbManager = new FirebaseUpdateManager(db);
+            dbManager.savePreferenceToFirebase(key, preferredLocation, preferredSalary, preferredJobTitle);
             // Show success message
             Toast.makeText(this, "Preferences submitted successfully!", Toast.LENGTH_SHORT).show();
         }
