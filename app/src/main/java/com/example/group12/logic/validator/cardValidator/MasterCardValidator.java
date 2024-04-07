@@ -1,4 +1,4 @@
-package com.example.group12.logic.cardValidator;
+package com.example.group12.logic.validator.cardValidator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
