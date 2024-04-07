@@ -1,4 +1,4 @@
-package com.example.group12.logic;
+package com.example.group12.logic.validator;
 
 import android.util.Log;
 
