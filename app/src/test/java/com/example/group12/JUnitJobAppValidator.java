@@ -3,7 +3,7 @@ package com.example.group12;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import com.example.group12.logic.ApplicationValidator;
+import com.example.group12.logic.validator.ApplicationValidator;
 
 import org.junit.Before;
 import org.junit.Test;
