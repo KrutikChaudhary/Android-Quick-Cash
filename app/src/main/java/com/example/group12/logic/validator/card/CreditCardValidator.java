@@ -1,4 +1,4 @@
-package com.example.group12.logic.validator.cardValidator;
+package com.example.group12.logic.validator.card;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,9 +39,9 @@ public class CreditCardValidator {
      * @return true if the credit card number is valid, false otherwise.
      */
     public boolean isValidCardNum(String cardNumber) {
-        String cardNum_format = ""; // Regular expression pattern for validating card numbers
-        Pattern cardNum_pattern = Pattern.compile(cardNum_format);
-        Matcher matcher = cardNum_pattern.matcher(cardNumber);
+        String cardNumFormat = ""; // Regular expression pattern for validating card numbers
+        Pattern cardNumPattern = Pattern.compile(cardNumFormat);
+        Matcher matcher = cardNumPattern.matcher(cardNumber);
         return matcher.matches();
     }
 
@@ -53,9 +53,9 @@ public class CreditCardValidator {
      * @return true if the expiry date is valid, false otherwise.
      */
     public boolean isValidExpiry(String expiry) {
-        String expiry_format = ""; // Regular expression pattern for validating expiry dates
-        Pattern expiry_pattern = Pattern.compile(expiry_format);
-        Matcher matcher = expiry_pattern.matcher(expiry);
+        String expiryFormat = ""; // Regular expression pattern for validating expiry dates
+        Pattern expiryPattern = Pattern.compile(expiryFormat);
+        Matcher matcher = expiryPattern.matcher(expiry);
         return matcher.matches();
     }
 
