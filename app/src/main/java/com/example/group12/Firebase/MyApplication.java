@@ -45,7 +45,10 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
+/**
+ * This class represents the Application class for the Firebase integration.
+ * It handles Firebase initialization, database operations, and notification sending.
+ */
 public class MyApplication extends Application {
 
     private static final String CREDENTIALS_FILE_PATH = "cloudMessagingKey.json";
@@ -80,6 +83,9 @@ public class MyApplication extends Application {
         init();
     }
 
+    /**
+     * Initializes Firebase, SharedPreferences, and other necessary components.
+     */
     private void init(){
         user = getSharedPreferences("user", Context.MODE_PRIVATE);
         databaseInit();
@@ -88,11 +94,19 @@ public class MyApplication extends Application {
         databaseListener();
     }
 
+    /**
+     * Initializes the Firebase Database.
+     */
     private void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
         dbManager = new FirebaseDatabaseManager(db);
     }
 
+    /**
+     * Retrieves the access token required for sending notifications.
+     * @param context Application context
+     * @param listener Access token listener
+     */
     private void getAccessToken(Context context, AccessTokenListener listener) {
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(() -> {
@@ -111,6 +125,10 @@ public class MyApplication extends Application {
         });
         executorService.shutdown();
     }
+
+    /**
+     * Sets up a listener for changes in the Firebase database.
+     */
 
     private void databaseListener(){
         DatabaseReference dbref = dbManager.getJobRef();
@@ -323,6 +341,11 @@ public class MyApplication extends Application {
             }
         });
     }
+
+    /**
+     * Checks if user preferences exist.
+     * @return True if preferences exist, otherwise false
+     */
     private boolean checkPreferenceExist(){
         if (salaryPreferences == null && titlePreferences == null && locationPreferences == null){
             return false;
@@ -332,6 +355,10 @@ public class MyApplication extends Application {
         }
     }
 
+    /**
+     * Checks if the job salary matches the user's preference.
+     * @param jobSalary Salary of the job
+     */
     public void checkSalaryMatch(float jobSalary){
         int preferenceInt = Integer.parseInt(salaryPreferences);
         if (jobSalary >= preferenceInt - 5 && jobSalary <= preferenceInt + 5){
@@ -342,7 +369,11 @@ public class MyApplication extends Application {
         }
     }
 
-    // location is a match if preference and job location are within 20km
+    /**
+     * Checks if the job location matches the user's preference.
+     * @param jobLat Latitude of job location
+     * @param jobLong Longitude of job location
+     */
     public void checkLocationMatch(float jobLat, float jobLong){
         float[] coords = getCoords(locationPreferences);
 
@@ -365,6 +396,11 @@ public class MyApplication extends Application {
         }
     }
 
+    /**
+     * Retrieves latitude and longitude coordinates from the job location string.
+     * @param jobLocation Job location
+     * @return Array containing latitude and longitude
+     */
     public  float[] getCoords(String jobLocation){
         // Get latitude and longitude of the job location
         Geocoder geocoder = new Geocoder(this);
@@ -388,6 +424,10 @@ public class MyApplication extends Application {
         return coords;
     }
 
+    /**
+     * Checks if the job title matches the user's preference.
+     * @param title Title of the job
+     */
     public void checkTitleMatch(String title){
         if (title.toLowerCase().contains(titlePreferences.toLowerCase())){
             titleMatch = true;
