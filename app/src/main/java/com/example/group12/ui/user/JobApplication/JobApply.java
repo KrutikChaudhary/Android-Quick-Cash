@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.group12.firebase.FirebaseDatabaseManager;
+import com.example.group12.firebase.FirebaseCreateManager;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
 import com.example.group12.ui.user.Dashboard_User;
@@ -35,7 +35,7 @@ public class JobApply extends AppCompatActivity {
     TextView jobTitle;
     String employerEmail;
     String title;
-    FirebaseDatabaseManager dbManager;
+    FirebaseCreateManager dbManager;
 
     private SharedPreferences preferences;
 
@@ -102,7 +102,7 @@ public class JobApply extends AppCompatActivity {
      * @return A DatabaseReference object pointing to the location of the saved job application in the Firebase Database.
      */
     public DatabaseReference saveJobApplicationToFirebase(String employeeEmail, String employerEmail, String jobTitle, String employeeName, String employeeMerchantID){
-        dbManager = new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
+        dbManager = new FirebaseCreateManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
         DatabaseReference ref =  dbManager.saveJobApplicationToFirebase(employeeEmail,employerEmail,jobTitle,employeeName,employeeMerchantID);
         return ref;
     }
