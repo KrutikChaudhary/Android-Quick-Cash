@@ -92,7 +92,15 @@ public class JobApply extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Saves a job application to Firebase.
+     * @param employeeEmail      The email of the employee applying for the job.
+     * @param employerEmail      The email of the employer to whom the job application is being sent.
+     * @param jobTitle           The title of the job being applied for.
+     * @param employeeName       The name of the employee applying for the job.
+     * @param employeeMerchantID The merchant ID of the employee applying for the job.
+     * @return A DatabaseReference object pointing to the location of the saved job application in the Firebase Database.
+     */
     public DatabaseReference saveJobApplicationToFirebase(String employeeEmail, String employerEmail, String jobTitle, String employeeName, String employeeMerchantID){
         dbManager = new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
         DatabaseReference ref =  dbManager.saveJobApplicationToFirebase(employeeEmail,employerEmail,jobTitle,employeeName,employeeMerchantID);
