@@ -98,7 +98,9 @@
             android:layout_height="wrap_content"
             android:hint="@string/expected_duration"
             android:textSize="18sp"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:inputType="number"
+            android:imeOptions="actionDone"/>
 
         <EditText
             android:id="@+id/editTextUrgency"
@@ -114,7 +116,9 @@
             android:layout_height="wrap_content"
             android:hint="@string/salary"
             android:textSize="18sp"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:inputType="numberDecimal"
+            android:imeOptions="actionDone"/>
 
         <EditText
             android:id="@+id/editTextJobLocation"
