@@ -18,7 +18,7 @@ import com.example.group12.ui.user.Dashboard_User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import com.example.group12.Firebase.FirebaseDatabaseManager;
+import com.example.group12.firebase.FirebaseDatabaseManager;
 
 /**
  * Activity class for user registration.
