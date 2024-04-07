@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.location.Address;
 
-import com.example.group12.firebase.FirebaseDatabaseManager;
+import com.example.group12.firebase.FirebaseCreateManager;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
 import com.google.firebase.database.FirebaseDatabase;
@@ -27,7 +27,7 @@ import java.util.List;
 public class Dashboard_Employer_PostJob extends AppCompatActivity {
 
     // Firebase database manager instance
-    FirebaseDatabaseManager dbManager;
+    FirebaseCreateManager dbManager;
 
     // EditText fields for job details
     EditText title, duration, jobUrgency, jobSalary, location, jobDate;
@@ -150,6 +150,6 @@ public class Dashboard_Employer_PostJob extends AppCompatActivity {
      */
     protected void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
-        dbManager = new FirebaseDatabaseManager(db);
+        dbManager = new FirebaseCreateManager(db);
     }
 }
