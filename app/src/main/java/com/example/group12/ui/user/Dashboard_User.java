@@ -100,6 +100,9 @@ public class Dashboard_User extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sets up the button for preference page.
+     */
     protected void preferenceButtonSetup(){
         Button myPreference = findViewById(R.id.preferredJobsButton);
         myPreference.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +113,10 @@ public class Dashboard_User extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Sets up the button for stats page.
+     */
     protected void viewStatsButtonSetup(){
         Button viewStatsButton = findViewById(R.id.userViewStats);
         viewStatsButton.setOnClickListener(new View.OnClickListener() {
