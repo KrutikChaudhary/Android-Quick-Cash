@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.group12.firebase.FirebaseDatabaseManager;
+import com.example.group12.firebase.FirebaseReadManager;
 import com.example.group12.util.LoginCallback;
 import com.example.group12.core.Constants;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +21,7 @@ import java.util.Map;
  * Firebase user data.
  */
 public class LoginValidator {
-    FirebaseDatabaseManager dbManager;
+    FirebaseReadManager dbManager;
 
     private boolean valid = false;
     private String role = "";
@@ -32,7 +33,7 @@ public class LoginValidator {
      * Initializes the FirebaseDatabaseManager instance.
      */
     public LoginValidator(){
-        dbManager = new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
+        dbManager = new FirebaseReadManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
     }
 
     /**

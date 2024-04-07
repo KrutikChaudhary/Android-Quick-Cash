@@ -59,7 +59,7 @@ public class MyApplication extends Application {
     //provided by volley library to make a network request
     private RequestQueue requestQueue;
 
-    FirebaseDatabaseManager dbManager;
+    FirebaseReadManager dbManager;
 
     public SharedPreferences user;
     private String salaryPreferences;
@@ -96,7 +96,7 @@ public class MyApplication extends Application {
      */
     private void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
-        dbManager = new FirebaseDatabaseManager(db);
+        dbManager = new FirebaseReadManager(db);
     }
 
     /**
