@@ -28,14 +28,14 @@
         <Button
             android:id="@+id/yourJobsButton"
             android:layout_width="8dp"
-            android:layout_height="73dp"
+            android:layout_height="68dp"
             android:layout_weight="1"
             android:text="@string/your_jobs" />
 
         <!-- Post a Job button -->
         <Button
             android:id="@+id/postJobButton"
-            android:layout_width="17dp"
+            android:layout_width="9dp"
             android:layout_height="71dp"
             android:layout_weight="1"
             android:text="@string/post_a_job" />
@@ -44,7 +44,7 @@
         <Button
             android:id="@+id/manageEmployee"
             android:layout_width="35dp"
-            android:layout_height="71dp"
+            android:layout_height="68dp"
             android:layout_weight="1"
             android:text="Manage Employee" />
 
