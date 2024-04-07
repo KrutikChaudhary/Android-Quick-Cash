@@ -27,6 +27,10 @@ public class ViewPushNotificationActivity extends AppCompatActivity {
         buttonSetup();
     }
 
+    /**
+     * Initializes views and retrieves data from the intent extras.
+     * This method should be called in the onCreate() method or at the beginning of the activity lifecycle.
+     */
     protected void init() {
         title = findViewById(R.id.notification_title_textview);
         jobTitle = findViewById(R.id.notification_jobTitle_textview);
@@ -36,6 +40,10 @@ public class ViewPushNotificationActivity extends AppCompatActivity {
         jobData = getIntent().getExtras();
     }
 
+    /**
+     * Sets text for views using data retrieved from intent extras.
+     * This method should be called after initializing views and retrieving data from intent extras.
+     */
     protected void setText(){
         title.setText(jobData.getString("title"));
         jobTitle.setText(jobData.getString("jobTitle"));
@@ -43,6 +51,11 @@ public class ViewPushNotificationActivity extends AppCompatActivity {
         jobLocation.setText(jobData.getString("jobLocation"));
     }
 
+    /**
+     * Sets up the functionality for the login button.
+     * When the button is clicked, it navigates to the login activity.
+     * This method should be called after initializing the login button.
+     */
     protected void buttonSetup(){
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
