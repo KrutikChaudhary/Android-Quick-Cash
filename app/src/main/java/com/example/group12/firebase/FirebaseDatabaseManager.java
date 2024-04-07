@@ -1,4 +1,4 @@
-package com.example.group12.Firebase;
+package com.example.group12.firebase;
 import android.content.SharedPreferences;
 import android.util.Log;
 
