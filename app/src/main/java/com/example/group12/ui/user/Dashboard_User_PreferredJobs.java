@@ -33,12 +33,14 @@ public class Dashboard_User_PreferredJobs extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_user_preferred_jobs);
         preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         key = preferences.getString("key", "");
-// Initialize views
+
+        // Initialize views
         editTextPreferredLocation = findViewById(R.id.editTextPreferredLocation);
         editTextPreferredSalary = findViewById(R.id.editTextPreferredSalary);
         editTextPreferredJobTitle = findViewById(R.id.editTextPreferredJobTitle);
         buttonSubmit = findViewById(R.id.buttonSubmit);
-// Set click listener for submit button
+
+        // Set click listener for submit button
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,27 +50,36 @@ public class Dashboard_User_PreferredJobs extends AppCompatActivity {
                         editTextPreferredSalary.getText().toString(), editTextPreferredJobTitle.getText().toString());
             }
         });
-// Initialize TextViews
+
+        // Initialize TextViews
         textViewPreferredLocation = findViewById(R.id.textViewPreferredLocation);
         textViewPreferredSalary = findViewById(R.id.textViewPreferredSalary);
         textViewPreferredJobTitle = findViewById(R.id.textViewPreferredJobTitle);
-// Retrieve preferences from Firebase
+
+        // Retrieve preferences from Firebase
         retrievePreferencesFromFirebase(key);
     }
     private void saveToFirebase(String key, String preferredLocation, String preferredSalary, String preferredJobTitle) {
-// Check if any preference field is empty
+        // Check if any preference field is empty
         if (preferredLocation.isEmpty() && preferredSalary.isEmpty() && preferredJobTitle.isEmpty()) {
-// Show toast message for empty preferences
+        // Show toast message for empty preferences
             Toast.makeText(this, "Failed to submit preference. Enter at least one preference!", Toast.LENGTH_SHORT).show();
         } else {
-// Proceed to save preferences to Firebase
+            // Proceed to save preferences to Firebase
             FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
             FirebaseDatabaseManager firebaseDatabaseManager = new FirebaseDatabaseManager(db);
             firebaseDatabaseManager.savePreferenceToFirebase(key, preferredLocation, preferredSalary, preferredJobTitle);
-// Show success message
+            // Show success message
             Toast.makeText(this, "Preferences submitted successfully!", Toast.LENGTH_SHORT).show();
         }
     }
+
+    /**
+     * Saves user preferences locally using SharedPreferences.
+     * @param preferredLocation The preferred location to be saved.
+     * @param preferredSalary   The preferred salary to be saved.
+     * @param preferredJobTitle The preferred job title to be saved.
+     */
     private void saveLocally(String preferredLocation, String preferredSalary, String preferredJobTitle){
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("salary", preferredSalary);
@@ -76,21 +87,27 @@ public class Dashboard_User_PreferredJobs extends AppCompatActivity {
         editor.putString("title", preferredJobTitle);
         editor.apply();
     }
+
+    /**
+     * Retrieves user preferences from Firebase for a specific user identified by their key.
+     * Updates TextViews with the fetched preference data.
+     * @param key The key of the user whose preferences are to be retrieved.
+     */
     private void retrievePreferencesFromFirebase(String key) {
-// Get reference to the Firebase database
+    // Get reference to the Firebase database
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
         DatabaseReference databaseReference = firebaseDatabase.getReference("User").child(key);
-// Add listener for fetching data
+    // Add listener for fetching data
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-// Check if preferences exist
+            // Check if preferences exist
                 if (snapshot.exists()) {
-// Get preference data
+            // Get preference data
                     String preferredLocation = snapshot.child("PreferredLocation").getValue(String.class);
                     String preferredSalary = snapshot.child("PreferredSalary").getValue(String.class);
                     String preferredJobTitle = snapshot.child("PreferredJobTitile").getValue(String.class);
-// Update TextViews with preference data
+            // Update TextViews with preference data
                     if(preferredLocation!=null){
                         textViewPreferredLocation.setText("Preferred Location: " + preferredLocation);
                     }
@@ -101,13 +118,13 @@ public class Dashboard_User_PreferredJobs extends AppCompatActivity {
                         textViewPreferredJobTitle.setText("Preferred Job Title: " + preferredJobTitle);
                     }
                 } else {
-// If no preferences found, show a message
+            // If no preferences found, show a message
                     Toast.makeText(Dashboard_User_PreferredJobs.this, "No preferences found.", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-// If an error occurs, show a message
+            // If an error occurs, show a message
                 Toast.makeText(Dashboard_User_PreferredJobs.this, "Failed to retrieve preferences: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
