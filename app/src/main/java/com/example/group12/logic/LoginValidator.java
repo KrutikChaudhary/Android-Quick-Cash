@@ -4,7 +4,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.group12.firebase.FirebaseDatabaseManager;
 import com.example.group12.firebase.FirebaseReadManager;
 import com.example.group12.util.LoginCallback;
 import com.example.group12.core.Constants;
