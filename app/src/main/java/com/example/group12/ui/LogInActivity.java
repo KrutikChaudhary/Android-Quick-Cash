@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.group12.firebase.FirebaseReadManager;
+import com.example.group12.firebase.crud.FirebaseReadManager;
 import com.example.group12.ui.employer.Dashboard_Employer;
 import com.example.group12.ui.user.Dashboard_User;
 import com.example.group12.util.EmailCallback;

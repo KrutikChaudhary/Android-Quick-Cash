@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.group12.R;
 import com.example.group12.core.Constants;
-import com.example.group12.firebase.FirebaseCreateManager;
+import com.example.group12.firebase.crud.FirebaseCreateManager;
 import com.example.group12.logic.UserCredentialValidator;
 import com.example.group12.ui.employer.Dashboard_Employer;
 import com.example.group12.ui.user.Dashboard_User;
