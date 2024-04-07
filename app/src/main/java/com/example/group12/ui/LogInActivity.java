@@ -107,6 +107,11 @@ public class LogInActivity extends AppCompatActivity {
         userKey = preferences.getString("key", null);
     }
 
+    /**
+     * Updates the saved user information locally using SharedPreferences.
+     * @param key   The key of the user to be saved.
+     * @param email The email of the user to be saved.
+     */
     private void updateSavedUserInfo(String key, String email){
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("key", key);
