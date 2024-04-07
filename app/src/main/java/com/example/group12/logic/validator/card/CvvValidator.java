@@ -1,4 +1,4 @@
-package com.example.group12.logic.cardValidator;
+package com.example.group12.logic.validator.card;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,9 +27,9 @@ public class CvvValidator {
      * @return true if the CVV number is valid, false otherwise.
      */
     public boolean isValidCVV(String cvv) {
-        String cvv_format = "\\\\d{3}"; // Regular expression pattern for validating CVV numbers
-        Pattern cvv_pattern = Pattern.compile(cvv_format);
-        Matcher matcher = cvv_pattern.matcher(cvv);
+        String cvvFormat = "\\\\d{3}"; // Regular expression pattern for validating CVV numbers
+        Pattern cvvPattern = Pattern.compile(cvvFormat);
+        Matcher matcher = cvvPattern.matcher(cvv);
         return matcher.matches();
     }
 }

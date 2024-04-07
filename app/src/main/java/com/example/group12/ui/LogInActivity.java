@@ -17,7 +17,7 @@ import com.example.group12.util.EmailCallback;
 import com.example.group12.util.LoginCallback;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
-import com.example.group12.logic.LoginValidator;
+import com.example.group12.logic.validator.LoginValidator;
 import com.google.firebase.database.FirebaseDatabase;
 
 /**

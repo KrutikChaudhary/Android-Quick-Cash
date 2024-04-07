@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.group12.R;
 import com.example.group12.model.Job;
-import com.example.group12.ui.user.JobApplication.JobDetailActivity;
+import com.example.group12.ui.user.jobApplication.JobDetailActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
