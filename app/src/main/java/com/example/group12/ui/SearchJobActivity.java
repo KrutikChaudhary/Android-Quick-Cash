@@ -10,12 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.group12.Firebase.FirebaseDatabaseManager;
+import com.example.group12.firebase.FirebaseDatabaseManager;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
 import com.example.group12.model.Job;
 import com.example.group12.util.JobFilterCallback;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 

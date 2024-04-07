@@ -1,4 +1,4 @@
-package com.example.group12.Firebase;
+package com.example.group12.firebase;
 
 import android.app.Application;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,8 +18,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.group12.core.Constants;
 import com.example.group12.logic.FacadeFilter;
-import com.example.group12.logic.FilterJob;
-import com.example.group12.ui.employer.Dashboard_Employer_PostJob;
 import com.example.group12.util.AccessTokenListener;
 import com.example.group12.util.FetchPreferencesCallback;
 import com.google.firebase.database.ChildEventListener;
