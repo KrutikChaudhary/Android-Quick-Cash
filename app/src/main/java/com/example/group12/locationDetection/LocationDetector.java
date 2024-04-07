@@ -111,11 +111,9 @@ public class LocationDetector extends AppCompatActivity {
     }
 
 
-    /*
-     * This method calls save location to firebase method in firebase manager class
-     *  To perform save operation
-     * @param locationInfo Location info objects which stores the location
-     * @return the result of the operation
+    /**
+     * Saves location information to Firebase.
+     * @param locationInfo The location information to be saved.
      */
     public void saveToFirebase(LocationInfo locationInfo){
         firebaseDatabaseManager.saveLocationToFirebase(locationInfo);
