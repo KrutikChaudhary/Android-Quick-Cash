@@ -59,6 +59,16 @@ public class Dashboard_User_PreferredJobs extends AppCompatActivity {
         // Retrieve preferences from Firebase
         retrievePreferencesFromFirebase(key);
     }
+
+    /**
+     * Saves user preferences to Firebase for a specific user identified by their key.
+     * Checks if any preference field is empty. If all fields are empty, displays a toast message.
+     * Otherwise, proceeds to save preferences to Firebase and displays a success message.
+     * @param key               The key of the user whose preferences are to be saved.
+     * @param preferredLocation The preferred location to be saved.
+     * @param preferredSalary   The preferred salary to be saved.
+     * @param preferredJobTitle The preferred job title to be saved.
+     */
     private void saveToFirebase(String key, String preferredLocation, String preferredSalary, String preferredJobTitle) {
         // Check if any preference field is empty
         if (preferredLocation.isEmpty() && preferredSalary.isEmpty() && preferredJobTitle.isEmpty()) {
