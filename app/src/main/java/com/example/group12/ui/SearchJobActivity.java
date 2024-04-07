@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
-import com.example.group12.firebase.FirebaseReadManager;
+import com.example.group12.firebase.crud.FirebaseReadManager;
 import com.example.group12.model.Job;
 import com.example.group12.util.JobFilterCallback;
 import com.google.firebase.database.FirebaseDatabase;
