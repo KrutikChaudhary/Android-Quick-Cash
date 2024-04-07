@@ -5,15 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.Map;
-
-import com.example.group12.Firebase.FirebaseDatabaseManager;
+import com.example.group12.firebase.crud.FirebaseReadManager;
 import com.example.group12.ui.employer.Dashboard_Employer;
 import com.example.group12.ui.user.Dashboard_User;
 import com.example.group12.util.EmailCallback;
@@ -31,7 +28,7 @@ public class LogInActivity extends AppCompatActivity {
     EditText emailTV;
     EditText password;
     Button loginButton;
-    FirebaseDatabaseManager dbManager;
+    FirebaseReadManager dbManager;
     LoginValidator validator;
     private SharedPreferences preferences;
     String userKey;
@@ -100,13 +97,18 @@ public class LogInActivity extends AppCompatActivity {
      */
     protected void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
-        dbManager = new FirebaseDatabaseManager(db);
+        dbManager = new FirebaseReadManager(db);
     }
 
     private void retriveSaved(){
         userKey = preferences.getString("key", null);
     }
 
+    /**
+     * Updates the saved user information locally using SharedPreferences.
+     * @param key   The key of the user to be saved.
+     * @param email The email of the user to be saved.
+     */
     private void updateSavedUserInfo(String key, String email){
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("key", key);

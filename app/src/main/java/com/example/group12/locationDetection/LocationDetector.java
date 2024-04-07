@@ -14,8 +14,9 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.group12.Firebase.FirebaseDatabaseManager;
+import com.example.group12.firebase.crud.FirebaseCreateManager;
 import com.example.group12.core.Constants;
+import com.example.group12.model.LocationInfo;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -38,7 +39,7 @@ public class LocationDetector extends AppCompatActivity {
     private final LocationRequest locationRequest;
     private final Context context;
     private LocationInfo locationInfo;
-    FirebaseDatabaseManager firebaseDatabaseManager;
+    FirebaseCreateManager dbManager;
     FirebaseDatabase db;
     private static final int REQUEST_CODE = 100;
 
@@ -55,7 +56,7 @@ public class LocationDetector extends AppCompatActivity {
         this.locationRequest.setFastestInterval(FASTEST_INTERVAL_MILLIS); // 5 seconds
         this.locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
-        firebaseDatabaseManager = new FirebaseDatabaseManager(db);
+        dbManager = new FirebaseCreateManager(db);
         initializeLocationCallback();
     }
 
@@ -111,14 +112,12 @@ public class LocationDetector extends AppCompatActivity {
     }
 
 
-    /*
-     * This method calls save location to firebase method in firebase manager class
-     *  To perform save operation
-     * @param locationInfo Location info objects which stores the location
-     * @return the result of the operation
+    /**
+     * Saves location information to Firebase.
+     * @param locationInfo The location information to be saved.
      */
     public void saveToFirebase(LocationInfo locationInfo){
-        firebaseDatabaseManager.saveLocationToFirebase(locationInfo);
+        dbManager.saveLocationToFirebase(locationInfo);
     }
 
     /**
