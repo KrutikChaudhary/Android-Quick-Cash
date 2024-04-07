@@ -13,19 +13,19 @@ import android.widget.TextView;
 
 import com.example.group12.R;
 import com.example.group12.core.Constants;
+import com.example.group12.firebase.FirebaseCreateManager;
 import com.example.group12.logic.UserCredentialValidator;
+import com.example.group12.ui.employer.Dashboard_Employer;
 import com.example.group12.ui.user.Dashboard_User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import com.example.group12.firebase.FirebaseDatabaseManager;
 
 /**
  * Activity class for user registration.
  */
 public class RegisterActivity extends AppCompatActivity {
 
-    FirebaseDatabaseManager dbManager;
+    FirebaseCreateManager dbManager;
     DatabaseReference dbref;
 
     String role;
@@ -101,7 +101,12 @@ public class RegisterActivity extends AppCompatActivity {
                 if (validated){
                     saveToFirebase();
                     saveUserInfo(dbref.getKey(), getEmail(), role);
-                    Intent selectRoleIntent = new Intent(RegisterActivity.this, Dashboard_User.class);
+                    Intent selectRoleIntent;
+                    if(role.equals("Employee")){
+                        selectRoleIntent = new Intent(RegisterActivity.this, Dashboard_User.class);
+                    } else {
+                        selectRoleIntent = new Intent(RegisterActivity.this, Dashboard_Employer.class);
+                    }
                     RegisterActivity.this.startActivity(selectRoleIntent);
                 }
                 // Display error messages if validation fails
@@ -122,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
      */
     protected void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
-        dbManager = new FirebaseDatabaseManager(db);
+        dbManager = new FirebaseCreateManager(db);
     }
 
     /**
