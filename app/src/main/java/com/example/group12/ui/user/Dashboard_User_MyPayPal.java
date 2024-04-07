@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.group12.firebase.FirebaseDatabaseManager;
+import com.example.group12.firebase.FirebaseCreateManager;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +27,7 @@ public class Dashboard_User_MyPayPal extends AppCompatActivity {
     String email;
 
     private SharedPreferences preferences;
-    FirebaseDatabaseManager dbManager;
+    FirebaseCreateManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class Dashboard_User_MyPayPal extends AppCompatActivity {
      * @return DatabaseReference pointing to the saved merchant ID
      */
     public DatabaseReference saveMerchantIDToFirebase(String email, String merchantID){
-        dbManager=new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
+        dbManager=new FirebaseCreateManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
         DatabaseReference ref = dbManager.saveMerchantIDtoFirebase(email,merchantID);
         return ref;
     }
