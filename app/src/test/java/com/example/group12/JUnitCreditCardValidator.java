@@ -3,10 +3,10 @@ package com.example.group12;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import com.example.group12.logic.cardValidator.CreditCardValidator;
-import com.example.group12.logic.cardValidator.CvvValidator;
-import com.example.group12.logic.cardValidator.MasterCardValidator;
-import com.example.group12.logic.cardValidator.VisaCardValidator;
+import com.example.group12.logic.validator.card.CreditCardValidator;
+import com.example.group12.logic.validator.card.CvvValidator;
+import com.example.group12.logic.validator.card.MasterCardValidator;
+import com.example.group12.logic.validator.card.VisaCardValidator;
 
 import org.junit.Before;
 import org.junit.Test;

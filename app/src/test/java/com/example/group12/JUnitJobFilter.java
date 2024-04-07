@@ -2,16 +2,11 @@ package com.example.group12;
 
 import com.example.group12.core.Constants;
 import com.example.group12.logic.FilterJob;
-import com.example.group12.logic.UserCredentialValidator;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
-import org.junit.Test;
-import com.example.group12.logic.FilterJob;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**

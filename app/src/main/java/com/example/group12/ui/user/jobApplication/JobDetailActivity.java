@@ -1,4 +1,4 @@
-package com.example.group12.ui.user.JobApplication;
+package com.example.group12.ui.user.jobApplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,7 +13,7 @@ import com.example.group12.maps.MapsActivity;
 import com.example.group12.ui.user.Dashboard_User_MyPayPal;
 import com.example.group12.R;
 import com.example.group12.util.MerchantIDCallBack;
-import com.example.group12.logic.MerchantIDValidator;
+import com.example.group12.logic.validator.MerchantIDValidator;
 
 /**
  * Activity class for displaying job details and applying for a job.

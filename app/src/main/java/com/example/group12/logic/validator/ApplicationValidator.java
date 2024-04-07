@@ -1,10 +1,10 @@
-package com.example.group12.logic;
+package com.example.group12.logic.validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ApplicationValidator {
-    private final String email_format = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    private final String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
     public boolean isEmailEmpty(String email){
         return email.isEmpty();
@@ -22,8 +22,8 @@ public class ApplicationValidator {
      * @return True if the email address is valid, otherwise false.
      */
     public boolean isValidEmail(String email) {
-        Pattern email_pattern = Pattern.compile(email_format);
-        Matcher matcher = email_pattern.matcher(email);
+        Pattern emailPattern = Pattern.compile(emailRegex);
+        Matcher matcher = emailPattern.matcher(email);
         return matcher.matches();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.group12.logic;
+package com.example.group12.logic.validator;
 
 import android.util.Log;
 
@@ -47,7 +47,7 @@ public class MerchantIDValidator {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // Initialize local variables for validity and merchant ID
-                boolean valid = false;
+                boolean isValid = false;
                 String merchant = "";
 
                 // Iterate through each child node under "MerchantID"
@@ -56,11 +56,11 @@ public class MerchantIDValidator {
                     Map<String, Object> userCredentials = (Map<String, Object>) user.getValue();
 
                     // Extract email and merchant ID from user credentials
-                    String email_firebase = (String) userCredentials.get("Email");
-                    String merchantID_firebase = (String) userCredentials.get("MerchantID");
-                    if (merchantID_firebase != null && !merchantID_firebase.equals("") && email.equals(email_firebase)) {
-                        valid = true;
-                        merchant = merchantID_firebase;
+                    String emailFirebase = (String) userCredentials.get("Email");
+                    String merchantIDFirebase = (String) userCredentials.get("MerchantID");
+                    if (merchantIDFirebase != null && !merchantIDFirebase.equals("") && email.equals(emailFirebase)) {
+                        isValid = true;
+                        merchant = merchantIDFirebase;
 
                         // Log the match found
                         Log.e("Match", "True");
@@ -71,7 +71,7 @@ public class MerchantIDValidator {
                 }
 
                 // Call the callback method to pass the validity and merchant ID information
-                callback.merchantIdAvailableResult(valid, merchant);
+                callback.merchantIdAvailableResult(isValid, merchant);
             }
 
             @Override
