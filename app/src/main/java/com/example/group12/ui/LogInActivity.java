@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.group12.firebase.FirebaseDatabaseManager;
+import com.example.group12.firebase.FirebaseReadManager;
 import com.example.group12.ui.employer.Dashboard_Employer;
 import com.example.group12.ui.user.Dashboard_User;
 import com.example.group12.util.EmailCallback;
@@ -28,7 +28,7 @@ public class LogInActivity extends AppCompatActivity {
     EditText emailTV;
     EditText password;
     Button loginButton;
-    FirebaseDatabaseManager dbManager;
+    FirebaseReadManager dbManager;
     LoginValidator validator;
     private SharedPreferences preferences;
     String userKey;
@@ -97,7 +97,7 @@ public class LogInActivity extends AppCompatActivity {
      */
     protected void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
-        dbManager = new FirebaseDatabaseManager(db);
+        dbManager = new FirebaseReadManager(db);
     }
 
     private void retriveSaved(){
