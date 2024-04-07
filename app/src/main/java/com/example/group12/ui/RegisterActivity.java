@@ -189,6 +189,11 @@ public class RegisterActivity extends AppCompatActivity {
         setPasswordLabel("");
     }
 
+    /**
+     * Saves user information locally using SharedPreferences.
+     * @param key   The key of the user to be saved.
+     * @param email The email of the user to be saved. * @param role  The role of the user to be saved.
+     */
     private void saveUserInfo(String key, String email, String role){
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("key", key);
