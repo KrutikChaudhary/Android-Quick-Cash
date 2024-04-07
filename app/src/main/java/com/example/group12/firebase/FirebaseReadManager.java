@@ -20,8 +20,6 @@ public class FirebaseReadManager {
     private FirebaseDatabase database;
     private DatabaseReference userRef;
     private DatabaseReference merchantRef;
-    private DatabaseReference jobApplicationRef;
-    private DatabaseReference userLocation;
     private DatabaseReference jobRef;
 
     public FirebaseReadManager(FirebaseDatabase database) {
@@ -34,10 +32,8 @@ public class FirebaseReadManager {
      */
     protected void initializeDatabaseRefs() {
         userRef = database.getReference().child("User");
-        userLocation = database.getReference().child("Location");
         jobRef = database.getReference().child("Job");
         merchantRef = database.getReference().child("MerchantID");
-        jobApplicationRef = database.getReference().child("Job Application");
 
     }
 
