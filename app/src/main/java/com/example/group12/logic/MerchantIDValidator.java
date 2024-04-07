@@ -4,8 +4,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.group12.Firebase.FirebaseDatabaseManager;
 import com.example.group12.core.Constants;
+import com.example.group12.firebase.crud.FirebaseReadManager;
 import com.example.group12.util.MerchantIDCallBack;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,7 +19,7 @@ import java.util.Map;
  * This class provides functionality to validate merchant IDs in the Firebase database.
  */
 public class MerchantIDValidator {
-    FirebaseDatabaseManager dbManager;
+    FirebaseReadManager dbManager;
 
     private boolean valid = false;
 
@@ -27,7 +27,7 @@ public class MerchantIDValidator {
      * Constructs a new MerchantIDValidator instance.
      */
     public MerchantIDValidator(){
-        dbManager = new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
+        dbManager = new FirebaseReadManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
     }
 
     /**

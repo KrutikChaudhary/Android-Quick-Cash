@@ -35,6 +35,10 @@ public class EmployerJobDetail extends AppCompatActivity {
         jobDesc.setText(desc);
     }
 
+    /**
+     * Sets up the functionality for the "Go Back" button in the employer job detail activity.
+     * When the button is clicked, it navigates back to the employer dashboard activity.
+     */
     public void setupGoBackButton(){
         goBackButton = findViewById(R.id.buttonGoBack);
         goBackButton.setOnClickListener(new View.OnClickListener() {

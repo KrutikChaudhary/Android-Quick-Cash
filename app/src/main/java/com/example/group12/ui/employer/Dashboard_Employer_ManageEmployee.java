@@ -49,7 +49,10 @@ public class Dashboard_Employer_ManageEmployee extends AppCompatActivity {
         recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
 
-    // Retrieve and display job applications
+    /**
+     * Retrieves and displays job applications related to the logged-in employer.
+     * Fetches job applications from the Firebase Realtime Database and populates them in a RecyclerView.
+     */
     protected void viewApplications(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK)
                 .getReference().child("Job Application");

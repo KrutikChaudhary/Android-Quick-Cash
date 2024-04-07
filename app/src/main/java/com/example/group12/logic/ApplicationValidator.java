@@ -16,7 +16,11 @@ public class ApplicationValidator {
         return name.isEmpty();
     }
 
-
+    /**
+     * Checks if the given email address is valid.
+     * @param email The email address to be validated.
+     * @return True if the email address is valid, otherwise false.
+     */
     public boolean isValidEmail(String email) {
         Pattern email_pattern = Pattern.compile(email_format);
         Matcher matcher = email_pattern.matcher(email);
