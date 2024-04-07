@@ -70,6 +70,12 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
 
     }
 
+    /**
+     * Retrieves the total number of jobs posted by a specific employer identified by their email.
+     * Invokes the provided callback interface with the total count of jobs.
+     * @param employerEmail The email of the employer whose jobs are to be counted.
+     * @param callback      The callback interface to handle the total count of jobs.
+     */
     public void getTotalJobs(String employerEmail, FirebaseCountCallback callback){
         DatabaseReference jobRef = db.getReference().child("Job");
         jobRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -97,6 +103,12 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
 
     }
 
+    /**
+     * Retrieves the total number of job applications received by a specific employer identified by their email.
+     * Invokes the provided callback interface with the total count of job applications.
+     * @param employerEmail The email of the employer whose job applications are to be counted.
+     * @param callback      The callback interface to handle the total count of job applications.
+     */
     public void getTotalApplications(String employerEmail, FirebaseCountCallback callback){
         DatabaseReference jobApplicationRef = db.getReference().child("Job Application");
         jobApplicationRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -123,7 +135,14 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Updates the pie chart with the given number of jobs and applications.
+     * If the number of jobs is greater than 0, a pie slice representing "My Jobs" is added to the chart.
+     * If the number of applications is greater than 0, a pie slice representing "Job Applications" is added to the chart.
+     * The chart is then animated.
+     * @param jobs         The number of jobs to be represented on the pie chart.
+     * @param applications The number of job applications to be represented on the pie chart.
+     */
     private void updatePieChart(int jobs, int applications) {
         if (jobs > 0) {
             pieChart.addPieSlice(new PieModel("My Jobs", jobs, Color.parseColor("#008000"))); //green
