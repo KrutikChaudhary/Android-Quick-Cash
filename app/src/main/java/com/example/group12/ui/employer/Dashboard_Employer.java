@@ -105,6 +105,10 @@ public class Dashboard_Employer extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sets up the functionality for the "View Stats" button in the employer dashboard activity.
+     * When the button is clicked, it navigates to the employer view stats activity.
+     */
     protected void viewStatsButton() {
         Button viewStatsButton = findViewById(R.id.employerViewStats);
         viewStatsButton.setOnClickListener(new View.OnClickListener() {
