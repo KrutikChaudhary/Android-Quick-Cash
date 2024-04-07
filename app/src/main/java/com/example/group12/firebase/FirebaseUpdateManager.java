@@ -4,43 +4,20 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.group12.logic.FilterJob;
-import com.example.group12.model.Job;
-import com.example.group12.util.JobFilterCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class FirebaseUpdateManager {
 
     private FirebaseDatabase database;
-    private DatabaseReference userRef;
-    private DatabaseReference merchantRef;
-    private DatabaseReference jobApplicationRef;
-    private DatabaseReference userLocation;
-    private DatabaseReference jobRef;
 
     public FirebaseUpdateManager(FirebaseDatabase database) {
         this.database = database;
-        initializeDatabaseRefs();
-    }
-
-    /**
-     * Initializes database references.
-     */
-    protected void initializeDatabaseRefs() {
-        userRef = database.getReference().child("User");
-        userLocation = database.getReference().child("Location");
-        jobRef = database.getReference().child("Job");
-        merchantRef = database.getReference().child("MerchantID");
-        jobApplicationRef = database.getReference().child("Job Application");
-
     }
 
     /**
