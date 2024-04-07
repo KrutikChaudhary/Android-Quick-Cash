@@ -64,86 +64,67 @@ public class FirebaseDatabaseManager
     }
 
 
-    /**
-     * Updates user role in Firebase database.
-     * @param role New role to be updated
-     * @param userKey Key of the user in the database
-     */
-    public void updateRole(String role, String userKey) {
-        // Get DatabaseReference for the user's role under the "User" node in the Firebase database
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(userKey);
-
-        // Listen for a single value event to retrieve the user's current role
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // Retrieve user data as a Map from the DataSnapshot
-                Map<String, Object> user = (Map<String, Object>) snapshot.getValue();
-
-                // Check if user data is not null
-                if (user != null) {
-                    // Update the user's role with the new role value
-                    user.put("Role", role);
-
-                    // Set the updated user data back to the database
-                    ref.setValue(user);
-                } else {
-                    // Log an error message if user data is null
-                    Log.e("null user", "User map is null");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle database error if any
-            }
-        });
-    }
-
-    public void savePreferenceToFirebase(String key, String preferredLocation, String preferredSalary, String preferredJobTitle){
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(key);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // Retrieve user data as a Map from the DataSnapshot
-                Map<String, Object> user = (Map<String, Object>) snapshot.getValue();
-
-                if (user != null) {
-                // Update the user's preference with the new preference
-                    user.put("PreferredLocation", preferredLocation);
-                    user.put("PreferredSalary", preferredSalary);
-                    user.put("PreferredJobTitile", preferredJobTitle);
-                // Set the updated user data back to the database
-                    ref.setValue(user);
-                } else {
-                    // Log an error message if user data is null
-                    Log.e("null user", "User map is null");
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-    }
-    public void getUserEmail(String key, EmailCallback callback) {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(key);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Map<String, Object> user = (Map<String, Object>) snapshot.getValue();
-                String email = null;
-                if (user != null) {
-                    email = (String) user.get("Email");
-                }
-                callback.onCallback(email); // Invoke the callback with the email value
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle onCancelled
-            }
-        });
-    }
+//    /**
+//     * Updates user role in Firebase database.
+//     * @param role New role to be updated
+//     * @param userKey Key of the user in the database
+//     */
+//    public void updateRole(String role, String userKey) {
+//        // Get DatabaseReference for the user's role under the "User" node in the Firebase database
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(userKey);
+//
+//        // Listen for a single value event to retrieve the user's current role
+//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                // Retrieve user data as a Map from the DataSnapshot
+//                Map<String, Object> user = (Map<String, Object>) snapshot.getValue();
+//
+//                // Check if user data is not null
+//                if (user != null) {
+//                    // Update the user's role with the new role value
+//                    user.put("Role", role);
+//
+//                    // Set the updated user data back to the database
+//                    ref.setValue(user);
+//                } else {
+//                    // Log an error message if user data is null
+//                    Log.e("null user", "User map is null");
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                // Handle database error if any
+//            }
+//        });
+//    }
+//
+//    public void savePreferenceToFirebase(String key, String preferredLocation, String preferredSalary, String preferredJobTitle){
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(key);
+//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                // Retrieve user data as a Map from the DataSnapshot
+//                Map<String, Object> user = (Map<String, Object>) snapshot.getValue();
+//
+//                if (user != null) {
+//                // Update the user's preference with the new preference
+//                    user.put("PreferredLocation", preferredLocation);
+//                    user.put("PreferredSalary", preferredSalary);
+//                    user.put("PreferredJobTitile", preferredJobTitle);
+//                // Set the updated user data back to the database
+//                    ref.setValue(user);
+//                } else {
+//                    // Log an error message if user data is null
+//                    Log.e("null user", "User map is null");
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//            }
+//        });
+//    }
 
 
     /**
