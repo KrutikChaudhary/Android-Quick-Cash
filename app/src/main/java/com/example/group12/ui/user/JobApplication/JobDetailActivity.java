@@ -46,7 +46,7 @@ public class JobDetailActivity extends AppCompatActivity {
         Log.d("employer email", "" + employerEmail);
         setTextView();
         applyButtonSetup();
-        setViewOnMaps();
+        viewOnMapsButtonSetup();
     }
 
     /**
@@ -91,7 +91,12 @@ public class JobDetailActivity extends AppCompatActivity {
         });
     }
 
-    public void setViewOnMaps(){
+    /**
+     * Sets up the functionality for the "View on Maps" button in the job detail activity.
+     * When the button is clicked, it navigates to the MapsActivity to view the location of the job.
+     * Passes latitude, longitude, and title of the job as extras to the MapsActivity.
+     */
+    public void viewOnMapsButtonSetup(){
         viewOnMaps = findViewById(R.id.mapsButton);
         viewOnMaps.setOnClickListener(new View.OnClickListener() {
             @Override
