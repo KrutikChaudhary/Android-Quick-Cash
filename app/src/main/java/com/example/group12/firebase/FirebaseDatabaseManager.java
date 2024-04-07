@@ -4,7 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.group12.locationDetection.LocationInfo;
+import com.example.group12.model.LocationInfo;
 import com.example.group12.util.EmailCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
