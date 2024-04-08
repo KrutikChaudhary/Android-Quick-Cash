@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class LoginValidator {
     FirebaseReadManager dbManager;
-
+    private static LoginValidator instance;
     private boolean valid = false;
     private String role = "";
 
@@ -34,6 +34,15 @@ public class LoginValidator {
     public LoginValidator(){
         dbManager = new FirebaseReadManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
     }
+
+    // Public method to get the instance
+    public static synchronized LoginValidator getInstance() {
+        if (instance == null) {
+            instance = new LoginValidator();
+        }
+        return instance;
+    }
+
 
     /**
      * Validates the user login credentials against Firebase user data.
