@@ -1,5 +1,7 @@
 package com.example.group12.firebase.crud;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.group12.logic.FilterJob;
@@ -68,6 +70,8 @@ public class FirebaseReadManager {
     public void jobFilter(String parameter, String salary, String duration, String distance, JobFilterCallback callback){
         // Create a list to store filtered jobs
         List<Job> filterdJobList = new ArrayList<>();
+        // Create a new instance of FilterJob to perform filtering
+        FilterJob filterJob = new FilterJob();
         // Retrieve DatabaseReference for Job node and listen for a single value event
         this.getJobRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -87,11 +91,9 @@ public class FirebaseReadManager {
                     float jobLongitude = ((Number) jobMap.get("longitude")).floatValue();
                     float jobLatitude = ((Number) jobMap.get("latitude")).floatValue();
 
-                    // Create a new instance of FilterJob to perform filtering
-                    FilterJob filterJob = new FilterJob();
 
                     // Check if the job satisfies the filtering criteria
-                    if (filterJob.containsParameters(parameter, jobTitle) && filterJob.containsSalary(salary, jobSalary) && filterJob.containsDuration(duration, jobDuration)){
+                    if (filterJob.containsParameters(parameter, jobTitle) && filterJob.containsSalary(salary, jobSalary)){
                         // If the job meets the criteria, create a Job object and add it to the filtered job list
                         Job job = new Job(jobTitle,employerEmail, jobSalary, jobDuration, jobStartDate, jobLocation, jobUrgency, jobLatitude, jobLongitude);
                         filterdJobList.add(job);

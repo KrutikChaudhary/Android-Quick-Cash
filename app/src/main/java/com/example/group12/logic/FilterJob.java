@@ -3,6 +3,7 @@ package com.example.group12.logic;
 
 import android.content.Context;
 import android.location.Geocoder;
+import android.util.Log;
 
 import com.example.group12.core.Constants;
 
@@ -37,7 +38,7 @@ public class FilterJob {
      */
     public boolean containsSalary(String param, float num){
         // Check if the salary parameter is empty
-        if(param.equals("")){
+        if(param.equals(Constants.SPINNER_SALARY_SELECT)){
             return true;
         }
 
