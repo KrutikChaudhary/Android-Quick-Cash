@@ -1,10 +1,10 @@
-package com.example.group12.logic;
+package com.example.group12.logic.validator;
 
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.group12.Firebase.FirebaseDatabaseManager;
+import com.example.group12.firebase.crud.FirebaseReadManager;
 import com.example.group12.util.LoginCallback;
 import com.example.group12.core.Constants;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +20,7 @@ import java.util.Map;
  * Firebase user data.
  */
 public class LoginValidator {
-    FirebaseDatabaseManager dbManager;
+    FirebaseReadManager dbManager;
 
     private boolean valid = false;
     private String role = "";
@@ -32,7 +32,7 @@ public class LoginValidator {
      * Initializes the FirebaseDatabaseManager instance.
      */
     public LoginValidator(){
-        dbManager = new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
+        dbManager = new FirebaseReadManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
     }
 
     /**
@@ -52,27 +52,31 @@ public class LoginValidator {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // Resetting local valid and role variables
-                boolean valid = false;
-                String role = "";
+
                 // Iterating through each child node in the User node
                 for (DataSnapshot user : snapshot.getChildren()){
+
                     // Retrieving user credentials from the database
                     Map<String, Object> userCredentials = (Map<String, Object>) user.getValue();
-                    String email_firebase = (String) userCredentials.get("Email");
-                    String password_firebase = (String) userCredentials.get("Password");
+                    String emailFirebase = (String) userCredentials.get("Email");
+                    String passwordFirebase = (String) userCredentials.get("Password");
+
                     // Checking if the retrieved email and password match the provided credentials
-                    if (email_firebase.equals(email) && password_firebase.equals(password)) {
+                    if (emailFirebase.equals(email) && passwordFirebase.equals(password)) {
+
                         // Setting valid to true and retrieving the user's role
                         valid = true;
                         role = (String) userCredentials.get("Role");
                         key = user.getKey();
+
                         // Logging a match between provided and database credentials
                         Log.e("Match", "True");
+
                         // Exiting the loop once a match is found
                         break;
                     }
                 }
+
                 // Calling the login callback method with the result and role information
                 callback.onLoginResult(valid, role, key);
             }

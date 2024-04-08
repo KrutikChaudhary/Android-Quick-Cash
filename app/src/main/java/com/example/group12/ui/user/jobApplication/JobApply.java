@@ -1,4 +1,4 @@
-package com.example.group12.ui.user.JobApplication;
+package com.example.group12.ui.user.jobApplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,13 +13,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.group12.Firebase.FirebaseDatabaseManager;
+import com.example.group12.firebase.crud.FirebaseCreateManager;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
 import com.example.group12.ui.user.Dashboard_User;
 import com.example.group12.ui.user.Dashboard_User_MyPayPal;
 import com.example.group12.util.MerchantIDCallBack;
-import com.example.group12.logic.MerchantIDValidator;
+import com.example.group12.logic.validator.MerchantIDValidator;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,7 +35,7 @@ public class JobApply extends AppCompatActivity {
     TextView jobTitle;
     String employerEmail;
     String title;
-    FirebaseDatabaseManager dbManager;
+    FirebaseCreateManager dbManager;
 
     private SharedPreferences preferences;
 
@@ -92,9 +92,17 @@ public class JobApply extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Saves a job application to Firebase.
+     * @param employeeEmail      The email of the employee applying for the job.
+     * @param employerEmail      The email of the employer to whom the job application is being sent.
+     * @param jobTitle           The title of the job being applied for.
+     * @param employeeName       The name of the employee applying for the job.
+     * @param employeeMerchantID The merchant ID of the employee applying for the job.
+     * @return A DatabaseReference object pointing to the location of the saved job application in the Firebase Database.
+     */
     public DatabaseReference saveJobApplicationToFirebase(String employeeEmail, String employerEmail, String jobTitle, String employeeName, String employeeMerchantID){
-        dbManager = new FirebaseDatabaseManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
+        dbManager = new FirebaseCreateManager(FirebaseDatabase.getInstance(Constants.FIREBASE_LINK));
         DatabaseReference ref =  dbManager.saveJobApplicationToFirebase(employeeEmail,employerEmail,jobTitle,employeeName,employeeMerchantID);
         return ref;
     }
