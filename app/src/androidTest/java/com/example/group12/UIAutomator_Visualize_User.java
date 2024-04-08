@@ -57,10 +57,11 @@ public class UIAutomator_Visualize_User {
 
     @Test
     public void testJobsGraphTextVisibility() throws UiObjectNotFoundException {
-        // Check if the text "Your Jobs Graph" is visible
-        UiObject jobsGraphText = device.findObject(new UiSelector().text("Your Jobs Graph"));
-        assertTrue("Your Jobs Graph text not found", jobsGraphText.exists());
+        UiObject jobsAccepted = device.findObject(new UiSelector().text("Jobs Accepted"));
+        assertTrue("Jobs Accepted text not found", jobsAccepted.exists());
+        UiObject jobsInReview = device.findObject(new UiSelector().text("Jobs In Review"));
+        assertTrue("Jobs In Review text not found", jobsInReview.exists());
+        UiObject jobsRejected = device.findObject(new UiSelector().text("Jobs Rejected"));
+        assertTrue("Jobs Rejected text not found", jobsRejected.exists());
     }
-
-
 }
