@@ -45,6 +45,7 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
         salarySpinnerSetup();
         durationSpinnerSetup();
         locationSpinnerSetup();
+        retrieveUserInput();
         init();
         databaseInit();
     }
@@ -102,7 +103,7 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
         jobSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                retrieveUserInput();
+                parameter = jobParameterText.getText().toString();
                 dbManager.jobFilter(parameter, salary, duration, location, SearchJobActivity.this);
             }
         });
@@ -111,8 +112,8 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
     /**
      * Retrieves user input from the text fields and spinners.
      */
-    protected void retrieveUserInput(){
-        parameter = jobParameterText.getText().toString();
+    protected void retrieveUserInput() {
+
         salarySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -145,7 +146,10 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+
     }
+
 
     /**
      * Initializes the Firebase database.
