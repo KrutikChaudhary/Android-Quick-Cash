@@ -13,19 +13,22 @@ import android.widget.TextView;
 
 import com.example.group12.R;
 import com.example.group12.core.Constants;
-import com.example.group12.logic.UserCredentialValidator;
+import com.example.group12.firebase.crud.FirebaseCreateManager;
+import com.example.group12.logic.validator.UserCredentialValidator;
+import com.example.group12.ui.employer.Dashboard_Employer;
+import com.example.group12.ui.user.Dashboard_User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import com.example.group12.Firebase.FirebaseDatabaseManager;
 
 /**
  * Activity class for user registration.
  */
 public class RegisterActivity extends AppCompatActivity {
 
-    FirebaseDatabaseManager dbManager;
+    FirebaseCreateManager dbManager;
     DatabaseReference dbref;
+
+    String role;
 
     private SharedPreferences preferences;
 
@@ -36,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        role = getIntent().getStringExtra("Role");
         preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         signupButtonSetup();
         databaseInit();
@@ -96,8 +100,13 @@ public class RegisterActivity extends AppCompatActivity {
                 // If credentials are validated, save to Firebase and redirect to SelectRoleActivity
                 if (validated){
                     saveToFirebase();
-                    saveUserInfo(dbref.getKey(), getEmail());
-                    Intent selectRoleIntent = new Intent(RegisterActivity.this, SelectRoleActivity.class);
+                    saveUserInfo(dbref.getKey(), getEmail(), role);
+                    Intent selectRoleIntent;
+                    if(role.equals("Employee")){
+                        selectRoleIntent = new Intent(RegisterActivity.this, Dashboard_User.class);
+                    } else {
+                        selectRoleIntent = new Intent(RegisterActivity.this, Dashboard_Employer.class);
+                    }
                     RegisterActivity.this.startActivity(selectRoleIntent);
                 }
                 // Display error messages if validation fails
@@ -118,14 +127,14 @@ public class RegisterActivity extends AppCompatActivity {
      */
     protected void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
-        dbManager = new FirebaseDatabaseManager(db);
+        dbManager = new FirebaseCreateManager(db);
     }
 
     /**
      * Saves user credentials (email and password) to Firebase.
      */
     protected void saveToFirebase(){
-        dbref = dbManager.saveUserCredentialsToFirebase(getEmail(), getPassword());
+        dbref = dbManager.saveUserCredentialsToFirebase(getEmail(), getPassword(), role);
     }
 
     /**
@@ -185,10 +194,16 @@ public class RegisterActivity extends AppCompatActivity {
         setPasswordLabel("");
     }
 
-    private void saveUserInfo(String key, String email){
+    /**
+     * Saves user information locally using SharedPreferences.
+     * @param key   The key of the user to be saved.
+     * @param email The email of the user to be saved. * @param role  The role of the user to be saved.
+     */
+    private void saveUserInfo(String key, String email, String role){
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("key", key);
         editor.putString("email", email);
+        editor.putString("role", role);
         editor.apply();
     }
 }
