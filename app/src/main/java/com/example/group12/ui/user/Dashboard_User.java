@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.ContentInfo;
 import android.widget.Button;
 
 import android.view.View;
@@ -15,7 +14,6 @@ import android.content.Intent;
 
 import com.example.group12.model.Job;
 import com.example.group12.ui.SearchJobActivity;
-import com.example.group12.ui.employer.Dashboard_Employer_View_Stats;
 import com.example.group12.util.JobAdapter;
 import com.example.group12.R;
 import com.example.group12.util.WrapLinearLayoutManager;
@@ -47,8 +45,8 @@ public class Dashboard_User extends AppCompatActivity {
         viewJobs();
         findJobButtonSetup();
         paypalButtonSetup();
-        MyPreferenceButton();
-        viewStatsButton();
+        preferenceButtonSetup();
+        viewStatsButtonSetup();
     }
 
     /**
@@ -102,7 +100,10 @@ public class Dashboard_User extends AppCompatActivity {
         });
     }
 
-    protected void MyPreferenceButton(){
+    /**
+     * Sets up the button for preference page.
+     */
+    protected void preferenceButtonSetup(){
         Button myPreference = findViewById(R.id.preferredJobsButton);
         myPreference.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +113,11 @@ public class Dashboard_User extends AppCompatActivity {
             }
         });
     }
-    protected void viewStatsButton(){
+
+    /**
+     * Sets up the button for stats page.
+     */
+    protected void viewStatsButtonSetup(){
         Button viewStatsButton = findViewById(R.id.userViewStats);
         viewStatsButton.setOnClickListener(new View.OnClickListener() {
             @Override

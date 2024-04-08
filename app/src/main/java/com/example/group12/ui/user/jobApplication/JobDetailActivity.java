@@ -1,4 +1,4 @@
-package com.example.group12.ui.user.JobApplication;
+package com.example.group12.ui.user.jobApplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,7 +13,7 @@ import com.example.group12.maps.MapsActivity;
 import com.example.group12.ui.user.Dashboard_User_MyPayPal;
 import com.example.group12.R;
 import com.example.group12.util.MerchantIDCallBack;
-import com.example.group12.logic.MerchantIDValidator;
+import com.example.group12.logic.validator.MerchantIDValidator;
 
 /**
  * Activity class for displaying job details and applying for a job.
@@ -46,7 +46,7 @@ public class JobDetailActivity extends AppCompatActivity {
         Log.d("employer email", "" + employerEmail);
         setTextView();
         applyButtonSetup();
-        setViewOnMaps();
+        viewOnMapsButtonSetup();
     }
 
     /**
@@ -91,7 +91,12 @@ public class JobDetailActivity extends AppCompatActivity {
         });
     }
 
-    public void setViewOnMaps(){
+    /**
+     * Sets up the functionality for the "View on Maps" button in the job detail activity.
+     * When the button is clicked, it navigates to the MapsActivity to view the location of the job.
+     * Passes latitude, longitude, and title of the job as extras to the MapsActivity.
+     */
+    public void viewOnMapsButtonSetup(){
         viewOnMaps = findViewById(R.id.mapsButton);
         viewOnMaps.setOnClickListener(new View.OnClickListener() {
             @Override

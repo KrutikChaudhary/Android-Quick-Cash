@@ -1,4 +1,4 @@
-package com.example.group12.logic;
+package com.example.group12.logic.validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,9 +32,9 @@ public class UserCredentialValidator {
      * @return True if the email address is valid, false otherwise.
      */
     public boolean isValidEmailAddress(String emailAddress) {
-        String email_format = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}$";
-        Pattern email_pattern = Pattern.compile(email_format);
-        Matcher matcher = email_pattern.matcher(emailAddress);
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}$";
+        Pattern emailRegexPattern = Pattern.compile(emailRegex);
+        Matcher matcher = emailRegexPattern.matcher(emailAddress);
         return matcher.matches();
     }
 

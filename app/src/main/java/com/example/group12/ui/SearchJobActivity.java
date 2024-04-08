@@ -10,12 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.group12.Firebase.FirebaseDatabaseManager;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
+import com.example.group12.firebase.crud.FirebaseReadManager;
 import com.example.group12.model.Job;
 import com.example.group12.util.JobFilterCallback;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
     String duration = "";
     String location = "";
     String key;
-    FirebaseDatabaseManager dbManager;
+    FirebaseReadManager dbManager;
 
     /**
      * Initializes the activity layout and sets up spinners and button.
@@ -153,7 +152,7 @@ public class SearchJobActivity extends AppCompatActivity implements JobFilterCal
      */
     protected void databaseInit(){
         FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.FIREBASE_LINK);
-        dbManager = new FirebaseDatabaseManager(db);
+        dbManager = new FirebaseReadManager(db);
     }
 
     /**

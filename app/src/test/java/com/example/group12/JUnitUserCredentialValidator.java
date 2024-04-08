@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.example.group12.logic.UserCredentialValidator;
+import com.example.group12.logic.validator.UserCredentialValidator;
 
 /**
  * JUnit test class for validating user credentials.

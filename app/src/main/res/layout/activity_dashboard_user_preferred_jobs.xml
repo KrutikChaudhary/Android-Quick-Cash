@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#FDFDFD"
     tools:context=".ui.user.Dashboard_User_PreferredJobs">
-
     <!-- Header -->
     <TextView
         android:id="@+id/textViewHeader"
@@ -23,7 +22,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.1" />
-
     <!-- Preferred Location EditText -->
     <EditText
         android:id="@+id/editTextPreferredLocation"
@@ -37,7 +35,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHeader" />
-
     <!-- Preferred Salary EditText -->
     <EditText
         android:id="@+id/editTextPreferredSalary"
@@ -51,7 +48,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPreferredLocation" />
-
     <!-- Preferred Job Title EditText -->
     <EditText
         android:id="@+id/editTextPreferredJobTitle"
@@ -65,7 +61,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPreferredSalary" />
-
     <!-- Submit Button -->
     <Button
         android:id="@+id/buttonSubmit"
@@ -78,5 +73,65 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPreferredJobTitle" />
-
+    <!-- Display Preferred Location -->
+    <!-- Display Preferred Salary -->
+    <!-- Display Preferred Job Title -->
+    <TextView
+        android:id="@+id/textViewSecondHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:background="#CEBFE5"
+        android:padding="50px"
+        android:text="Your Submitted Preferences"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.43"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSubmit" />
+    <TextView
+        android:id="@+id/textViewPreferredLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="88dp"
+        android:text="Preferred Location: Not Submitted"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.426"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSubmit" />
+    <TextView
+        android:id="@+id/textViewPreferredSalary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Preferred Salary: Not Submitted"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.366"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPreferredLocation" />
+    <TextView
+        android:id="@+id/textViewPreferredJobTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Preferred Job Title: Not Submitted"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.426"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPreferredSalary" />
 </androidx.constraintlayout.widget.ConstraintLayout>
