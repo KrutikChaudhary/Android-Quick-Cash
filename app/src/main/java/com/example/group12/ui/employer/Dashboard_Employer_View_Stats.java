@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
 import com.example.group12.util.FirebaseCountCallback;
+import com.example.group12.util.TotalApplicationsStatsCount;
+import com.example.group12.util.TotalJobsStatsCount;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,8 +51,8 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
         // Retrieve TextViews representing job and application counts
         TextView textViewGreenCount = findViewById(R.id.textViewGreenCount);
         TextView textViewYellowCount = findViewById(R.id.textViewYellowCount);
-
-        getTotalJobs(employerEmail, new FirebaseCountCallback() {
+        TotalJobsStatsCount totalJobsStatsCount = new TotalJobsStatsCount();
+        totalJobsStatsCount.getTotalCounts(employerEmail, new FirebaseCountCallback() {
             @Override
             public void dataCount(int countOfJobs) {
                 Log.d("Job Count", "Count: "+ countOfJobs);
@@ -58,78 +60,13 @@ public class Dashboard_Employer_View_Stats extends AppCompatActivity {
                 textViewGreenCount.setText(String.valueOf(countOfJobs)); // Set job count
             }
         });
-
-        getTotalApplications(employerEmail, new FirebaseCountCallback() {
+        TotalApplicationsStatsCount totalApplicationsStatsCount = new TotalApplicationsStatsCount();
+        totalApplicationsStatsCount.getTotalCounts(employerEmail, new FirebaseCountCallback() {
             @Override
             public void dataCount(int countOfApplications) {
                 Log.d("Job Application", "Count: " + countOfApplications);
                 updatePieChart(INITIAL_JOBS, countOfApplications); // Update only the applications part
                 textViewYellowCount.setText(String.valueOf(countOfApplications)); // Set application count
-            }
-        });
-
-    }
-
-    /**
-     * Retrieves the total number of jobs posted by a specific employer identified by their email.
-     * Invokes the provided callback interface with the total count of jobs.
-     * @param employerEmail The email of the employer whose jobs are to be counted.
-     * @param callback      The callback interface to handle the total count of jobs.
-     */
-    public void getTotalJobs(String employerEmail, FirebaseCountCallback callback){
-        DatabaseReference jobRef = db.getReference().child("Job");
-        jobRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int counter =0;
-                //iterate the data and find count the total jobs posted by employer.
-                for (DataSnapshot jobs: snapshot.getChildren()){
-                    Map<String, Object> userCredentials = (Map<String, Object>) jobs.getValue();
-                    String email = (String) userCredentials.get("employerEmail");
-                    if(employerEmail.equals(email)){ //if the employer email matches then increment
-                        counter++;
-                    }
-                }
-
-                callback.dataCount(counter);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
-
-    /**
-     * Retrieves the total number of job applications received by a specific employer identified by their email.
-     * Invokes the provided callback interface with the total count of job applications.
-     * @param employerEmail The email of the employer whose job applications are to be counted.
-     * @param callback      The callback interface to handle the total count of job applications.
-     */
-    public void getTotalApplications(String employerEmail, FirebaseCountCallback callback){
-        DatabaseReference jobApplicationRef = db.getReference().child("Job Application");
-        jobApplicationRef.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int counter = 0;
-                //iterate the data and find count the total job applications posted by employer.
-                for (DataSnapshot jobApplications: snapshot.getChildren()){
-                    Map<String, Object> userCredentials = (Map<String, Object>) jobApplications.getValue();
-                    String email = (String) userCredentials.get("employerEmail");
-                    if(employerEmail.equals(email)){ //if the employer email matches then increment
-                        counter++;
-                    }
-                }
-                callback.dataCount(counter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
