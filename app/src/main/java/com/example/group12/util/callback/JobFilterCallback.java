@@ -1,6 +1,6 @@
-package com.example.group12.util;
+package com.example.group12.util.callback;
 
-import com.example.group12.model.Job;
+import com.example.group12.model.job.Job;
 
 import java.util.List;
 
