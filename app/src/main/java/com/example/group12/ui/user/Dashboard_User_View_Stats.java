@@ -9,7 +9,10 @@ import android.util.Log;
 import android.widget.TextView;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
+import com.example.group12.util.AcceptedApplicationCount;
 import com.example.group12.util.FirebaseCountCallback;
+import com.example.group12.util.InReviewApplicationCount;
+import com.example.group12.util.RejectedApplicationsCount;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,7 +46,8 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
         TextView textViewGreenCount = findViewById(R.id.textViewGreenCount); // accepted jobs
         TextView textViewYellowCount = findViewById(R.id.textViewYellowCount); // in review jobs
         TextView textViewRedCount = findViewById(R.id.textViewRedCount); // rejected jobs
-        getApplicationCount(email,"InReview", new FirebaseCountCallback() {
+        InReviewApplicationCount inReviewApplicationCount = new InReviewApplicationCount();
+        inReviewApplicationCount.getTotalCounts(email, new FirebaseCountCallback() {
             @Override
             public void dataCount(int count) {
                 Log.d("Job In Review Count", "In Review Count: "+ count);
@@ -51,7 +55,9 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
                 textViewYellowCount.setText(String.valueOf(count));
             }
         });
-        getApplicationCount(email,"Accepted", new FirebaseCountCallback() {
+
+        AcceptedApplicationCount acceptedApplicationCount = new AcceptedApplicationCount();
+        acceptedApplicationCount.getTotalCounts(email, new FirebaseCountCallback() {
             @Override
             public void dataCount(int count) {
                 Log.d("Job Accepted Count", "Accepted Count: "+ count);
@@ -59,7 +65,8 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
                 textViewGreenCount.setText(String.valueOf(count));
             }
         });
-        getApplicationCount(email,"Rejected", new FirebaseCountCallback() {
+        RejectedApplicationsCount rejectedApplicationsCount = new RejectedApplicationsCount();
+        rejectedApplicationsCount.getTotalCounts(email, new FirebaseCountCallback() {
             @Override
             public void dataCount(int count) {
                 Log.d("Job Rejected Count", "Rejected Count: "+ count);
@@ -68,37 +75,7 @@ public class Dashboard_User_View_Stats extends AppCompatActivity {
             }
         });
     }
-    /**
-     * Retrieves the count of job applications for a specific employee with a particular status.
-     *
-     * @param employeeEmail The email of the employee whose job applications are to be counted.
-     * @param statusToCheck The status of the job applications to be counted.
-     * @param callback The callback interface to handle the count of job applications.
-     */
-    public void getApplicationCount(String employeeEmail, String statusToCheck, FirebaseCountCallback callback){
-        DatabaseReference jobApplicationRef = db.getReference().child("Job Application");
-        jobApplicationRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int counter =0;
-                //iterate the data and find count the total in review jobs.
-                for (DataSnapshot jobApplication: snapshot.getChildren()){
-                    Map<String, Object> userCredentials = (Map<String, Object>) jobApplication.getValue();
-                    String email = (String) userCredentials.get("Email");
-                    String applicationStatus = (String) userCredentials.get("applicationStatus");
-                    if(employeeEmail.equals(email)){
-                        if(applicationStatus.equals(statusToCheck)){
-                            counter++;
-                        }
-                    }
-                }
-                callback.dataCount(counter);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-    }
+
     /**
      * Updates the pie chart with the given number of jobs in review, accepted, and rejected.
      * If the number of jobs in review is greater than 0, a pie slice representing "Jobs in Review" is added to the chart.
