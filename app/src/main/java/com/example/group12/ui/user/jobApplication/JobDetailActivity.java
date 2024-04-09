@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.example.group12.maps.MapsActivity;
 import com.example.group12.ui.user.Dashboard_User_MyPayPal;
 import com.example.group12.R;
-import com.example.group12.util.MerchantIDCallBack;
+import com.example.group12.util.callback.MerchantIDCallBack;
 import com.example.group12.logic.validator.MerchantIDValidator;
 
 /**

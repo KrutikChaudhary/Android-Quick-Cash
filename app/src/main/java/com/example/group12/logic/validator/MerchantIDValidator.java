@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.group12.core.Constants;
 import com.example.group12.firebase.crud.FirebaseReadManager;
-import com.example.group12.util.MerchantIDCallBack;
+import com.example.group12.util.callback.MerchantIDCallBack;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

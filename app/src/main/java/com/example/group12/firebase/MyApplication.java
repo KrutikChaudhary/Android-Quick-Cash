@@ -20,7 +20,7 @@ import com.example.group12.core.Constants;
 import com.example.group12.firebase.crud.FirebaseReadManager;
 import com.example.group12.logic.FacadeFilter;
 import com.example.group12.util.AccessTokenListener;
-import com.example.group12.util.FetchPreferencesCallback;
+import com.example.group12.util.callback.FetchPreferencesCallback;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
