@@ -1,4 +1,4 @@
-package com.example.group12.ui;
+package com.example.group12.ui.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.group12.R;
+import com.example.group12.ui.loginRegister.LogInActivity;
 
 public class ViewPushNotificationActivity extends AppCompatActivity {
 
