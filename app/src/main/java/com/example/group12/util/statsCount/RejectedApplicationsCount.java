@@ -11,10 +11,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
 
-public class AcceptedApplicationCount implements StatsCountStrategy{
+/**
+ * This class implements the StatsCountStrategy interface to calculate the total number of  rejected job applications
+ * received by a specific employee identified by their email.
+ */
+public class RejectedApplicationsCount implements StatsCountStrategy{
     FirebaseDatabase db;
-
-    public AcceptedApplicationCount() {
+    public RejectedApplicationsCount(){
         initializeDatabase();
     }
 
@@ -23,7 +26,7 @@ public class AcceptedApplicationCount implements StatsCountStrategy{
      * Retrieves the count of job applications for a specific employee with a particular status.
      *
      * @param email The email of the employee whose job applications are to be counted.
-     * @param callback The callback interface to handle the count of Accepted job applications.
+     * @param callback The callback interface to handle the count of Rejected job applications.
      */
     @Override
     public void getTotalCounts(String email, FirebaseCountCallback callback) {
@@ -38,7 +41,7 @@ public class AcceptedApplicationCount implements StatsCountStrategy{
                     String emailData = (String) userCredentials.get("Email");
                     String applicationStatus = (String) userCredentials.get("applicationStatus");
                     if(email.equals(emailData)){
-                        if(applicationStatus.equals("Accepted")){
+                        if(applicationStatus.equals("Rejected")){
                             counter++;
                         }
                     }
@@ -49,7 +52,6 @@ public class AcceptedApplicationCount implements StatsCountStrategy{
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-
     }
 
     private void initializeDatabase(){
