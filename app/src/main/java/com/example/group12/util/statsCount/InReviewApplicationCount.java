@@ -11,6 +11,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
 
+/**
+ * This class implements the StatsCountStrategy interface to calculate the total number of in-review job applications
+ * received by a specific employee identified by their email.
+ */
 public class InReviewApplicationCount implements StatsCountStrategy{
     FirebaseDatabase db;
 
