@@ -1,4 +1,4 @@
-package com.example.group12.ui;
+package com.example.group12.ui.payment;
 
 import android.app.Activity;
 import android.content.Intent;

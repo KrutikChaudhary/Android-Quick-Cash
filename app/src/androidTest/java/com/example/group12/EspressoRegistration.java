@@ -11,7 +11,7 @@ import androidx.test.core.app.ActivityScenario;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.example.group12.ui.RegisterActivity;
+import com.example.group12.ui.loginRegister.RegisterActivity;
 
 /**
  * Espresso test class for registration functionality.
