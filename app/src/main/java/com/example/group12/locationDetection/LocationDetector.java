@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.group12.firebase.crud.FirebaseCreateManager;
 import com.example.group12.core.Constants;
-import com.example.group12.model.LocationInfo;
+import com.example.group12.model.location.LocationInfo;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;

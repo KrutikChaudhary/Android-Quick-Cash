@@ -14,7 +14,7 @@ import android.widget.Button;
 
 import com.example.group12.R;
 import com.example.group12.core.Constants;
-import com.example.group12.model.Job;
+import com.example.group12.model.job.Job;
 import com.example.group12.util.adapter.EmployerJobAdapter;
 import com.example.group12.util.WrapLinearLayoutManager;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

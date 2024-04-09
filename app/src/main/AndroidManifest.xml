@@ -59,28 +59,28 @@
             android:name=".ui.employer.Dashboard_Employer"
             android:exported="false" />
         <activity
-            android:name=".ui.SelectRoleActivity"
+            android:name=".ui.loginRegister.SelectRoleActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.RegisterActivity"
+            android:name=".ui.loginRegister.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".ui.ViewPushNotificationActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.LogInActivity"
+            android:name=".ui.loginRegister.LogInActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SearchJobActivity"
+            android:name=".ui.user.search.SearchJobActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ViewSearchJobActivity"
+            android:name=".ui.user.search.ViewSearchJobActivity"
             android:exported="false" />
         <activity
             android:name=".ui.user.jobApplication.JobDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.loginRegister.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
