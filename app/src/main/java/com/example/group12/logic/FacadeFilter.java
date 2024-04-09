@@ -16,6 +16,7 @@ public class FacadeFilter {
      * @return The distance between the two points in kilometers.
      */
     public double getDist(float lat1, float lng1, float lat2, float lng2){
+        // Use only the distance function from the filter job
         FilterJob filter = new FilterJob();
         double dist = filter.getDistance(lat1,lng1,lat2,lng2);
         return dist;
