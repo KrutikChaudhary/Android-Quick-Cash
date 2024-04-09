@@ -35,7 +35,7 @@
             android:name=".ui.employer.Dashboard_Employer_ManageEmployee"
             android:exported="false" />
         <activity
-            android:name=".ui.Payment"
+            android:name=".ui.payment.Payment"
             android:exported="false" />
         <activity
             android:name=".ui.employer.Dashboard_Employer_View_Stats"
@@ -65,7 +65,7 @@
             android:name=".ui.loginRegister.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ViewPushNotificationActivity"
+            android:name=".ui.user.ViewPushNotificationActivity"
             android:exported="false" />
         <activity
             android:name=".ui.loginRegister.LogInActivity"

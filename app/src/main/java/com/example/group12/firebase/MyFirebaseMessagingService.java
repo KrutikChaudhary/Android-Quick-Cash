@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import com.example.group12.R;
-import com.example.group12.ui.ViewPushNotificationActivity;
+import com.example.group12.ui.user.ViewPushNotificationActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
