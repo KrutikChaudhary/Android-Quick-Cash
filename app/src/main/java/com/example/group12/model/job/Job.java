@@ -1,4 +1,4 @@
-package com.example.group12.model;
+package com.example.group12.model.job;
 import java.io.Serializable;
 
 /**

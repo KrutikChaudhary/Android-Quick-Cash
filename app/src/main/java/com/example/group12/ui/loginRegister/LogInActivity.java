@@ -1,4 +1,4 @@
-package com.example.group12.ui;
+package com.example.group12.ui.loginRegister;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
