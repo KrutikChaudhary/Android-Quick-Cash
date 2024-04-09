@@ -1,6 +1,6 @@
-package com.example.group12.model;
+package com.example.group12.model.user;
 
-import com.example.group12.model.User;
+import com.example.group12.model.user.User;
 
 /**
  * Represents an employer, extending the User class.

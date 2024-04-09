@@ -1,6 +1,6 @@
 package com.example.group12.firebase.crud;
 
-import com.example.group12.model.LocationInfo;
+import com.example.group12.model.location.LocationInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

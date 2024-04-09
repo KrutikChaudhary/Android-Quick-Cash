@@ -1,4 +1,4 @@
-package com.example.group12.model;
+package com.example.group12.model.location;
 /*
 This file includes a class named LocationInfo that is designed to encapsulate
 all the necessary information regarding a geographical location.

@@ -15,7 +15,7 @@ import androidx.test.uiautomator.Until;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.example.group12.ui.MainActivity;
+import com.example.group12.ui.loginRegister.MainActivity;
 
 /**
  * UI Automator test class to verify location detector functionality.
