@@ -1,4 +1,4 @@
-package com.example.group12.ui;
+package com.example.group12.ui.user;
 
 import android.content.Intent;
 import android.os.Bundle;
