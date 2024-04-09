@@ -1,4 +1,4 @@
-package com.example.group12.ui;
+package com.example.group12.ui.user.search;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
 import com.example.group12.firebase.crud.FirebaseReadManager;
-import com.example.group12.model.Job;
+import com.example.group12.model.job.Job;
 import com.example.group12.util.callback.JobFilterCallback;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
