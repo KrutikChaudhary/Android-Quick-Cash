@@ -1,8 +1,10 @@
-package com.example.group12.util;
+package com.example.group12.util.statsCount.employee;
 
 import androidx.annotation.NonNull;
 
 import com.example.group12.core.Constants;
+import com.example.group12.util.callback.FirebaseCountCallback;
+import com.example.group12.util.statsCount.StatsCountStrategy;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,10 +14,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Map;
 
 /**
- * This class implements the StatsCountStrategy interface to calculate the total number of in-review job applications
+ * This class implements the StatsCountStrategy interface to calculate the total number of in-review:q job applications
  * received by a specific employee identified by their email.
  */
-public class InReviewApplicationCount implements StatsCountStrategy{
+public class InReviewApplicationCount implements StatsCountStrategy {
     FirebaseDatabase db;
 
     public InReviewApplicationCount() {

@@ -1,4 +1,4 @@
-package com.example.group12.util;
+package com.example.group12.util.adapter;
 
 import android.content.Context;
 import android.content.Intent;

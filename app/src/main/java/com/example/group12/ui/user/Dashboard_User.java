@@ -14,7 +14,7 @@ import android.content.Intent;
 
 import com.example.group12.model.Job;
 import com.example.group12.ui.SearchJobActivity;
-import com.example.group12.util.JobAdapter;
+import com.example.group12.util.adapter.JobAdapter;
 import com.example.group12.R;
 import com.example.group12.util.WrapLinearLayoutManager;
 import com.example.group12.core.Constants;
