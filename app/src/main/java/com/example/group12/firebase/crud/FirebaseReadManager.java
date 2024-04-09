@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 
 import com.example.group12.logic.FilterJob;
 import com.example.group12.model.Job;
-import com.example.group12.util.EmailCallback;
-import com.example.group12.util.JobFilterCallback;
+import com.example.group12.util.callback.EmailCallback;
+import com.example.group12.util.callback.JobFilterCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

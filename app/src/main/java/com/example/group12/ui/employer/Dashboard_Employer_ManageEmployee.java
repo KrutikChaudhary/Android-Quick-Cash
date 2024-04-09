@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
 import com.example.group12.model.JobApplication;
-import com.example.group12.util.JobApplicationAdapter;
+import com.example.group12.util.adapter.JobApplicationAdapter;
 import com.example.group12.util.WrapLinearLayoutManager;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;

@@ -1,6 +1,5 @@
 package com.example.group12.ui.employer;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -12,19 +11,13 @@ import android.widget.TextView;
 
 import com.example.group12.R;
 import com.example.group12.core.Constants;
-import com.example.group12.util.FirebaseCountCallback;
-import com.example.group12.util.TotalApplicationsStatsCount;
-import com.example.group12.util.TotalJobsStatsCount;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
+import com.example.group12.util.callback.FirebaseCountCallback;
+import com.example.group12.util.statsCount.employer.TotalApplicationsStatsCount;
+import com.example.group12.util.statsCount.employer.TotalJobsStatsCount;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
-
-import java.util.Map;
 
 /**
  * Activity class for displaying the employer statistics.

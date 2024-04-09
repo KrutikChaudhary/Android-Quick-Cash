@@ -1,4 +1,6 @@
-package com.example.group12.util;
+package com.example.group12.util.statsCount;
+
+import com.example.group12.util.callback.FirebaseCountCallback;
 
 /**
  * This interface defines a strategy for calculating total counts associated with a specific user's email address.

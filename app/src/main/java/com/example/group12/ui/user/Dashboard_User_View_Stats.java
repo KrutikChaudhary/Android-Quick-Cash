@@ -1,5 +1,4 @@
 package com.example.group12.ui.user;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,18 +8,14 @@ import android.util.Log;
 import android.widget.TextView;
 import com.example.group12.R;
 import com.example.group12.core.Constants;
-import com.example.group12.util.AcceptedApplicationCount;
-import com.example.group12.util.FirebaseCountCallback;
-import com.example.group12.util.InReviewApplicationCount;
-import com.example.group12.util.RejectedApplicationsCount;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
+import com.example.group12.util.statsCount.employee.AcceptedApplicationCount;
+import com.example.group12.util.callback.FirebaseCountCallback;
+import com.example.group12.util.statsCount.employee.InReviewApplicationCount;
+import com.example.group12.util.statsCount.employee.RejectedApplicationsCount;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
-import java.util.Map;
 
 /**
  * Activity class for displaying the user profile in the user dashboard.
