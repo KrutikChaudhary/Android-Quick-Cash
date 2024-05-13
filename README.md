@@ -1,4 +1,4 @@
-# CSCI3130_Group_12
+# Quick Cash
 
 
 
