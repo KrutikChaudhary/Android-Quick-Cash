@@ -6,12 +6,14 @@ Key Features:
  - Post and apply for short-term jobs.
  - User authentication and data storage via Firebase.
  - Location based job postings.
+
 Technologies:
  - Java: Development language.
  - JUnit: Implemented unit tests.
  - UI Automator & Espresso: Used for automated UI testing.
  - Firebase: Backend services for data storage.
  - Android Studio: Development environment.
+
 Getting Started:
  - Clone the repository and open the project in Android Studio.
  - Build the project.
